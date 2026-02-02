@@ -1,21 +1,34 @@
-// Logo Font Randomizer - Changes Exposure font variation on each hover
+// Logo Font Randomizer - LIGHT VERSION
+// Only 7 font variations for faster loading
 
 document.addEventListener('DOMContentLoaded', function() {
   const logoText = document.querySelector('.logo-text');
   
   if (!logoText) return;
 
-  // All 21 Exposure variations from -100 to +100 (steps of 10)
+  // Only 7 Exposure variations: -100, -70, -30, 0, 30, 70, 100
   const fontVariations = [
-    'exposure-100', 'exposure-90', 'exposure-80', 'exposure-70', 'exposure-60',
-    'exposure-50', 'exposure-40', 'exposure-30', 'exposure-20', 'exposure-10',
+    'exposure-100',
+    'exposure-70',
+    'exposure-30',
     'exposure0',
-    'exposure10', 'exposure20', 'exposure30', 'exposure40', 'exposure50',
-    'exposure60', 'exposure70', 'exposure80', 'exposure90', 'exposure100'
+    'exposure30',
+    'exposure70',
+    'exposure100'
   ];
 
   // Store current class to remove it later
-  let currentClass = 'exposure-50'; // Default is -50
+  let currentClass = 'exposure-30'; // Default is -30
+  let fontsLoaded = false;
+
+  // Wait for fonts to load before enabling animation
+  document.fonts.ready.then(function() {
+    fontsLoaded = true;
+    console.log('Exposure fonts loaded (light version) - animation ready');
+    
+    // Apply default class immediately after fonts load
+    logoText.classList.add(currentClass);
+  });
 
   // Function to get random variation
   function getRandomVariation() {
@@ -25,23 +38,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // On hover: apply random font variation
   logoText.addEventListener('mouseenter', function() {
+    if (!fontsLoaded) return; // Don't animate if fonts not loaded yet
+    
     // Remove current class
     logoText.classList.remove(currentClass);
     
-    // Get and apply new random variation
+    // Get and apply new random variation immediately
     currentClass = getRandomVariation();
     logoText.classList.add(currentClass);
   });
 
-  // On mouse leave: return to default (-50)
+  // On mouse leave: return to default (-30) immediately
   logoText.addEventListener('mouseleave', function() {
+    if (!fontsLoaded) return; // Don't animate if fonts not loaded yet
+    
     // Remove current class
     logoText.classList.remove(currentClass);
     
-    // Return to default
-    currentClass = 'exposure-50';
+    // Return to default immediately
+    currentClass = 'exposure-30';
     logoText.classList.add(currentClass);
   });
 
-  console.log('Logo font randomizer initialized with 21 variations');
+  console.log('Logo font randomizer initialized (light version with 7 variations)');
 });
