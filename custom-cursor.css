@@ -1,0 +1,40 @@
+/* Custom Cursor Styles */
+* {
+    cursor: none !important;
+}
+
+.custom-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #BBBBBB;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.3s ease, mix-blend-mode 0.3s ease;
+}
+
+/* Hover states for clickable elements */
+.custom-cursor.hover {
+    transform: translate(-50%, -50%) scale(2);
+}
+
+/* Hide cursor on mobile devices */
+@media (max-width: 768px) {
+    * {
+        cursor: auto !important;
+    }
+    
+    .custom-cursor {
+        display: none;
+    }
+}
+
+html {
+    isolation: isolate;
+}
+
+.custom-cursor {
+    mix-blend-mode: exclusion;
+    z-index: 9999; /* Muito menor */
+}
