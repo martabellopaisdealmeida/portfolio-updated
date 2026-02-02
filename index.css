@@ -29,7 +29,7 @@
 @font-face {
   font-family: 'ABCDiatypeMono';
   src: url('fonts/ABCDiatypeSemi-MonoVariable-Trial.ttf') format('truetype');
-  font-weight: normal;
+  font-weight: 100 900;
   font-style: normal;
 }
 
@@ -89,15 +89,16 @@ header {
 .desktop-nav {
   display: flex;
   align-items: center;
-  /* gap: 8px; */
+  gap: 0;
   font-family: 'ABCDiatypeMono', monospace;
   font-size: 18px;
+  font-weight: 300;
 }
 
 .desktop-nav a {
   text-decoration: none;
   color: #333;
-  font-weight: 300;
+  font-weight: normal;
   transition: color 0.2s ease;
 }
 
@@ -121,7 +122,7 @@ header {
 }
 
 .search-text {
-  font-family: 'ExposureItalic', sans-serif;
+  font-family: 'ExposureItalic', 'PPMori', sans-serif;
   font-size: 24px;
   font-style: italic;
   color: #333;
@@ -190,7 +191,7 @@ header {
   text-decoration: none;
   color: #ffffff;
   font-weight: 300;
-  font-family: 'ABCDiatypeMono', sans-serif;
+  font-family: 'ABCDiatypeMono', monospace;
   opacity: 0;
   transform: translateX(20px);
   transition: all 0.4s ease;
@@ -236,11 +237,12 @@ header {
   width: 100%;
   position: relative;
   overflow: hidden;
+  aspect-ratio: 16 / 9;
 }
 
 .inspo-item img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
   object-fit: cover;
   transition: transform 0.3s ease;
@@ -278,7 +280,7 @@ footer {
   font-size: 14px;
   font-weight: 300;
   margin: 0;
-  font-family: 'ABCDiatypeMono', sans-serif;
+  font-family: 'ABCDiatypeMono', 'PPMori', sans-serif;
 }
 
 .footer-right {
@@ -328,7 +330,8 @@ footer {
   transition: opacity 0.2s ease;
   pointer-events: none;
   line-height: 1;
-  font-family: 'ABCDiatypeMono', 'PPMori', sans-serif;
+  font-family: 'ExposureItalic', sans-serif;
+  font-style: italic;
 }
 
 .footer-center:hover .get-in-text-top,
@@ -363,7 +366,8 @@ footer {
   font-weight: normal;
   color: #333;
   line-height: 1;
-  font-family: 'ABCDiatypeMono', 'PPMori', sans-serif;
+  font-family: 'ExposureItalic', sans-serif;
+  font-style: italic;
 }
 
 /* Mobile Responsive Styles */
@@ -468,7 +472,8 @@ footer {
     font-weight: normal;
     color: #333;
     line-height: 1;
-    font-family: 'ABCDiatypeMono', 'PPMori', sans-serif;
+    font-family: 'ExposureItalic', sans-serif;
+    font-style: italic;
   }
 
   .footer-line-mobile {
