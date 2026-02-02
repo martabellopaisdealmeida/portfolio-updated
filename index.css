@@ -22,7 +22,8 @@
 @font-face {
   font-family: 'ExposureItalic';
   src: url('fonts/ExposureItalicTrial[-50].otf') format('opentype');
-  font-weight: normal;
+  font-weight: 100 900;
+  font-stretch: 50%;
   font-style: italic;
 }
 
@@ -52,6 +53,7 @@ header {
   padding: 30px 40px;
   position: sticky;
   top: 0;
+  background-color: transparent;
   z-index: 100;
 }
 
@@ -69,6 +71,7 @@ header {
   color: #333;
   text-decoration: none;
   font-style: italic;
+  font-stretch: 50%;
 }
 
 .logo-link {
@@ -98,7 +101,7 @@ header {
 .desktop-nav a {
   text-decoration: none;
   color: #333;
-  font-weight: normal;
+  font-weight: 300;
   transition: color 0.2s ease;
 }
 
@@ -113,7 +116,8 @@ header {
 
 .nav-separator {
   color: #333;
-  font-weight: normal;
+  font-family: 'ABCDiatypeMono', monospace;
+  font-weight: 300;
   user-select: none;
 }
 
@@ -127,6 +131,7 @@ header {
   font-style: italic;
   color: #333;
   transition: color 0.2s ease;
+  font-stretch: 50%;
 }
 
 .search-container:hover .search-text {
@@ -240,6 +245,14 @@ header {
   aspect-ratio: 16 / 9;
 }
 
+.inspo-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .inspo-item img {
   width: 100%;
   height: 100%;
@@ -258,6 +271,7 @@ footer {
   bottom: 0;
   left: 0;
   right: 0;
+  background-color: transparent;
   height: 200px;
   padding: 0 90px;
   z-index: 1000;
@@ -332,6 +346,7 @@ footer {
   line-height: 1;
   font-family: 'ExposureItalic', sans-serif;
   font-style: italic;
+  font-stretch: 50%;
 }
 
 .footer-center:hover .get-in-text-top,
@@ -368,6 +383,7 @@ footer {
   line-height: 1;
   font-family: 'ExposureItalic', sans-serif;
   font-style: italic;
+  font-stretch: 50%;
 }
 
 /* Mobile Responsive Styles */
@@ -474,6 +490,7 @@ footer {
     line-height: 1;
     font-family: 'ExposureItalic', sans-serif;
     font-style: italic;
+    font-stretch: 50%;
   }
 
   .footer-line-mobile {
