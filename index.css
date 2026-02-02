@@ -26,6 +26,13 @@
   font-style: italic;
 }
 
+@font-face {
+  font-family: 'ABCDiatypeMono';
+  src: url('fonts/ABCDiatypeSemi-MonoVariable-Trial.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -42,15 +49,19 @@ body {
 
 /* Header Styles */
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 30px 40px;
   position: sticky;
   top: 0;
   background-color: #ffffff;
   z-index: 100;
   border-bottom: 1px solid #000;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
 .logo-text {
@@ -81,7 +92,7 @@ header {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: 'MarundTrial', 'PPMori', sans-serif;
+  font-family: 'ABCDiatypeMono', 'PPMori', sans-serif;
   font-size: 18px;
 }
 
@@ -181,7 +192,7 @@ header {
   text-decoration: none;
   color: #ffffff;
   font-weight: 600;
-  font-family: 'MarundTrial', 'PPMori', sans-serif;
+  font-family: 'ABCDiatypeMono', 'PPMori', sans-serif;
   opacity: 0;
   transform: translateX(20px);
   transition: all 0.4s ease;
@@ -365,6 +376,10 @@ footer {
     padding: 20px 30px;
   }
 
+  .header-top {
+    margin-bottom: 6px;
+  }
+
   .desktop-nav {
     display: none;
   }
@@ -412,6 +427,10 @@ footer {
 
   .right-elements {
     gap: 20px;
+  }
+
+  .desktop-nav {
+    font-size: 16px;
   }
 
   .inspo-container {
