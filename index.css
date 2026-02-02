@@ -97,7 +97,7 @@ header {
 .desktop-nav a {
   text-decoration: none;
   color: #333;
-  font-weight: normal;
+  font-weight: 300;
   transition: color 0.2s ease;
 }
 
@@ -189,8 +189,8 @@ header {
   font-size: 24px;
   text-decoration: none;
   color: #ffffff;
-  font-weight: 600;
-  font-family: 'ABCDiatypeMono', 'PPMori', sans-serif;
+  font-weight: 300;
+  font-family: 'ABCDiatypeMono', sans-serif;
   opacity: 0;
   transform: translateX(20px);
   transition: all 0.4s ease;
@@ -276,7 +276,7 @@ footer {
 .footer-left p {
   color: #333;
   font-size: 14px;
-  font-weight: normal;
+  font-weight: 300;
   margin: 0;
   font-family: 'ABCDiatypeMono', sans-serif;
 }
@@ -290,7 +290,7 @@ footer {
   color: #333;
   text-decoration: none;
   font-size: 14px;
-  font-weight: normal;
+  font-weight: 300;
   transition: opacity 0.2s ease;
   font-family: 'ABCDiatypeMono', 'PPMori', sans-serif;
 }
