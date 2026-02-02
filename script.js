@@ -37,18 +37,56 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Search functionality - Adapter for new design
   // The search.js looks for .search-icon, but inspo design uses .search-text
-  // So we add a listener here to open the search overlay
+  // So we add listeners here for both opening and closing
   const searchContainer = document.querySelector(".search-container")
   const searchOverlay = document.querySelector(".search-overlay")
+  const searchClose = document.querySelector(".search-close")
+  const searchInput = document.querySelector(".search-input")
   
+  // Open search overlay
   if (searchContainer && searchOverlay) {
     searchContainer.addEventListener("click", function () {
       searchOverlay.classList.add("active")
-      const searchInput = document.querySelector(".search-input")
       if (searchInput) {
         searchInput.focus()
       }
       document.body.style.overflow = "hidden"
+    })
+  }
+
+  // Close search overlay
+  function closeSearchOverlay() {
+    if (searchOverlay) {
+      searchOverlay.classList.remove("active")
+      if (searchInput) {
+        searchInput.value = ""
+      }
+      const searchResults = document.querySelector(".search-results")
+      if (searchResults) {
+        searchResults.innerHTML = ""
+      }
+      document.body.style.overflow = ""
+    }
+  }
+
+  // Close button
+  if (searchClose) {
+    searchClose.addEventListener("click", closeSearchOverlay)
+  }
+
+  // Close with Escape key
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && searchOverlay && searchOverlay.classList.contains("active")) {
+      closeSearchOverlay()
+    }
+  })
+
+  // Close when clicking outside
+  if (searchOverlay) {
+    searchOverlay.addEventListener("click", function (e) {
+      if (e.target === searchOverlay) {
+        closeSearchOverlay()
+      }
     })
   }
 
@@ -114,5 +152,6 @@ document.addEventListener("DOMContentLoaded", function () {
   console.log("Inspo page script loaded successfully")
 })
 
-// Note: Search close/overlay logic is handled by search.js
+// Note: Search functionality (open/close/escape) is handled above
+// Note: Search results/suggestions are handled by search.js
 // Note: Custom cursor is handled by custom-cursor.js
