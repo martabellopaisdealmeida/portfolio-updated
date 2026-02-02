@@ -226,7 +226,7 @@ header {
 
 /* Main Content - Inspo Container */
 .inspo-container {
-  max-width: 1200px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 80px 40px;
   display: flex;
