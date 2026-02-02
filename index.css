@@ -52,7 +52,9 @@ header {
   padding: 30px 40px;
   position: sticky;
   top: 0;
+  background-color: #ffffff;
   z-index: 100;
+  border-bottom: 1px solid #000;
 }
 
 .header-top {
@@ -256,12 +258,14 @@ footer {
   bottom: 0;
   left: 0;
   right: 0;
+  background-color: #ffffff;
   height: 200px;
   padding: 0 90px;
   z-index: 1000;
   display: flex;
   align-items: flex-end;
   padding-bottom: 30px;
+  border-top: 1px solid #000;
 }
 
 .interactive-footer {
@@ -278,7 +282,7 @@ footer {
   font-size: 14px;
   font-weight: normal;
   margin: 0;
-  font-family: 'MarundTrial', 'PPMori', sans-serif;
+  font-family: 'ABCDiatypeMono', 'PPMori', sans-serif;
 }
 
 .footer-right {
@@ -292,7 +296,7 @@ footer {
   font-size: 14px;
   font-weight: normal;
   transition: opacity 0.2s ease;
-  font-family: 'MarundTrial', 'PPMori', sans-serif;
+  font-family: 'ABCDiatypeMono', 'PPMori', sans-serif;
 }
 
 .footer-right a:hover {
@@ -328,7 +332,7 @@ footer {
   transition: opacity 0.2s ease;
   pointer-events: none;
   line-height: 1;
-  font-family: 'MarundTrial', 'PPMori', sans-serif;
+  font-family: 'ABCDiatypeMono', 'PPMori', sans-serif;
 }
 
 .footer-center:hover .get-in-text-top,
@@ -363,7 +367,7 @@ footer {
   font-weight: normal;
   color: #333;
   line-height: 1;
-  font-family: 'MarundTrial', 'PPMori', sans-serif;
+  font-family: 'ABCDiatypeMono', 'PPMori', sans-serif;
 }
 
 /* Mobile Responsive Styles */
@@ -468,7 +472,7 @@ footer {
     font-weight: normal;
     color: #333;
     line-height: 1;
-    font-family: 'MarundTrial', 'PPMori', sans-serif;
+    font-family: 'ABCDiatypeMono', 'PPMori', sans-serif;
   }
 
   .footer-line-mobile {
