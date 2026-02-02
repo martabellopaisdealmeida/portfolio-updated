@@ -1,5 +1,275 @@
 /* Project Page Styles */
 
+/* ==================== FONT FACES ==================== */
+/* Exposure Italic Font Variations - LIGHT VERSION */
+@font-face {
+  font-family: 'ExposureItalic-100';
+  src: url('fonts/ExposureItalicTrial[-100].otf') format('opentype');
+  font-style: italic;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'ExposureItalic-70';
+  src: url('fonts/ExposureItalicTrial[-70].otf') format('opentype');
+  font-style: italic;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'ExposureItalic-30';
+  src: url('fonts/ExposureItalicTrial[-30].otf') format('opentype');
+  font-style: italic;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'ExposureItalic0';
+  src: url('fonts/ExposureItalicTrial[0].otf') format('opentype');
+  font-style: italic;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'ExposureItalic30';
+  src: url('fonts/ExposureItalicTrial[30].otf') format('opentype');
+  font-style: italic;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'ExposureItalic70';
+  src: url('fonts/ExposureItalicTrial[70].otf') format('opentype');
+  font-style: italic;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'ExposureItalic100';
+  src: url('fonts/ExposureItalicTrial[100].otf') format('opentype');
+  font-style: italic;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'PPMori';
+  src: url('fonts/PPMori-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PPMori';
+  src: url('fonts/PPMori-SemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MarundTrial';
+  src: url('fonts/26A1MarundTrial-3002Corner.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ABCDiatypeMono';
+  src: url('fonts/ABCDiatypeSemi-MonoVariable-Trial.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal italic;
+}
+
+/* ==================== GLOBAL STYLES ==================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'PPMori', sans-serif;
+}
+
+body {
+  background-color: #ffffff;
+  color: #333;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ==================== HEADER STYLES ==================== */
+/* Based on index.css header structure */
+
+header {
+  padding: 30px 40px;
+  position: sticky;
+  top: 0;
+  background-color: transparent;
+  z-index: 100;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-link {
+  text-decoration: none;
+}
+
+.logo-text {
+  font-family: 'ExposureItalic-30', 'PPMori', sans-serif;
+  font-size: 24px;
+  color: #333;
+  text-decoration: none;
+  font-style: italic;
+}
+
+.logo-link:hover .logo-text {
+  color: #ED6D2E;
+  transition: color 0.2s ease;
+}
+
+.right-elements {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  font-family: 'ABCDiatypeMono', monospace;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.desktop-nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 300;
+  transition: color 0.2s ease;
+  margin-right: 6px;
+}
+
+.desktop-nav a:hover {
+  color: #ED6D2E;
+}
+
+.desktop-nav a.active {
+  color: #333;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.search-container {
+  cursor: pointer;
+}
+
+.search-text {
+  font-family: 'ExposureItalic-50', 'PPMori', sans-serif;
+  font-size: 24px;
+  font-style: italic;
+  color: #333;
+  transition: color 0.2s ease;
+}
+
+.search-container:hover .search-text {
+  color: #ED6D2E;
+}
+
+/* Hamburger Menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  cursor: pointer;
+  z-index: 200;
+}
+
+.hamburger span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: #333;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mobile Navigation */
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 100vh;
+  background-color: #ED6D2E;
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 150;
+  transition: right 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+}
+
+.mobile-nav.active {
+  right: 0;
+}
+
+.mobile-nav a {
+  margin: 15px 0;
+  font-size: 24px;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 300;
+  font-family: 'ABCDiatypeMono', monospace;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: all 0.4s ease;
+  transition-delay: 0.2s;
+}
+
+.mobile-nav.active a {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.mobile-nav a.active {
+  text-decoration: underline;
+  font-style: italic;
+}
+
+.close-btn {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #ffffff;
+  opacity: 0;
+  transition: all 0.3s ease;
+  transition-delay: 0.3s;
+}
+
+.mobile-nav.active .close-btn {
+  opacity: 1;
+}
+
+/* ==================== PROJECT CONTENT STYLES ==================== */
+
 /* Hero Image - Full Width */
 .project-hero {
   width: 100%;
@@ -121,8 +391,157 @@
   object-fit: cover;
 }
 
-/* Mobile Responsive */
+/* ==================== FOOTER STYLES ==================== */
+/* Based on index.css footer structure */
+
+footer {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: transparent;
+  min-height: 250px;
+  padding: 0 90px;
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 30px;
+  overflow: visible;
+}
+
+.interactive-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+  overflow: visible;
+}
+
+.footer-left p {
+  color: #333;
+  font-size: 14px;
+  font-weight: 300;
+  margin: 0;
+  font-family: 'ABCDiatypeMono', 'PPMori', sans-serif;
+}
+
+.footer-right {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-right a {
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 300;
+  transition: opacity 0.2s ease;
+  font-family: 'ABCDiatypeMono', 'PPMori', sans-serif;
+}
+
+.footer-right a:hover {
+  opacity: 0.7;
+}
+
+.footer-center {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  text-decoration: none;
+  color: inherit;
+  padding: 20px 0;
+}
+
+.footer-line {
+  width: 500px;
+  height: 5px;
+  background-color: #333;
+  transition: all 0.2s ease;
+}
+
+.get-in-text-top,
+.get-in-text-bottom {
+  font-size: 64px;
+  font-weight: normal;
+  color: #333;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+  line-height: 1.2;
+  font-family: 'ExposureItalic-50', sans-serif;
+  font-style: italic;
+  padding: 5px 0;
+}
+
+.footer-center:hover .get-in-text-top,
+.footer-center:hover .get-in-text-bottom {
+  opacity: 1;
+}
+
+.footer-center:hover .footer-line {
+  width: 520px;
+}
+
+.footer-center-mobile {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  margin-bottom: 30px;
+  text-decoration: none;
+  color: #333;
+}
+
+.footer-line-mobile {
+  width: 250px;
+  height: 3px;
+  background-color: #333;
+}
+
+.get-in-text-top-mobile,
+.get-in-text-bottom-mobile {
+  font-size: 40px;
+  font-weight: normal;
+  color: #333;
+  line-height: 1.2;
+  font-family: 'ExposureItalic-50', sans-serif;
+  font-style: italic;
+  padding: 5px 0;
+}
+
+/* ==================== MOBILE RESPONSIVE STYLES ==================== */
+
 @media (max-width: 768px) {
+  /* Header Mobile */
+  header {
+    padding: 20px 30px;
+  }
+
+  .header-top {
+    margin-bottom: 6px;
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .search-text {
+    font-size: 24px;
+  }
+
+  /* Project Content Mobile */
   .project-hero {
     height: 60vh;
   }
@@ -158,9 +577,46 @@
   .image-row.three-col {
     grid-template-columns: 1fr;
   }
+
+  /* Footer Mobile */
+  footer {
+    padding: 0 30px;
+    height: 150px;
+    padding-bottom: 20px;
+  }
+
+  .footer-center {
+    display: none !important;
+  }
+
+  .footer-center-mobile {
+    display: flex !important;
+  }
 }
 
 @media (max-width: 480px) {
+  /* Header Extra Small */
+  header {
+    padding: 20px 20px;
+  }
+
+  .logo-text {
+    font-size: 20px;
+  }
+
+  .search-text {
+    font-size: 20px;
+  }
+
+  .right-elements {
+    gap: 20px;
+  }
+
+  .desktop-nav {
+    font-size: 16px;
+  }
+
+  /* Project Content Extra Small */
   .project-hero {
     height: 50vh;
   }
@@ -183,5 +639,68 @@
 
   .image-row {
     gap: 20px;
+  }
+
+  /* Footer Extra Small */
+  footer {
+    height: auto;
+    min-height: 250px;
+    padding: 60px 20px 20px 20px;
+    display: block;
+  }
+
+  .interactive-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0;
+    height: 100%;
+    justify-content: center;
+    padding-top: 20px;
+  }
+
+  .footer-center {
+    display: none;
+  }
+
+  .footer-center-mobile {
+    display: flex;
+    order: 1;
+    margin-bottom: 40px;
+  }
+
+  .footer-center-mobile .get-in-text-top-mobile,
+  .footer-center-mobile .get-in-text-bottom-mobile {
+    font-size: 40px;
+    font-weight: normal;
+    color: #333;
+    line-height: 1.2;
+    font-family: 'ExposureItalic-50', sans-serif;
+    font-style: italic;
+    padding: 5px 0;
+  }
+
+  .footer-line-mobile {
+    width: 250px;
+    height: 3px;
+    background-color: #333;
+  }
+
+  .footer-left {
+    order: 3;
+    margin-top: 0;
+  }
+
+  .footer-right {
+    order: 4;
+    margin-top: 15px;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .footer-left p,
+  .footer-right a {
+    font-size: 12px;
   }
 }
