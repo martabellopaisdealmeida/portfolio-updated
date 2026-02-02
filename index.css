@@ -89,7 +89,7 @@ header {
 .desktop-nav {
   display: flex;
   align-items: center;
-  gap: 8px;
+  /* gap: 8px; */
   font-family: 'ABCDiatypeMono', sans-serif;
   font-size: 18px;
 }
