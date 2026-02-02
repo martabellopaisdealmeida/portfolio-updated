@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MARTA - Project Name</title>
+  <link rel="stylesheet" href="project-template.css">
+  <link rel="stylesheet" href="search.css">
+  <link rel="stylesheet" href="custom-cursor.css">
+  <link rel="icon" type="image/x-icon" href="pic-square.ico">
+</head>
+<body>
+  <header>
+    <!-- First row: marta left, search right -->
+    <div class="header-top">
+      <div class="logo">
+        <a href="index.html" class="logo-link">
+          <span class="logo-text">marta</span>
+        </a>
+      </div>
+
+      <div class="right-elements">
+        <!-- Search text -->
+        <div class="search-container">
+          <div class="search-text">search</div>
+        </div>
+
+        <!-- Hamburger (só aparece em mobile) -->
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Second row: navigation below logo -->
+    <nav class="desktop-nav">
+      <a href="index.html" class="active">work</a>
+      <span class="nav-separator">,</span>
+      <a href="about-me.html">about</a>
+      <span class="nav-separator">,</span>
+      <a href="inspo.html">inspo</a>
+    </nav>
+  </header>
+
+  <!-- Search Overlay -->
+  <div class="search-overlay">
+    <div class="search-close">×</div>
+
+    <div class="search-box">
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Search projects, skills, or anything..."
+        autocomplete="off"
+      >
+    </div>
+
+    <div class="search-suggestions">
+      <h4>Popular Searches</h4>
+      <div class="suggestion-tags">
+        <span class="suggestion-tag">Branding</span>
+        <span class="suggestion-tag">Wedding Design</span>
+        <span class="suggestion-tag">Editorial</span>
+        <span class="suggestion-tag">Art Direction</span>
+        <span class="suggestion-tag">Print Design</span>
+        <span class="suggestion-tag">Illustration</span>
+      </div>
+    </div>
+
+    <div class="search-results"></div>
+  </div>
+
+  <!-- Menu mobile fullscreen -->
+  <div class="mobile-nav">
+    <div class="close-btn">✕</div>
+    <a href="index.html" class="active">work</a>
+    <a href="about-me.html">about</a>
+    <a href="inspo.html">inspo</a>
+  </div>
+
+  <!-- Project Hero -->
+  <section class="project-hero">
+    <h1 class="project-title">PROJECT NAME</h1>
+  </section>
+
+  <!-- Project Content -->
+  <section class="project-content">
+    <div class="content-wrapper">
+      <!-- Main Description -->
+      <div class="project-description">
+        <h2 class="section-subtitle">PROJECT NAME</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Partendo da scontrini termici bruciati con comuni utensili domestici, genera forme astratte e inattese che innescano la pareidolia: il fenomeno psicologico in cui la mente riconosce forme familiari — volti, lettere o figure — anche in stimoli casuali o ambigui.
+        </p>
+        <p>
+          Questa dinamica rivela un profondo bisogno umano di significato. Di fronte all'ambiguità, cerchiamo istintivamente connessioni, senso, struttura — un processo mentale che trasforma l'ordinario in simbolico.
+        </p>
+        <p>
+          Il progetto si inserisce in una linea storica che mette in discussione i confini tra arte e quotidianità. Marcel Duchamp, con il suo ready-made Fountain (1917), elevò un orinatoio prodotto in serie a opera d'arte semplicemente cambiandone il contesto.
+        </p>
+      </div>
+
+      <!-- Project Info Sidebar -->
+      <aside class="project-info">
+        <div class="info-item">
+          <h3>Cliente</h3>
+          <p>Client Name</p>
+        </div>
+        
+        <div class="info-item">
+          <h3>Produtos</h3>
+          <p>Brand Identity<br>Editorial Design<br>Illustration</p>
+        </div>
+        
+        <div class="info-item">
+          <h3>Anno</h3>
+          <p>2024</p>
+        </div>
+        
+        <div class="info-item">
+          <h3>Servizi</h3>
+          <p>Art Direction<br>Graphic Design<br>Photography</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Project Gallery -->
+  <section class="project-gallery">
+    <div class="gallery-item">
+      <img src="https://via.placeholder.com/1200x800/CCCCCC/666666?text=Project+Image+1" alt="Project image 1">
+    </div>
+    
+    <div class="gallery-item">
+      <img src="https://via.placeholder.com/1200x1600/CCCCCC/666666?text=Project+Image+2" alt="Project image 2">
+    </div>
+    
+    <div class="gallery-item">
+      <img src="https://via.placeholder.com/1200x800/CCCCCC/666666?text=Project+Image+3" alt="Project image 3">
+    </div>
+    
+    <div class="gallery-item gallery-two-col">
+      <img src="https://via.placeholder.com/600x800/CCCCCC/666666?text=Image+4" alt="Project image 4">
+      <img src="https://via.placeholder.com/600x800/CCCCCC/666666?text=Image+5" alt="Project image 5">
+    </div>
+    
+    <div class="gallery-item">
+      <img src="https://via.placeholder.com/1200x800/CCCCCC/666666?text=Project+Image+6" alt="Project image 6">
+    </div>
+    
+    <div class="gallery-item">
+      <video autoplay muted loop playsinline>
+        <source src="your-video.mp4" type="video/mp4">
+      </video>
+    </div>
+    
+    <div class="gallery-item">
+      <img src="https://via.placeholder.com/1200x1200/CCCCCC/666666?text=Project+Image+7" alt="Project image 7">
+    </div>
+  </section>
+
+  <!-- Next Project Section -->
+  <section class="next-project">
+    <a href="next-project.html" class="next-project-link">
+      <span class="next-label">Next</span>
+      <h2 class="next-title">Project Name</h2>
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="interactive-footer">
+      <div class="footer-left">
+        <p>© 2025 marta bello pais de almeida</p>
+      </div>
+
+      <!-- Center hover effect -->
+      <a href="mailto:martinhabpa@gmail.com" class="footer-center">
+        <div class="get-in-text-top">get in</div>
+        <div class="footer-line"></div>
+        <div class="get-in-text-bottom">touch</div>
+      </a>
+
+      <!-- Mobile static version -->
+      <a href="mailto:martinhabpa@gmail.com" class="footer-center-mobile">
+        <span class="get-in-text-top-mobile">get in</span>
+        <div class="footer-line-mobile"></div>
+        <span class="get-in-text-bottom-mobile">touch</span>
+      </a>
+
+      <div class="footer-right">
+        <a href="https://www.icloud.com/iclouddrive/008XTyvyPmEH6UFI731TEegVw#CV" target="_blank">resume</a>
+        <a href="https://open.spotify.com/show/02nK1cE2YFhTjj5IT9ZvgI?si=99a32a151c61488c" target="_blank">podcast</a>
+        <a href="https://www.instagram.com/martabpaisdealmeida/" target="_blank">instagram</a>
+        <a href="https://www.linkedin.com/in/marta-bello-pais-de-almeida/" target="_blank">linkedin</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="homepage-script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <script src="search.js"></script>
+  <script src="custom-cursor.js"></script>
+</body>
+</html>

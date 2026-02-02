@@ -1,3 +1,4 @@
+/* Fonts */
 @font-face {
   font-family: 'PPMori';
   src: url('fonts/PPMori-Regular.otf') format('opentype');
@@ -33,6 +34,7 @@
   font-style: normal;
 }
 
+/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -53,6 +55,8 @@ header {
   position: sticky;
   top: 0;
   z-index: 100;
+  background-color: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
 }
 
 .header-top {
@@ -222,32 +226,152 @@ header {
   opacity: 1;
 }
 
-/* Main Content - Inspo Container */
-.inspo-container {
-  max-width: 900px;
+/* Project Hero Section */
+.project-hero {
+  padding: 120px 40px 80px 40px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 80px 40px;
+}
+
+.project-title {
+  font-family: 'MarundTrial', 'PPMori', sans-serif;
+  font-size: clamp(48px, 8vw, 120px);
+  font-weight: normal;
+  color: #333;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+/* Project Content */
+.project-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 40px 80px 40px;
+}
+
+.content-wrapper {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 80px;
+}
+
+.project-description {
+  max-width: 700px;
+}
+
+.section-subtitle {
+  font-family: 'ABCDiatypeMono', 'PPMori', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.project-description p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Project Info Sidebar */
+.project-info {
   display: flex;
   flex-direction: column;
   gap: 40px;
+  position: sticky;
+  top: 140px;
+  height: fit-content;
 }
 
-.inspo-item {
+.info-item h3 {
+  font-family: 'ABCDiatypeMono', 'PPMori', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+  color: #999;
+}
+
+.info-item p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Project Gallery */
+.project-gallery {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px 80px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.gallery-item {
   width: 100%;
-  position: relative;
   overflow: hidden;
 }
 
-.inspo-item img {
+.gallery-item img,
+.gallery-item video {
   width: 100%;
   height: auto;
   display: block;
   object-fit: cover;
-  transition: transform 0.3s ease;
 }
 
-.inspo-item:hover img {
-  transform: scale(1.02);
+.gallery-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.gallery-two-col img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Next Project Section */
+.next-project {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 80px 40px 120px 40px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.next-project-link {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.next-project-link:hover {
+  color: #ED6D2E;
+}
+
+.next-label {
+  font-family: 'ABCDiatypeMono', 'PPMori', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.next-title {
+  font-family: 'MarundTrial', 'PPMori', sans-serif;
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: normal;
+  line-height: 1;
 }
 
 /* Footer Styles */
@@ -280,7 +404,7 @@ footer {
   font-size: 14px;
   font-weight: normal;
   margin: 0;
-  font-family: 'ABCDiatypeMono', sans-serif;
+  font-family: 'ABCDiatypeMono', 'PPMori', sans-serif;
 }
 
 .footer-right {
@@ -369,6 +493,24 @@ footer {
 }
 
 /* Mobile Responsive Styles */
+@media (max-width: 1024px) {
+  .content-wrapper {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .project-info {
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .gallery-two-col {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 768px) {
   header {
     padding: 20px 30px;
@@ -390,9 +532,34 @@ footer {
     font-size: 24px;
   }
 
-  .inspo-container {
-    padding: 40px 30px;
+  .project-hero {
+    padding: 80px 30px 60px 30px;
+  }
+
+  .project-content {
+    padding: 30px 30px 60px 30px;
+  }
+
+  .content-wrapper {
+    gap: 40px;
+  }
+
+  .project-description p {
+    font-size: 16px;
+  }
+
+  .project-info {
+    grid-template-columns: 1fr;
     gap: 30px;
+  }
+
+  .project-gallery {
+    padding: 0 30px 60px 30px;
+    gap: 40px;
+  }
+
+  .next-project {
+    padding: 60px 30px 80px 30px;
   }
 
   footer {
@@ -431,9 +598,21 @@ footer {
     font-size: 16px;
   }
 
-  .inspo-container {
-    padding: 30px 20px;
-    gap: 24px;
+  .project-hero {
+    padding: 60px 20px 40px 20px;
+  }
+
+  .project-content {
+    padding: 20px 20px 40px 20px;
+  }
+
+  .project-gallery {
+    padding: 0 20px 40px 20px;
+    gap: 30px;
+  }
+
+  .next-project {
+    padding: 40px 20px 60px 20px;
   }
 
   footer {
