@@ -65,7 +65,7 @@ header {
 }
 
 .logo-text {
-  font-family: 'MarundTrial', 'PPMori', sans-serif;
+  font-family: 'ExposureItalic', 'PPMori', sans-serif;
   font-size: 24px;
   font-weight: normal;
   color: #333;
@@ -124,7 +124,7 @@ header {
 
 .search-text {
   font-family: 'ExposureItalic', 'PPMori', sans-serif;
-  font-size: 18px;
+  font-size: 24px;
   font-style: italic;
   color: #333;
   transition: color 0.2s ease;
@@ -389,7 +389,7 @@ footer {
   }
 
   .search-text {
-    font-size: 16px;
+    font-size: 24px;
   }
 
   .inspo-container {
@@ -422,7 +422,7 @@ footer {
   }
 
   .search-text {
-    font-size: 14px;
+    font-size: 20px;
   }
 
   .right-elements {
