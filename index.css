@@ -272,12 +272,13 @@ footer {
   left: 0;
   right: 0;
   background-color: transparent;
-  height: 200px;
+  min-height: 250px;
   padding: 0 90px;
   z-index: 1000;
   display: flex;
   align-items: flex-end;
   padding-bottom: 30px;
+  overflow: visible;
 }
 
 .interactive-footer {
@@ -287,6 +288,7 @@ footer {
   width: 100%;
   max-width: 100%;
   position: relative;
+  overflow: visible;
 }
 
 .footer-left p {
@@ -326,6 +328,7 @@ footer {
   gap: 15px;
   text-decoration: none;
   color: inherit;
+  padding: 20px 0;
 }
 
 .footer-line {
@@ -343,10 +346,11 @@ footer {
   opacity: 0;
   transition: opacity 0.2s ease;
   pointer-events: none;
-  line-height: 1;
+  line-height: 1.2;
   font-family: 'ExposureItalic', sans-serif;
   font-style: italic;
   font-stretch: 50%;
+  padding: 5px 0;
 }
 
 .footer-center:hover .get-in-text-top,
@@ -380,10 +384,11 @@ footer {
   font-size: 40px;
   font-weight: normal;
   color: #333;
-  line-height: 1;
+  line-height: 1.2;
   font-family: 'ExposureItalic', sans-serif;
   font-style: italic;
   font-stretch: 50%;
+  padding: 5px 0;
 }
 
 /* Mobile Responsive Styles */
@@ -487,10 +492,11 @@ footer {
     font-size: 40px;
     font-weight: normal;
     color: #333;
-    line-height: 1;
+    line-height: 1.2;
     font-family: 'ExposureItalic', sans-serif;
     font-style: italic;
     font-stretch: 50%;
+    padding: 5px 0;
   }
 
   .footer-line-mobile {
