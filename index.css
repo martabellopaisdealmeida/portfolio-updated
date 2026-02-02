@@ -20,20 +20,171 @@
 }
 
 @font-face {
-  font-family: 'ExposureItalic';
-  src: url('fonts/ExposureItalicTrial[-50].otf') format('opentype');
-  font-weight: 100 900;
-  font-stretch: 50%;
-  font-style: italic;
-}
-
-@font-face {
   font-family: 'ABCDiatypeMono';
   src: url('fonts/ABCDiatypeSemi-MonoVariable-Trial.ttf') format('truetype');
   font-weight: 100 900;
   font-style: normal italic;
 }
+/* Exposure Italic Font Variations - All 21 weights from -100 to +100 */
 
+@font-face {
+  font-family: 'ExposureItalic-100';
+  src: url('fonts/ExposureItalicTrial[-100].otf') format('opentype');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'ExposureItalic-90';
+  src: url('fonts/ExposureItalicTrial[-90].otf') format('opentype');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'ExposureItalic-80';
+  src: url('fonts/ExposureItalicTrial[-80].otf') format('opentype');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'ExposureItalic-70';
+  src: url('fonts/ExposureItalicTrial[-70].otf') format('opentype');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'ExposureItalic-60';
+  src: url('fonts/ExposureItalicTrial[-60].otf') format('opentype');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'ExposureItalic-50';
+  src: url('fonts/ExposureItalicTrial[-50].otf') format('opentype');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'ExposureItalic-40';
+  src: url('fonts/ExposureItalicTrial[-40].otf') format('opentype');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'ExposureItalic-30';
+  src: url('fonts/ExposureItalicTrial[-30].otf') format('opentype');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'ExposureItalic-20';
+  src: url('fonts/ExposureItalicTrial[-20].otf') format('opentype');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'ExposureItalic-10';
+  src: url('fonts/ExposureItalicTrial[-10].otf') format('opentype');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'ExposureItalic0';
+  src: url('fonts/ExposureItalicTrial[0].otf') format('opentype');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'ExposureItalic10';
+  src: url('fonts/ExposureItalicTrial[10].otf') format('opentype');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'ExposureItalic20';
+  src: url('fonts/ExposureItalicTrial[20].otf') format('opentype');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'ExposureItalic30';
+  src: url('fonts/ExposureItalicTrial[30].otf') format('opentype');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'ExposureItalic40';
+  src: url('fonts/ExposureItalicTrial[40].otf') format('opentype');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'ExposureItalic50';
+  src: url('fonts/ExposureItalicTrial[50].otf') format('opentype');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'ExposureItalic60';
+  src: url('fonts/ExposureItalicTrial[60].otf') format('opentype');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'ExposureItalic70';
+  src: url('fonts/ExposureItalicTrial[70].otf') format('opentype');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'ExposureItalic80';
+  src: url('fonts/ExposureItalicTrial[80].otf') format('opentype');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'ExposureItalic90';
+  src: url('fonts/ExposureItalicTrial[90].otf') format('opentype');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'ExposureItalic100';
+  src: url('fonts/ExposureItalicTrial[100].otf') format('opentype');
+  font-style: italic;
+}
+
+/* Logo default uses -50 */
+.logo-text {
+  font-family: 'ExposureItalic-50', 'PPMori', sans-serif;
+  font-size: 24px;
+  color: #333;
+  text-decoration: none;
+  font-style: italic;
+  transition: font-family 0.1s ease;
+}
+
+/* Classes for each variation to be applied via JavaScript */
+.exposure-100 { font-family: 'ExposureItalic-100', sans-serif !important; }
+.exposure-90 { font-family: 'ExposureItalic-90', sans-serif !important; }
+.exposure-80 { font-family: 'ExposureItalic-80', sans-serif !important; }
+.exposure-70 { font-family: 'ExposureItalic-70', sans-serif !important; }
+.exposure-60 { font-family: 'ExposureItalic-60', sans-serif !important; }
+.exposure-50 { font-family: 'ExposureItalic-50', sans-serif !important; }
+.exposure-40 { font-family: 'ExposureItalic-40', sans-serif !important; }
+.exposure-30 { font-family: 'ExposureItalic-30', sans-serif !important; }
+.exposure-20 { font-family: 'ExposureItalic-20', sans-serif !important; }
+.exposure-10 { font-family: 'ExposureItalic-10', sans-serif !important; }
+.exposure0 { font-family: 'ExposureItalic0', sans-serif !important; }
+.exposure10 { font-family: 'ExposureItalic10', sans-serif !important; }
+.exposure20 { font-family: 'ExposureItalic20', sans-serif !important; }
+.exposure30 { font-family: 'ExposureItalic30', sans-serif !important; }
+.exposure40 { font-family: 'ExposureItalic40', sans-serif !important; }
+.exposure50 { font-family: 'ExposureItalic50', sans-serif !important; }
+.exposure60 { font-family: 'ExposureItalic60', sans-serif !important; }
+.exposure70 { font-family: 'ExposureItalic70', sans-serif !important; }
+.exposure80 { font-family: 'ExposureItalic80', sans-serif !important; }
+.exposure90 { font-family: 'ExposureItalic90', sans-serif !important; }
+.exposure100 { font-family: 'ExposureItalic100', sans-serif !important; }
 * {
   margin: 0;
   padding: 0;
@@ -61,16 +212,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.logo-text {
-  font-family: 'ExposureItalic', 'PPMori', sans-serif;
-  font-size: 24px;
-  font-weight: normal;
-  color: #333;
-  text-decoration: none;
-  font-style: italic;
-  font-stretch: 50%;
+  margin-bottom: 8px;
 }
 
 .logo-link {
@@ -102,8 +244,6 @@ header {
   color: #333;
   font-weight: 300;
   transition: color 0.2s ease;
-  margin-right: 6px;
-  font-family: 'ABCDiatypeMono', monospace;
 }
 
 .desktop-nav a:hover {
@@ -116,24 +256,16 @@ header {
   font-style: italic;
 }
 
-.nav-separator {
-  color: #333;
-  font-family: 'ABCDiatypeMono', monospace;
-  font-weight: 300;
-  user-select: none;
-}
-
 .search-container {
   cursor: pointer;
 }
 
 .search-text {
-  font-family: 'ExposureItalic', 'PPMori', sans-serif;
+  font-family: 'ExposureItalic-50', 'PPMori', sans-serif;
   font-size: 24px;
   font-style: italic;
   color: #333;
   transition: color 0.2s ease;
-  font-stretch: 50%;
 }
 
 .search-container:hover .search-text {
@@ -350,9 +482,8 @@ footer {
   transition: opacity 0.2s ease;
   pointer-events: none;
   line-height: 1.2;
-  font-family: 'ExposureItalic', sans-serif;
+  font-family: 'ExposureItalic-50', sans-serif;
   font-style: italic;
-  font-stretch: 50%;
   padding: 5px 0;
 }
 
@@ -388,9 +519,8 @@ footer {
   font-weight: normal;
   color: #333;
   line-height: 1.2;
-  font-family: 'ExposureItalic', sans-serif;
+  font-family: 'ExposureItalic-50', sans-serif;
   font-style: italic;
-  font-stretch: 50%;
   padding: 5px 0;
 }
 
@@ -496,9 +626,8 @@ footer {
     font-weight: normal;
     color: #333;
     line-height: 1.2;
-    font-family: 'ExposureItalic', sans-serif;
+    font-family: 'ExposureItalic-50', sans-serif;
     font-style: italic;
-    font-stretch: 50%;
     padding: 5px 0;
   }
 
