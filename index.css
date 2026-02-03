@@ -627,7 +627,7 @@ body.dark-mode .toggle-slider {
 }
 
 body.dark-mode .toggle-switch {
-  background-color: black /* Verde iOS */
+  background-color: #BBBBBB /* Verde iOS */
 }
 
 body.dark-mode .toggle-label {
