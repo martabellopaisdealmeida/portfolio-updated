@@ -1,45 +1,90 @@
-// Logo Font Weight Change - Direct transition from -50 to 100
-// On hover: goes directly to boldest weight (100)
-// On leave: returns to default (-50)
+// Logo Font Weight Animation - Smooth transition from -50 to 100
+// On hover: animates smoothly through font weights to 100
+// On leave: animates smoothly back to -50
 
 document.addEventListener('DOMContentLoaded', function() {
   const logoText = document.querySelector('.logo-text');
   
   if (!logoText) return;
 
-  // Default weight: -50
-  const defaultClass = 'exposure-50';
-  // Hover weight: 100 (boldest)
-  const hoverClass = 'exposure100';
-  
+  // Font weight sequence for smooth animation
+  // Using available weights: -70, -30, 0, 30, 70, 100
+  const weightSequence = [
+    'exposure-70',   // closest to -50 (default)
+    'exposure-30',
+    'exposure0',
+    'exposure30',
+    'exposure70',
+    'exposure100'    // boldest
+  ];
+
+  let currentIndex = 0;  // Start at -70 (closest to -50)
+  let targetIndex = 0;   // Target index to animate to
+  let isAnimating = false;
+  let animationFrame = null;
   let fontsLoaded = false;
 
-  // Wait for fonts to load before enabling animation
+  // Wait for fonts to load
   document.fonts.ready.then(function() {
     fontsLoaded = true;
-    console.log('Exposure fonts loaded - direct transition ready (-50 → 100)');
+    console.log('Exposure fonts loaded - smooth animation ready');
     
-    // Apply default class immediately after fonts load
-    logoText.classList.add(defaultClass);
+    // Apply default weight
+    logoText.classList.add(weightSequence[currentIndex]);
   });
 
-  // On hover: go directly to boldest weight
+  // Animation function - steps through weights smoothly
+  function animateWeight() {
+    if (currentIndex === targetIndex) {
+      isAnimating = false;
+      return;
+    }
+
+    // Remove current class
+    logoText.classList.remove(weightSequence[currentIndex]);
+
+    // Move towards target (forward or backward)
+    if (currentIndex < targetIndex) {
+      currentIndex++;
+    } else {
+      currentIndex--;
+    }
+
+    // Add new class
+    logoText.classList.add(weightSequence[currentIndex]);
+
+    // Continue animation
+    animationFrame = setTimeout(() => {
+      requestAnimationFrame(animateWeight);
+    }, 60); // ~60ms between steps = smooth animation
+  }
+
+  // Start animation to target index
+  function startAnimation(newTargetIndex) {
+    if (!fontsLoaded) return;
+    
+    // Cancel any ongoing animation
+    if (animationFrame) {
+      clearTimeout(animationFrame);
+    }
+
+    targetIndex = newTargetIndex;
+    
+    if (currentIndex !== targetIndex) {
+      isAnimating = true;
+      animateWeight();
+    }
+  }
+
+  // On hover: animate to boldest (index 5 = 100)
   logoText.addEventListener('mouseenter', function() {
-    if (!fontsLoaded) return; // Don't animate if fonts not loaded yet
-    
-    // Remove default and add bold
-    logoText.classList.remove(defaultClass);
-    logoText.classList.add(hoverClass);
+    startAnimation(weightSequence.length - 1);
   });
 
-  // On mouse leave: return to default weight
+  // On mouse leave: animate back to default (index 0 = -70)
   logoText.addEventListener('mouseleave', function() {
-    if (!fontsLoaded) return; // Don't animate if fonts not loaded yet
-    
-    // Remove bold and return to default
-    logoText.classList.remove(hoverClass);
-    logoText.classList.add(defaultClass);
+    startAnimation(0);
   });
 
-  console.log('Logo font weight change initialized: -50 → 100 on hover');
+  console.log('Logo smooth animation initialized: -70 ↔ 100');
 });
