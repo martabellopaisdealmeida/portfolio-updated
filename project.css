@@ -330,7 +330,7 @@ header {
 .project-content-grid {
   display: grid;
   grid-template-columns: 1.8fr 1fr;
-   gap: 120px; /* ou mais, para afastar mais */
+  gap: 120px;
 }
 
 .project-description {
@@ -353,7 +353,6 @@ header {
   font-style: italic;
 }
 
-/* Project Meta - Right Column */
 /* Project Meta - Simplified Structure */
 .project-meta {
   display: flex;
@@ -385,17 +384,12 @@ header {
   color: #333;
 }
 
-.bullet-point {
-  font-size: 6px;
-  vertical-align: middle;
-  margin-left: 2px;
-}
-
-/* Project Images Grid */
+/* Project Images Grid - Full width do container */
 .project-images {
   display: flex;
   flex-direction: column;
   gap: 40px;
+  width: 100%;
 }
 
 .image-row {
@@ -604,12 +598,7 @@ footer {
   }
 
   .project-meta {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-
-  .meta-column {
-    gap: 24px;
+    gap: 20px;
   }
 
   .project-images {
@@ -691,23 +680,15 @@ footer {
   }
 
   .project-meta {
-    gap: 24px;
-  }
-
-  .meta-column {
     gap: 20px;
   }
 
-  .meta-row {
-    gap: 4px;
-  }
-
   .meta-label {
-    font-size: 10px;
+    font-size: 9px;
   }
 
   .meta-value {
-    font-size: 12px;
+    font-size: 11px;
   }
 
   .project-images {
