@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // ============================================
   const projects = [
     { name: 'A Arte da Mesa', url: 'A-Arte-da-Mesa.html' },
-    { name: 'Spread Education, Spread Love', url: 'SpreadEducationSpreadLove.html' },
+    { name: 'Spread Education, Spread Love', url: 'project.html' },
     { name: 'Mariana & Felipe', url: 'Mariana&Felipe.html' },
     { name: 'Underground', url: 'Underground.html' },
     { name: 'FALP', url: 'falp.html' },
