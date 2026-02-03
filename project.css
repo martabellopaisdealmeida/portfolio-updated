@@ -194,7 +194,7 @@ header {
   font-family: 'ExposureItalic-50', 'PPMori', sans-serif;
   font-size: 20px;
   font-style: italic;
-  color: #333;
+  color: black;
   transition: color 0.2s ease;
 }
 
@@ -217,7 +217,7 @@ header {
   display: block;
   height: 2px;
   width: 100%;
-  background-color: #333;
+  background-color: black;
   transition: all 0.3s ease;
 }
 
@@ -347,7 +347,7 @@ header {
   font-family: 'MarundTrialCurved', sans-serif;
   font-size: 14px;
   line-height: 1.65;
-  color: #333;
+  color: black;
   max-width: 100%;
 }
 
@@ -392,7 +392,7 @@ header {
   font-size: 12px;
   font-weight: 300;
   line-height: 1.6;
-  color: #333;
+  color: black;
 }
 
 /* Project Images Grid - Full width do container */
@@ -460,7 +460,7 @@ footer {
 }
 
 .footer-left p {
-  color: #333;
+  color: black;
   font-size: 14px;
   font-weight: 300;
   margin: 0;
@@ -473,7 +473,7 @@ footer {
 }
 
 .footer-right a {
-  color: #333;
+  color: black;
   text-decoration: none;
   font-size: 14px;
   font-weight: 300;
@@ -502,7 +502,7 @@ footer {
 .footer-line {
   width: 500px;
   height: 5px;
-  background-color: #333;
+  background-color: black;
   transition: all 0.2s ease;
 }
 
@@ -510,7 +510,7 @@ footer {
 .get-in-text-bottom {
   font-size: 64px;
   font-weight: normal;
-  color: #333;
+  color: black;
   opacity: 0;
   transition: opacity 0.2s ease;
   pointer-events: none;
@@ -537,20 +537,20 @@ footer {
   width: 100%;
   margin-bottom: 30px;
   text-decoration: none;
-  color: #333;
+  color: black;
 }
 
 .footer-line-mobile {
   width: 250px;
   height: 3px;
-  background-color: #333;
+  background-color: black;
 }
 
 .get-in-text-top-mobile,
 .get-in-text-bottom-mobile {
   font-size: 40px;
   font-weight: normal;
-  color: #333;
+  color: black;
   line-height: 1.2;
   font-family: 'ExposureItalic-50', sans-serif;
   font-style: italic;
@@ -744,7 +744,7 @@ footer {
   .footer-center-mobile .get-in-text-bottom-mobile {
     font-size: 40px;
     font-weight: normal;
-    color: #333;
+    color: black;
     line-height: 1.2;
     font-family: 'ExposureItalic-50', sans-serif;
     font-style: italic;
@@ -754,7 +754,7 @@ footer {
   .footer-line-mobile {
     width: 250px;
     height: 3px;
-    background-color: #333;
+    background-color: black;
   }
 
   .footer-left {
