@@ -1,58 +1,58 @@
-// Portfolio projects data - RENAMED to avoid conflict
+// Portfolio projects data - Using meta-label "services" structure
 const portfolioSearchData = [
     {
         title: "A Arte da Mesa",
         description: "Rebranding a book on table etiquette, transforming tradition into a modern, visually engaging experience.",
-        tags: ["branding", "book design", "layout", "print design", "editorial"],
+        services: ["Branding", "Book Design", "Layout", "Print Design", "Editorial"],
         link: "A-Arte-da-Mesa.html",
         image: "images/01 Homepage/livrofrente_mesa.webp"
     },
     {
         title: "Spread Education, Spread Love",
         description: "Creating a collection that raises awareness for education and love, empowering young students' futures.",
-        tags: ["art direction", "brand identity", "social impact", "print design", "illustration"],
+        services: ["Art Direction", "Brand Identity", "Social Impact", "Print Design", "Illustration"],
         link: "SpreadEducationSpreadLove.html",
         image: "images/01 Homepage/SpreadEducationSpreadLove.jpg"
     },
     {
         title: "Mariana & Felipe's Wedding",
         description: "Visual identity for a summer wedding, blending hand-drawn illustrations and soft watercolors to capture intimacy.",
-        tags: ["wedding design", "brand identity", "illustration", "print design", "watercolor"],
+        services: ["Wedding Design", "Brand Identity", "Illustration", "Print Design", "Watercolor"],
         link: "Mariana&Felipe.html",
         image: "images/02 Mariana e Ipy/BenditoMockup-WWW-Wine_Bottle-04 copiar.jpg"
     },
     {
         title: "Underground Magazine",
         description: "Editorial design celebrating British underground designers, with special focus on Peter Saville's iconic work.",
-        tags: ["editorial design", "layout design", "typography", "magazine", "british design"],
+        services: ["Editorial Design", "Layout Design", "Typography", "Magazine", "British Design"],
         link: "Underground.html",
         image: "images/05 Underground/Mockup_capa.jpg"
     },
     {
         title: "FALP",
         description: "Visual identity for the Federation of Portuguese Language Lawyers, promoting legal cooperation among Lusophone countries and human rights.",
-        tags: ["brand identity", "legal", "federation", "visual system"],
+        services: ["Brand Identity", "Legal", "Federation", "Visual System"],
         link: "falp.html",
         image: "images/06 FALP/Business Card_Mockup.webp"
     },
     {
         title: "MODUS",
         description: "A fictional event for International Design Day that celebrates design as a practical, human-centered discipline, valuing function over form through clarity, humility, and purpose.",
-        tags: ["event design", "concept", "branding", "design day"],
+        services: ["Event Design", "Concept", "Branding", "Design Day"],
         link: "modus.html",
         image: "images/08 MODUS/Banner-gif-1_site.gif"
     },
     {
         title: "PAEZ",
         description: "Winning collection of the PAEZ x Belas-Artes Summer 2026 contest, celebrating a simple, mindful lifestyle connected to the earth through the raw texture and vibrancy of vegetables.",
-        tags: ["product design", "contest", "vegetables", "lifestyle"],
+        services: ["Product Design", "Contest", "Vegetables", "Lifestyle"],
         link: "paez.html",
         image: "images/09 PAEZ/padrão tomate.svg"
     },
     {
         title: "fyted",
         description: "A speculative interactive experience revealing how AI job interviews hide bias behind polite efficiency, exposing the human cost of automated hiring systems.",
-        tags: ["interaction design", "ai", "bias", "speculative", "critical design"],
+        services: ["Interaction Design", "AI", "Bias", "Speculative", "Critical Design"],
         link: "fyted.html",
         image: "images/10 fyted/TDMovieOut.0.webm"
     }
@@ -100,7 +100,7 @@ function initializeSearch() {
         }
     });
 
-    // Search function - USING RENAMED VARIABLE
+    // Search function - Using services meta-labels
     function performSearch(query) {
         if (!query.trim()) {
             searchResults.innerHTML = '';
@@ -108,7 +108,7 @@ function initializeSearch() {
         }
 
         const results = portfolioSearchData.filter(project => {
-            const searchText = (project.title + ' ' + project.description + ' ' + project.tags.join(' ')).toLowerCase();
+            const searchText = (project.title + ' ' + project.description + ' ' + project.services.join(' ')).toLowerCase();
             return searchText.includes(query.toLowerCase());
         });
 

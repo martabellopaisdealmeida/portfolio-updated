@@ -48,8 +48,9 @@
     font-size: 32px;
     padding: 20px 0;
     outline: none;
-    font-family: 'PPMori', sans-serif;
+    font-family: 'ABCDiatypeMono', monospace;
     text-align: center;
+    font-weight: 400;
 }
 
 .search-input::placeholder {
@@ -117,12 +118,14 @@
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 4px;
+    font-family: 'ABCDiatypeMono', monospace;
 }
 
 .result-content p {
     font-size: 14px;
     color: #666;
     line-height: 1.4;
+    font-family: 'PPMori', sans-serif;
 }
 
 .no-results {
@@ -130,6 +133,7 @@
     color: #666;
     font-size: 18px;
     margin-top: 40px;
+    font-family: 'ABCDiatypeMono', monospace;
 }
 
 .search-suggestions {
@@ -143,6 +147,8 @@
     margin-bottom: 10px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    font-family: 'ABCDiatypeMono', monospace;
+    font-weight: 500;
 }
 
 .suggestion-tags {
@@ -159,6 +165,8 @@
     font-size: 12px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-family: 'ABCDiatypeMono', monospace;
+    font-weight: 400;
 }
 
 .suggestion-tag:hover {
