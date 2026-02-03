@@ -617,10 +617,10 @@ footer {
 
 .toggle-switch {
   position: relative;
-  width: 41px;
-  height: 25px;
+  width: 32px;
+  height: 19px;
   background-color: #E9E9EA;
-  border-radius: 12.5px;
+  border-radius: 9.5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   border: none;
@@ -630,17 +630,17 @@ footer {
   position: absolute;
   top: 1.6px;
   left: 1.6px;
-  width: 21.6px;
-  height: 21.6px;
+  width: 15.8px;
+  height: 15.8px;
   background-color: #ffffff;
-  border-radius: 10.8px;
+  border-radius: 7.9px;
   transition: transform 0.3s ease;
   box-shadow: 0 2.4px 5.6px rgba(0, 0, 0, 0.12);
 }
 
 /* Dark Mode Active State */
 body.dark-mode .toggle-slider {
-  transform: translateX(16px);
+  transform: translateX(13px);
 }
 
 body.dark-mode .toggle-switch {
@@ -687,18 +687,18 @@ body.light-mode {
 /* Mobile */
 @media (max-width: 768px) {
   .toggle-switch {
-    width: 35px;
-    height: 21px;
-    border-radius: 10.5px;
+    width: 28px;
+    height: 16px;
+    border-radius: 8px;
   }
   
   .toggle-slider {
-    width: 17.6px;
-    height: 17.6px;
-    border-radius: 8.8px;
+    width: 12.8px;
+    height: 12.8px;
+    border-radius: 6.4px;
   }
   
   body.dark-mode .toggle-slider {
-    transform: translateX(14px);
+    transform: translateX(11.2px);
   }
 }
