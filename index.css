@@ -153,11 +153,11 @@ header {
 }
 
 .right-elements {
-  display: flex;
-  align-items: flex-end; /* alinha à direita */
-  align-items: center;
-  gap: 30px;
-  flex-direction: row; /* mantém horizontal */
+   display: grid;
+  grid-template-rows: auto auto;
+  justify-items: end; /* alinha à direita */
+  gap: 8px;
+ 
 }
 
 .search-toggle-wrapper {
