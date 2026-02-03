@@ -3,29 +3,8 @@
 document.addEventListener("DOMContentLoaded", function () {
   console.log("Inspo page script loading...")
 
-  // Dark Mode Toggle
-  const themeToggle = document.querySelector(".theme-toggle")
-  const body = document.body
-  
-  // Check for saved theme preference or default to light mode
-  const currentTheme = localStorage.getItem("theme") || "light"
-  body.classList.add(currentTheme + "-mode")
-  
-  if (themeToggle) {
-    themeToggle.addEventListener("click", function () {
-      if (body.classList.contains("light-mode")) {
-        body.classList.remove("light-mode")
-        body.classList.add("dark-mode")
-        localStorage.setItem("theme", "dark")
-      } else {
-        body.classList.remove("dark-mode")
-        body.classList.add("light-mode")
-        localStorage.setItem("theme", "light")
-      }
-    })
-  }
-
-  // Mobile menu functionality - Same logic as homepage-script.js
+  // Mobile menu functionality - COMMENTED OUT
+  /*
   const hamburger = document.querySelector(".hamburger")
   const mobileNav = document.querySelector(".mobile-nav")
   const closeBtn = document.querySelector(".close-btn")
@@ -56,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     })
   }
+  */
 
   // Search functionality - Adapter for new design
   // The search.js looks for .search-icon, but inspo design uses .search-text
