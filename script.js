@@ -148,7 +148,46 @@ document.addEventListener("DOMContentLoaded", function () {
       }),
     100
   )
-
+// ===== DARK MODE TOGGLE =====
+  const themeToggle = document.querySelector('.theme-toggle')
+  const toggleLabel = document.getElementById('mode-label')
+  
+  // Function to toggle theme
+  function toggleTheme() {
+    const body = document.body
+    
+    if (body.classList.contains('light-mode')) {
+      body.classList.remove('light-mode')
+      body.classList.add('dark-mode')
+      if (toggleLabel) toggleLabel.textContent = 'Dark:'
+      localStorage.setItem('theme', 'dark')
+    } else {
+      body.classList.remove('dark-mode')
+      body.classList.add('light-mode')
+      if (toggleLabel) toggleLabel.textContent = 'Light:'
+      localStorage.setItem('theme', 'light')
+    }
+  }
+  
+  // Load saved theme on page load
+  const savedTheme = localStorage.getItem('theme')
+  const body = document.body
+  
+  if (!savedTheme || savedTheme === 'light') {
+    body.classList.add('light-mode')
+    body.classList.remove('dark-mode')
+    if (toggleLabel) toggleLabel.textContent = 'Light:'
+  } else {
+    body.classList.remove('light-mode')
+    body.classList.add('dark-mode')
+    if (toggleLabel) toggleLabel.textContent = 'Dark:'
+  }
+  
+  // Add click event to toggle
+  if (themeToggle) {
+    themeToggle.addEventListener('click', toggleTheme)
+  }
+  
   console.log("Inspo page script loaded successfully")
 })
 
