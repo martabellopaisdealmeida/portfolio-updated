@@ -161,12 +161,13 @@ header {
 }
 
 .desktop-nav a {
+  font-family: 'ABCDiatypeMono', monospace;
   text-decoration: none;
   color: #333;
   font-weight: 300;
   transition: color 0.2s ease;
   margin-right: 6px;
-  font-family: 'ABCDiatypeMono', monospace;
+  
 }
 
 .desktop-nav a:hover {
