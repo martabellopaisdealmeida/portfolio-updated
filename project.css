@@ -344,7 +344,7 @@ header {
 }
 
 .project-description {
-  font-family: 'PPMori', sans-serif;
+  font-family: MarundTrialCurved', sans-serif;
   font-size: 14px;
   line-height: 1.65;
   color: #333;
@@ -353,6 +353,7 @@ header {
 
 .project-description p {
   margin-bottom: 20px;
+  font-family: MarundTrialCurved', sans-serif;
 }
 
 .project-description strong {
