@@ -368,7 +368,12 @@ header {
   gap: 28px;
 }
 
-.meta-row {
+.meta-row-inline {
+  display: flex;
+  gap: 40px;
+}
+
+.meta-item-inline {
   display: flex;
   flex-direction: column;
   gap: 4px;
