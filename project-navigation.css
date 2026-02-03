@@ -1,0 +1,145 @@
+/* Project Navigation Arrows - Hover Zones Version */
+
+/* Invisible hover zones on left and right edges */
+.nav-hover-zone {
+  position: fixed;
+  top: 0;
+  width: 120px;
+  height: 100vh;
+  z-index: 899;
+  cursor: pointer;
+}
+
+.nav-hover-zone.left {
+  left: 0;
+}
+
+.nav-hover-zone.right {
+  right: 0;
+}
+
+/* Arrow containers */
+.project-nav-arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 80px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 900;
+  pointer-events: none;
+  text-decoration: none;
+}
+
+.project-nav-arrow.left {
+  left: 40px;
+}
+
+.project-nav-arrow.right {
+  right: 40px;
+}
+
+.project-nav-arrow.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Arrow icons */
+.arrow-icon {
+  font-size: 48px;
+  color: #333;
+  transition: all 0.3s ease;
+  font-family: 'ABCDiatypeMono', monospace;
+  font-weight: 300;
+  line-height: 1;
+  user-select: none;
+}
+
+.project-nav-arrow:hover .arrow-icon {
+  transform: scale(1.2);
+  color: #ED6D2E;
+}
+
+/* Project name tooltip */
+.project-nav-tooltip {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.85);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: 'ABCDiatypeMono', monospace;
+  font-weight: 400;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease 0.1s;
+  pointer-events: none;
+}
+
+.project-nav-arrow.left .project-nav-tooltip {
+  left: 100%;
+  margin-left: 15px;
+}
+
+.project-nav-arrow.right .project-nav-tooltip {
+  right: 100%;
+  margin-right: 15px;
+}
+
+.project-nav-arrow:hover .project-nav-tooltip {
+  opacity: 1;
+}
+
+/* Make sure arrows work with custom cursor */
+.project-nav-arrow,
+.nav-hover-zone {
+  cursor: pointer !important;
+}
+
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+  .nav-hover-zone {
+    width: 80px;
+  }
+  
+  .project-nav-arrow.left {
+    left: 20px;
+  }
+  
+  .project-nav-arrow.right {
+    right: 20px;
+  }
+  
+  .arrow-icon {
+    font-size: 40px;
+  }
+  
+  .project-nav-tooltip {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+
+/* Mobile - hide navigation arrows */
+@media (max-width: 768px) {
+  .project-nav-arrow,
+  .nav-hover-zone {
+    display: none;
+  }
+}
+
+/* Smooth page transitions (optional enhancement) */
+body {
+  transition: opacity 0.3s ease;
+}
+
+body.page-transition {
+  opacity: 0;
+}
