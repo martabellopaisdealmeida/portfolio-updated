@@ -88,7 +88,7 @@
 
 @font-face {
   font-family: 'MarundTrialCurved';
-  src: url('fonts/26A1MarundTrial-3022Curved.otf) format(opentype');
+  src: url('fonts/26A1MarundTrial-3022Curved.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
