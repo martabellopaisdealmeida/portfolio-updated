@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // SVG da seta para navegação - ORIGINAL com fundo laranja
     const arrowSVG = `<svg width="33" height="24" viewBox="0 0 33 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="33" height="24" fill="#FF3C00"/>
+<rect width="33" height="24" fill="#000000"/>
 <line x1="4" y1="12" x2="27" y2="12" stroke="white" stroke-width="6" stroke-linecap="round"/>
 <line x1="20.0249" y1="7.65836" x2="28.6584" y2="11.9751" stroke="white" stroke-width="6" stroke-linecap="round"/>
 <line x1="3" y1="-3" x2="12.6525" y2="-3" transform="matrix(0.894427 -0.447214 -0.447214 -0.894427 16 15)" stroke="white" stroke-width="6" stroke-linecap="round"/>
