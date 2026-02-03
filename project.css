@@ -103,7 +103,7 @@
 
 body {
   background-color: #ffffff;
-  color: #333;
+  color: black;
   position: relative;
   overflow-x: hidden;
 }
@@ -132,7 +132,7 @@ header {
 .logo-text {
   font-family: 'ExposureItalic-50', 'PPMori', sans-serif;
   font-size: 20px;
-  color: #333;
+  color: black;
   text-decoration: none;
   font-style: italic;
 }
@@ -169,19 +169,19 @@ header {
 
 .desktop-nav a {
   text-decoration: none;
-  color: #333;
+  color: black;
   font-weight: 300;
   transition: color 0.2s ease;
   margin-right: 6px;
   font-family: 'ABCDiatypeMono', monospace;
 }
 
-.desktop-nav a:hover {
+/*.desktop-nav a:hover {
   color: #ED6D2E;
-}
+}*/
 
 .desktop-nav a.active {
-  color: #333;
+  color: black;
   font-weight: 300;
   font-style: italic;
 }
