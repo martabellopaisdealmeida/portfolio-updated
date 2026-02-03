@@ -627,7 +627,7 @@ body.dark-mode .toggle-slider {
 }
 
 body.dark-mode .toggle-switch {
-  background-color: #FF3C00 /* Verde iOS */
+  background-color: black /* Verde iOS */
 }
 
 body.dark-mode .toggle-label {
@@ -636,7 +636,7 @@ body.dark-mode .toggle-label {
 
 /* Dark Mode Styles */
 body.dark-mode {
-  background-color: #1a1a1a;
+  background-color: black;
   color: #ffffff;
 }
 
@@ -664,7 +664,7 @@ body.dark-mode .get-in-text-bottom-mobile {
 /* Light Mode */
 body.light-mode {
   background-color: #ffffff;
-  color: #333;
+  color: black;
 }
 
 /* Mobile */
