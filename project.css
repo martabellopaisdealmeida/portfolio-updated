@@ -355,8 +355,8 @@ header {
 
 /* Project Meta - Simplified Structure */
 .project-meta {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 24px;
   align-self: start;
 }
