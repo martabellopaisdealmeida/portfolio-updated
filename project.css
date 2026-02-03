@@ -363,9 +363,9 @@ header {
 }
 
 .meta-column {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 colunas */
+  gap: 20px 40px; /* row-gap column-gap */
 }
 
 .meta-row {
