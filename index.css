@@ -94,8 +94,15 @@
 }
 
 @font-face {
-  font-family: 'MarundTrial';
+  font-family: 'MarundTrialCorner';
   src: url('fonts/26A1MarundTrial-3002Corner.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MarundTrialCurved';
+  src: url('fonts/26A1MarundTrial-3022Curved.otf) format(opentype');
   font-weight: normal;
   font-style: normal;
 }
