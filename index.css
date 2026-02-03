@@ -58,6 +58,11 @@
   font-style: italic;
   font-display: block;
 }
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* espaço entre "marta" e o toggle */
+}
 
 /* Logo default uses -50 */
 .logo-text {
@@ -143,6 +148,18 @@ header {
   align-items: center;
 }
 
+.header-top-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .logo-link {
   text-decoration: none;
 }
@@ -150,21 +167,6 @@ header {
 .logo-link:hover .logo-text {
   color: #ED6D2E;
   transition: color 0.2s ease;
-}
-
-.right-elements {
-   display: grid;
-  grid-template-rows: auto auto;
-  justify-items: end; /* alinha à direita */
-  gap: 8px;
- 
-}
-
-.search-toggle-wrapper {
-  display: grid;
-  grid-template-rows: auto auto;
-  justify-items: end; /* alinha à direita */
-  gap: 8px;
 }
 
 .desktop-nav {
@@ -321,7 +323,7 @@ header {
   width: 100%;
   position: relative;
   overflow: hidden;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 16 / 9;
 }
 
 .inspo-link {
@@ -478,9 +480,17 @@ footer {
     margin-bottom: 6px;
   }
 
+  .header-bottom {
+    display: flex; /* Keep nav visible */
+  }
+
   .desktop-nav {
-    display: flex;
+    display: flex; /* Keep nav visible */
     font-size: 16px;
+  }
+
+  .theme-toggle {
+    display: flex; /* Keep toggle visible if you want, or set to none */
   }
 
   .search-text {
@@ -490,6 +500,10 @@ footer {
   .inspo-container {
     padding: 40px 30px;
     gap: 30px;
+  }
+
+  .inspo-item {
+    aspect-ratio: 1 / 1; /* Square images on mobile */
   }
 
   footer {
@@ -512,6 +526,10 @@ footer {
     padding: 20px 20px;
   }
 
+  .header-bottom {
+    display: flex; /* Keep nav visible */
+  }
+
   .logo-text {
     font-size: 20px;
   }
@@ -520,7 +538,7 @@ footer {
     font-size: 20px;
   }
 
-  .right-elements {
+  .header-top-right {
     gap: 20px;
   }
 
@@ -531,6 +549,10 @@ footer {
   .inspo-container {
     padding: 30px 20px;
     gap: 24px;
+  }
+
+  .inspo-item {
+    aspect-ratio: 1 / 1; /* Square images on mobile */
   }
 
   footer {
@@ -609,30 +631,31 @@ footer {
 
 .toggle-switch {
   position: relative;
-  width: 41px;
-  height: 25px;
+  width: 32px;
+  height: 19px;
   background-color: #E9E9EA;
-  border-radius: 12.5px;
+  border-radius: 9.5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   border: none;
+  
 }
 
 .toggle-slider {
   position: absolute;
   top: 1.6px;
   left: 1.6px;
-  width: 21.6px;
-  height: 21.6px;
+  width: 15.8px;
+  height: 15.8px;
   background-color: #ffffff;
-  border-radius: 10.8px;
+  border-radius: 7.9px;
   transition: transform 0.3s ease;
   box-shadow: 0 2.4px 5.6px rgba(0, 0, 0, 0.12);
 }
 
 /* Dark Mode Active State */
 body.dark-mode .toggle-slider {
-  transform: translateX(16px);
+  transform: translateX(13px);
 }
 
 body.dark-mode .toggle-switch {
@@ -679,18 +702,18 @@ body.light-mode {
 /* Mobile */
 @media (max-width: 768px) {
   .toggle-switch {
-    width: 35px;
-    height: 21px;
-    border-radius: 10.5px;
+    width: 28px;
+    height: 16px;
+    border-radius: 8px;
   }
   
   .toggle-slider {
-    width: 17.6px;
-    height: 17.6px;
-    border-radius: 8.8px;
+    width: 12.8px;
+    height: 12.8px;
+    border-radius: 6.4px;
   }
   
   body.dark-mode .toggle-slider {
-    transform: translateX(14px);
+    transform: translateX(11.2px);
   }
 }
