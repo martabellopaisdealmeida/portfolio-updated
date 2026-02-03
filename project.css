@@ -328,7 +328,7 @@ header {
 
 .project-content-grid {
   display: grid;
-  grid-template-columns: 2.2fr 1fr;
+  grid-template-columns: 1fr;
   gap: 80px;
 }
 
@@ -337,7 +337,7 @@ header {
   font-size: 14px;
   line-height: 1.65;
   color: #333;
-  max-width: 100%;
+  max-width: 65%;
 }
 
 .project-description p {
