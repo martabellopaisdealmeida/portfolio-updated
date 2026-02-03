@@ -1,13 +1,14 @@
-/* Project Navigation Arrows - Hover Zones Version */
+/* Project Navigation Arrows - Hover Zones Version with SVG */
 
-/* Invisible hover zones on left and right edges */
+/* Invisible hover zones on left and right edges - START AFTER HEADER */
 .nav-hover-zone {
   position: fixed;
-  top: 0;
+  top: 150px; /* Começa após o header (~120-130px normalmente) */
   width: 120px;
-  height: 100vh;
+  height: calc(100vh - 150px); /* Ajusta altura para não incluir o header */
   z-index: 899;
   cursor: pointer;
+  transition: opacity 0.3s ease;
 }
 
 .nav-hover-zone.left {
@@ -16,6 +17,12 @@
 
 .nav-hover-zone.right {
   right: 0;
+}
+
+/* Hide zones when scrolled to top to not interfere with header */
+body.at-top .nav-hover-zone {
+  pointer-events: none;
+  opacity: 0;
 }
 
 /* Arrow containers */
@@ -30,7 +37,7 @@
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.4s ease, transform 0.3s ease;
   z-index: 900;
   pointer-events: none;
   text-decoration: none;
@@ -49,20 +56,37 @@
   pointer-events: auto;
 }
 
-/* Arrow icons */
+/* SVG Arrow styling */
 .arrow-icon {
-  font-size: 48px;
-  color: #333;
+  width: 33px;
+  height: 24px;
   transition: all 0.3s ease;
-  font-family: 'ABCDiatypeMono', monospace;
-  font-weight: 300;
-  line-height: 1;
   user-select: none;
 }
 
+.arrow-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Rotate left arrow (mirror) */
+.project-nav-arrow.left .arrow-icon svg {
+  transform: rotate(180deg);
+}
+
+/* Hover effect - scale up */
 .project-nav-arrow:hover .arrow-icon {
-  transform: scale(1.2);
-  color: #ED6D2E;
+  transform: scale(1.3);
+}
+
+.project-nav-arrow.left:hover .arrow-icon svg {
+  transform: rotate(180deg) scale(1.3);
+}
+
+/* Change SVG color on hover (optional - requires updating fill/stroke in JS) */
+.project-nav-arrow:hover .arrow-icon svg rect {
+  fill: #ED6D2E;
 }
 
 /* Project name tooltip */
@@ -107,6 +131,8 @@
 @media (max-width: 1024px) {
   .nav-hover-zone {
     width: 80px;
+    top: 120px;
+    height: calc(100vh - 120px);
   }
   
   .project-nav-arrow.left {
@@ -118,7 +144,8 @@
   }
   
   .arrow-icon {
-    font-size: 40px;
+    width: 28px;
+    height: 20px;
   }
   
   .project-nav-tooltip {

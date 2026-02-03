@@ -1,4 +1,4 @@
-// Project Navigation System - Enhanced Version
+// Project Navigation System - Enhanced Version with SVG
 document.addEventListener('DOMContentLoaded', function() {
   
   // ============================================
@@ -14,6 +14,14 @@ document.addEventListener('DOMContentLoaded', function() {
     { name: 'PAEZ', url: 'paez.html' },
     { name: 'fyted', url: 'fyted.html' }
   ];
+
+  // SVG da seta (inline para melhor performance)
+  const arrowSVG = `<svg width="33" height="24" viewBox="0 0 33 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="33" height="24" fill="#FF3C00"/>
+<line x1="4" y1="12" x2="27" y2="12" stroke="white" stroke-width="6" stroke-linecap="round"/>
+<line x1="20.0249" y1="7.65836" x2="28.6584" y2="11.9751" stroke="white" stroke-width="6" stroke-linecap="round"/>
+<line x1="3" y1="-3" x2="12.6525" y2="-3" transform="matrix(0.894427 -0.447214 -0.447214 -0.894427 16 15)" stroke="white" stroke-width="6" stroke-linecap="round"/>
+</svg>`;
 
   // ============================================
   // DETECÇÃO DO PROJETO ATUAL
@@ -40,6 +48,22 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log('→ Next:', nextProject.name);
 
   // ============================================
+  // SCROLL DETECTION - Hide when at top
+  // ============================================
+  function checkScroll() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop < 100) {
+      document.body.classList.add('at-top');
+    } else {
+      document.body.classList.remove('at-top');
+    }
+  }
+
+  // Check on load and scroll
+  checkScroll();
+  window.addEventListener('scroll', checkScroll);
+
+  // ============================================
   // CRIAR ELEMENTOS DE NAVEGAÇÃO
   // ============================================
   createProjectNavigation(prevProject, nextProject);
@@ -52,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
       leftArrow.className = 'project-nav-arrow left';
       leftArrow.setAttribute('aria-label', 'Projeto anterior: ' + prev.name);
       leftArrow.innerHTML = `
-        <span class="arrow-icon">←</span>
+        <span class="arrow-icon">${arrowSVG}</span>
         <div class="project-nav-tooltip">${prev.name}</div>
       `;
       document.body.appendChild(leftArrow);
@@ -85,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
       rightArrow.className = 'project-nav-arrow right';
       rightArrow.setAttribute('aria-label', 'Próximo projeto: ' + next.name);
       rightArrow.innerHTML = `
-        <span class="arrow-icon">→</span>
+        <span class="arrow-icon">${arrowSVG}</span>
         <div class="project-nav-tooltip">${next.name}</div>
       `;
       document.body.appendChild(rightArrow);
