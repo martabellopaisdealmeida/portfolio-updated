@@ -10,11 +10,12 @@ document.addEventListener('DOMContentLoaded', function() {
     cursor.className = 'custom-cursor';
     document.body.appendChild(cursor);
 
-    // SVG da seta para navegação
+    // SVG da seta para navegação - ORIGINAL com fundo laranja
     const arrowSVG = `<svg width="33" height="24" viewBox="0 0 33 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<line x1="4" y1="12" x2="27" y2="12" stroke="#FF3C00" stroke-width="6" stroke-linecap="round"/>
-<line x1="20.0249" y1="7.65836" x2="28.6584" y2="11.9751" stroke="#FF3C00" stroke-width="6" stroke-linecap="round"/>
-<line x1="3" y1="-3" x2="12.6525" y2="-3" transform="matrix(0.894427 -0.447214 -0.447214 -0.894427 16 15)" stroke="#FF3C00" stroke-width="6" stroke-linecap="round"/>
+<rect width="33" height="24" fill="#FF3C00"/>
+<line x1="4" y1="12" x2="27" y2="12" stroke="white" stroke-width="6" stroke-linecap="round"/>
+<line x1="20.0249" y1="7.65836" x2="28.6584" y2="11.9751" stroke="white" stroke-width="6" stroke-linecap="round"/>
+<line x1="3" y1="-3" x2="12.6525" y2="-3" transform="matrix(0.894427 -0.447214 -0.447214 -0.894427 16 15)" stroke="white" stroke-width="6" stroke-linecap="round"/>
 </svg>`;
 
     // Track mouse movement
@@ -88,10 +89,15 @@ document.addEventListener('DOMContentLoaded', function() {
     function addNavigationZoneEffects() {
         const navZones = document.querySelectorAll('.nav-hover-zone');
         
-        navZones.forEach(zone => {
+        navZones.forEach((zone, index) => {
+            const side = zone.classList.contains('left') ? 'left' : 'right';
+            
             zone.addEventListener('mouseenter', function() {
                 // Remove normal hover state
                 cursor.classList.remove('hover');
+                
+                // Force immediate change - disable transitions temporarily
+                cursor.style.transition = 'none';
                 
                 // Add arrow state based on zone side
                 if (zone.classList.contains('left')) {
@@ -101,19 +107,52 @@ document.addEventListener('DOMContentLoaded', function() {
                     cursor.classList.add('nav-arrow-right');
                     cursor.innerHTML = arrowSVG;
                 }
+                
+                // Force reflow
+                cursor.offsetHeight;
+                
+                // Re-enable transitions for hover effects
+                setTimeout(function() {
+                    cursor.style.transition = '';
+                }, 50);
             });
             
             zone.addEventListener('mouseleave', function() {
+                // Force immediate change back
+                cursor.style.transition = 'none';
+                
                 // Remove arrow states
                 cursor.classList.remove('nav-arrow-left', 'nav-arrow-right');
                 cursor.innerHTML = '';
+                
+                // Force reflow
+                cursor.offsetHeight;
+                
+                // Re-enable transitions
+                setTimeout(function() {
+                    cursor.style.transition = '';
+                }, 50);
             });
         });
     }
 
-    // Initialize navigation zone effects (will be called by project-navigation.js)
-    // But we'll try to call it here too in case navigation loads first
-    setTimeout(addNavigationZoneEffects, 100);
+    // Initialize navigation zone effects
+    // Try multiple times in case navigation loads after cursor
+    let retryCount = 0;
+    const maxRetries = 10;
+    
+    function tryInitNavZones() {
+        const zones = document.querySelectorAll('.nav-hover-zone');
+        if (zones.length > 0) {
+            addNavigationZoneEffects();
+        } else if (retryCount < maxRetries) {
+            retryCount++;
+            setTimeout(tryInitNavZones, 200);
+        }
+    }
+    
+    // Start trying to find navigation zones
+    setTimeout(tryInitNavZones, 100);
     
     // Make it available globally for project-navigation.js
     window.addNavigationZoneEffects = addNavigationZoneEffects;

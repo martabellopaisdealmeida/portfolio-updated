@@ -11,7 +11,7 @@
     background-color: #BBBBBB;
     pointer-events: none;
     z-index: 9999;
-    transition: transform 0.3s ease, mix-blend-mode 0.3s ease, opacity 0.2s ease, width 0.3s ease, height 0.3s ease, border-radius 0.3s ease;
+    transition: transform 0.3s ease; /* Mantém só o transform para hover normal */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -24,6 +24,7 @@
     height: 30px;
     border-radius: 0;
     background-color: transparent;
+    mix-blend-mode: normal; /* Desativa blend mode para as cores ficarem corretas */
 }
 
 .custom-cursor.nav-arrow-left svg,

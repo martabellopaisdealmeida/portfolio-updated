@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Só ativa navegação se estivermos numa página de projeto
   if (currentIndex === -1) {
-    console.log('Navigation: Not on a project page');
     return;
   }
 
@@ -34,10 +33,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const nextIndex = currentIndex < projects.length - 1 ? currentIndex + 1 : 0;
   const prevProject = projects[prevIndex];
   const nextProject = projects[nextIndex];
-
-  console.log('Navigation initialized:');
-  console.log('← Previous:', prevProject.name);
-  console.log('→ Next:', nextProject.name);
 
   // ============================================
   // SCROLL DETECTION - Hide when at top
