@@ -166,6 +166,7 @@ header {
   font-weight: 300;
   transition: color 0.2s ease;
   margin-right: 6px;
+  font-family: 'ABCDiatypeMono', monospace;
 }
 
 .desktop-nav a:hover {
