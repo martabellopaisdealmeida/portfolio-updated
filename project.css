@@ -354,26 +354,15 @@ header {
 }
 
 /* Project Meta - Right Column */
+/* Project Meta - Simplified Structure */
 .project-meta {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  padding-top: 0; /* em vez de 4px */
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
   align-self: start;
 }
 
-.meta-column {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-}
-
-.meta-row-inline {
-  display: flex;
-  gap: 40px;
-}
-
-.meta-item-inline {
+.meta-item {
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -383,7 +372,9 @@ header {
   font-family: 'ABCDiatypeMono', monospace;
   font-size: 10px;
   font-weight: 300;
-  color: #333;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .meta-value {
