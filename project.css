@@ -73,7 +73,7 @@
 }
 
 @font-face {
-  font-family: 'MarundTrial';
+  font-family: 'MarundTriaCornerl';
   src: url('fonts/26A1MarundTrial-3002Corner.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
@@ -84,6 +84,13 @@
   src: url('fonts/ABCDiatypeSemi-MonoVariable-Trial.ttf') format('truetype');
   font-weight: 100 900;
   font-style: normal italic;
+}
+
+@font-face {
+  font-family: 'MarundTrialCurved';
+  src: url('fonts/26A1MarundTrial-3022Curved.otf) format(opentype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 /* ==================== GLOBAL STYLES ==================== */
