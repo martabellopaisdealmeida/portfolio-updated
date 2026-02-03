@@ -3,6 +3,28 @@
 document.addEventListener("DOMContentLoaded", function () {
   console.log("Inspo page script loading...")
 
+  // Dark Mode Toggle
+  const themeToggle = document.querySelector(".theme-toggle")
+  const body = document.body
+  
+  // Check for saved theme preference or default to light mode
+  const currentTheme = localStorage.getItem("theme") || "light"
+  body.classList.add(currentTheme + "-mode")
+  
+  if (themeToggle) {
+    themeToggle.addEventListener("click", function () {
+      if (body.classList.contains("light-mode")) {
+        body.classList.remove("light-mode")
+        body.classList.add("dark-mode")
+        localStorage.setItem("theme", "dark")
+      } else {
+        body.classList.remove("dark-mode")
+        body.classList.add("light-mode")
+        localStorage.setItem("theme", "light")
+      }
+    })
+  }
+
   // Mobile menu functionality - Same logic as homepage-script.js
   const hamburger = document.querySelector(".hamburger")
   const mobileNav = document.querySelector(".mobile-nav")
@@ -148,46 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }),
     100
   )
-// ===== DARK MODE TOGGLE =====
-  const themeToggle = document.querySelector('.theme-toggle')
-  const toggleLabel = document.getElementById('mode-label')
-  
-  // Function to toggle theme
-  function toggleTheme() {
-    const body = document.body
-    
-    if (body.classList.contains('light-mode')) {
-      body.classList.remove('light-mode')
-      body.classList.add('dark-mode')
-      if (toggleLabel) toggleLabel.textContent = 'Dark:'
-      localStorage.setItem('theme', 'dark')
-    } else {
-      body.classList.remove('dark-mode')
-      body.classList.add('light-mode')
-      if (toggleLabel) toggleLabel.textContent = 'Light:'
-      localStorage.setItem('theme', 'light')
-    }
-  }
-  
-  // Load saved theme on page load
-  const savedTheme = localStorage.getItem('theme')
-  const body = document.body
-  
-  if (!savedTheme || savedTheme === 'light') {
-    body.classList.add('light-mode')
-    body.classList.remove('dark-mode')
-    if (toggleLabel) toggleLabel.textContent = 'Light:'
-  } else {
-    body.classList.remove('light-mode')
-    body.classList.add('dark-mode')
-    if (toggleLabel) toggleLabel.textContent = 'Dark:'
-  }
-  
-  // Add click event to toggle
-  if (themeToggle) {
-    themeToggle.addEventListener('click', toggleTheme)
-  }
-  
+
   console.log("Inspo page script loaded successfully")
 })
 
