@@ -164,10 +164,10 @@ header {
   text-decoration: none;
 }
 
-.logo-link:hover .logo-text {
+/* .logo-link:hover .logo-text {
   color: #ED6D2E;
   transition: color 0.2s ease;
-}
+} */
 
 .desktop-nav {
   display: flex;
@@ -188,9 +188,9 @@ header {
   
 }
 
-.desktop-nav a:hover {
+/* .desktop-nav a:hover {
   color: #ED6D2E;
-}
+} */
 
 .desktop-nav a.active {
   color: #333;
@@ -210,9 +210,9 @@ header {
   transition: color 0.2s ease;
 }
 
-.search-container:hover .search-text {
+/* .search-container:hover .search-text {
   color: #ED6D2E;
-}
+} */
 
 /* Hamburger Menu - COMMENTED OUT */
 /*
