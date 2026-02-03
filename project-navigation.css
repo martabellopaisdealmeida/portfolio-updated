@@ -7,7 +7,7 @@
   width: 120px;
   height: calc(100vh - 150px); /* Ajusta altura para não incluir o header */
   z-index: 899;
-  cursor: pointer;
+  cursor: none !important;
   transition: opacity 0.3s ease;
 }
 
@@ -41,6 +41,7 @@ body.at-top .nav-hover-zone {
   z-index: 900;
   pointer-events: none;
   text-decoration: none;
+  cursor: none !important;
 }
 
 .project-nav-arrow.left {
@@ -84,9 +85,9 @@ body.at-top .nav-hover-zone {
   transform: rotate(180deg) scale(1.3);
 }
 
-/* Change SVG color on hover (optional - requires updating fill/stroke in JS) */
-.project-nav-arrow:hover .arrow-icon svg rect {
-  fill: #ED6D2E;
+/* Change SVG stroke color on hover */
+.project-nav-arrow:hover .arrow-icon svg line {
+  stroke: #ED6D2E;
 }
 
 /* Project name tooltip */
@@ -124,7 +125,7 @@ body.at-top .nav-hover-zone {
 /* Make sure arrows work with custom cursor */
 .project-nav-arrow,
 .nav-hover-zone {
-  cursor: pointer !important;
+  cursor: none !important;
 }
 
 /* Tablet adjustments */
