@@ -312,15 +312,15 @@ header {
 
 /* Project Header - Title + Meta */
 .project-header {
-  margin-bottom: 100px;
+  margin-bottom: 80px;
 }
 
 .project-title {
   font-family: 'ABCDiatypeMono', monospace;
-  font-size: 72px;
+  font-size: 56px;
   font-weight: 300;
   line-height: 1.1;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
   text-transform: uppercase;
   letter-spacing: -0.02em;
   width: 100%;
@@ -328,20 +328,20 @@ header {
 
 .project-content-grid {
   display: grid;
-  grid-template-columns: 2.5fr 1fr;
-  gap: 100px;
+  grid-template-columns: 2.2fr 1fr;
+  gap: 80px;
 }
 
 .project-description {
   font-family: 'PPMori', sans-serif;
-  font-size: 16px;
-  line-height: 1.7;
+  font-size: 14px;
+  line-height: 1.65;
   color: #333;
   max-width: 100%;
 }
 
 .project-description p {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .project-description strong {
@@ -354,36 +354,41 @@ header {
 
 /* Project Meta - Right Column */
 .project-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
   padding-top: 4px;
 }
 
+.meta-column {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
 .meta-row {
-  display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: 20px;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .meta-label {
   font-family: 'ABCDiatypeMono', monospace;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 300;
   color: #333;
 }
 
 .meta-value {
   font-family: 'ABCDiatypeMono', monospace;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 300;
   line-height: 1.6;
   color: #333;
 }
 
 .bullet-point {
-  font-size: 8px;
+  font-size: 6px;
   vertical-align: middle;
   margin-left: 2px;
 }
@@ -600,9 +605,13 @@ footer {
     font-size: 15px;
   }
 
-  .meta-row {
-    grid-template-columns: 70px 1fr;
-    gap: 15px;
+  .project-meta {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .meta-column {
+    gap: 24px;
   }
 
   .project-images {
@@ -683,9 +692,16 @@ footer {
     font-size: 14px;
   }
 
+  .project-meta {
+    gap: 24px;
+  }
+
+  .meta-column {
+    gap: 20px;
+  }
+
   .meta-row {
-    grid-template-columns: 60px 1fr;
-    gap: 12px;
+    gap: 4px;
   }
 
   .meta-label {
