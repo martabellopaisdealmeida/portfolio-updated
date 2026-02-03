@@ -67,7 +67,7 @@
 /* Logo default uses -50 */
 .logo-text {
   font-family: 'ExposureItalic-70', 'PPMori', sans-serif;
-  font-size: 24px;
+  font-size: 22px;
   color: #333;
   text-decoration: none;
   font-style: italic;
@@ -204,7 +204,7 @@ header {
 
 .search-text {
   font-family: 'ExposureItalic-70', 'PPMori', sans-serif;
-  font-size: 20px;
+  font-size: 22px;
   font-style: italic;
   color: #333;
   transition: color 0.2s ease;
