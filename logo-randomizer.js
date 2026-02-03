@@ -1,15 +1,13 @@
 // Logo Font Randomizer - LIGHT VERSION
-// Only 7 font variations for faster loading
+// Only thicker font variations: from -30 (closest to -50) to 100
 
 document.addEventListener('DOMContentLoaded', function() {
   const logoText = document.querySelector('.logo-text');
   
   if (!logoText) return;
 
-  // Only 7 Exposure variations: -100, -70, -30, 0, 30, 70, 100
+  // Only thicker Exposure variations: -30, 0, 30, 70, 100
   const fontVariations = [
-    'exposure-100',
-    'exposure-70',
     'exposure-30',
     'exposure0',
     'exposure30',
@@ -24,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Wait for fonts to load before enabling animation
   document.fonts.ready.then(function() {
     fontsLoaded = true;
-    console.log('Exposure fonts loaded (light version) - animation ready');
+    console.log('Exposure fonts loaded (thicker version) - animation ready');
     
     // Apply default class immediately after fonts load
     logoText.classList.add(currentClass);
@@ -60,5 +58,5 @@ document.addEventListener('DOMContentLoaded', function() {
     logoText.classList.add(currentClass);
   });
 
-  console.log('Logo font randomizer initialized (light version with 7 variations)');
+  console.log('Logo font randomizer initialized (thicker variations: -30 to 100)');
 });
