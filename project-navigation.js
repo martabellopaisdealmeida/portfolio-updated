@@ -15,14 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
     { name: 'fyted', url: 'fyted.html' }
   ];
 
-  // SVG da seta (inline para melhor performance)
-  const arrowSVG = `<svg width="33" height="24" viewBox="0 0 33 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="33" height="24" fill="#FF3C00"/>
-<line x1="4" y1="12" x2="27" y2="12" stroke="white" stroke-width="6" stroke-linecap="round"/>
-<line x1="20.0249" y1="7.65836" x2="28.6584" y2="11.9751" stroke="white" stroke-width="6" stroke-linecap="round"/>
-<line x1="3" y1="-3" x2="12.6525" y2="-3" transform="matrix(0.894427 -0.447214 -0.447214 -0.894427 16 15)" stroke="white" stroke-width="6" stroke-linecap="round"/>
-</svg>`;
-
   // ============================================
   // DETECÇÃO DO PROJETO ATUAL
   // ============================================
@@ -69,70 +61,37 @@ document.addEventListener('DOMContentLoaded', function() {
   createProjectNavigation(prevProject, nextProject);
 
   function createProjectNavigation(prev, next) {
-    // Criar seta esquerda (projeto anterior)
+    // Criar zona de hover esquerda (projeto anterior)
     if (prev) {
-      const leftArrow = document.createElement('a');
-      leftArrow.href = prev.url;
-      leftArrow.className = 'project-nav-arrow left';
-      leftArrow.setAttribute('aria-label', 'Projeto anterior: ' + prev.name);
-      leftArrow.innerHTML = `
-        <span class="arrow-icon">${arrowSVG}</span>
-        <div class="project-nav-tooltip">${prev.name}</div>
-      `;
-      document.body.appendChild(leftArrow);
-
-      // Criar zona de hover esquerda
       const leftZone = document.createElement('div');
       leftZone.className = 'nav-hover-zone left';
-      leftZone.setAttribute('aria-label', 'Hover para navegar para o projeto anterior');
+      leftZone.setAttribute('aria-label', 'Clique para navegar para: ' + prev.name);
+      leftZone.setAttribute('data-project-name', prev.name);
       document.body.appendChild(leftZone);
 
-      // Event listeners para mostrar/esconder seta
-      leftZone.addEventListener('mouseenter', function() {
-        leftArrow.classList.add('visible');
-      });
-
-      leftZone.addEventListener('mouseleave', function() {
-        leftArrow.classList.remove('visible');
-      });
-
-      // Click na zona também navega
+      // Click na zona navega
       leftZone.addEventListener('click', function() {
         navigateToProject(prev.url);
       });
     }
 
-    // Criar seta direita (projeto seguinte)
+    // Criar zona de hover direita (projeto seguinte)
     if (next) {
-      const rightArrow = document.createElement('a');
-      rightArrow.href = next.url;
-      rightArrow.className = 'project-nav-arrow right';
-      rightArrow.setAttribute('aria-label', 'Próximo projeto: ' + next.name);
-      rightArrow.innerHTML = `
-        <span class="arrow-icon">${arrowSVG}</span>
-        <div class="project-nav-tooltip">${next.name}</div>
-      `;
-      document.body.appendChild(rightArrow);
-
-      // Criar zona de hover direita
       const rightZone = document.createElement('div');
       rightZone.className = 'nav-hover-zone right';
-      rightZone.setAttribute('aria-label', 'Hover para navegar para o próximo projeto');
+      rightZone.setAttribute('aria-label', 'Clique para navegar para: ' + next.name);
+      rightZone.setAttribute('data-project-name', next.name);
       document.body.appendChild(rightZone);
 
-      // Event listeners para mostrar/esconder seta
-      rightZone.addEventListener('mouseenter', function() {
-        rightArrow.classList.add('visible');
-      });
-
-      rightZone.addEventListener('mouseleave', function() {
-        rightArrow.classList.remove('visible');
-      });
-
-      // Click na zona também navega
+      // Click na zona navega
       rightZone.addEventListener('click', function() {
         navigateToProject(next.url);
       });
+    }
+
+    // Notify custom cursor to add navigation zone effects
+    if (typeof window.addNavigationZoneEffects === 'function') {
+      window.addNavigationZoneEffects();
     }
   }
 
@@ -171,22 +130,5 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(function() {
       window.location.href = url;
     }, 300);
-  }
-
-  // ============================================
-  // INTEGRAÇÃO COM CUSTOM CURSOR
-  // ============================================
-  // Garantir que o custom cursor reage às hover zones
-  const customCursor = document.querySelector('.custom-cursor');
-  if (customCursor) {
-    const hoverZones = document.querySelectorAll('.nav-hover-zone, .project-nav-arrow');
-    hoverZones.forEach(function(zone) {
-      zone.addEventListener('mouseenter', function() {
-        customCursor.classList.add('hover');
-      });
-      zone.addEventListener('mouseleave', function() {
-        customCursor.classList.remove('hover');
-      });
-    });
   }
 });

@@ -11,12 +11,41 @@
     background-color: #BBBBBB;
     pointer-events: none;
     z-index: 9999;
-    transition: transform 0.3s ease, mix-blend-mode 0.3s ease;
+    transition: transform 0.3s ease, mix-blend-mode 0.3s ease, opacity 0.2s ease, width 0.3s ease, height 0.3s ease, border-radius 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Arrow state for navigation zones */
+.custom-cursor.nav-arrow-left,
+.custom-cursor.nav-arrow-right {
+    width: 40px;
+    height: 30px;
+    border-radius: 0;
+    background-color: transparent;
+}
+
+.custom-cursor.nav-arrow-left svg,
+.custom-cursor.nav-arrow-right svg {
+    width: 33px;
+    height: 24px;
+}
+
+/* Rotate left arrow */
+.custom-cursor.nav-arrow-left svg {
+    transform: rotate(180deg);
 }
 
 /* Hover states for clickable elements */
 .custom-cursor.hover {
     transform: translate(-50%, -50%) scale(2);
+}
+
+/* Don't scale when showing arrow */
+.custom-cursor.nav-arrow-left.hover,
+.custom-cursor.nav-arrow-right.hover {
+    transform: translate(-50%, -50%) scale(1.2);
 }
 
 /* Hide cursor on mobile devices */
@@ -36,5 +65,5 @@ html {
 
 .custom-cursor {
     mix-blend-mode: exclusion;
-    z-index: 9999; /* Muito menor */
+    z-index: 9999;
 }

@@ -1,4 +1,4 @@
-/* Project Navigation Arrows - Hover Zones Version with SVG */
+/* Project Navigation Arrows - Hover Zones Version with Custom Cursor */
 
 /* Invisible hover zones on left and right edges - START AFTER HEADER */
 .nav-hover-zone {
@@ -25,109 +25,6 @@ body.at-top .nav-hover-zone {
   opacity: 0;
 }
 
-/* Arrow containers */
-.project-nav-arrow {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 80px;
-  height: 100px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.4s ease, transform 0.3s ease;
-  z-index: 900;
-  pointer-events: none;
-  text-decoration: none;
-  cursor: none !important;
-}
-
-.project-nav-arrow.left {
-  left: 40px;
-}
-
-.project-nav-arrow.right {
-  right: 40px;
-}
-
-.project-nav-arrow.visible {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* SVG Arrow styling */
-.arrow-icon {
-  width: 33px;
-  height: 24px;
-  transition: all 0.3s ease;
-  user-select: none;
-}
-
-.arrow-icon svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-/* Rotate left arrow (mirror) */
-.project-nav-arrow.left .arrow-icon svg {
-  transform: rotate(180deg);
-}
-
-/* Hover effect - scale up */
-.project-nav-arrow:hover .arrow-icon {
-  transform: scale(1.3);
-}
-
-.project-nav-arrow.left:hover .arrow-icon svg {
-  transform: rotate(180deg) scale(1.3);
-}
-
-/* Change SVG stroke color on hover */
-.project-nav-arrow:hover .arrow-icon svg line {
-  stroke: #ED6D2E;
-}
-
-/* Project name tooltip */
-.project-nav-tooltip {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.85);
-  color: white;
-  padding: 10px 16px;
-  border-radius: 6px;
-  font-size: 13px;
-  font-family: 'ABCDiatypeMono', monospace;
-  font-weight: 400;
-  white-space: nowrap;
-  opacity: 0;
-  transition: opacity 0.3s ease 0.1s;
-  pointer-events: none;
-}
-
-.project-nav-arrow.left .project-nav-tooltip {
-  left: 100%;
-  margin-left: 15px;
-}
-
-.project-nav-arrow.right .project-nav-tooltip {
-  right: 100%;
-  margin-right: 15px;
-}
-
-.project-nav-arrow:hover .project-nav-tooltip {
-  opacity: 1;
-}
-
-/* Make sure arrows work with custom cursor */
-.project-nav-arrow,
-.nav-hover-zone {
-  cursor: none !important;
-}
-
 /* Tablet adjustments */
 @media (max-width: 1024px) {
   .nav-hover-zone {
@@ -135,35 +32,16 @@ body.at-top .nav-hover-zone {
     top: 120px;
     height: calc(100vh - 120px);
   }
-  
-  .project-nav-arrow.left {
-    left: 20px;
-  }
-  
-  .project-nav-arrow.right {
-    right: 20px;
-  }
-  
-  .arrow-icon {
-    width: 28px;
-    height: 20px;
-  }
-  
-  .project-nav-tooltip {
-    font-size: 12px;
-    padding: 8px 12px;
-  }
 }
 
 /* Mobile - hide navigation arrows */
 @media (max-width: 768px) {
-  .project-nav-arrow,
   .nav-hover-zone {
     display: none;
   }
 }
 
-/* Smooth page transitions (optional enhancement) */
+/* Smooth page transitions */
 body {
   transition: opacity 0.3s ease;
 }
