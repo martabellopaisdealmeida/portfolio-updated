@@ -336,7 +336,7 @@ header {
   font-size: 3.5em; /* 56px */
   font-weight: 300;
   line-height: 1.1;
-  margin-bottom: 3.125em; /* 50px */
+  margin-bottom: 1em; /* 50px */
   text-transform: uppercase;
   letter-spacing: -0.02em;
   width: 100%;
