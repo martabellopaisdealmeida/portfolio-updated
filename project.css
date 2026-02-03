@@ -294,6 +294,9 @@ header {
   height: 100vh;
   overflow: hidden;
   position: relative;
+  max-width: 1600px;
+  margin: 0 auto 80px auto;
+  padding: 0 90px;
 }
 
 .project-hero img,
@@ -572,9 +575,10 @@ footer {
 
   /* Project Content Mobile */
   .project-hero {
-    height: 60vh;
+    height: 50vh;
+    padding: 0 20px;
+    margin-bottom: 40px;
   }
-
   .project-container {
     padding: 60px 30px;
   }
