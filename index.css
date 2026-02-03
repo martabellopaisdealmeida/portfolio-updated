@@ -478,10 +478,16 @@ footer {
 
   .header-top {
     margin-bottom: 6px;
+    justify-content: center; /* Center logo + toggle */
+  }
+
+  .header-top-right {
+    display: none; /* Hide search on mobile */
   }
 
   .header-bottom {
     display: flex; /* Keep nav visible */
+    justify-content: center; /* Center navigation */
   }
 
   .desktop-nav {
@@ -490,7 +496,7 @@ footer {
   }
 
   .theme-toggle {
-    display: flex; /* Keep toggle visible if you want, or set to none */
+    display: flex; /* Keep toggle visible */
   }
 
   .search-text {
@@ -526,8 +532,17 @@ footer {
     padding: 20px 20px;
   }
 
+  .header-top {
+    justify-content: center; /* Center logo + toggle */
+  }
+
+  .header-top-right {
+    display: none; /* Hide search on mobile */
+  }
+
   .header-bottom {
     display: flex; /* Keep nav visible */
+    justify-content: center; /* Center navigation */
   }
 
   .logo-text {
@@ -536,10 +551,6 @@ footer {
 
   .search-text {
     font-size: 20px;
-  }
-
-  .header-top-right {
-    gap: 20px;
   }
 
   .desktop-nav {
