@@ -584,8 +584,7 @@ footer {
   .footer-right a {
     font-size: 12px;
   }
-}
-/* ===== DARK MODE TOGGLE ===== */
+}/* ===== DARK MODE TOGGLE - iOS STYLE ===== */
 .theme-toggle {
   display: flex;
   align-items: center;
@@ -601,42 +600,43 @@ footer {
 
 .toggle-switch {
   position: relative;
-  width: 50px;
-  height: 24px;
-  background-color: #e0e0e0;
-  border-radius: 12px;
-  border: 1.5px solid #333;
+  width: 51px;
+  height: 31px;
+  background-color: #E9E9EA;
+  border-radius: 15.5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: none;
 }
 
 .toggle-slider {
   position: absolute;
   top: 2px;
   left: 2px;
-  width: 16px;
-  height: 16px;
-  background-color: #333;
-  border-radius: 50%;
+  width: 27px;
+  height: 27px;
+  background-color: #ffffff;
+  border-radius: 13.5px;
   transition: transform 0.3s ease;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.12);
+}
+
+/* Dark Mode Active State */
+body.dark-mode .toggle-slider {
+  transform: translateX(20px);
+}
+
+body.dark-mode .toggle-switch {
+  background-color: #34C759; /* Verde iOS */
+}
+
+body.dark-mode .toggle-label {
+  color: #ffffff;
 }
 
 /* Dark Mode Styles */
 body.dark-mode {
-  background-color: black;
-  color: #ffffff;
-}
-
-body.dark-mode .toggle-slider {
-  transform: translateX(26px);
-  background-color: #ffffff;
-}
-
-body.dark-mode .toggle-switch {
-  background-color: #444;
-  border-color: #ffffff;
-}
-
-body.dark-mode .toggle-label {
+  background-color: #1a1a1a;
   color: #ffffff;
 }
 
@@ -665,4 +665,23 @@ body.dark-mode .get-in-text-bottom-mobile {
 body.light-mode {
   background-color: #ffffff;
   color: #333;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .toggle-switch {
+    width: 44px;
+    height: 26px;
+    border-radius: 13px;
+  }
+  
+  .toggle-slider {
+    width: 22px;
+    height: 22px;
+    border-radius: 11px;
+  }
+  
+  body.dark-mode .toggle-slider {
+    transform: translateX(18px);
+  }
 }
