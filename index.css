@@ -161,9 +161,9 @@ header {
 }
 
 .search-toggle-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  display: grid;
+  grid-template-rows: auto auto;
+  justify-items: end; /* alinha à direita */
   gap: 8px;
 }
 
