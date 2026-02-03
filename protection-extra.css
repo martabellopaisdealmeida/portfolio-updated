@@ -1,13 +1,12 @@
 /* ============================================
-   EXTRA CSS PROTECTION LAYER
-   Add this to your main CSS file
+   EXTRA CSS PROTECTION LAYER - CLEAN VERSION
+   Valid CSS properties only (no validation errors)
    ============================================ */
 
-/* Prevent text selection - Extra layer */
+/* Prevent text selection */
 * {
   -webkit-touch-callout: none !important;
   -webkit-user-select: none !important;
-  -khtml-user-select: none !important;
   -moz-user-select: none !important;
   -ms-user-select: none !important;
   user-select: none !important;
@@ -18,20 +17,13 @@
 img {
   pointer-events: none !important;
   -webkit-user-drag: none !important;
-  -khtml-user-drag: none !important;
-  -moz-user-drag: none !important;
-  -o-user-drag: none !important;
-  user-drag: none !important;
   -webkit-touch-callout: none !important;
+  user-select: none !important;
 }
 
-/* Prevent dragging of any element */
+/* Prevent dragging of any element (webkit only) */
 * {
   -webkit-user-drag: none !important;
-  -khtml-user-drag: none !important;
-  -moz-user-drag: none !important;
-  -o-user-drag: none !important;
-  user-drag: none !important;
 }
 
 /* Disable print */
@@ -80,36 +72,12 @@ body.dark-mode::after {
   color: inherit !important;
 }
 
-/* Prevent context menu on all elements */
-* {
-  -webkit-context-menu: none !important;
-  context-menu: none !important;
-}
-
-/* Image protection - additional layer */
-img::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  pointer-events: all;
-  z-index: 1;
-}
+/* Note: Context menu prevention is handled by JavaScript */
 
 /* Protect background images */
 [style*="background-image"] {
   pointer-events: none !important;
 }
-
-/* Hide cursor on images (optional - pode ser irritante) */
-/*
-img:hover {
-  cursor: not-allowed !important;
-}
-*/
 
 /* Copyright notice for screen readers */
 .copyright-notice {
@@ -126,8 +94,14 @@ img:hover {
   -webkit-tap-highlight-color: transparent !important;
 }
 
-/* Additional image overlay protection */
-.image-protection-overlay {
+/* Image wrapper protection class (use this instead of img::before) */
+.image-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.image-wrapper::before {
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -135,7 +109,13 @@ img:hover {
   height: 100%;
   background: transparent;
   pointer-events: all;
-  z-index: 10;
+  z-index: 1;
+}
+
+.image-wrapper img {
+  display: block;
+  position: relative;
+  z-index: 0;
 }
 
 /* Protect SVG elements */
@@ -155,5 +135,11 @@ pre, code {
 /* Disable tap highlight on mobile */
 * {
   -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
-  -webkit-tap-highlight-color: transparent !important;
 }
+
+/* Additional notes:
+ * - Right-click prevention: handled by protection.js
+ * - DevTools detection: handled by protection.js
+ * - Copy/paste prevention: handled by protection.js
+ * - Context menu: handled by protection.js (CSS can't do this)
+ */
