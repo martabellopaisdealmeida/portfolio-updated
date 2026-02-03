@@ -17,6 +17,13 @@
 }
 
 @font-face {
+  font-family: 'ExposureItalic-50';
+  src: url('fonts/ExposureItalicTrial[-50].otf') format('opentype');
+  font-style: italic;
+  font-display: block;
+}
+
+@font-face {
   font-family: 'ExposureItalic-30';
   src: url('fonts/ExposureItalicTrial[-30].otf') format('opentype');
   font-style: italic;
@@ -116,12 +123,22 @@ header {
 }
 
 .logo-text {
-  font-family: 'ExposureItalic-30', 'PPMori', sans-serif;
+  font-family: 'ExposureItalic-50', 'PPMori', sans-serif;
   font-size: 24px;
   color: #333;
   text-decoration: none;
   font-style: italic;
 }
+
+/* Classes for each variation to be applied via JavaScript */
+.exposure-100 { font-family: 'ExposureItalic-100', sans-serif !important; }
+.exposure-70 { font-family: 'ExposureItalic-70', sans-serif !important; }
+.exposure-50 { font-family: 'ExposureItalic-50', sans-serif !important; }
+.exposure-30 { font-family: 'ExposureItalic-30', sans-serif !important; }
+.exposure0 { font-family: 'ExposureItalic0', sans-serif !important; }
+.exposure30 { font-family: 'ExposureItalic30', sans-serif !important; }
+.exposure70 { font-family: 'ExposureItalic70', sans-serif !important; }
+.exposure100 { font-family: 'ExposureItalic100', sans-serif !important; }
 
 .logo-link:hover .logo-text {
   color: #ED6D2E;
