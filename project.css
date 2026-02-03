@@ -295,7 +295,7 @@ header {
   overflow: hidden;
   position: relative;
   max-width: 1600px;
-  margin: 0 auto 80px auto;
+  margin: 0 auto auto;
   padding: 0 90px;
 }
 
@@ -577,6 +577,7 @@ footer {
   .project-hero {
     height: 50vh;
     padding: 0 20px;
+    margin-bottom: 40px;
   }
   .project-container {
     padding: 60px 30px;
