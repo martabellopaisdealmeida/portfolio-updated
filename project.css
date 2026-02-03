@@ -125,14 +125,32 @@ header {
   align-items: center;
 }
 
+.header-top-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* espaço entre "marta" e o toggle */
+}
+
 .logo-link {
   text-decoration: none;
 }
 
 .logo-text {
-  font-family: 'ExposureItalic-50', 'PPMori', sans-serif;
-  font-size: 20px;
-  color: black;
+  font-family: 'ExposureItalic-70', 'PPMori', sans-serif;
+  font-size: 22px;
+  color: #333;
   text-decoration: none;
   font-style: italic;
 }
@@ -147,16 +165,10 @@ header {
 .exposure70 { font-family: 'ExposureItalic70', sans-serif !important; }
 .exposure100 { font-family: 'ExposureItalic100', sans-serif !important; }
 
-.logo-link:hover .logo-text {
+/* .logo-link:hover .logo-text {
   color: #ED6D2E;
   transition: color 0.2s ease;
-}
-
-.right-elements {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-}
+} */
 
 .desktop-nav {
   display: flex;
@@ -169,19 +181,19 @@ header {
 
 .desktop-nav a {
   text-decoration: none;
-  color: black;
+  color: #333;
   font-weight: 300;
   transition: color 0.2s ease;
   margin-right: 6px;
   font-family: 'ABCDiatypeMono', monospace;
 }
 
-/*.desktop-nav a:hover {
+/* .desktop-nav a:hover {
   color: #ED6D2E;
-}*/
+} */
 
 .desktop-nav a.active {
-  color: black;
+  color: #333;
   font-weight: 300;
   font-style: italic;
 }
@@ -191,16 +203,16 @@ header {
 }
 
 .search-text {
-  font-family: 'ExposureItalic-50', 'PPMori', sans-serif;
-  font-size: 20px;
+  font-family: 'ExposureItalic-70', 'PPMori', sans-serif;
+  font-size: 22px;
   font-style: italic;
-  color: black;
+  color: #333;
   transition: color 0.2s ease;
 }
 
-.search-container:hover .search-text {
+/* .search-container:hover .search-text {
   color: #ED6D2E;
-}
+} */
 
 /* Hamburger Menu */
 .hamburger {
@@ -217,7 +229,7 @@ header {
   display: block;
   height: 2px;
   width: 100%;
-  background-color: black;
+  background-color: #333;
   transition: all 0.3s ease;
 }
 
@@ -347,7 +359,7 @@ header {
   font-family: 'MarundTrialCurved', sans-serif;
   font-size: 14px;
   line-height: 1.65;
-  color: black;
+  color: #333;
   max-width: 100%;
 }
 
@@ -392,7 +404,7 @@ header {
   font-size: 12px;
   font-weight: 300;
   line-height: 1.6;
-  color: black;
+  color: #333;
 }
 
 /* Project Images Grid - Full width do container */
@@ -460,7 +472,7 @@ footer {
 }
 
 .footer-left p {
-  color: black;
+  color: #333;
   font-size: 14px;
   font-weight: 300;
   margin: 0;
@@ -473,7 +485,7 @@ footer {
 }
 
 .footer-right a {
-  color: black;
+  color: #333;
   text-decoration: none;
   font-size: 14px;
   font-weight: 300;
@@ -502,7 +514,7 @@ footer {
 .footer-line {
   width: 500px;
   height: 5px;
-  background-color: black;
+  background-color: #333;
   transition: all 0.2s ease;
 }
 
@@ -510,7 +522,7 @@ footer {
 .get-in-text-bottom {
   font-size: 64px;
   font-weight: normal;
-  color: black;
+  color: #333;
   opacity: 0;
   transition: opacity 0.2s ease;
   pointer-events: none;
@@ -537,20 +549,20 @@ footer {
   width: 100%;
   margin-bottom: 30px;
   text-decoration: none;
-  color: black;
+  color: #333;
 }
 
 .footer-line-mobile {
   width: 250px;
   height: 3px;
-  background-color: black;
+  background-color: #333;
 }
 
 .get-in-text-top-mobile,
 .get-in-text-bottom-mobile {
   font-size: 40px;
   font-weight: normal;
-  color: black;
+  color: #333;
   line-height: 1.2;
   font-family: 'ExposureItalic-50', sans-serif;
   font-style: italic;
@@ -744,7 +756,7 @@ footer {
   .footer-center-mobile .get-in-text-bottom-mobile {
     font-size: 40px;
     font-weight: normal;
-    color: black;
+    color: #333;
     line-height: 1.2;
     font-family: 'ExposureItalic-50', sans-serif;
     font-style: italic;
@@ -754,7 +766,7 @@ footer {
   .footer-line-mobile {
     width: 250px;
     height: 3px;
-    background-color: black;
+    background-color: #333;
   }
 
   .footer-left {
@@ -772,5 +784,110 @@ footer {
   .footer-left p,
   .footer-right a {
     font-size: 12px;
+  }
+}
+
+/* ===== DARK MODE TOGGLE - iOS STYLE (20% menor) ===== */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.toggle-label {
+  font-size: 14px;
+  font-family: 'ABCDiatypeMono', monospace;
+  color: #333;
+}
+
+.toggle-switch {
+  position: relative;
+  width: 32px;
+  height: 19px;
+  background-color: #E9E9EA;
+  border-radius: 9.5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: none;
+}
+
+.toggle-slider {
+  position: absolute;
+  top: 1.6px;
+  left: 1.6px;
+  width: 15.8px;
+  height: 15.8px;
+  background-color: #ffffff;
+  border-radius: 7.9px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2.4px 5.6px rgba(0, 0, 0, 0.12);
+}
+
+/* Dark Mode Active State */
+body.dark-mode .toggle-slider {
+  transform: translateX(13px);
+}
+
+body.dark-mode .toggle-switch {
+  background-color: #BBBBBB;
+}
+
+body.dark-mode .toggle-label {
+  color: #ffffff;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: black;
+  color: #ffffff;
+}
+
+body.dark-mode .logo-text,
+body.dark-mode .desktop-nav a,
+body.dark-mode .search-text,
+body.dark-mode .footer-left p,
+body.dark-mode .footer-right a,
+body.dark-mode .hamburger span,
+body.dark-mode .project-title,
+body.dark-mode .project-description,
+body.dark-mode .meta-label,
+body.dark-mode .meta-value {
+  color: #ffffff;
+}
+
+body.dark-mode .footer-line,
+body.dark-mode .footer-line-mobile {
+  background-color: #ffffff;
+}
+
+body.dark-mode .get-in-text-top,
+body.dark-mode .get-in-text-bottom,
+body.dark-mode .get-in-text-top-mobile,
+body.dark-mode .get-in-text-bottom-mobile {
+  color: #ffffff;
+}
+
+/* Light Mode */
+body.light-mode {
+  background-color: #ffffff;
+  color: #333;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .toggle-switch {
+    width: 28px;
+    height: 16px;
+    border-radius: 8px;
+  }
+  
+  .toggle-slider {
+    width: 12.8px;
+    height: 12.8px;
+    border-radius: 6.4px;
+  }
+  
+  body.dark-mode .toggle-slider {
+    transform: translateX(11.2px);
   }
 }
