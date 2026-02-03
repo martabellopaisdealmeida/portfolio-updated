@@ -107,6 +107,29 @@ document.addEventListener("DOMContentLoaded", function () {
     })
   }
 
+  // Dark Mode Toggle Functionality
+  const toggleSwitch = document.querySelector(".toggle-switch")
+  const body = document.body
+
+  // Check for saved theme preference or default to light mode
+  const currentTheme = localStorage.getItem("theme") || "light"
+  
+  // Apply saved theme
+  if (currentTheme === "dark") {
+    body.classList.add("dark-mode")
+  }
+
+  // Toggle theme on click
+  if (toggleSwitch) {
+    toggleSwitch.addEventListener("click", function () {
+      body.classList.toggle("dark-mode")
+      
+      // Save preference
+      const theme = body.classList.contains("dark-mode") ? "dark" : "light"
+      localStorage.setItem("theme", theme)
+    })
+  }
+
   // Grid/Images animations - ONLY if GSAP is loaded
   function initializeAnimations({ skip = false }) {
     if (!skip && typeof gsap !== "undefined" && gsap.from) {
@@ -157,3 +180,4 @@ document.addEventListener("DOMContentLoaded", function () {
 // Note: Search functionality (open/close/escape) is handled above
 // Note: Search results/suggestions are handled by search.js
 // Note: Custom cursor is handled by custom-cursor.js
+// Note: Dark mode toggle is handled above
