@@ -329,8 +329,8 @@ header {
 
 .project-content-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 80px;
+  grid-template-columns: 1.8fr 1fr;
+   gap: 120px; /* ou mais, para afastar mais */
 }
 
 .project-description {
@@ -338,7 +338,7 @@ header {
   font-size: 14px;
   line-height: 1.65;
   color: #333;
-  max-width: 65%;
+  max-width: 100%;
 }
 
 .project-description p {
@@ -358,7 +358,8 @@ header {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 30px;
-  padding-top: 4px;
+  padding-top: 0; /* em vez de 4px */
+  align-self: start;
 }
 
 .meta-column {
