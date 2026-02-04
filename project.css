@@ -332,6 +332,19 @@ body.dark-mode .get-in-text-bottom-mobile {
   color: #ffffff;
 }
 
+/* ADICIONAR ESTAS REGRAS: */
+body.dark-mode .project-description,
+body.dark-mode .project-description p {
+  color: #ffffff;
+}
+
+body.dark-mode .meta-value {
+  color: #ffffff;
+}
+
+body.dark-mode .project-title {
+  color: #ffffff;
+}
 /* Light Mode */
 body.light-mode {
   background-color: #ffffff;
