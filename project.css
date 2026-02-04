@@ -704,7 +704,7 @@ footer {
 
   .header-bottom {
     display: flex; /* Keep nav visible */
-    justify-content: center; /* Center navigation */
+    justify-content: center; /* Center navigation */ 
   }
 
   .desktop-nav {
