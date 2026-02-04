@@ -646,13 +646,13 @@ footer {
   transition: opacity 0.2s ease;
   pointer-events: none;
   line-height: 1;
-  font-family: 'ExposureItalic70', sans-serif;
+  font-family: 'ExposureItalic-70', sans-serif;
 }
 
 .footer-center:hover .get-in-text-top,
 .footer-center:hover .get-in-text-bottom {
   opacity: 1;
-  font-family: 'ExposureItalic70', sans-serif;
+  font-family: 'ExposureItalic-70', sans-serif;
 }
 
 .footer-center:hover .footer-line {
@@ -682,7 +682,7 @@ footer {
   font-weight: normal;
   color: #333;
   line-height: 1;
-  font-family: 'ExposureItalic70', sans-serif;
+  font-family: 'ExposureItalic-70', sans-serif;
 }
 
 /* ==================== MOBILE RESPONSIVE STYLES ==================== */
