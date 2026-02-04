@@ -561,7 +561,7 @@ footer {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #ffffff;
+  background-color: transparent;
   height: 200px;
   z-index: 1000;
   display: flex;
