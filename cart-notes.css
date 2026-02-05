@@ -293,12 +293,11 @@ body.dark-mode .project-title {
   gap: 1.25em; /* 20px gap between images */
 }
 
-hero-image-left,
+.hero-image-left,
 .hero-image-right {
-aspect-ratio: 0.759366 / 1;
-height: auto;
-width: 100%;
-max-width: 100%;
+  flex: 1;
+  height: 100%;
+  overflow: hidden;
 }
 
 .hero-image-left img,
