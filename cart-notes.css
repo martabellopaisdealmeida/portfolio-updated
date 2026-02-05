@@ -280,7 +280,7 @@ body.dark-mode .project-title {
   color: #ffffff;
 }
 
-/* ==================== DUAL VERTICAL HERO ==================== */
+/* ==================== HERO IMAGE ==================== */
 .project-hero {
   width: 100%;
   height: 100vh;
@@ -289,19 +289,10 @@ body.dark-mode .project-title {
   max-width: 100em;
   margin: 0 auto;
   padding: 0 5.625em;
-  display: flex;
-  gap: 1.25em; /* 20px gap between images */
 }
 
-.hero-image-left,
-.hero-image-right {
-  flex: 1;
-  height: 100%;
-  overflow: hidden;
-}
-
-.hero-image-left img,
-.hero-image-right img {
+.project-hero img,
+.project-hero video {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -563,18 +554,11 @@ footer {
     font-size: 1.5em;
   }
 
-  /* Dual Hero becomes stacked on mobile */
+  /* Project Content Mobile */
   .project-hero {
-    height: auto;
-    min-height: 100vh;
-    flex-direction: column;
-    padding: 0 1.25em;
-    gap: 1.25em;
-  }
-
-  .hero-image-left,
-  .hero-image-right {
     height: 50vh;
+    padding: 0 1.25em;
+    margin-bottom: 0;
   }
 
   .project-container {
@@ -653,11 +637,6 @@ footer {
 
   .project-hero {
     padding: 0 1.25em;
-  }
-
-  .hero-image-left,
-  .hero-image-right {
-    height: 40vh;
   }
 
   .project-container {
