@@ -13,7 +13,7 @@
 </head>
 <body>
 
-  <!-- ===== HEADER — kept exactly from index.html ===== -->
+  <!-- ===== HEADER — exactly from index.html ===== -->
   <header>
     <div class="header-top">
       <div class="logo">
@@ -61,27 +61,54 @@
     <div class="search-results"></div>
   </div>
 
-  <!-- ===== FILTER BAR ===== -->
+  <!-- ===== FILTER BAR — 3 colunas verticais como WAS ===== -->
   <div class="filter-bar">
+
+    <!-- Coluna 1: Tipo -->
     <div class="filter-group">
-      <button class="filter-btn active" data-filter="all" data-group="type">ALL</button>
-      <button class="filter-btn" data-filter="branding" data-group="type">BRANDING</button>
-      <button class="filter-btn" data-filter="editorial" data-group="type">EDITORIAL</button>
-      <button class="filter-btn" data-filter="illustration" data-group="type">ILLUSTRATION</button>
-      <button class="filter-btn" data-filter="interaction" data-group="type">INTERACTION</button>
+      <button class="filter-btn active" data-filter="all" data-group="type">
+        ALL <span class="bracket">[ ]</span>
+      </button>
+      <button class="filter-btn" data-filter="branding" data-group="type">
+        BRANDING <span class="bracket">[ ]</span>
+      </button>
+      <button class="filter-btn" data-filter="editorial" data-group="type">
+        EDITORIAL <span class="bracket">[ ]</span>
+      </button>
+      <button class="filter-btn" data-filter="illustration" data-group="type">
+        ILLUSTRATION <span class="bracket">[ ]</span>
+      </button>
+      <button class="filter-btn" data-filter="interaction" data-group="type">
+        INTERACTION <span class="bracket">[ ]</span>
+      </button>
     </div>
 
+    <!-- Coluna 2: Ano -->
     <div class="filter-group">
-      <button class="filter-btn active" data-filter="all" data-group="year">ALL</button>
-      <button class="filter-btn" data-filter="2024" data-group="year">2024</button>
-      <button class="filter-btn" data-filter="2023" data-group="year">2023</button>
-      <button class="filter-btn" data-filter="2022" data-group="year">2022</button>
+      <button class="filter-btn active" data-filter="all" data-group="year">
+        ALL <span class="bracket">[ ]</span>
+      </button>
+      <button class="filter-btn" data-filter="2024" data-group="year">
+        2024 <span class="bracket">[ ]</span>
+      </button>
+      <button class="filter-btn" data-filter="2023" data-group="year">
+        2023 <span class="bracket">[ ]</span>
+      </button>
+      <button class="filter-btn" data-filter="2022" data-group="year">
+        2022 <span class="bracket">[ ]</span>
+      </button>
     </div>
 
+    <!-- Coluna 3: View toggle -->
     <div class="filter-group view-toggle">
-      <button class="filter-btn view-btn active" data-view="grid">GRID <span class="bracket-icon">[→]</span></button>
-      <button class="filter-btn view-btn" data-view="scroll">SCROLL <span class="bracket-icon">[→]</span></button>
+      <button class="filter-btn view-btn active" data-view="grid">
+        GRID <span class="bracket">[→]</span>
+      </button>
+      <button class="filter-btn view-btn" data-view="scroll">
+        SCROLL <span class="bracket">[→]</span>
+      </button>
     </div>
+
   </div>
 
   <!-- ===== WORK GRID ===== -->
@@ -109,7 +136,7 @@
 
     <a href="Mariana&Felipe.html" class="work-item" data-type="illustration" data-year="2024">
       <div class="work-thumb">
-        <img src="images/02 Mariana e Ipy/BenditoMockup-WWW-Wine_Bottle-04 copiar.jpg" alt="Mariana e Felipe" loading="lazy">
+        <img src="images/02 Mariana e Ipy/BenditoMockup-WWW-Wine_Bottle-04 copiar.jpg" alt="Mariana & Felipe" loading="lazy">
       </div>
       <div class="work-info">
         <p class="work-title">MARIANA & FELIPE <span class="work-year">[2024]</span></p>
@@ -198,50 +225,6 @@
   <script src="search.js"></script>
   <script src="custom-cursor.js"></script>
   <script>
-    // ===== FILTER LOGIC =====
-    const filterBtns = document.querySelectorAll('.filter-btn:not(.view-btn)');
-    const viewBtns = document.querySelectorAll('.view-btn');
-    const workItems = document.querySelectorAll('.work-item');
-    const workGrid = document.getElementById('work-grid');
-
-    let activeType = 'all';
-    let activeYear = 'all';
-
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const group = btn.dataset.group;
-        const filter = btn.dataset.filter;
-
-        // Update active state within group
-        document.querySelectorAll(`[data-group="${group}"]`).forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        if (group === 'type') activeType = filter;
-        if (group === 'year') activeYear = filter;
-
-        applyFilters();
-      });
-    });
-
-    function applyFilters() {
-      workItems.forEach(item => {
-        const matchType = activeType === 'all' || item.dataset.type === activeType;
-        const matchYear = activeYear === 'all' || item.dataset.year === activeYear;
-        item.style.display = (matchType && matchYear) ? '' : 'none';
-      });
-    }
-
-    // ===== VIEW TOGGLE =====
-    viewBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        viewBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const view = btn.dataset.view;
-        workGrid.className = view === 'scroll' ? 'work-scroll' : 'work-grid';
-        workGrid.id = 'work-grid';
-      });
-    });
-
     // ===== DARK MODE =====
     const toggleSwitch = document.querySelector('.toggle-switch');
     const currentTheme = localStorage.getItem('theme') || 'light';
@@ -252,6 +235,41 @@
         localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
       });
     }
+
+    // ===== FILTER =====
+    const filterBtns = document.querySelectorAll('.filter-btn:not(.view-btn)');
+    const viewBtns   = document.querySelectorAll('.view-btn');
+    const workItems  = document.querySelectorAll('.work-item');
+    const workGrid   = document.getElementById('work-grid');
+
+    let activeType = 'all';
+    let activeYear = 'all';
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const group  = btn.dataset.group;
+        const filter = btn.dataset.filter;
+        document.querySelectorAll(`[data-group="${group}"]`).forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        if (group === 'type') activeType = filter;
+        if (group === 'year') activeYear = filter;
+        workItems.forEach(item => {
+          const ok = (activeType === 'all' || item.dataset.type === activeType)
+                  && (activeYear === 'all' || item.dataset.year === activeYear);
+          item.style.display = ok ? '' : 'none';
+        });
+      });
+    });
+
+    // ===== VIEW TOGGLE =====
+    viewBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        viewBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        workGrid.className = btn.dataset.view === 'scroll' ? 'work-scroll' : 'work-grid';
+        workGrid.id = 'work-grid';
+      });
+    });
   </script>
 </body>
 </html>
