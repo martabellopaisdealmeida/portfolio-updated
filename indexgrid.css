@@ -1,0 +1,305 @@
+/* ============================================
+   index-grid.css — Alternate Work Index Layout
+   Inspired by editorial / brutalist grid
+   ============================================ */
+
+/* ===== FILTER BAR ===== */
+.filter-bar {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    padding: 0 2.5em 1.5em;
+    border-bottom: 1px solid #333;
+    flex-wrap: wrap;
+    row-gap: 0.75em;
+  }
+  
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+    min-width: 13em;
+  }
+  
+  .filter-group + .filter-group {
+    border-left: 1px solid #333;
+    padding-left: 2em;
+    margin-left: 2em;
+  }
+  
+  .filter-group.view-toggle {
+    margin-left: auto;
+    border-left: none;
+    padding-left: 0;
+    align-items: flex-end;
+  }
+  
+  .filter-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: 'ABCDiatypeMono', monospace;
+    font-size: 0.6875em; /* 11px */
+    font-weight: 300;
+    color: #999;
+    cursor: pointer;
+    text-align: left;
+    line-height: 1.7;
+    letter-spacing: 0.03em;
+    transition: color 0.15s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+  
+  .filter-btn:hover {
+    color: #333;
+  }
+  
+  .filter-btn.active {
+    color: #333;
+  }
+  
+  .bracket-icon {
+    display: inline-block;
+    font-size: 1em;
+    opacity: 0.5;
+    transition: opacity 0.15s ease;
+  }
+  
+  .filter-btn.active .bracket-icon {
+    opacity: 1;
+  }
+  
+  /* ===== WORK GRID — default view ===== */
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 2em 2.5em 0;
+    gap: 0;
+    /* No gap — borders do the work */
+  }
+  
+  /* ===== WORK ITEM ===== */
+  .work-item {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    padding: 1.25em 1em 1.5em;
+    border-right: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.2s ease;
+    position: relative;
+  }
+  
+  /* remove right border on last in each row */
+  .work-grid .work-item:nth-child(4n) {
+    border-right: none;
+  }
+  
+  .work-item:hover {
+    background-color: #f7f7f7;
+  }
+  
+  /* ===== THUMBNAIL ===== */
+  .work-thumb {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background-color: #f0ede8;
+    margin-bottom: 0.875em;
+  }
+  
+  .work-thumb--dark {
+    background-color: #111;
+  }
+  
+  .work-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  
+  .work-item:hover .work-thumb img {
+    transform: scale(1.03);
+  }
+  
+  /* ===== WORK INFO ===== */
+  .work-info {
+    padding: 0 0.25em;
+  }
+  
+  .work-title {
+    font-family: 'ABCDiatypeMono', monospace;
+    font-size: 0.625em; /* 10px */
+    font-weight: 300;
+    line-height: 1.5;
+    color: #333;
+    margin-bottom: 0.5em;
+    letter-spacing: 0.02em;
+  }
+  
+  .work-year {
+    color: #999;
+  }
+  
+  .work-tags {
+    font-family: 'ABCDiatypeMono', monospace;
+    font-size: 0.5625em; /* 9px */
+    font-weight: 300;
+    line-height: 1.7;
+    color: #999;
+    letter-spacing: 0.03em;
+  }
+  
+  /* ===== SCROLL VIEW (alternate) ===== */
+  .work-scroll {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    gap: 0;
+  }
+  
+  .work-scroll .work-item {
+    display: grid;
+    grid-template-columns: 40% 1fr;
+    gap: 2.5em;
+    align-items: start;
+    padding: 2em 2.5em;
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .work-scroll .work-thumb {
+    aspect-ratio: 16 / 9;
+    margin-bottom: 0;
+  }
+  
+  .work-scroll .work-info {
+    padding-top: 0.5em;
+  }
+  
+  .work-scroll .work-title {
+    font-size: 0.875em;
+    margin-bottom: 1em;
+  }
+  
+  .work-scroll .work-tags {
+    font-size: 0.75em;
+  }
+  
+  /* ===== DARK MODE ===== */
+  body.dark-mode .filter-bar {
+    border-bottom-color: #444;
+  }
+  
+  body.dark-mode .filter-group + .filter-group {
+    border-left-color: #444;
+  }
+  
+  body.dark-mode .filter-btn {
+    color: #666;
+  }
+  
+  body.dark-mode .filter-btn:hover,
+  body.dark-mode .filter-btn.active {
+    color: #ffffff;
+  }
+  
+  body.dark-mode .work-item {
+    border-color: #222;
+  }
+  
+  body.dark-mode .work-item:hover {
+    background-color: #0a0a0a;
+  }
+  
+  body.dark-mode .work-thumb {
+    background-color: #1a1a1a;
+  }
+  
+  body.dark-mode .work-title {
+    color: #ffffff;
+  }
+  
+  body.dark-mode .work-tags {
+    color: #555;
+  }
+  
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1100px) {
+    .work-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .work-grid .work-item:nth-child(4n) {
+      border-right: 1px solid #e0e0e0;
+    }
+    .work-grid .work-item:nth-child(3n) {
+      border-right: none;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .filter-bar {
+      padding: 0 1.25em 1.25em;
+      gap: 0;
+    }
+  
+    .filter-group {
+      min-width: 0;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 0.5em 1em;
+    }
+  
+    .filter-group + .filter-group {
+      border-left: none;
+      padding-left: 0;
+      margin-left: 0;
+      border-top: 1px solid #e0e0e0;
+      padding-top: 0.75em;
+      margin-top: 0.25em;
+      width: 100%;
+    }
+  
+    .filter-group.view-toggle {
+      border-top: 1px solid #e0e0e0;
+      padding-top: 0.75em;
+      width: 100%;
+      align-items: flex-start;
+      flex-direction: row;
+    }
+  
+    .work-grid {
+      grid-template-columns: repeat(2, 1fr);
+      padding: 0;
+    }
+  
+    .work-grid .work-item:nth-child(3n) {
+      border-right: 1px solid #e0e0e0;
+    }
+    .work-grid .work-item:nth-child(2n) {
+      border-right: none;
+    }
+  
+    .work-scroll .work-item {
+      grid-template-columns: 1fr;
+      padding: 1.5em 1.25em;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .work-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  
+    .work-item {
+      padding: 0.875em 0.75em 1.25em;
+    }
+  
+    .work-title {
+      font-size: 0.5625em;
+    }
+  }
