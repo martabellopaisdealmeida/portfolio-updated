@@ -13,7 +13,7 @@
 </head>
 <body>
 
-  <!-- ===== HEADER — exactly from index.html ===== -->
+  <!-- ===== HEADER — exactamente igual ao index.html ===== -->
   <header>
     <div class="header-top">
       <div class="logo">
@@ -61,7 +61,10 @@
     <div class="search-results"></div>
   </div>
 
-  <!-- ===== FILTER BAR — 3 colunas verticais como WAS ===== -->
+  <!-- ===== SECÇÃO TITLE ===== -->
+  <p class="works-title">Selected works</p>
+
+  <!-- ===== FILTER BAR — 3 colunas verticais ===== -->
   <div class="filter-bar">
 
     <!-- Coluna 1: Tipo -->
@@ -99,13 +102,13 @@
       </button>
     </div>
 
-    <!-- Coluna 3: View toggle -->
-    <div class="filter-group view-toggle">
+    <!-- Coluna 3: View -->
+    <div class="filter-group">
       <button class="filter-btn view-btn active" data-view="grid">
         GRID <span class="bracket">[→]</span>
       </button>
       <button class="filter-btn view-btn" data-view="scroll">
-        SCROLL <span class="bracket">[→]</span>
+        SCROLL <span class="bracket">[ ]</span>
       </button>
     </div>
 
@@ -186,7 +189,7 @@
 
     <a href="fyted.html" class="work-item" data-type="interaction" data-year="2024">
       <div class="work-thumb work-thumb--dark">
-        <img src="images/10 fyted/TDMovieOut.0.webm" alt="fyted" loading="lazy">
+        <img src="images/10 fyted/poster-fyted.jpg" alt="fyted" loading="lazy">
       </div>
       <div class="work-info">
         <p class="work-title">FYTED <span class="work-year">[2024]</span></p>
@@ -227,8 +230,8 @@
   <script>
     // ===== DARK MODE =====
     const toggleSwitch = document.querySelector('.toggle-switch');
-    const currentTheme = localStorage.getItem('theme') || 'light';
-    if (currentTheme === 'dark') document.body.classList.add('dark-mode');
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    if (savedTheme === 'dark') document.body.classList.add('dark-mode');
     if (toggleSwitch) {
       toggleSwitch.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
@@ -237,15 +240,12 @@
     }
 
     // ===== FILTER =====
-    const filterBtns = document.querySelectorAll('.filter-btn:not(.view-btn)');
-    const viewBtns   = document.querySelectorAll('.view-btn');
-    const workItems  = document.querySelectorAll('.work-item');
-    const workGrid   = document.getElementById('work-grid');
-
     let activeType = 'all';
     let activeYear = 'all';
+    const workItems = document.querySelectorAll('.work-item');
+    const workGrid  = document.getElementById('work-grid');
 
-    filterBtns.forEach(btn => {
+    document.querySelectorAll('.filter-btn:not(.view-btn)').forEach(btn => {
       btn.addEventListener('click', () => {
         const group  = btn.dataset.group;
         const filter = btn.dataset.filter;
@@ -255,17 +255,21 @@
         if (group === 'year') activeYear = filter;
         workItems.forEach(item => {
           const ok = (activeType === 'all' || item.dataset.type === activeType)
-                  && (activeYear === 'all' || item.dataset.year === activeYear);
+                  && (activeYear  === 'all' || item.dataset.year  === activeYear);
           item.style.display = ok ? '' : 'none';
         });
       });
     });
 
     // ===== VIEW TOGGLE =====
-    viewBtns.forEach(btn => {
+    document.querySelectorAll('.view-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        viewBtns.forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.view-btn').forEach(b => {
+          b.classList.remove('active');
+          b.querySelector('.bracket').textContent = '[ ]';
+        });
         btn.classList.add('active');
+        btn.querySelector('.bracket').textContent = '[→]';
         workGrid.className = btn.dataset.view === 'scroll' ? 'work-scroll' : 'work-grid';
         workGrid.id = 'work-grid';
       });
