@@ -8,12 +8,160 @@
   <link rel="stylesheet" href="index.css">
   <link rel="stylesheet" href="search.css">
   <link rel="stylesheet" href="custom-cursor.css">
-  <link rel="stylesheet" href="index-grid.css">
   <link rel="icon" type="image/x-icon" href="favicon.png">
+
+  <style>
+    /* ============================================
+       GRID LAYOUT — proporções naturais dentro da grelha
+       ============================================ */
+
+    /* --- "Selected works" title --- */
+    .works-title {
+      font-family: 'PPMori', sans-serif;
+      font-size: 1em;
+      font-weight: normal;
+      color: #333;
+      padding: 1.25em 2.5em 0.875em;
+    }
+    body.dark-mode .works-title { color: #fff; }
+
+    /* --- Filter bar: 3 colunas verticais --- */
+    .filter-bar {
+      display: grid;
+      grid-template-columns: 190px 155px 120px;
+      padding: 0 2.5em 1.75em;
+      align-items: start;
+    }
+
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .filter-btn {
+      background: none;
+      border: none;
+      padding: 0;
+      margin: 0;
+      font-family: 'ABCDiatypeMono', monospace;
+      font-size: 0.625em;        /* 10px */
+      font-weight: 300;
+      color: #999;
+      cursor: pointer;
+      text-align: left;
+      line-height: 1.95;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 160px;
+      transition: color 0.12s;
+    }
+    .filter-btn:hover          { color: #333; }
+    .filter-btn.active         { color: #333; }
+    .filter-btn .brkt          { color: #bbb; transition: color 0.12s; flex-shrink: 0; }
+    .filter-btn.active  .brkt,
+    .filter-btn:hover   .brkt  { color: #333; }
+
+    body.dark-mode .filter-btn            { color: #555; }
+    body.dark-mode .filter-btn:hover,
+    body.dark-mode .filter-btn.active     { color: #fff; }
+    body.dark-mode .filter-btn .brkt      { color: #333; }
+    body.dark-mode .filter-btn.active .brkt { color: #fff; }
+
+    /* --- WORK GRID: 8 colunas fixas, imagens com proporção natural --- */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      column-gap: 1.125em;
+      row-gap: 2.25em;
+      padding: 1.5em 2.5em 5em;
+      align-items: start;   /* ← essencial: cada célula alinha pelo topo */
+    }
+
+    .work-item {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* thumb sem altura forçada → respeita proporção da imagem */
+    .work-thumb {
+      width: 100%;
+      overflow: hidden;
+      background-color: #d9d9d9;
+      margin-bottom: 0.5em;
+      display: block;
+    }
+    body.dark-mode .work-thumb { background-color: #1a1a1a; }
+
+    .work-thumb img {
+      width: 100%;
+      height: auto;         /* ← proporção natural */
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .work-item:hover .work-thumb img { transform: scale(1.035); }
+
+    .work-title {
+      font-family: 'ABCDiatypeMono', monospace;
+      font-size: 0.5625em;
+      font-weight: 300;
+      line-height: 1.5;
+      color: #333;
+      margin-bottom: 0.25em;
+      letter-spacing: 0.02em;
+    }
+    body.dark-mode .work-title { color: #e0e0e0; }
+
+    .work-year { color: #999; }
+
+    .work-tags {
+      font-family: 'ABCDiatypeMono', monospace;
+      font-size: 0.5em;
+      font-weight: 300;
+      line-height: 1.75;
+      color: #999;
+    }
+
+    /* --- SCROLL VIEW --- */
+    .work-scroll {
+      display: flex;
+      flex-direction: column;
+      padding: 0 2.5em 4em;
+    }
+    .work-scroll .work-item {
+      display: grid;
+      grid-template-columns: 35% 1fr;
+      column-gap: 2.5em;
+      align-items: start;
+      padding: 1.5em 0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    body.dark-mode .work-scroll .work-item { border-color: #222; }
+    .work-scroll .work-thumb   { margin-bottom: 0; }
+    .work-scroll .work-title   { font-size: 0.75em; margin-bottom: 0.75em; margin-top: 0.5em; }
+    .work-scroll .work-tags    { font-size: 0.6875em; }
+
+    /* --- Responsive --- */
+    @media (max-width: 1300px) { .work-grid { grid-template-columns: repeat(6, 1fr); } }
+    @media (max-width: 1000px) { .work-grid { grid-template-columns: repeat(5, 1fr); } }
+    @media (max-width: 768px) {
+      .filter-bar { grid-template-columns: 1fr 1fr; row-gap: 1em; padding: 0 1.25em 1.5em; }
+      .filter-group:last-child { grid-column: 1/-1; flex-direction: row; gap: 2em; }
+      .filter-btn { width: auto; }
+      .works-title { padding: 1em 1.25em 0.75em; }
+      .work-grid { grid-template-columns: repeat(3, 1fr); column-gap: 0.75em; row-gap: 1.75em; padding: 1em 1.25em 3em; }
+      .work-scroll .work-item { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .work-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- ===== HEADER — exactamente igual ao index.html ===== -->
+  <!-- ===== HEADER — igual ao index.html ===== -->
   <header>
     <div class="header-top">
       <div class="logo">
@@ -61,55 +209,30 @@
     <div class="search-results"></div>
   </div>
 
-  <!-- ===== SECÇÃO TITLE ===== -->
+  <!-- ===== TITLE ===== -->
   <p class="works-title">Selected works</p>
 
-  <!-- ===== FILTER BAR — 3 colunas verticais ===== -->
+  <!-- ===== FILTER BAR ===== -->
   <div class="filter-bar">
 
-    <!-- Coluna 1: Tipo -->
     <div class="filter-group">
-      <button class="filter-btn active" data-filter="all" data-group="type">
-        ALL <span class="bracket">[ ]</span>
-      </button>
-      <button class="filter-btn" data-filter="branding" data-group="type">
-        BRANDING <span class="bracket">[ ]</span>
-      </button>
-      <button class="filter-btn" data-filter="editorial" data-group="type">
-        EDITORIAL <span class="bracket">[ ]</span>
-      </button>
-      <button class="filter-btn" data-filter="illustration" data-group="type">
-        ILLUSTRATION <span class="bracket">[ ]</span>
-      </button>
-      <button class="filter-btn" data-filter="interaction" data-group="type">
-        INTERACTION <span class="bracket">[ ]</span>
-      </button>
+      <button class="filter-btn active" data-filter="all" data-group="type">ALL <span class="brkt">[ ]</span></button>
+      <button class="filter-btn" data-filter="branding" data-group="type">BRANDING <span class="brkt">[ ]</span></button>
+      <button class="filter-btn" data-filter="editorial" data-group="type">EDITORIAL <span class="brkt">[ ]</span></button>
+      <button class="filter-btn" data-filter="illustration" data-group="type">ILLUSTRATION <span class="brkt">[ ]</span></button>
+      <button class="filter-btn" data-filter="interaction" data-group="type">INTERACTION <span class="brkt">[ ]</span></button>
     </div>
 
-    <!-- Coluna 2: Ano -->
     <div class="filter-group">
-      <button class="filter-btn active" data-filter="all" data-group="year">
-        ALL <span class="bracket">[ ]</span>
-      </button>
-      <button class="filter-btn" data-filter="2024" data-group="year">
-        2024 <span class="bracket">[ ]</span>
-      </button>
-      <button class="filter-btn" data-filter="2023" data-group="year">
-        2023 <span class="bracket">[ ]</span>
-      </button>
-      <button class="filter-btn" data-filter="2022" data-group="year">
-        2022 <span class="bracket">[ ]</span>
-      </button>
+      <button class="filter-btn active" data-filter="all" data-group="year">ALL <span class="brkt">[ ]</span></button>
+      <button class="filter-btn" data-filter="2024" data-group="year">2024 <span class="brkt">[ ]</span></button>
+      <button class="filter-btn" data-filter="2023" data-group="year">2023 <span class="brkt">[ ]</span></button>
+      <button class="filter-btn" data-filter="2022" data-group="year">2022 <span class="brkt">[ ]</span></button>
     </div>
 
-    <!-- Coluna 3: View -->
     <div class="filter-group">
-      <button class="filter-btn view-btn active" data-view="grid">
-        GRID <span class="bracket">[→]</span>
-      </button>
-      <button class="filter-btn view-btn" data-view="scroll">
-        SCROLL <span class="bracket">[ ]</span>
-      </button>
+      <button class="filter-btn view-btn active" data-view="grid">GRID <span class="brkt">[→]</span></button>
+      <button class="filter-btn view-btn" data-view="scroll">SCROLL <span class="brkt">[ ]</span></button>
     </div>
 
   </div>
@@ -188,7 +311,7 @@
     </a>
 
     <a href="fyted.html" class="work-item" data-type="interaction" data-year="2024">
-      <div class="work-thumb work-thumb--dark">
+      <div class="work-thumb" style="background:#111;">
         <img src="images/10 fyted/poster-fyted.jpg" alt="fyted" loading="lazy">
       </div>
       <div class="work-info">
@@ -228,7 +351,7 @@
   <script src="search.js"></script>
   <script src="custom-cursor.js"></script>
   <script>
-    // ===== DARK MODE =====
+    // Dark mode
     const toggleSwitch = document.querySelector('.toggle-switch');
     const savedTheme = localStorage.getItem('theme') || 'light';
     if (savedTheme === 'dark') document.body.classList.add('dark-mode');
@@ -239,16 +362,14 @@
       });
     }
 
-    // ===== FILTER =====
-    let activeType = 'all';
-    let activeYear = 'all';
+    // Filter
+    let activeType = 'all', activeYear = 'all';
     const workItems = document.querySelectorAll('.work-item');
     const workGrid  = document.getElementById('work-grid');
 
     document.querySelectorAll('.filter-btn:not(.view-btn)').forEach(btn => {
       btn.addEventListener('click', () => {
-        const group  = btn.dataset.group;
-        const filter = btn.dataset.filter;
+        const group = btn.dataset.group, filter = btn.dataset.filter;
         document.querySelectorAll(`[data-group="${group}"]`).forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         if (group === 'type') activeType = filter;
@@ -261,15 +382,15 @@
       });
     });
 
-    // ===== VIEW TOGGLE =====
+    // View toggle
     document.querySelectorAll('.view-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.view-btn').forEach(b => {
           b.classList.remove('active');
-          b.querySelector('.bracket').textContent = '[ ]';
+          b.querySelector('.brkt').textContent = '[ ]';
         });
         btn.classList.add('active');
-        btn.querySelector('.bracket').textContent = '[→]';
+        btn.querySelector('.brkt').textContent = '[→]';
         workGrid.className = btn.dataset.view === 'scroll' ? 'work-scroll' : 'work-grid';
         workGrid.id = 'work-grid';
       });
