@@ -35,8 +35,9 @@
     }
 
     /* ── Header reset ──────────────────────────────────────── */
+    /* base: 16px → all em values relative to that */
     header {
-      padding: 28px 40px;
+      padding: 1.75em 2.5em; /* 28px 40px */
       position: sticky;
       top: 0;
       background-color: transparent;
@@ -46,21 +47,21 @@
     .header-inner {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start; /* aligns tops so stacked left matches right icons */
+      align-items: flex-start;
     }
 
     /* ── Left block: logo row + nav stacked ──────────────── */
     .header-left {
       display: flex;
       flex-direction: column;
-      gap: 1px;
+      gap: 0.0625em; /* ~1px */
     }
 
     /* "marta" + toggle on the same line */
     .logo-row {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 0.625em; /* 10px */
     }
 
     .logo-link {
@@ -72,7 +73,7 @@
       font-family: 'PPNeueMontreal', sans-serif;
       font-weight: 500;
       font-style: normal;
-      font-size: 22px;
+      font-size: 1.125em; /* 18px */
       color: #111;
       letter-spacing: -0.01em;
     }
@@ -86,15 +87,13 @@
     .desktop-nav a {
       font-family: 'PPNeueMontreal', sans-serif;
       font-weight: 500;
-      font-size: 22px;
+      font-size: 1.125em; /* 18px */
       color: #111;
       text-decoration: none;
       letter-spacing: -0.01em;
       line-height: 1.2;
-      /* no extra margin — comma + single space in HTML is enough */
     }
 
-    /* active = italic */
     .desktop-nav a.active {
       font-style: italic;
     }
@@ -103,27 +102,26 @@
     .header-right {
       display: flex;
       align-items: center;
-      gap: 16px;
-      padding-top: 2px;
+      gap: 1em;
+      padding-top: 0.125em;
     }
 
-    /* Theme toggle inside logo-row */
     .theme-toggle {
       display: flex;
       align-items: center;
     }
 
-    /* Search icon button */
+    /* Search icon */
     .search-container {
-      cursor: pointer;
       display: flex;
       align-items: center;
+      cursor: none; /* keep custom cursor */
     }
 
     .search-icon-svg {
       display: block;
-      width: 20px;
-      height: 20px;
+      width: 1.25em;  /* 20px */
+      height: 1.25em;
       color: #111;
       transition: opacity 0.15s ease;
     }
@@ -135,23 +133,23 @@
     /* ── Toggle: outline/stroke only ─────────────────────── */
     .toggle-switch {
       position: relative;
-      width: 48px;
-      height: 28px;
+      width: 2.625em;   /* 42px */
+      height: 1.5em;    /* 24px */
       background-color: transparent !important;
-      border: 2px solid #111 !important;
-      border-radius: 14px;
-      cursor: pointer;
+      border: 0.125em solid #111 !important; /* 2px */
+      border-radius: 0.75em;
+      cursor: none; /* keep custom cursor */
       transition: border-color 0.3s ease;
     }
     .toggle-slider {
       position: absolute;
       top: 50%;
-      left: 2px;
+      left: 0.125em;    /* 2px */
       transform: translateY(-50%);
-      width: 22px;
-      height: 22px;
+      width: 1.125em;   /* 18px */
+      height: 1.125em;
       background-color: transparent !important;
-      border: 2px solid #111 !important;
+      border: 0.125em solid #111 !important;
       border-radius: 50%;
       box-shadow: none !important;
       transition: left 0.3s ease, border-color 0.3s ease;
@@ -161,7 +159,7 @@
     }
     body.dark-mode .toggle-slider {
       border-color: #ffffff !important;
-      left: calc(100% - 24px);
+      left: calc(100% - 1.25em);
       transform: translateY(-50%);
     }
 
@@ -170,7 +168,6 @@
     body.dark-mode .desktop-nav a {
       color: #ffffff;
     }
-
     body.dark-mode .search-icon-svg {
       color: #ffffff;
     }
@@ -178,21 +175,15 @@
     /* ── Mobile ────────────────────────────────────────────── */
     @media (max-width: 768px) {
       header {
-        padding: 20px 24px;
+        padding: 1.25em 1.5em;
       }
-
       .logo-text,
       .desktop-nav a {
-        font-size: 15px;
+        font-size: 1em; /* 16px */
       }
-
-      .header-right {
-        gap: 12px;
-      }
-
       .search-icon-svg {
-        width: 18px;
-        height: 18px;
+        width: 1.125em;
+        height: 1.125em;
       }
     }
   </style>
