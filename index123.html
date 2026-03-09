@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>marta bello pais de almeida — work</title>
+  <link rel="preload" href="fonts/ExposureItalicTrial[-50].otf" as="font" type="font/otf" crossorigin>
+  <link rel="stylesheet" href="search.css">
+  <link rel="stylesheet" href="custom-cursor.css">
+  <link rel="icon" type="image/x-icon" href="favicon.png">
+
+  <style>
+    /* ==================== FONTS ==================== */
+    @font-face {
+      font-family: 'ExposureItalic-70';
+      src: url('fonts/ExposureItalicTrial[-70].otf') format('opentype');
+      font-style: italic;
+      font-display: block;
+    }
+    @font-face {
+      font-family: 'ExposureItalic-50';
+      src: url('fonts/ExposureItalicTrial[-50].otf') format('opentype');
+      font-style: italic;
+      font-display: block;
+    }
+    @font-face {
+      font-family: 'PPMori';
+      src: url('fonts/PPMori-Regular.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'ABCDiatypeMono';
+      src: url('fonts/ABCDiatypeSemi-MonoVariable-Trial.ttf') format('truetype');
+      font-weight: 100 900;
+    }
+
+    /* ==================== RESET & BASE ==================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'PPMori', sans-serif;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    body {
+      background-color: #ffffff;
+      color: #333;
+      overflow-x: hidden;
+      font-size: 16px;
+    }
+
+    /* ==================== HEADER ==================== */
+    header {
+      padding: 1.875em 2.5em;
+      position: sticky;
+      top: 0;
+      background-color: rgba(255,255,255,0.95);
+      z-index: 100;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-link { text-decoration: none; }
+
+    .logo-text {
+      font-family: 'ExposureItalic-70', 'PPMori', sans-serif;
+      font-size: 1.375em;
+      color: #333;
+      text-decoration: none;
+      font-style: italic;
+    }
+
+    .header-top-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .header-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      font-family: 'ABCDiatypeMono', monospace;
+      font-size: 1.125em;
+      font-weight: 300;
+    }
+
+    .desktop-nav a {
+      font-family: 'ABCDiatypeMono', monospace;
+      text-decoration: none;
+      color: #333;
+      font-weight: 300;
+      transition: color 0.2s ease;
+      margin-right: 0.375em;
+    }
+
+    .desktop-nav a.active {
+      color: #333;
+      font-weight: 300;
+      font-style: italic;
+    }
+
+    .search-container { cursor: pointer; }
+
+    .search-text {
+      font-family: 'ExposureItalic-70', 'PPMori', sans-serif;
+      font-size: 1.375em;
+      font-style: italic;
+      color: #333;
+      transition: color 0.2s ease;
+    }
+
+    /* Toggle */
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 2em;
+      height: 1.1875em;
+      background-color: #E9E9EA;
+      border-radius: 0.59375em;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      border: none;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      top: 0.1em;
+      left: 0.1em;
+      width: 0.9875em;
+      height: 0.9875em;
+      background-color: #ffffff;
+      border-radius: 0.49375em;
+      transition: transform 0.3s ease;
+      box-shadow: 0 0.15em 0.35em rgba(0,0,0,0.12);
+    }
+
+    body.dark-mode .toggle-slider { transform: translateX(0.8125em); }
+    body.dark-mode .toggle-switch { background-color: #BBBBBB; }
+
+    body.dark-mode {
+      background-color: #000;
+      color: #fff;
+    }
+
+    body.dark-mode .logo-text,
+    body.dark-mode .desktop-nav a,
+    body.dark-mode .search-text,
+    body.dark-mode .footer-left p,
+    body.dark-mode .footer-right a { color: #ffffff; }
+
+    body.dark-mode .footer-line,
+    body.dark-mode .footer-line-mobile { background-color: #ffffff; }
+
+    body.dark-mode .get-in-text-top,
+    body.dark-mode .get-in-text-bottom,
+    body.dark-mode .get-in-text-top-mobile,
+    body.dark-mode .get-in-text-bottom-mobile { color: #ffffff; }
+
+    body.dark-mode header {
+      background-color: rgba(0,0,0,0.95);
+    }
+
+    /* ==================== SCATTER STAGE ==================== */
+    .scatter-stage {
+      position: relative;
+      width: 100%;
+      /* tall enough to contain all rects — will be sized by JS */
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ==================== RECTANGLE ITEMS ==================== */
+    .rect-item {
+      position: absolute;
+      border: none;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .rect-item:hover {
+      z-index: 10;
+    }
+
+    /* The image inside — hidden by default */
+    .rect-item img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      /* fade out slow + delay = trail/ghost effect */
+      transition: opacity 0.9s ease 0.35s;
+      display: block;
+    }
+
+    .rect-item:hover img {
+      opacity: 1;
+      transition: opacity 0.2s ease;
+    }
+
+    /* Project label */
+    .rect-item .rect-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 6px 8px;
+      font-family: 'ABCDiatypeMono', monospace;
+      font-size: 9px;
+      font-weight: 300;
+      color: #fff;
+      background: rgba(0,0,0,0.55);
+      opacity: 0;
+      transition: opacity 0.7s ease 0.2s;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .rect-item:hover .rect-label {
+      opacity: 1;
+      transition: opacity 0.15s ease 0.1s;
+    }
+
+    /* Decorative rects — fully invisible, no cursor change */
+    .rect-item.deco {
+      cursor: default;
+    }
+
+    /* ==================== FOOTER ==================== */
+    footer {
+      position: relative;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      min-height: 15.625em;
+      padding: 0 5.625em;
+      z-index: 1000;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 1.875em;
+      overflow: visible;
+    }
+
+    .interactive-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 100%;
+      position: relative;
+      overflow: visible;
+    }
+
+    .footer-left p {
+      color: #333;
+      font-size: 0.875em;
+      font-weight: 300;
+      margin: 0;
+      font-family: 'ABCDiatypeMono', monospace;
+    }
+
+    .footer-right {
+      display: flex;
+      gap: 1.5em;
+    }
+
+    .footer-right a {
+      color: #333;
+      text-decoration: none;
+      font-size: 0.875em;
+      font-weight: 300;
+      transition: opacity 0.2s ease;
+      font-family: 'ABCDiatypeMono', monospace;
+    }
+
+    .footer-right a:hover { opacity: 0.7; }
+
+    .footer-center {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.9375em;
+      text-decoration: none;
+      color: inherit;
+      padding: 1.25em 0;
+    }
+
+    .footer-line {
+      width: 31.25em;
+      height: 0.3125em;
+      background-color: #333;
+      transition: all 0.2s ease;
+    }
+
+    .get-in-text-top,
+    .get-in-text-bottom {
+      font-size: 4em;
+      font-weight: normal;
+      color: #333;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+      line-height: 1.2;
+      font-family: 'ExposureItalic-50', sans-serif;
+      font-style: italic;
+      padding: 0.3125em 0;
+    }
+
+    .footer-center:hover .get-in-text-top,
+    .footer-center:hover .get-in-text-bottom { opacity: 1; }
+    .footer-center:hover .footer-line { width: 32.5em; }
+
+    .footer-center-mobile {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.9375em;
+      width: 100%;
+      margin-bottom: 1.875em;
+      text-decoration: none;
+      color: #333;
+    }
+
+    .footer-line-mobile {
+      width: 15.625em;
+      height: 0.1875em;
+      background-color: #333;
+    }
+
+    .get-in-text-top-mobile,
+    .get-in-text-bottom-mobile {
+      font-size: 2.5em;
+      font-weight: normal;
+      color: #333;
+      line-height: 1.2;
+      font-family: 'ExposureItalic-50', sans-serif;
+      font-style: italic;
+      padding: 0.3125em 0;
+    }
+
+    /* ==================== MOBILE ==================== */
+    @media (max-width: 768px) {
+      header { padding: 1.25em 1.875em; }
+      .header-top { justify-content: center; }
+      .header-top-right { display: none; }
+      .header-bottom { justify-content: center; }
+      .desktop-nav { font-size: 1em; }
+
+      .scatter-stage { min-height: 80vh; }
+
+      footer {
+        padding: 0 1.875em;
+        min-height: 9.375em;
+        padding-bottom: 1.25em;
+      }
+      .footer-center { display: none !important; }
+      .footer-center-mobile { display: flex !important; }
+
+      .toggle-switch { width: 1.75em; height: 1em; }
+      .toggle-slider { width: 0.8em; height: 0.8em; }
+      body.dark-mode .toggle-slider { transform: translateX(0.7em); }
+    }
+
+    @media (max-width: 480px) {
+      .footer-center { display: none; }
+      .footer-center-mobile { display: flex; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <header>
+    <div class="header-top">
+      <div class="logo">
+        <a href="index.html" class="logo-link">
+          <span class="logo-text">marta</span>
+        </a>
+        <div class="theme-toggle">
+          <div class="toggle-switch">
+            <div class="toggle-slider"></div>
+          </div>
+        </div>
+      </div>
+      <div class="header-top-right">
+        <div class="search-container">
+          <div class="search-text">search</div>
+        </div>
+      </div>
+    </div>
+    <div class="header-bottom">
+      <nav class="desktop-nav">
+        <a href="index.html" class="active">work,</a>
+        <a href="about-me.html">about,</a>
+        <a href="inspo.html">inspo</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Search Overlay -->
+  <div class="search-overlay">
+    <div class="search-close">×</div>
+    <div class="search-box">
+      <input type="text" class="search-input" placeholder="Search projects, skills, or anything..." autocomplete="off">
+    </div>
+    <div class="search-suggestions">
+      <h4>Popular Searches</h4>
+      <div class="suggestion-tags">
+        <span class="suggestion-tag">Branding</span>
+        <span class="suggestion-tag">Wedding Design</span>
+        <span class="suggestion-tag">Editorial</span>
+        <span class="suggestion-tag">Art Direction</span>
+        <span class="suggestion-tag">Print Design</span>
+        <span class="suggestion-tag">Illustration</span>
+      </div>
+    </div>
+    <div class="search-results"></div>
+  </div>
+
+  <!-- ==================== SCATTER STAGE ==================== -->
+  <main class="scatter-stage" id="scatter-stage"></main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <div class="interactive-footer">
+      <div class="footer-left">
+        <p>© 2025 marta bello pais de almeida</p>
+      </div>
+      <a href="mailto:martinhabpa@gmail.com" class="footer-center">
+        <div class="get-in-text-top">get in</div>
+        <div class="footer-line"></div>
+        <div class="get-in-text-bottom">touch</div>
+      </a>
+      <a href="mailto:martinhabpa@gmail.com" class="footer-center-mobile">
+        <span class="get-in-text-top-mobile">get in</span>
+        <div class="footer-line-mobile"></div>
+        <span class="get-in-text-bottom-mobile">touch</span>
+      </a>
+      <div class="footer-right">
+        <a href="https://www.icloud.com/iclouddrive/008XTyvyPmEH6UFI731TEegVw#CV" target="_blank">resume</a>
+        <a href="https://open.spotify.com/show/02nK1cE2YFhTjj5IT9ZvgI?si=99a32a151c61488c" target="_blank">podcast</a>
+        <a href="https://www.instagram.com/martabpaisdealmeida/" target="_blank">instagram</a>
+        <a href="https://www.linkedin.com/in/marta-bello-pais-de-almeida/" target="_blank">linkedin</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="search.js"></script>
+  <script src="custom-cursor.js"></script>
+  <script src="script.js"></script>
+
+  <script>
+  // ==================== PROJECTS DATA ====================
+  const projects = [
+    {
+      name: 'A Arte da Mesa',
+      url: 'A-Arte-da-Mesa.html',
+      img: 'images/01 Homepage/livrofrente_mesa.webp'
+    },
+    {
+      name: 'Spread Education, Spread Love',
+      url: 'project.html',
+      img: 'images/SpreadEducationSpreadLove.gif'
+    },
+    {
+      name: 'Mariana & Felipe',
+      url: 'Mariana&Felipe.html',
+      img: 'images/02 Mariana e Ipy/BenditoMockup-WWW-Wine_Bottle-04 copiar.jpg'
+    },
+    {
+      name: 'Underground',
+      url: 'Underground.html',
+      img: 'images/05 Underground/Mockup_capa.jpg'
+    },
+    {
+      name: 'FALP',
+      url: 'falp.html',
+      img: 'images/06 FALP/Business Card_Mockup.webp'
+    },
+    {
+      name: 'MODUS',
+      url: 'modus.html',
+      img: 'images/08 MODUS/Banner-gif-1_site.gif'
+    },
+    {
+      name: 'PAEZ',
+      url: 'paez.html',
+      img: 'images/09 PAEZ/padrão tomate.svg'
+    },
+    {
+      name: 'fyted',
+      url: 'fyted.html',
+      img: 'images/10 fyted/TDMovieOut.0.webm'
+    }
+  ];
+
+  // ==================== RECTANGLE DEFINITIONS ====================
+  // Each rect: { x, y, w, h, projectIndex (or null for deco) }
+  // Positions are percentages of container width/height
+  // Sized to match the screenshot's dense cloud pattern
+
+  const rects = [
+    // — top-left cluster —
+    { x:14.5, y: 8,   w:5.0,  h:10.5, p:0 },
+    { x:24.5, y: 5,   w:5.0,  h:9.0,  p:1 },
+    { x:25.2, y:11,   w:7.2,  h:10.0, p:2 },
+    { x:29.5, y: 5.5, w:5.5,  h:7.0,  p:3 },
+    { x:34.0, y: 4,   w:8.5,  h:7.5,  p:null },
+    { x:35.5, y: 9,   w:5.2,  h:6.2,  p:4 },
+    { x:40.5, y: 6,   w:8.8,  h:8.5,  p:5 },
+    { x:33.0, y:14,   w:5.0,  h:5.5,  p:null },
+    { x:37.5, y:14.5, w:5.2,  h:5.5,  p:6 },
+    { x:42.5, y:14,   w:4.5,  h:5.0,  p:null },
+    { x:35.0, y:19,   w:4.8,  h:6.2,  p:7 },
+    { x:38.5, y:19.5, w:7.0,  h:8.5,  p:0 },
+
+    // — top-right cluster —
+    { x:64.5, y: 7,   w:4.8,  h:7.5,  p:1 },
+    { x:70.5, y: 6,   w:6.5,  h:9.5,  p:2 },
+    { x:69.0, y:13,   w:4.0,  h:5.0,  p:null },
+    { x:74.0, y:14,   w:6.8,  h:7.0,  p:3 },
+    { x:80.5, y: 6.5, w:4.5,  h:7.0,  p:4 },
+    { x:82.0, y:12,   w:6.5,  h:8.5,  p:5 },
+    { x:86.5, y: 6,   w:1.8,  h:8.0,  p:null },
+    { x:88.5, y:10,   w:6.5,  h:8.0,  p:6 },
+
+    // — middle-left cluster —
+    { x:13.0, y:22,   w:7.5,  h:9.5,  p:7 },
+    { x:18.0, y:29,   w:6.0,  h:8.0,  p:0 },
+    { x:22.0, y:22,   w:4.8,  h:6.5,  p:null },
+    { x:26.5, y:25,   w:4.5,  h:6.0,  p:1 },
+    { x:29.5, y:28,   w:5.8,  h:7.5,  p:2 },
+    { x:32.5, y:23,   w:3.8,  h:5.2,  p:null },
+    { x:35.0, y:27,   w:4.5,  h:5.0,  p:null },
+    { x:38.5, y:28.5, w:5.5,  h:7.5,  p:3 },
+    { x:42.5, y:25,   w:3.5,  h:4.5,  p:null },
+
+    // — middle-center cluster —
+    { x:44.0, y:30,   w:8.5,  h:10.5, p:4 },
+    { x:50.0, y:33.5, w:5.0,  h:6.5,  p:5 },
+    { x:53.5, y:28,   w:5.5,  h:6.5,  p:null },
+    { x:57.5, y:30.5, w:5.0,  h:7.0,  p:6 },
+    { x:60.5, y:26,   w:5.2,  h:6.0,  p:7 },
+    { x:63.5, y:31,   w:5.5,  h:8.0,  p:0 },
+    { x:67.0, y:25.5, w:4.2,  h:5.5,  p:null },
+    { x:68.5, y:30,   w:6.8,  h:9.0,  p:1 },
+
+    // — middle-right cluster —
+    { x:74.0, y:24,   w:5.5,  h:7.0,  p:2 },
+    { x:77.5, y:31,   w:5.8,  h:7.5,  p:null },
+    { x:81.5, y:24.5, w:6.0,  h:8.5,  p:3 },
+    { x:85.5, y:30,   w:5.5,  h:7.0,  p:4 },
+    { x:88.0, y:22,   w:6.8,  h:7.5,  p:null },
+
+    // — lower-left cluster —
+    { x:9.5,  y:38,   w:1.8,  h:6.0,  p:null },
+    { x:13.5, y:37,   w:7.0,  h:9.5,  p:5 },
+    { x:19.5, y:40.5, w:6.0,  h:7.5,  p:6 },
+    { x:21.0, y:35,   w:4.5,  h:6.5,  p:null },
+    { x:26.0, y:37.5, w:5.5,  h:7.0,  p:7 },
+    { x:30.0, y:35,   w:4.8,  h:5.8,  p:null },
+    { x:32.5, y:41,   w:5.5,  h:6.5,  p:0 },
+    { x:36.5, y:36.5, w:4.5,  h:5.5,  p:null },
+    { x:38.5, y:41.5, w:4.8,  h:5.8,  p:1 },
+    { x:41.5, y:37,   w:3.5,  h:4.5,  p:null },
+
+    // — lower-center cluster —
+    { x:43.5, y:40,   w:5.5,  h:6.5,  p:2 },
+    { x:47.5, y:43,   w:4.5,  h:5.5,  p:null },
+    { x:50.5, y:38.5, w:5.8,  h:7.5,  p:3 },
+    { x:54.5, y:43,   w:5.0,  h:6.5,  p:null },
+    { x:57.5, y:39,   w:5.5,  h:7.0,  p:4 },
+    { x:61.0, y:42.5, w:5.0,  h:6.0,  p:5 },
+    { x:59.5, y:36.5, w:4.5,  h:5.5,  p:null },
+    { x:63.5, y:38,   w:5.0,  h:6.5,  p:6 },
+
+    // — lower-right cluster —
+    { x:68.5, y:39,   w:6.5,  h:8.5,  p:7 },
+    { x:73.5, y:43,   w:5.2,  h:6.5,  p:0 },
+    { x:77.0, y:38.5, w:5.5,  h:7.0,  p:null },
+    { x:81.0, y:41.5, w:6.0,  h:7.5,  p:1 },
+    { x:85.5, y:38,   w:5.0,  h:6.5,  p:null },
+    { x:87.0, y:43,   w:6.5,  h:7.5,  p:2 },
+
+    // — bottom cluster —
+    { x:19.5, y:50,   w:7.0, h:8.5,   p:3 },
+    { x:27.5, y:47,   w:4.5, h:5.5,   p:null },
+    { x:30.5, y:50.5, w:5.0, h:6.5,   p:4 },
+    { x:39.0, y:50,   w:5.5, h:6.5,   p:5 },
+    { x:43.5, y:48,   w:3.8, h:5.0,   p:null },
+    { x:43.5, y:53,   w:5.5, h:6.5,   p:6 },
+    { x:50.5, y:49,   w:5.5, h:7.0,   p:7 },
+    { x:54.5, y:53.5, w:4.5, h:5.5,   p:null },
+    { x:56.5, y:47,   w:5.0, h:6.5,   p:0 },
+    { x:60.0, y:52,   w:5.5, h:6.5,   p:1 },
+    { x:63.5, y:47.5, w:5.0, h:5.5,   p:null },
+    { x:65.5, y:52.5, w:5.5, h:6.5,   p:2 },
+    { x:69.5, y:48,   w:5.2, h:6.0,   p:null },
+    { x:73.0, y:51.5, w:5.0, h:6.5,   p:3 },
+    { x:76.5, y:47,   w:6.5, h:8.0,   p:4 },
+    { x:84.5, y:47,   w:1.8, h:7.5,   p:null },
+    { x:86.5, y:51,   w:6.5, h:7.0,   p:5 },
+  ];
+
+  // ==================== RENDER ====================
+  const stage = document.getElementById('scatter-stage');
+
+  function buildScatter() {
+    const W = stage.offsetWidth;
+    // Use a tall stage — compute from max y + max h
+    const maxY = rects.reduce((m, r) => Math.max(m, r.y + r.h), 0);
+    // Stage height: map % to px using viewport height as base
+    const H = window.innerHeight * 0.92;
+    stage.style.height = H + 'px';
+
+    rects.forEach(function(r) {
+      const el = document.createElement('a');
+      const proj = r.p !== null ? projects[r.p % projects.length] : null;
+
+      el.className = 'rect-item' + (proj ? '' : ' deco');
+      el.href = proj ? proj.url : '#';
+      if (!proj) { el.addEventListener('click', e => e.preventDefault()); }
+
+      // Position as % of W and H
+      el.style.left   = (r.x / 100 * W) + 'px';
+      el.style.top    = (r.y / 100 * H) + 'px';
+      el.style.width  = (r.w / 100 * W) + 'px';
+      el.style.height = (r.h / 100 * H) + 'px';
+
+      if (proj) {
+        const img = document.createElement('img');
+        img.src = proj.img;
+        img.alt = proj.name;
+        img.loading = 'lazy';
+        el.appendChild(img);
+
+        const label = document.createElement('div');
+        label.className = 'rect-label';
+        label.textContent = proj.name;
+        el.appendChild(label);
+      }
+
+      stage.appendChild(el);
+    });
+  }
+
+  // Build on load
+  buildScatter();
+
+  // Rebuild on resize (debounced)
+  let resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+      stage.innerHTML = '';
+      buildScatter();
+    }, 200);
+  });
+
+  // ==================== DARK MODE TOGGLE ====================
+  const toggleSwitch = document.querySelector('.toggle-switch');
+  const body = document.body;
+  const currentTheme = localStorage.getItem('theme') || 'light';
+  if (currentTheme === 'dark') body.classList.add('dark-mode');
+
+  if (toggleSwitch) {
+    toggleSwitch.addEventListener('click', function() {
+      body.classList.toggle('dark-mode');
+      localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
+    });
+  }
+  </script>
+
+</body>
+</html>
