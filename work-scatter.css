@@ -355,12 +355,13 @@ footer {
 
 /* ==================== PAGE FALL TRANSITION ==================== */
 @keyframes pageFall {
-  0%   { transform: translateY(0);     opacity: 1; }
-  15%  { transform: translateY(-18px); opacity: 1; } /* pequeno bounce para cima */
-  100% { transform: translateY(100vh); opacity: 0.6; }
+  0%   { transform: translateY(0)      scale(1)    rotate(0deg);   opacity: 1; }
+  8%   { transform: translateY(-40px)  scale(1.03) rotate(-0.4deg); opacity: 1; } /* salta para cima */
+  100% { transform: translateY(130vh)  scale(0.92) rotate(1.8deg);  opacity: 0; }
 }
 
 body.page-falling {
-  animation: pageFall 0.65s cubic-bezier(0.55, 0, 1, 0.45) forwards;
+  animation: pageFall 0.5s cubic-bezier(0.7, 0, 1, 1) forwards;
   pointer-events: none;
+  transform-origin: center 60%;
 }
