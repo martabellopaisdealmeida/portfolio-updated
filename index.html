@@ -49,11 +49,18 @@
       align-items: flex-start; /* aligns tops so stacked left matches right icons */
     }
 
-    /* ── Left block: logo + nav stacked ───────────────────── */
+    /* ── Left block: logo row + nav stacked ──────────────── */
     .header-left {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 1px;
+    }
+
+    /* "marta" + toggle on the same line */
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .logo-link {
@@ -84,10 +91,7 @@
       text-decoration: none;
       letter-spacing: -0.01em;
       line-height: 1.2;
-    }
-
-    .desktop-nav a + a {
-      margin-left: 0; /* commas act as separators already */
+      /* no extra margin — comma + single space in HTML is enough */
     }
 
     /* active = italic */
@@ -95,15 +99,15 @@
       font-style: italic;
     }
 
-    /* ── Right block: toggle + search ─────────────────────── */
+    /* ── Right block: search only ─────────────────────────── */
     .header-right {
       display: flex;
       align-items: center;
       gap: 16px;
-      padding-top: 2px; /* optical alignment with text cap-height */
+      padding-top: 2px;
     }
 
-    /* Theme toggle stays exactly as before */
+    /* Theme toggle inside logo-row */
     .theme-toggle {
       display: flex;
       align-items: center;
@@ -128,7 +132,40 @@
       opacity: 0.5;
     }
 
-    /* ── Dark mode overrides ───────────────────────────────── */
+    /* ── Toggle: outline/stroke only ─────────────────────── */
+    .toggle-switch {
+      position: relative;
+      width: 34px;
+      height: 20px;
+      background-color: transparent !important;
+      border: 1.5px solid #111 !important;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: border-color 0.3s ease;
+    }
+    .toggle-slider {
+      position: absolute;
+      top: 50%;
+      left: 2px;
+      transform: translateY(-50%);
+      width: 14px;
+      height: 14px;
+      background-color: transparent !important;
+      border: 1.5px solid #111 !important;
+      border-radius: 50%;
+      box-shadow: none !important;
+      transition: left 0.3s ease, border-color 0.3s ease;
+    }
+    body.dark-mode .toggle-switch {
+      border-color: #ffffff !important;
+    }
+    body.dark-mode .toggle-slider {
+      border-color: #ffffff !important;
+      left: calc(100% - 16px);
+      transform: translateY(-50%);
+    }
+
+    /* ── Dark mode overrides ─────────────────────────────── */
     body.dark-mode .logo-text,
     body.dark-mode .desktop-nav a {
       color: #ffffff;
@@ -164,26 +201,27 @@
   <header>
     <div class="header-inner">
 
-      <!-- Left: marta stacked above work, about, inspo -->
+      <!-- Left: [marta + toggle] stacked above [work, about, inspo] -->
       <div class="header-left">
-        <a href="index.html" class="logo-link">
-          <span class="logo-text">marta</span>
-        </a>
+        <div class="logo-row">
+          <a href="index.html" class="logo-link">
+            <span class="logo-text">marta</span>
+          </a>
+          <div class="theme-toggle">
+            <div class="toggle-switch">
+              <div class="toggle-slider"></div>
+            </div>
+          </div>
+        </div>
         <nav class="desktop-nav">
-          <a href="index.html" class="active">work,&nbsp;</a>
-          <a href="about-me.html">about,&nbsp;</a>
-          <a href="inspo.html">inspo</a>
+          <a href="index.html" class="active">work,</a>
+          <a href="about-me.html"> about,</a>
+          <a href="inspo.html"> inspo</a>
         </nav>
       </div>
 
-      <!-- Right: dark mode toggle + search icon -->
+      <!-- Right: search icon only -->
       <div class="header-right">
-        <div class="theme-toggle">
-          <div class="toggle-switch">
-            <div class="toggle-slider"></div>
-          </div>
-        </div>
-
         <div class="search-container">
           <!-- Magnifying glass icon — matches screenshot -->
           <svg class="search-icon-svg" viewBox="0 0 22 22" fill="none"
