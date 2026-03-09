@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>marta bello pais de almeida — work</title>
   <link rel="preload" href="fonts/ExposureItalicTrial[-50].otf" as="font" type="font/otf" crossorigin>
-  <link rel="stylesheet" href="index123.css">
+  <link rel="stylesheet" href="work-scatter.css">
   <link rel="stylesheet" href="search.css">
   <link rel="stylesheet" href="custom-cursor.css">
   <link rel="icon" type="image/x-icon" href="favicon.png">
@@ -100,8 +100,8 @@
   //  Quando adicionares fotos novas ao GitHub, a página atualiza
   //  sem tocares no código.
   // ============================================================
-  const GITHUB_USER   = 'martabpaisdealmeida';  // ← o teu username
-  const GITHUB_REPO   = 'portfolio';             // ← nome do repositório
+  const GITHUB_USER   = 'martabellopaisdealmeida';  // ← o teu username
+  const GITHUB_REPO   = 'portfolio-updated';             // ← nome do repositório
   const GITHUB_BRANCH = 'main';                  // ← branch (main ou master)
   const GITHUB_FOLDER = 'moodboard';             // ← pasta com as fotos
 
@@ -300,8 +300,6 @@
   async function loadImagesFromGitHub() {
     const apiUrl = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FOLDER}?ref=${GITHUB_BRANCH}`;
 
-
-    
     try {
       const res = await fetch(apiUrl, {
         headers: { 'Accept': 'application/vnd.github.v3+json' }
