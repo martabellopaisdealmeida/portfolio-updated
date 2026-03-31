@@ -108,8 +108,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Dark Mode Toggle Functionality
-  const toggleSwitch = document.querySelector(".toggle-switch")
+  const toggleSwitch = document.querySelector(".star-toggle")
   const body = document.body
+  
 
   // Check for saved theme preference or default to light mode
   const currentTheme = localStorage.getItem("theme") || "light"
