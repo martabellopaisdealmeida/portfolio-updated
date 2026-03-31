@@ -20,9 +20,11 @@
           <span class="logo-text">marta</span>
         </a>
         <div class="theme-toggle">
-          <div class="toggle-switch">
-            <div class="toggle-slider"></div>
-          </div>
+          <button class="star-toggle" aria-label="Toggle dark mode">
+            <svg class="star-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+            </svg>
+          </button>
         </div>
       </div>
       <div class="header-top-right">
@@ -93,30 +95,16 @@
   <script src="script.js"></script>
 
   <script>
-  // ============================================================
-  //  GITHUB CONFIG
-  //  Cria uma pasta no teu repo (ex: "moodboard/") e mete lá
-  //  as fotos. O site vai buscar a lista automaticamente via API.
-  //  Quando adicionares fotos novas ao GitHub, a página atualiza
-  //  sem tocares no código.
-  // ============================================================
-  const GITHUB_USER   = 'martabellopaisdealmeida';  // ← o teu username
-  const GITHUB_REPO   = 'portfolio-updated';             // ← nome do repositório
-  const GITHUB_BRANCH = 'main';                  // ← branch (main ou master)
-  const GITHUB_FOLDER = 'moodboard';             // ← pasta com as fotos
+  const GITHUB_USER   = 'martabellopaisdealmeida';
+  const GITHUB_REPO   = 'portfolio-updated';
+  const GITHUB_BRANCH = 'main';
+  const GITHUB_FOLDER = 'moodboard';
 
-  // Extensões aceites
   const IMAGE_EXTS = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg'];
 
-  // ============================================================
-  //  CONFIGURAÇÃO DA ROTAÇÃO
-  // ============================================================
-  const ROTATION_INTERVAL  = 2800;  // ms entre cada ciclo de troca
-  const RECTS_PER_ROTATION = 2;     // quantos retângulos trocam por ciclo
+  const ROTATION_INTERVAL  = 2800;
+  const RECTS_PER_ROTATION = 2;
 
-  // ============================================================
-  //  LAYOUT DOS RETÂNGULOS  (x, y, w, h em % do container)
-  // ============================================================
   const RECTS = [
     { x:14.5, y: 8,   w:5.0,  h:10.5 },
     { x:24.5, y: 5,   w:5.0,  h: 9.0 },
@@ -203,16 +191,11 @@
     { x:86.5, y:51,   w:6.5,  h: 7.0 },
   ];
 
-  // ============================================================
-  //  ENGINE
-  // ============================================================
-
   const stage = document.getElementById('scatter-stage');
   let rectElements = [];
   let currentImages = [];
-  let MOODBOARD_IMAGES = [];  // preenchido via GitHub API
+  let MOODBOARD_IMAGES = [];
 
-  // Fisher-Yates shuffle
   function shuffle(arr) {
     const a = [...arr];
     for (let i = a.length - 1; i > 0; i--) {
@@ -222,7 +205,6 @@
     return a;
   }
 
-  // Distribute images across rects (cycling if fewer images than rects)
   function assignImages() {
     const shuffled = shuffle(MOODBOARD_IMAGES);
     return RECTS.map((_, i) => shuffled[i % shuffled.length]);
@@ -231,13 +213,10 @@
   function buildScatter() {
     stage.innerHTML = '';
     rectElements = [];
-
     const W = stage.offsetWidth;
     const H = window.innerHeight * 0.92;
     stage.style.height = H + 'px';
-
     currentImages = assignImages();
-
     RECTS.forEach(function(r, i) {
       const el = document.createElement('div');
       el.className = 'rect-item';
@@ -245,25 +224,21 @@
       el.style.top    = (r.y / 100 * H) + 'px';
       el.style.width  = (r.w / 100 * W) + 'px';
       el.style.height = (r.h / 100 * H) + 'px';
-
       const img = document.createElement('img');
       img.src = currentImages[i];
       img.alt = '';
       img.loading = 'lazy';
       el.appendChild(img);
-
       stage.appendChild(el);
       rectElements.push(el);
     });
   }
 
-  // Swap image in a rect — silent if not hovered, crossfade if hovered
   function swapImage(rectIndex, newSrc) {
     const el = rectElements[rectIndex];
     if (!el) return;
     const img = el.querySelector('img');
     if (!img) return;
-
     if (el.matches(':hover')) {
       const clone = img.cloneNode();
       clone.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1;transition:opacity 0.6s ease;';
@@ -276,11 +251,9 @@
     } else {
       img.src = newSrc;
     }
-
     currentImages[rectIndex] = newSrc;
   }
 
-  // Rotation loop
   function startRotation() {
     setInterval(() => {
       if (MOODBOARD_IMAGES.length < 2) return;
@@ -294,49 +267,33 @@
     }, ROTATION_INTERVAL);
   }
 
-  // ============================================================
-  //  GITHUB API — vai buscar a lista de imagens da pasta
-  // ============================================================
   async function loadImagesFromGitHub() {
     const apiUrl = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FOLDER}?ref=${GITHUB_BRANCH}`;
-
     try {
       const res = await fetch(apiUrl, {
         headers: { 'Accept': 'application/vnd.github.v3+json' }
       });
-
       if (!res.ok) throw new Error(`GitHub API: ${res.status}`);
-
       const files = await res.json();
-
-      // Filtra só imagens e constrói URLs de raw content
       MOODBOARD_IMAGES = files
         .filter(f => {
           const ext = f.name.split('.').pop().toLowerCase();
           return f.type === 'file' && IMAGE_EXTS.includes(ext);
         })
         .map(f => `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${GITHUB_BRANCH}/${f.path}`);
-
       if (MOODBOARD_IMAGES.length === 0) {
         console.warn('Nenhuma imagem encontrada na pasta:', GITHUB_FOLDER);
         return;
       }
-
-      console.log(`${MOODBOARD_IMAGES.length} imagens carregadas do GitHub`);
-
       buildScatter();
       startRotation();
-
     } catch (err) {
       console.error('Erro ao carregar imagens do GitHub:', err);
-      // Fallback: não mostra nada (página fica limpa — as zones invisíveis continuam)
     }
   }
 
-  // Inicia
   loadImagesFromGitHub();
 
-  // Rebuild on resize (debounced)
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
@@ -344,7 +301,7 @@
   });
 
   // Dark mode
-  const toggleSwitch = document.querySelector('.toggle-switch');
+  const toggleSwitch = document.querySelector('.star-toggle');
   if ((localStorage.getItem('theme') || 'light') === 'dark') document.body.classList.add('dark-mode');
   if (toggleSwitch) {
     toggleSwitch.addEventListener('click', () => {
@@ -352,11 +309,9 @@
       localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
     });
   }
-  // ==================== PAGE FALL ON CLICK ====================
-  // Clique em qualquer lugar na scatter-stage navega para o index
+
   stage.addEventListener("click", function(e) {
-    // Ignora cliques em links (search, nav, footer)
-    if (e.target.closest("a, button, .toggle-switch, .search-container, .search-overlay")) return;
+    if (e.target.closest("a, button, .star-toggle, .search-container, .search-overlay")) return;
     document.body.classList.add("page-falling");
     setTimeout(() => { window.location.href = "indexalternativo.html"; }, 450);
   });
