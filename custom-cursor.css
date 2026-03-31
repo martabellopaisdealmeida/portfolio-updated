@@ -11,20 +11,19 @@
     background-color: #BBBBBB;
     pointer-events: none;
     z-index: 9999;
-    transition: transform 0.3s ease; /* Mantém só o transform para hover normal */
+    transition: transform 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* Arrow state for navigation zones */
 .custom-cursor.nav-arrow-left,
 .custom-cursor.nav-arrow-right {
     width: 50px;
     height: 36px;
     border-radius: 0;
     background-color: transparent;
-    mix-blend-mode: normal; /* Desativa blend mode para as cores ficarem corretas */
+    mix-blend-mode: normal;
 }
 
 .custom-cursor.nav-arrow-left svg,
@@ -33,28 +32,25 @@
     height: 36px;
 }
 
-/* Rotate left arrow */
 .custom-cursor.nav-arrow-left svg {
     transform: rotate(180deg);
 }
 
-/* Hover states for clickable elements */
+/* CHANGED: was translate(-50%, -50%) scale(2) */
 .custom-cursor.hover {
-    transform: translate(-50%, -50%) scale(2);
+    transform: scale(2);
 }
 
-/* Don't scale when showing arrow */
+/* CHANGED: was translate(-50%, -50%) scale(1.2) */
 .custom-cursor.nav-arrow-left.hover,
 .custom-cursor.nav-arrow-right.hover {
-    transform: translate(-50%, -50%) scale(1.2);
+    transform: scale(1.2);
 }
 
-/* Hide cursor on mobile devices */
 @media (max-width: 768px) {
     * {
         cursor: auto !important;
     }
-    
     .custom-cursor {
         display: none;
     }
