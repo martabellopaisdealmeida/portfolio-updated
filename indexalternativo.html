@@ -11,6 +11,150 @@
   <link rel="icon" type="image/x-icon" href="favicon.png">
 
   <style>
+    header {
+      padding: 1.75em 2.5em;
+      position: sticky;
+      top: 0;
+      background-color: transparent;
+      z-index: 100;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 0.0625em;
+    }
+
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 0.625em;
+    }
+
+    .logo-link {
+      text-decoration: none;
+      line-height: 1.2;
+    }
+
+    .logo-text,
+    .desktop-nav a {
+      font-family: 'PPNeueMontreal', sans-serif;
+      font-weight: 500;
+      font-size: 1.3em;
+      line-height: 20px;
+      color: #111;
+      letter-spacing: -0.01em;
+    }
+
+    /* reset index.css desktop-nav font-size so it doesn't compound */
+    .desktop-nav {
+      display: flex;
+     align-items: center;
+     gap: 0;
+    font-size: 1rem;   /* ← 1rem = 16px root, not affected by index.css cascade */
+  }
+
+    .logo-text {
+      font-style: normal;
+      text-decoration: none;
+    }
+
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .desktop-nav a {
+      text-decoration: none;
+    }
+
+    .desktop-nav a.active {
+      font-style: italic;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 1em;
+      padding-top: 0.125em;
+    }
+
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+    }
+
+    .search-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .search-icon-svg {
+      display: block;
+      width: 1.125em;
+      height: 1.125em;
+      color: #111;
+      transition: opacity 0.15s ease;
+    }
+
+    .search-container:hover .search-icon-svg {
+      opacity: 0.5;
+    }
+
+    .star-toggle {
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: none;
+      display: flex;
+      align-items: center;
+      line-height: 1;
+    }
+    .star-icon {
+      width: 1em;
+      height: 1em;
+      fill: #D4AF37;
+      stroke: #D4AF37;
+      stroke-width: 1;
+      transition: fill 0.3s ease, stroke 0.3s ease, transform 0.3s ease;
+    }
+    .star-toggle:hover .star-icon {
+      transform: scale(1.15);
+    }
+    body.dark-mode .star-icon {
+      fill: #C0C0C0;
+      stroke: #C0C0C0;
+    }
+
+    body.dark-mode .logo-text,
+    body.dark-mode .desktop-nav a {
+      color: #ffffff;
+    }
+    body.dark-mode .search-icon-svg {
+      color: #ffffff;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 1.25em 1.5em;
+      }
+      .logo-text,
+      .desktop-nav a {
+        font-size: 1.5em;
+      }
+      .search-icon-svg {
+        width: 1.125em;
+        height: 1.125em;
+      }
+    }
+    
     .works-title {
       font-family: 'PPMori', sans-serif;
       font-size: 1em;
