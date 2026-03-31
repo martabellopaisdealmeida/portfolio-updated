@@ -269,27 +269,28 @@ header {
   color: #333;
 }
 
-.toggle-switch {
-  position: relative;
-  width: 2em; /* 32px */
-  height: 1.1875em; /* 19px */
-  background-color: #E9E9EA;
-  border-radius: 0.59375em; /* 9.5px */
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+
+.star-toggle {
+  background: none;
   border: none;
+  padding: 0;
+  cursor: none;
+  display: flex;
+  align-items: center;
+  line-height: 1;
 }
 
-.toggle-slider {
-  position: absolute;
-  top: 0.1em; /* 1.6px */
-  left: 0.1em; /* 1.6px */
-  width: 0.9875em; /* 15.8px */
-  height: 0.9875em; /* 15.8px */
-  background-color: #ffffff;
-  border-radius: 0.49375em; /* 7.9px */
-  transition: transform 0.3s ease;
-  box-shadow: 0 0.15em 0.35em rgba(0, 0, 0, 0.12); /* 0 2.4px 5.6px */
+.star-icon {
+  width: 1em;
+  height: 1em;
+  fill: #D4AF37;
+  stroke: #D4AF37;
+  stroke-width: 1;
+  transition: fill 0.3s ease, stroke 0.3s ease, transform 0.3s ease;
+}
+
+.star-toggle:hover .star-icon {
+  transform: scale(1.15);
 }
 
 /* Dark Mode Active State */
