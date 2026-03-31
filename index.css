@@ -645,42 +645,34 @@ footer {
   color: #333;
 }
 
-.toggle-switch {
-  position: relative;
-  width: 2em; /* 32px */
-  height: 1.1875em; /* 19px */
-  background-color: #E9E9EA;
-  border-radius: 0.59375em; /* 9.5px */
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+.star-toggle {
+  background: none;
   border: none;
-  
+  padding: 0;
+  cursor: none;
+  display: flex;
+  align-items: center;
+  line-height: 1;
 }
 
-.toggle-slider {
-  position: absolute;
-  top: 0.1em; /* 1.6px */
-  left: 0.1em; /* 1.6px */
-  width: 0.9875em; /* 15.8px */
-  height: 0.9875em; /* 15.8px */
-  background-color: #ffffff;
-  border-radius: 0.49375em; /* 7.9px */
-  transition: transform 0.3s ease;
-  box-shadow: 0 0.15em 0.35em rgba(0, 0, 0, 0.12); /* 0 2.4px 5.6px */
+.star-icon {
+  width: 1em;
+  height: 1em;
+  fill: #D4AF37;
+  stroke: #D4AF37;
+  stroke-width: 1;
+  transition: fill 0.3s ease, stroke 0.3s ease, transform 0.3s ease;
 }
 
-/* Dark Mode Active State */
-body.dark-mode .toggle-slider {
-  transform: translateX(0.8125em); /* 13px */
+.star-toggle:hover .star-icon {
+  transform: scale(1.15);
 }
 
-body.dark-mode .toggle-switch {
-  background-color: #BBBBBB /* Verde iOS */
+body.dark-mode .star-icon {
+  fill: #C0C0C0;
+  stroke: #C0C0C0;
 }
 
-body.dark-mode .toggle-label {
-  color: #ffffff;
-}
 
 /* Dark Mode Styles */
 body.dark-mode {
@@ -715,24 +707,6 @@ body.light-mode {
   color: black;
 }
 
-/* Mobile */
-@media (max-width: 768px) {
-  .toggle-switch {
-    width: 1.75em; /* 28px */
-    height: 1em; /* 16px */
-    border-radius: 0.5em; /* 8px */
-  }
-  
-  .toggle-slider {
-    width: 0.8em; /* 12.8px */
-    height: 0.8em; /* 12.8px */
-    border-radius: 0.4em; /* 6.4px */
-  }
-  
-  body.dark-mode .toggle-slider {
-    transform: translateX(0.7em); /* 11.2px */
-  }
-}
 
 /* ===== HOVER IMAGE EFFECT ===== */
 .hover-image-preview {
