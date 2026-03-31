@@ -11,7 +11,6 @@
   <link rel="icon" type="image/x-icon" href="favicon.png">
 
   <style>
-    /* ── PP Neue Montreal font faces ───────────────────────── */
     @font-face {
       font-family: 'PPNeueMontreal';
       src: url('fonts/PPNeueMontreal-Medium.otf') format('opentype');
@@ -34,10 +33,8 @@
       font-display: block;
     }
 
-    /* ── Header reset ──────────────────────────────────────── */
-    /* base: 16px → all em values relative to that */
     header {
-      padding: 1.75em 2.5em; /* 28px 40px */
+      padding: 1.75em 2.5em;
       position: sticky;
       top: 0;
       background-color: transparent;
@@ -50,18 +47,16 @@
       align-items: flex-start;
     }
 
-    /* ── Left block: logo row + nav stacked ──────────────── */
     .header-left {
       display: flex;
       flex-direction: column;
-      gap: 0.0625em; /* ~1px */
+      gap: 0.0625em;
     }
 
-    /* "marta" + toggle on the same line */
     .logo-row {
       display: flex;
       align-items: center;
-      gap: 0.625em; /* 10px */
+      gap: 0.625em;
     }
 
     .logo-link {
@@ -69,12 +64,11 @@
       line-height: 1.2;
     }
 
-    /* logo-text and nav share exact same computed size */
     .logo-text,
     .desktop-nav a {
       font-family: 'PPNeueMontreal', sans-serif;
       font-weight: 500;
-      font-size: 1em; /* 16px — both inherit from same root, so identical */
+      font-size: 1em;
       color: #111;
       letter-spacing: -0.01em;
       line-height: 1.2;
@@ -99,7 +93,6 @@
       font-style: italic;
     }
 
-    /* ── Right block: search only ─────────────────────────── */
     .header-right {
       display: flex;
       align-items: center;
@@ -112,7 +105,6 @@
       align-items: center;
     }
 
-    /* Search icon */
     .search-container {
       display: flex;
       align-items: center;
@@ -120,7 +112,7 @@
 
     .search-icon-svg {
       display: block;
-      width: 1.125em;  /* 18px */
+      width: 1.125em;
       height: 1.125em;
       color: #111;
       transition: opacity 0.15s ease;
@@ -130,39 +122,32 @@
       opacity: 0.5;
     }
 
-    /* ── Toggle: outline/stroke only ─────────────────────── */
-    .toggle-switch {
-      position: relative;
-      width: 2em;       /* 32px */
-      height: 1.125em;  /* 18px */
-      background-color: transparent !important;
-      border: 0.09375em solid #111 !important; /* 1.5px */
-      border-radius: 0.5625em;
-      transition: border-color 0.3s ease;
+    /* ── Toggle: star ── */
+    .star-toggle {
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: none;
+      display: flex;
+      align-items: center;
+      line-height: 1;
     }
-    .toggle-slider {
-      position: absolute;
-      top: 50%;
-      left: 0.125em;   /* 2px */
-      transform: translateY(-50%);
-      width: 0.875em;  /* 14px */
-      height: 0.875em;
-      background-color: transparent !important;
-      border: 0.09375em solid #111 !important;
-      border-radius: 50%;
-      box-shadow: none !important;
-      transition: left 0.3s ease, border-color 0.3s ease;
+    .star-icon {
+      width: 1em;
+      height: 1em;
+      fill: #D4AF37;
+      stroke: #D4AF37;
+      stroke-width: 1;
+      transition: fill 0.3s ease, stroke 0.3s ease, transform 0.3s ease;
     }
-    body.dark-mode .toggle-switch {
-      border-color: #ffffff !important;
+    .star-toggle:hover .star-icon {
+      transform: scale(1.15);
     }
-    body.dark-mode .toggle-slider {
-      border-color: #ffffff !important;
-      left: calc(100% - 1em);
-      transform: translateY(-50%);
+    body.dark-mode .star-icon {
+      fill: #C0C0C0;
+      stroke: #C0C0C0;
     }
 
-    /* ── Dark mode overrides ─────────────────────────────── */
     body.dark-mode .logo-text,
     body.dark-mode .desktop-nav a {
       color: #ffffff;
@@ -171,14 +156,13 @@
       color: #ffffff;
     }
 
-    /* ── Mobile ────────────────────────────────────────────── */
     @media (max-width: 768px) {
       header {
         padding: 1.25em 1.5em;
       }
       .logo-text,
       .desktop-nav a {
-        font-size: 1em; /* 16px */
+        font-size: 1em;
       }
       .search-icon-svg {
         width: 1.125em;
@@ -190,17 +174,17 @@
 <body>
   <header>
     <div class="header-inner">
-
-      <!-- Left: [marta + toggle] stacked above [work, about, inspo] -->
       <div class="header-left">
         <div class="logo-row">
           <a href="index.html" class="logo-link">
             <span class="logo-text">marta</span>
           </a>
           <div class="theme-toggle">
-            <div class="toggle-switch">
-              <div class="toggle-slider"></div>
-            </div>
+            <button class="star-toggle" aria-label="Toggle dark mode">
+              <svg class="star-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+              </svg>
+            </button>
           </div>
         </div>
         <nav class="desktop-nav">
@@ -210,10 +194,8 @@
         </nav>
       </div>
 
-      <!-- Right: search icon only -->
       <div class="header-right">
         <div class="search-container">
-          <!-- Magnifying glass icon — matches screenshot -->
           <svg class="search-icon-svg" viewBox="0 0 22 22" fill="none"
                xmlns="http://www.w3.org/2000/svg" aria-label="Search">
             <circle cx="9.5" cy="9.5" r="7" stroke="currentColor" stroke-width="1.6"/>
@@ -222,23 +204,15 @@
           </svg>
         </div>
       </div>
-
     </div>
   </header>
 
-  <!-- Search Overlay -->
   <div class="search-overlay">
     <div class="search-close">×</div>
-
     <div class="search-box">
-      <input
-        type="text"
-        class="search-input"
-        placeholder="Search projects, skills, or anything..."
-        autocomplete="off"
-      >
+      <input type="text" class="search-input"
+        placeholder="Search projects, skills, or anything..." autocomplete="off">
     </div>
-
     <div class="search-suggestions">
       <h4>Popular Searches</h4>
       <div class="suggestion-tags">
@@ -250,24 +224,20 @@
         <span class="suggestion-tag">Illustration</span>
       </div>
     </div>
-
     <div class="search-results"></div>
   </div>
 
-  <!-- Main Content - Stacked Images -->
   <div class="inspo-container">
     <div class="inspo-item" id="project-1">
       <a href="project.html" class="inspo-link">
         <img src="images/SpreadEducationSpreadLove.gif" alt="Inspiration 1" loading="lazy">
       </a>
     </div>
-
     <div class="inspo-item" id="project-2">
       <a href="work-scatter.html" class="inspo-link">
         <img src="images/inspo/inspo-2.jpg" alt="Inspiration 2" loading="lazy">
       </a>
     </div>
-
     <div class="inspo-item" id="project-3">
       <a href="indexalternativo.html" class="inspo-link">
         <img src="images/inspo/inspo-3.jpg" alt="Inspiration 3" loading="lazy">
@@ -275,25 +245,21 @@
     </div>
   </div>
 
-  <!-- Footer -->
   <footer>
     <div class="interactive-footer">
       <div class="footer-left">
         <p>© 2025 marta bello pais de almeida</p>
       </div>
-
       <a href="/cdn-cgi/l/email-protection#87eae6f5f3eee9efe6e5f7e6c7e0eae6eeeba9e4e8ea" class="footer-center">
         <div class="get-in-text-top">get in</div>
         <div class="footer-line"></div>
         <div class="get-in-text-bottom">touch</div>
       </a>
-
       <a href="/cdn-cgi/l/email-protection#35585447415c5b5d54574554755258545c591b565a58" class="footer-center-mobile">
         <span class="get-in-text-top-mobile">get in</span>
         <div class="footer-line-mobile"></div>
         <span class="get-in-text-bottom-mobile">touch</span>
       </a>
-
       <div class="footer-right">
         <a href="https://www.icloud.com/iclouddrive/008XTyvyPmEH6UFI731TEegVw#CV" target="_blank">resume</a>
         <a href="https://open.spotify.com/show/02nK1cE2YFhTjj5IT9ZvgI?si=99a32a151c61488c" target="_blank">podcast</a>
@@ -303,4 +269,9 @@
     </div>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script src="script.js"></script>
+  <script src="search.js"></script>
+  <script src="custom-cursor.js"></script>
+</body>
+</html>
