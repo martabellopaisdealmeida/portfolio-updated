@@ -12,136 +12,6 @@
   <link rel="stylesheet" href="header.css">
 
   <style>
-    header {
-      padding: 1.75em 2.5em;
-      position: sticky;
-      top: 0;
-      background-color: transparent;
-      z-index: 100;
-    }
-
-    .header-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-    }
-
-    .header-left {
-      display: flex;
-      flex-direction: column;
-      gap: 0.0625em;
-    }
-
-    .logo-row {
-      display: flex;
-      align-items: center;
-      gap: 0.625em;
-    }
-
-    .logo-link {
-      text-decoration: none;
-      line-height: 1.2;
-    }
-
-    .logo-text,
-    .desktop-nav a {
-      font-family: 'PPNeueMontreal', sans-serif;
-      font-weight: 500;
-      font-size: 1.3em;
-      line-height: 20px;
-      color: #111;
-      letter-spacing: -0.01em;
-    }
-
-    /* reset index.css desktop-nav font-size so it doesn't compound */
-    .desktop-nav {
-      display: flex;
-     align-items: center;
-     gap: 0;
-    font-size: 1rem;   /* ← 1rem = 16px root, not affected by index.css cascade */
-  }
-
-    .logo-text {
-      font-style: normal;
-      text-decoration: none;
-    }
-
-    .desktop-nav {
-      display: flex;
-      align-items: center;
-      gap: 0;
-    }
-
-    .desktop-nav a {
-      text-decoration: none;
-    }
-
-    .desktop-nav a.active {
-      font-style: italic;
-    }
-
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 1em;
-      padding-top: 0.125em;
-    }
-
-    .theme-toggle {
-      display: flex;
-      align-items: center;
-    }
-
-    .search-container {
-      display: flex;
-      align-items: center;
-    }
-
-    .search-icon-svg {
-      display: block;
-      width: 1.125em;
-      height: 1.125em;
-      color: #111;
-      transition: opacity 0.15s ease;
-    }
-
-    .search-container:hover .search-icon-svg {
-      opacity: 0.5;
-    }
-
-    .star-toggle {
-      background: none;
-      border: none;
-      padding: 0;
-      cursor: none;
-      display: flex;
-      align-items: center;
-      line-height: 1;
-    }
-    .star-icon {
-      width: 1em;
-      height: 1em;
-      fill: #D4AF37;
-      stroke: #D4AF37;
-      stroke-width: 1;
-      transition: fill 0.3s ease, stroke 0.3s ease, transform 0.3s ease;
-    }
-    .star-toggle:hover .star-icon {
-      transform: scale(1.15);
-    }
-    body.dark-mode .star-icon {
-      fill: #C0C0C0;
-      stroke: #C0C0C0;
-    }
-
-    body.dark-mode .logo-text,
-    body.dark-mode .desktop-nav a {
-      color: #ffffff;
-    }
-    body.dark-mode .search-icon-svg {
-      color: #ffffff;
-    }
-
     @media (max-width: 768px) {
       header {
         padding: 1.25em 1.5em;
@@ -297,31 +167,25 @@
 <body>
 
   <header>
-    <div class="header-top">
-      <div class="logo">
-        <a href="index.html" class="logo-link">
-          <span class="logo-text">marta</span>
-        </a>
-        <div class="theme-toggle">
-          <button class="star-toggle" aria-label="Toggle dark mode">
-            <svg class="star-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
-            </svg>
-          </button>
+    <div class="header-inner">
+      <div class="header-left">
+        <div class="logo-row">
+          <a href="index.html" class="logo-link">
+            <span class="logo-text">marta</span>
+          </a>
         </div>
+        <nav class="desktop-nav">
+          <a href="index.html" class="active">work,</a>
+          <a href="about-me.html"> about,</a>
+          <a href="inspo.html"> inspo</a>
+        </nav>
       </div>
-      <div class="header-top-right">
-        <div class="search-container">
-          <div class="search-text">search</div>
-        </div>
+      <div class="header-right">
+        <button class="tomato-toggle" aria-label="Toggle dark mode">
+          <img src="tomate_light.svg" class="toggle-tomato toggle-tomato--light" alt="">
+          <img src="tomate_dark.svg" class="toggle-tomato toggle-tomato--dark" alt="">
+        </button>
       </div>
-    </div>
-    <div class="header-bottom">
-      <nav class="desktop-nav">
-        <a href="index.html" class="active">work,</a>
-        <a href="about-me.html">about,</a>
-        <a href="inspo.html">inspo</a>
-      </nav>
     </div>
   </header>
 
