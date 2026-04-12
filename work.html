@@ -342,16 +342,6 @@
   <script src="search.js"></script>
   <script src="custom-cursor.js"></script>
   <script>
-    const toggleSwitch = document.querySelector('.tomato-toggle');
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    if (savedTheme === 'dark') document.body.classList.add('dark-mode');
-    if (toggleSwitch) {
-      toggleSwitch.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-        localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
-      });
-    }
-
     let activeType = 'all', activeYear = 'all';
     const workItems = document.querySelectorAll('.work-item');
     const workGrid  = document.getElementById('work-grid');
