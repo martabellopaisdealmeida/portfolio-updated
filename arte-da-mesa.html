@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARTA - A Arte da Mesa</title>
+    <link rel="stylesheet" href="arte-da-mesa.css">
+    <link rel="stylesheet" href="search.css">
+    <link rel="stylesheet" href="project-navigation.css">
+    <link rel="stylesheet" href="custom-cursor.css">
+    <link rel="stylesheet" href="global-typography.css">
+</head>
+<body>
+    <header>
+        <!-- Logo à esquerda -->
+        <div class="logo">
+            <div class="logo-container">
+                <a href="index.html" class="logo-link">
+                    <img src="images/logo letras_preto.svg" alt="logo marta" class="logo-default">
+                    <img src="images/logo letras_preto.svg" alt="logo marta" class="logo-hover">
+                </a>
+            </div>
+        </div>
+        
+        <!-- Elementos à direita agrupados -->
+        <div class="right-elements">
+            <!-- Menu desktop -->
+            <nav class="desktop-nav">
+                <a href="about-me.html">about me</a>
+                <a href="index.html">work</a>
+            </nav>
+            
+            <!-- Ícone de pesquisa -->
+            <div class="search-container">
+                <div class="search-icon">
+                    <svg class="custom-search-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+                        <path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
+            <!-- Hamburger (só aparece em mobile) -->
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay">
+        <div class="search-close">×</div>
+        
+        <div class="search-box">
+            <input 
+                type="text" 
+                class="search-input" 
+                placeholder="Search projects, skills, or anything..."
+                autocomplete="off"
+            >
+        </div>
+
+        <div class="search-suggestions">
+            <h4>Popular Searches</h4>
+            <div class="suggestion-tags">
+                <span class="suggestion-tag">Branding</span>
+                <span class="suggestion-tag">Wedding Design</span>
+                <span class="suggestion-tag">Editorial</span>
+                <span class="suggestion-tag">Art Direction</span>
+                <span class="suggestion-tag">Print Design</span>
+                <span class="suggestion-tag">Illustration</span>
+            </div>
+        </div>
+
+        <div class="search-results"></div>
+    </div>
+    
+    <!-- Menu mobile fullscreen -->
+    <div class="mobile-nav">
+        <div class="close-btn">✕</div>
+        <a href="about-me.html">about me</a>
+        <a href="index.html">work</a>
+    </div>
+
+    <main>
+        <!-- Hero image section -->
+        <div class="hero-image">
+            <img src="images/04-adm/capa.jpg" alt="A Arte da Mesa book cover on a textured background">
+        </div>
+        
+        <!-- Project title and description section -->
+        <div class="project-header">
+            <div class="content-wrapper">
+                <div class="title-column">
+                    <h1 class="project-title">A Arte da Mesa</h1>
+                </div>
+                <div class="content-column">
+                    <div class="description-text">
+                        <p>"A Arte da Mesa" is a modern take on table etiquette, designed to make the subject engaging and accessible. The book features a revamped layout with contemporary design elements and clear, stylish graphics that illustrate proper dining behaviors. By combining user-friendly visuals with practical tips, it transforms the traditional guide into a visually appealing resource. Learning about table manners has never been this enjoyable or easy to understand.</p>
+                    </div>
+                    <div class="project-solution">
+                        <h3>SOLUTION</h3>
+                        <p>A design focused on modernizing the traditional etiquette book, using clean, stylish graphics and an intuitive layout to make the content engaging and accessible.</p>
+                    </div>
+                    <div class="project-scope">
+                        <h3>SCOPE</h3>
+                        <p>Brand Identity, Brand Strategy, Cover Design, Layout Design, Website</p>
+                    </div>
+                    <div class="project-credits">
+                        <h3>TEAM</h3>
+                        <p>Afonso Quintela and Pedro Queiroz Ribeiro</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <div class="glasses-section">
+        <div class="glasses-scroll-container">
+            <img src="images/04-adm/Copos.svg" alt="Glasses illustration" class="glasses-image">
+        </div>
+    </div>
+    
+        <!-- Book spreads gallery - 2x2 grid -->
+        <div class="book-spreads">
+            <div class="spreads-row">
+                <div class="spread-item">
+                    <img src="images/04-adm/p3.jpg" alt="Book spread showing table setting diagram">
+                </div>
+                <div class="spread-item">
+                    <img src="images/04-adm/p1.jpg" alt="Book spread showing utensils guide">
+                </div>
+            </div>
+            <div class="spreads-row">
+                <div class="spread-item">
+                    <img src="images/04-adm/p2.jpg" alt="Book spread showing wine guide">
+                </div>
+                <div class="spread-item">
+                    <img src="images/04-adm/p4.jpg" alt="Book spread showing etiquette instructions">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Digital concepts section -->
+        <div class="digital-section">
+            <div class="digital-concept-container">
+                <video autoplay muted loop playsinline preload="auto">
+                    <source src="images/04-adm/pc.mp4" type="video/mp4">
+                    <source src="images/04-adm/Mockup-pc.mov" type="video/quicktime">
+                </video>
+            </div>
+        </div>
+        
+
+        <!-- Mobile mockups section -->
+        <div class="mobile-section">
+            <div class="mobile-mockups-container">
+                <img src="images/04-adm/site-mobile.png" alt="Mobile app mockups">
+            </div>
+        </div>
+    </main>
+    
+    <button id="back-to-top" class="back-to-top-btn" title="Voltar ao início">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 5L5 12M12 5L19 12M12 5V19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+    
+    <div class="project-nav-bar">
+        <a href="modus.html" class="nav-project prev">
+            <span class="nav-arrow-icon"><</span>
+            <span class="nav-text">MODUS</span>
+        </a>
+        <a href="SpreadEducationSpreadLove.html" class="nav-project next">
+            <span class="nav-text">Spread Education, Spread Love</span>
+            <span class="nav-arrow-icon">></span>
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="interactive-footer">
+            <div class="footer-left">
+                <p>© 2025 marta bello pais de almeida</p>
+            </div>
+            
+            <a href="mailto:martinhabpa@gmail.com" class="footer-center">
+                <div class="get-in-text-top">get in</div>
+                <div class="footer-line"></div>
+                <div class="get-in-text-bottom">touch</div>
+            </a>
+
+            <a href="mailto:martinhabpa@gmail.com" class="footer-center-mobile">
+                <span class="get-in-text-top-mobile">get in</span>
+                <div class="footer-line-mobile"></div>
+                <span class="get-in-text-bottom-mobile">touch</span>
+            </a>
+            
+            <div class="footer-right">
+            <a href="https://www.icloud.com/iclouddrive/008XTyvyPmEH6UFI731TEegVw#CV" target="_blank">resume</a>
+            <a href="https://open.spotify.com/show/02nK1cE2YFhTjj5IT9ZvgI?si=99a32a151c61488c" target="_blank">podcast</a>
+            <a href="https://www.instagram.com/martabpaisdealmeida/" target="_blank">instagram</a>
+            <a href="https://www.linkedin.com/in/marta-bello-pais-de-almeida/" target="_blank">linkedin</a>
+        </div>
+        </div>
+    </footer>
+
+    <script src="homepage-script.js"></script>
+    <script src="search.js"></script>
+    <script src="custom-cursor.js"></script>
+   
+</body>
+</html>
