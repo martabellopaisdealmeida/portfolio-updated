@@ -276,7 +276,7 @@ footer {
   z-index: 1000;
   display: flex;
   align-items: flex-end;
-  padding-bottom: 30px;
+  padding: 0 2.5em 30px;
 }
 
 .interactive-footer {
@@ -415,9 +415,8 @@ footer {
   }
 
   footer {
-    padding: 0 30px;
+    padding: 0 1.5em 20px;
     height: 150px;
-    padding-bottom: 20px;
   }
 
   .footer-center {
