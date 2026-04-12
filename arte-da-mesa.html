@@ -9,44 +9,31 @@
     <link rel="stylesheet" href="project-navigation.css">
     <link rel="stylesheet" href="custom-cursor.css">
     <link rel="stylesheet" href="global-typography.css">
+    <link rel="stylesheet" href="header.css">
 </head>
 <body>
     <header>
-        <!-- Logo à esquerda -->
-        <div class="logo">
-            <div class="logo-container">
-                <a href="index.html" class="logo-link">
-                    <img src="images/logo letras_preto.svg" alt="logo marta" class="logo-default">
-                    <img src="images/logo letras_preto.svg" alt="logo marta" class="logo-hover">
-                </a>
+        <div class="header-inner">
+          <div class="header-left">
+            <div class="logo-row">
+              <a href="index.html" class="logo-link">
+                <span class="logo-text">marta</span>
+              </a>
             </div>
-        </div>
-        
-        <!-- Elementos à direita agrupados -->
-        <div class="right-elements">
-            <!-- Menu desktop -->
             <nav class="desktop-nav">
-                <a href="about-me.html">about me</a>
-                <a href="index.html">work</a>
+              <a href="index.html" class="active">work,</a>
+              <a href="about-me.html"> about,</a>
+              <a href="inspo.html"> inspo</a>
             </nav>
-            
-            <!-- Ícone de pesquisa -->
-            <div class="search-container">
-                <div class="search-icon">
-                    <svg class="custom-search-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
-                        <path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                </div>
-            </div>
-            <!-- Hamburger (só aparece em mobile) -->
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+          </div>
+          <div class="header-right">
+            <button class="tomato-toggle" aria-label="Toggle dark mode">
+              <img src="tomate_light.svg" class="toggle-tomato toggle-tomato--light" alt="">
+              <img src="tomate_dark.svg" class="toggle-tomato toggle-tomato--dark" alt="">
+            </button>
+          </div>
         </div>
-    </header>
+      </header>
 
     <!-- Search Overlay -->
     <div class="search-overlay">
