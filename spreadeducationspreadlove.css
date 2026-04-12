@@ -1,7 +1,6 @@
-/* Project Page Styles */
-
 /* ==================== FONT FACES ==================== */
-/* Exposure Italic Font Variations - LIGHT VERSION */
+/* Needed here because this page doesn't load index.css */
+
 @font-face {
   font-family: 'ExposureItalic-100';
   src: url('fonts/ExposureItalicTrial[-100].otf') format('opentype');
@@ -73,8 +72,8 @@
 }
 
 @font-face {
-  font-family: 'MarundTrialCorner';
-  src: url('fonts/26A1MarundTrial-3002Corner.otf') format('opentype');
+  font-family: 'MarundTrialCurved';
+  src: url('fonts/26A1MarundTrial-3022Curved.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
@@ -86,14 +85,8 @@
   font-style: normal italic;
 }
 
-@font-face {
-  font-family: 'MarundTrialCurved';
-  src: url('fonts/26A1MarundTrial-3022Curved.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-}
+/* ==================== GLOBAL ==================== */
 
-/* ==================== GLOBAL STYLES ==================== */
 * {
   margin: 0;
   padding: 0;
@@ -108,83 +101,53 @@
 body {
   background-color: #ffffff;
   color: #333;
-  position: relative;
   overflow-x: hidden;
-  font-size: 16px; /* Base font size for em calculations */
+  font-size: 16px;
 }
 
+/* ==================== DARK MODE ==================== */
 
-/* Mobile Navigation */
-.mobile-nav {
-  position: fixed;
-  top: 0;
-  right: -100%;
-  width: 100%;
-  height: 100vh;
-  background-color: #ED6D2E;
-  backdrop-filter: blur(10px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 150;
-  transition: right 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+body.dark-mode {
+  background-color: #000;
+  color: #fff;
 }
 
-.mobile-nav.active {
-  right: 0;
+body.dark-mode .footer-left p,
+body.dark-mode .footer-right a {
+  color: #fff;
 }
 
-.mobile-nav a {
-  margin: 0.9375em 0; /* 15px */
-  font-size: 1.5em; /* 24px */
-  text-decoration: none;
-  color: #ffffff;
-  font-weight: 300;
-  font-family: 'ABCDiatypeMono', monospace;
-  opacity: 0;
-  transform: translateX(1.25em); /* 20px */
-  transition: all 0.4s ease;
-  transition-delay: 0.2s;
+body.dark-mode .footer-line,
+body.dark-mode .footer-line-mobile {
+  background-color: #fff;
 }
 
-.mobile-nav.active a {
-  opacity: 1;
-  transform: translateX(0);
+body.dark-mode .get-in-text-top,
+body.dark-mode .get-in-text-bottom,
+body.dark-mode .get-in-text-top-mobile,
+body.dark-mode .get-in-text-bottom-mobile {
+  color: #fff;
 }
 
-.mobile-nav a.active {
-  text-decoration: underline;
-  font-style: italic;
+/* Project content – these need explicit overrides because
+   element-level color rules beat body.dark-mode { color } */
+body.dark-mode .project-title,
+body.dark-mode .project-description,
+body.dark-mode .project-description p,
+body.dark-mode .meta-value {
+  color: #fff;
 }
 
-.close-btn {
-  position: absolute;
-  top: 1.875em; /* 30px */
-  right: 1.875em; /* 30px */
-  font-size: 1.5em; /* 24px */
-  cursor: pointer;
-  color: #ffffff;
-  opacity: 0;
-  transition: all 0.3s ease;
-  transition-delay: 0.3s;
-}
+/* ==================== PROJECT HERO ==================== */
 
-.mobile-nav.active .close-btn {
-  opacity: 1;
-}
-
-/* ==================== PROJECT CONTENT STYLES ==================== */
-
-/* Hero Image - Full Width */
 .project-hero {
   width: 100%;
   height: 100vh;
   overflow: hidden;
   position: relative;
-  max-width: 100em; /* 1600px */
-  margin: 0 auto; /* Removido margin-bottom auto */
-  padding: 0 5.625em; /* 90px */
+  max-width: 100em;
+  margin: 0 auto;
+  padding: 0 5.625em;
 }
 
 .project-hero img,
@@ -195,16 +158,16 @@ body {
   display: block;
 }
 
-/* Project Container */
+/* ==================== PROJECT CONTENT ==================== */
+
 .project-container {
-  max-width: 100em; /* 1600px */
+  max-width: 100em;
   margin: 0 auto;
-  padding: 3.75em 5.625em 0; /* 60px 90px 0 - reduzido padding top e removido bottom */
+  padding: 3.75em 5.625em 0;
 }
 
-/* Project Header - Title + Meta */
 .project-header {
-  margin-bottom: 3.75em; /* 60px - reduzido de 80px */
+  margin-bottom: 3.75em;
 }
 
 .project-title {
@@ -213,7 +176,6 @@ body {
   font-weight: 700;
   line-height: 1.1;
   margin-bottom: 1em;
-  text-transform: none;
   letter-spacing: -0.02em;
   width: 100%;
 }
@@ -221,62 +183,58 @@ body {
 .project-content-grid {
   display: grid;
   grid-template-columns: 1.8fr 1fr;
-  gap: 7.5em; /* 120px */
+  gap: 7.5em;
 }
 
 .project-description {
   font-family: 'MarundTrialCurved', sans-serif;
-  font-size: 0.875em; /* 14px */
+  font-size: 0.875em;
   line-height: 1.65;
   color: #333;
-  max-width: 100%;
 }
 
 .project-description p {
-  margin-bottom: 1.25em; /* 20px */
+  margin-bottom: 1.25em;
   font-family: 'MarundTrialCurved', sans-serif;
 }
 
-.project-description strong {
-  font-weight: 600;
-}
+.project-description strong { font-weight: 600; }
+.project-description em { font-style: italic; }
 
-.project-description em {
-  font-style: italic;
-}
+/* ==================== META ==================== */
 
-/* Project Meta - Simplified Structure */
 .project-meta {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.5em; /* 24px */
+  gap: 1.5em;
   align-self: start;
 }
 
 .meta-item {
   display: flex;
   flex-direction: column;
-  gap: 0.25em; /* 4px */
+  gap: 0.25em;
 }
 
 .meta-label {
   font-family: 'ABCDiatypeMono', monospace;
-  font-size: 0.625em; /* 10px */
+  font-size: 0.625em;
   font-weight: 300;
   color: #999;
   text-transform: uppercase;
-  letter-spacing: 0.03125em; /* 0.5px */
+  letter-spacing: 0.03125em;
 }
 
 .meta-value {
   font-family: 'ABCDiatypeMono', monospace;
-  font-size: 0.75em; /* 12px */
+  font-size: 0.75em;
   font-weight: 300;
   line-height: 1.6;
   color: #333;
 }
 
-/* ========== PHOTO GRID ========== */
+/* ==================== PHOTO GRID ==================== */
+
 .photo-grid {
   display: flex;
   flex-direction: column;
@@ -310,14 +268,10 @@ body {
   height: 100%;
 }
 
-/*=================== FOOTER STYLES ==================== */
-/* Copied exactly from homepage */
+/* ==================== FOOTER ==================== */
 
 footer {
   position: relative;
-  bottom: 0;
-  left: 0;
-  right: 0;
   height: 200px;
   z-index: 1000;
   display: flex;
@@ -330,7 +284,6 @@ footer {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 100%;
   position: relative;
 }
 
@@ -371,7 +324,6 @@ footer {
   gap: 15px;
   text-decoration: none;
   color: inherit;
-  font-family: 'ExposureItalic70', sans-serif;
 }
 
 .footer-line {
@@ -396,7 +348,6 @@ footer {
 .footer-center:hover .get-in-text-top,
 .footer-center:hover .get-in-text-bottom {
   opacity: 1;
-  font-family: 'ExposureItalic-70', sans-serif;
 }
 
 .footer-center:hover .footer-line {
@@ -429,93 +380,40 @@ footer {
   font-family: 'ExposureItalic-70', sans-serif;
 }
 
-/* ==================== MOBILE RESPONSIVE STYLES ==================== */
+/* ==================== MOBILE ==================== */
 
 @media (max-width: 768px) {
-  /* Header Mobile */
-  header {
-    padding: 1.25em 1.875em; /* 20px 30px */
-  }
-
-  .header-top {
-    margin-bottom: 0.375em; /* 6px */
-    justify-content: center; /* Center logo + toggle */
-  }
-
-  .header-top-right {
-    display: none; /* Hide search on mobile */
-  }
-
-  .header-bottom {
-    display: flex; /* Keep nav visible */
-    justify-content: center; /* Center navigation */ 
-  }
-
-  .desktop-nav {
-    display: flex; /* Keep nav visible */
-    font-size: 1em; /* 16px */
-  }
-
-  .theme-toggle {
-    display: flex; /* Keep toggle visible */
-  }
-
-  .hamburger {
-    display: flex;
-  }
-
-  .search-text {
-    font-size: 1.5em; /* 24px */
-  }
-
-  /* Project Content Mobile */
   .project-hero {
     height: 50vh;
-    padding: 0 1.25em; /* 20px */
-    margin-bottom: 0; /* Removido margin */
+    padding: 0 1.25em;
   }
+
   .project-container {
-    padding: 2.5em 1.875em 0; /* 40px 30px 0 - reduzido */
+    padding: 2.5em 1.875em 0;
   }
 
   .project-header {
-    margin-bottom: 3.75em; /* 60px */
+    margin-bottom: 3.75em;
   }
 
   .project-title {
-    font-size: 2.5em; /* 40px */
-    margin-bottom: 2.5em; /* 40px */
+    font-size: 2.5em;
+    margin-bottom: 2.5em;
   }
 
   .project-content-grid {
     grid-template-columns: 1fr;
-    gap: 3.125em; /* 50px */
+    gap: 3.125em;
   }
 
   .project-description {
-    font-size: 0.9375em; /* 15px */
+    font-size: 0.9375em;
   }
 
   .project-meta {
-    gap: 1.25em; /* 20px */
+    gap: 1.25em;
   }
 
-  .project-images {
-    gap: 1.875em; /* 30px */
-    margin-bottom: 2.5em; /* 40px */
-  }
-
-  .image-row {
-    gap: 1.875em; /* 30px */
-  }
-
-  /* All columns become single column on mobile */
-  .image-row.two-col,
-  .image-row.three-col {
-    grid-template-columns: 1fr;
-  }
-
-  /* Footer Mobile */
   footer {
     padding: 0 30px;
     height: 150px;
@@ -532,88 +430,39 @@ footer {
 }
 
 @media (max-width: 480px) {
-  /* Header Extra Small */
-  header {
-    padding: 1.25em 1.25em; /* 20px */
-  }
-
-  .header-top {
-    justify-content: center; /* Center logo + toggle */
-  }
-
-  .header-top-right {
-    display: none; /* Hide search on mobile */
-  }
-
-  .header-bottom {
-    display: flex; /* Keep nav visible */
-    justify-content: center; /* Center navigation */
-  }
-
-  .logo-text {
-    font-size: 1.25em; /* 20px */
-  }
-
-  .search-text {
-    font-size: 1.25em; /* 20px */
-  }
-
-  .right-elements {
-    gap: 1.25em; /* 20px */
-  }
-
-  .desktop-nav {
-    font-size: 1em; /* 16px */
-  }
-
-  /* Project Content Extra Small */
   .project-hero {
     height: 50vh;
   }
 
   .project-container {
-    padding: 2.5em 1.25em 0; /* 40px 20px 0 - reduzido */
+    padding: 2.5em 1.25em 0;
   }
 
   .project-header {
-    margin-bottom: 3.125em; /* 50px */
+    margin-bottom: 3.125em;
   }
 
   .project-title {
-    font-size: 2em; /* 32px */
-    margin-bottom: 1.875em; /* 30px */
+    font-size: 2em;
+    margin-bottom: 1.875em;
   }
 
   .project-content-grid {
-    gap: 2.5em; /* 40px */
+    gap: 2.5em;
   }
 
   .project-description {
-    font-size: 0.875em; /* 14px */
-  }
-
-  .project-meta {
-    gap: 1.25em; /* 20px */
+    font-size: 0.875em;
   }
 
   .meta-label {
-    font-size: 0.5625em; /* 9px */
+    font-size: 0.5625em;
   }
 
   .meta-value {
-    font-size: 0.6875em; /* 11px */
+    font-size: 0.6875em;
   }
 
-  .project-images {
-    gap: 1.25em; /* 20px */
-    margin-bottom: 2.5em; /* 40px */
-  }
-
-  .image-row {
-    gap: 1.25em; /* 20px */
-  }
-
-  /* Footer Extra Small */
   footer {
     height: auto;
     min-height: 250px;
@@ -627,7 +476,6 @@ footer {
     align-items: center;
     text-align: center;
     gap: 0;
-    height: 100%;
     justify-content: center;
     padding-top: 20px;
   }
@@ -642,24 +490,8 @@ footer {
     margin-bottom: 40px;
   }
 
-  .footer-center-mobile .get-in-text-top-mobile,
-  .footer-center-mobile .get-in-text-bottom-mobile {
-    font-size: 40px;
-    font-weight: normal;
-    color: #333;
-    line-height: 1;
-    font-family: 'ExposureItalic70', sans-serif;
-  }
-
-  .footer-line-mobile {
-    width: 250px;
-    height: 3px;
-    background-color: #333;
-  }
-
   .footer-left {
     order: 3;
-    margin-top: 0;
   }
 
   .footer-right {
