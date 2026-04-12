@@ -1,200 +1,196 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MARTA - A Arte da Mesa</title>
-    <link rel="stylesheet" href="arte-da-mesa.css">
-    <link rel="stylesheet" href="search.css">
-    <link rel="stylesheet" href="project-navigation.css">
-    <link rel="stylesheet" href="custom-cursor.css">
-    <link rel="stylesheet" href="global-typography.css">
-    <link rel="stylesheet" href="header.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Arte da Mesa — marta bello pais de almeida</title>
+  <link rel="preload" href="fonts/ExposureItalicTrial[-50].otf" as="font" type="font/otf" crossorigin>
+  <link rel="stylesheet" href="artedamesa.css">
+  <link rel="stylesheet" href="search.css">
+  <link rel="stylesheet" href="custom-cursor.css">
+  <link rel="icon" type="image/x-icon" href="favicon.png">
+  <link rel="stylesheet" href="project-navigation.css">
+  <link rel="stylesheet" href="header.css">
 </head>
 <body>
-    <header>
-        <div class="header-inner">
-          <div class="header-left">
-            <div class="logo-row">
-              <a href="index.html" class="logo-link">
-                <span class="logo-text">marta</span>
-              </a>
-            </div>
-            <nav class="desktop-nav">
-              <a href="index.html" class="active">work,</a>
-              <a href="about-me.html"> about,</a>
-              <a href="inspo.html"> inspo</a>
-            </nav>
+
+  <header>
+    <div class="header-inner">
+      <div class="header-left">
+        <div class="logo-row">
+          <a href="index.html" class="logo-link">
+            <span class="logo-text">marta</span>
+          </a>
+        </div>
+        <nav class="desktop-nav">
+          <a href="work.html" class="active">work,</a>
+          <a href="about-me.html"> about,</a>
+          <a href="inspo.html"> inspo</a>
+        </nav>
+      </div>
+      <div class="header-right">
+        <button class="tomato-toggle" aria-label="Toggle dark mode">
+          <img src="tomate_light.svg" class="toggle-tomato toggle-tomato--light" alt="">
+          <img src="tomate_dark.svg" class="toggle-tomato toggle-tomato--dark" alt="">
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Search Overlay -->
+  <div class="search-overlay">
+    <div class="search-close">×</div>
+    <div class="search-box">
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Search projects, skills, or anything..."
+        autocomplete="off"
+      >
+    </div>
+    <div class="search-suggestions">
+      <h4>Popular Searches</h4>
+      <div class="suggestion-tags">
+        <span class="suggestion-tag">Branding</span>
+        <span class="suggestion-tag">Wedding Design</span>
+        <span class="suggestion-tag">Editorial</span>
+        <span class="suggestion-tag">Art Direction</span>
+        <span class="suggestion-tag">Print Design</span>
+        <span class="suggestion-tag">Illustration</span>
+      </div>
+    </div>
+    <div class="search-results"></div>
+  </div>
+
+  <!-- Hero -->
+  <div class="project-hero">
+    <img src="images/01 Homepage/livrofrente_mesa.webp" alt="A Arte da Mesa" id="hero-media">
+  </div>
+
+  <!-- Project Content -->
+  <div class="project-container">
+    <div class="project-header">
+
+      <h1 class="project-title">a arte da mesa.</h1>
+
+      <div class="project-content-grid">
+        <div class="project-description">
+          <p><strong>A Arte da Mesa</strong> is a rebranding project for a classic Portuguese book on table etiquette and the art of hosting. Originally published in 1999, the book is a comprehensive guide to the rituals of dining — from the placement of cutlery to the choreography of a formal dinner. The challenge was to translate this encyclopedic tradition into a modern, visually engaging object that could speak to a contemporary audience without losing its authority.</p>
+
+          <p>The redesign embraces a rigorous typographic system rooted in editorial precision. The cover uses a restrained palette and a bold grid to signal confidence, while the interior layouts balance dense reference content with generous white space and carefully considered hierarchy. Each chapter opens with a full-bleed illustration that reinterprets traditional etiquette through a more contemporary lens.</p>
+
+          <p>The result is a book that feels at once archival and current — a design object worthy of the table it describes.</p>
+        </div>
+
+        <div class="project-meta">
+          <div class="meta-item">
+            <span class="meta-label">Client</span>
+            <span class="meta-value">Academic Project</span>
           </div>
-          <div class="header-right">
-            <button class="tomato-toggle" aria-label="Toggle dark mode">
-              <img src="tomate_light.svg" class="toggle-tomato toggle-tomato--light" alt="">
-              <img src="tomate_dark.svg" class="toggle-tomato toggle-tomato--dark" alt="">
-            </button>
+
+          <div class="meta-item">
+            <span class="meta-label">Year</span>
+            <span class="meta-value">2023</span>
+          </div>
+
+          <div class="meta-item">
+            <span class="meta-label">Product</span>
+            <span class="meta-value">Book Design<br>Print</span>
+          </div>
+
+          <div class="meta-item">
+            <span class="meta-label">Services</span>
+            <span class="meta-value">Branding<br>Book Design<br>Layout<br>Print Design<br>Editorial<br>Typography</span>
           </div>
         </div>
-      </header>
+      </div>
 
-    <!-- Search Overlay -->
-    <div class="search-overlay">
-        <div class="search-close">×</div>
-        
-        <div class="search-box">
-            <input 
-                type="text" 
-                class="search-input" 
-                placeholder="Search projects, skills, or anything..."
-                autocomplete="off"
-            >
+    </div><!-- /project-header -->
+
+    <!-- Photo grid -->
+    <div class="photo-grid">
+
+      <!-- Two spreads, row 1 -->
+      <div class="grid-row two-col">
+        <div class="grid-item">
+          <img src="images/01 Arte da Mesa/spread_01.webp" alt="Spread interior 1" loading="lazy">
         </div>
-
-        <div class="search-suggestions">
-            <h4>Popular Searches</h4>
-            <div class="suggestion-tags">
-                <span class="suggestion-tag">Branding</span>
-                <span class="suggestion-tag">Wedding Design</span>
-                <span class="suggestion-tag">Editorial</span>
-                <span class="suggestion-tag">Art Direction</span>
-                <span class="suggestion-tag">Print Design</span>
-                <span class="suggestion-tag">Illustration</span>
-            </div>
+        <div class="grid-item">
+          <img src="images/01 Arte da Mesa/spread_02.webp" alt="Spread interior 2" loading="lazy">
         </div>
+      </div>
 
-        <div class="search-results"></div>
+      <!-- Two spreads, row 2 -->
+      <div class="grid-row two-col">
+        <div class="grid-item">
+          <img src="images/01 Arte da Mesa/spread_03.webp" alt="Spread interior 3" loading="lazy">
+        </div>
+        <div class="grid-item">
+          <img src="images/01 Arte da Mesa/spread_04.webp" alt="Spread interior 4" loading="lazy">
+        </div>
+      </div>
+
+      <!-- Full width — copos / still life -->
+      <div class="grid-item full-width short">
+        <img src="images/01 Arte da Mesa/copos.webp" alt="Copos" loading="lazy">
+      </div>
+
+      <!-- Full width tall — mobile photography -->
+      <div class="grid-item full-width tall">
+        <img src="images/01 Arte da Mesa/fotografia_mobile.webp" alt="Fotografia mobile" loading="lazy">
+      </div>
+
+      <!-- Two icons / detail shots -->
+      <div class="grid-row two-col">
+        <div class="grid-item">
+          <img src="images/01 Arte da Mesa/icone_01.webp" alt="Detalhe 1" loading="lazy">
+        </div>
+        <div class="grid-item">
+          <img src="images/01 Arte da Mesa/icone_02.webp" alt="Detalhe 2" loading="lazy">
+        </div>
+      </div>
+
+    </div><!-- /photo-grid -->
+  </div><!-- /project-container -->
+
+  <!-- Footer -->
+  <footer>
+    <div class="interactive-footer">
+      <div class="footer-left">
+        <p>© 2025 marta bello pais de almeida</p>
+      </div>
+      <a href="mailto:martinhabpa@gmail.com" class="footer-center">
+        <div class="get-in-text-top">get in</div>
+        <div class="footer-line"></div>
+        <div class="get-in-text-bottom">touch</div>
+      </a>
+      <a href="mailto:martinhabpa@gmail.com" class="footer-center-mobile">
+        <span class="get-in-text-top-mobile">get in</span>
+        <div class="footer-line-mobile"></div>
+        <span class="get-in-text-bottom-mobile">touch</span>
+      </a>
+      <div class="footer-right">
+        <a href="https://www.icloud.com/iclouddrive/008XTyvyPmEH6UFI731TEegVw#CV" target="_blank">resume</a>
+        <a href="https://open.spotify.com/show/02nK1cE2YFhTjj5IT9ZvgI?si=99a32a151c61488c" target="_blank">podcast</a>
+        <a href="https://www.instagram.com/martabpaisdealmeida/" target="_blank">instagram</a>
+        <a href="https://www.linkedin.com/in/marta-bello-pais-de-almeida/" target="_blank">linkedin</a>
+      </div>
     </div>
-    
-    <!-- Menu mobile fullscreen -->
-    <div class="mobile-nav">
-        <div class="close-btn">✕</div>
-        <a href="about-me.html">about me</a>
-        <a href="index.html">work</a>
-    </div>
+  </footer>
 
-    <main>
-        <!-- Hero image section -->
-        <div class="hero-image">
-            <img src="images/04-adm/capa.jpg" alt="A Arte da Mesa book cover on a textured background">
-        </div>
-        
-        <!-- Project title and description section -->
-        <div class="project-header">
-            <div class="content-wrapper">
-                <div class="title-column">
-                    <h1 class="project-title">A Arte da Mesa</h1>
-                </div>
-                <div class="content-column">
-                    <div class="description-text">
-                        <p>"A Arte da Mesa" is a modern take on table etiquette, designed to make the subject engaging and accessible. The book features a revamped layout with contemporary design elements and clear, stylish graphics that illustrate proper dining behaviors. By combining user-friendly visuals with practical tips, it transforms the traditional guide into a visually appealing resource. Learning about table manners has never been this enjoyable or easy to understand.</p>
-                    </div>
-                    <div class="project-solution">
-                        <h3>SOLUTION</h3>
-                        <p>A design focused on modernizing the traditional etiquette book, using clean, stylish graphics and an intuitive layout to make the content engaging and accessible.</p>
-                    </div>
-                    <div class="project-scope">
-                        <h3>SCOPE</h3>
-                        <p>Brand Identity, Brand Strategy, Cover Design, Layout Design, Website</p>
-                    </div>
-                    <div class="project-credits">
-                        <h3>TEAM</h3>
-                        <p>Afonso Quintela and Pedro Queiroz Ribeiro</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    <div class="glasses-section">
-        <div class="glasses-scroll-container">
-            <img src="images/04-adm/Copos.svg" alt="Glasses illustration" class="glasses-image">
-        </div>
-    </div>
-    
-        <!-- Book spreads gallery - 2x2 grid -->
-        <div class="book-spreads">
-            <div class="spreads-row">
-                <div class="spread-item">
-                    <img src="images/04-adm/p3.jpg" alt="Book spread showing table setting diagram">
-                </div>
-                <div class="spread-item">
-                    <img src="images/04-adm/p1.jpg" alt="Book spread showing utensils guide">
-                </div>
-            </div>
-            <div class="spreads-row">
-                <div class="spread-item">
-                    <img src="images/04-adm/p2.jpg" alt="Book spread showing wine guide">
-                </div>
-                <div class="spread-item">
-                    <img src="images/04-adm/p4.jpg" alt="Book spread showing etiquette instructions">
-                </div>
-            </div>
-        </div>
-        
-        <!-- Digital concepts section -->
-        <div class="digital-section">
-            <div class="digital-concept-container">
-                <video autoplay muted loop playsinline preload="auto">
-                    <source src="images/04-adm/pc.mp4" type="video/mp4">
-                    <source src="images/04-adm/Mockup-pc.mov" type="video/quicktime">
-                </video>
-            </div>
-        </div>
-        
-
-        <!-- Mobile mockups section -->
-        <div class="mobile-section">
-            <div class="mobile-mockups-container">
-                <img src="images/04-adm/site-mobile.png" alt="Mobile app mockups">
-            </div>
-        </div>
-    </main>
-    
-    <button id="back-to-top" class="back-to-top-btn" title="Voltar ao início">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 5L5 12M12 5L19 12M12 5V19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-    </button>
-    
-    <div class="project-nav-bar">
-        <a href="modus.html" class="nav-project prev">
-            <span class="nav-arrow-icon"><</span>
-            <span class="nav-text">MODUS</span>
-        </a>
-        <a href="SpreadEducationSpreadLove.html" class="nav-project next">
-            <span class="nav-text">Spread Education, Spread Love</span>
-            <span class="nav-arrow-icon">></span>
-        </a>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <div class="interactive-footer">
-            <div class="footer-left">
-                <p>© 2025 marta bello pais de almeida</p>
-            </div>
-            
-            <a href="mailto:martinhabpa@gmail.com" class="footer-center">
-                <div class="get-in-text-top">get in</div>
-                <div class="footer-line"></div>
-                <div class="get-in-text-bottom">touch</div>
-            </a>
-
-            <a href="mailto:martinhabpa@gmail.com" class="footer-center-mobile">
-                <span class="get-in-text-top-mobile">get in</span>
-                <div class="footer-line-mobile"></div>
-                <span class="get-in-text-bottom-mobile">touch</span>
-            </a>
-            
-            <div class="footer-right">
-            <a href="https://www.icloud.com/iclouddrive/008XTyvyPmEH6UFI731TEegVw#CV" target="_blank">resume</a>
-            <a href="https://open.spotify.com/show/02nK1cE2YFhTjj5IT9ZvgI?si=99a32a151c61488c" target="_blank">podcast</a>
-            <a href="https://www.instagram.com/martabpaisdealmeida/" target="_blank">instagram</a>
-            <a href="https://www.linkedin.com/in/marta-bello-pais-de-almeida/" target="_blank">linkedin</a>
-        </div>
-        </div>
-    </footer>
-
-    <script src="homepage-script.js"></script>
-    <script src="search.js"></script>
-    <script src="custom-cursor.js"></script>
-   
+  <script src="script.js"></script>
+  <script src="search.js"></script>
+  <script src="custom-cursor.js"></script>
+  <script src="project-navigation.js"></script>
+  <script>
+    const toggleSwitch = document.querySelector('.tomato-toggle');
+    if ((localStorage.getItem('theme') || 'light') === 'dark') document.body.classList.add('dark-mode');
+    if (toggleSwitch) {
+      toggleSwitch.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+      });
+    }
+  </script>
 </body>
 </html>
