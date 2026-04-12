@@ -4,173 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>marta bello pais de almeida</title>
+  <link rel="preload" href="fonts/ExposureItalicTrial[-50].otf" as="font" type="font/otf" crossorigin>
   <link rel="stylesheet" href="index.css">
-  <link rel="stylesheet" href="exposure-fonts-light.css">
   <link rel="stylesheet" href="search.css">
   <link rel="stylesheet" href="custom-cursor.css">
   <link rel="icon" type="image/x-icon" href="favicon.png">
+  <link rel="stylesheet" href="header.css">
 
   <style>
-    @font-face {
-      font-family: 'PPNeueMontreal';
-      src: url('fonts/PPNeueMontreal-Medium.otf') format('opentype');
-      font-weight: 500;
-      font-style: normal;
-      font-display: block;
-    }
-    @font-face {
-      font-family: 'PPNeueMontreal';
-      src: url('fonts/PPNeueMontreal-Bold.otf') format('opentype');
-      font-weight: 700;
-      font-style: normal;
-      font-display: block;
-    }
-    @font-face {
-      font-family: 'PPNeueMontreal';
-      src: url('fonts/PPNeueMontreal-Italic.otf') format('opentype');
-      font-weight: 400;
-      font-style: italic;
-      font-display: block;
-    }
-
-    header {
-      padding: 1.75em 2.5em;
-      position: sticky;
-      top: 0;
-      background-color: transparent;
-      z-index: 100;
-    }
-
-    .header-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-    }
-
-    .header-left {
-      display: flex;
-      flex-direction: column;
-      gap: 0.0625em;
-    }
-
-    .logo-row {
-      display: flex;
-      align-items: center;
-      gap: 0.625em;
-    }
-
-    .logo-link {
-      text-decoration: none;
-      line-height: 1.2;
-    }
-
-    .logo-text,
-    .desktop-nav a {
-      font-family: 'PPNeueMontreal', sans-serif;
-      font-weight: 500;
-      font-size: 1.3em;
-      line-height: 20px;
-      color: #111;
-      letter-spacing: -0.01em;
-    }
-
-    /* reset index.css desktop-nav font-size so it doesn't compound */
-    .desktop-nav {
-      display: flex;
-     align-items: center;
-     gap: 0;
-    font-size: 1rem;   /* ← 1rem = 16px root, not affected by index.css cascade */
-  }
-
-    .logo-text {
-      font-style: normal;
-      text-decoration: none;
-    }
-
-    .desktop-nav {
-      display: flex;
-      align-items: center;
-      gap: 0;
-    }
-
-    .desktop-nav a {
-      text-decoration: none;
-    }
-
-    .desktop-nav a.active {
-      font-style: italic;
-    }
-
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 1em;
-      padding-top: 0.125em;
-    }
-
-    .theme-toggle {
-      display: flex;
-      align-items: center;
-    }
-
-    .search-container {
-      display: flex;
-      align-items: center;
-    }
-
-    .search-icon-svg {
-      display: block;
-      width: 1.125em;
-      height: 1.125em;
-      color: #111;
-      transition: opacity 0.15s ease;
-    }
-
-    .search-container:hover .search-icon-svg {
-      opacity: 0.5;
-    }
-
-    .tomato-toggle {
-      background: none;
-      border: none;
-      padding: 0;
-      cursor: none;
-      display: flex;
-      align-items: center;
-      line-height: 1;
-    }
-    
-    .toggle-tomato {
-        width: 3.5em;
-        height: 3.5em;
-        display: block;
-        transition: transform 0.3s ease;
-      }
-
-      .toggle-tomato--dark {
-        display: none;
-      }
-
-      body.dark-mode .toggle-tomato--light {
-        display: none;
-      }
-
-      body.dark-mode .toggle-tomato--dark {
-        display: block;
-      }
-
-      .tomato-toggle:hover .toggle-tomato {
-        transform: scale(1.15);
-      }
-      
-    body.dark-mode .logo-text,
-    body.dark-mode .desktop-nav a {
-      color: #ffffff;
-    }
-    body.dark-mode .search-icon-svg {
-      color: #ffffff;
-    }
-
     @media (max-width: 768px) {
       header {
         padding: 1.25em 1.5em;
@@ -184,23 +25,154 @@
         height: 1.125em;
       }
     }
+    
+    .works-title {
+      font-family: 'PPMori', sans-serif;
+      font-size: 1em;
+      font-weight: normal;
+      color: #333;
+      padding: 1.25em 2.5em 0.875em;
+    }
+    body.dark-mode .works-title { color: #fff; }
+
+    .filter-bar {
+      display: grid;
+      grid-template-columns: 190px 155px 120px;
+      padding: 0 2.5em 1.75em;
+      align-items: start;
+    }
+
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .filter-btn {
+      background: none;
+      border: none;
+      padding: 0;
+      margin: 0;
+      font-family: 'ABCDiatypeMono', monospace;
+      font-size: 0.625em;
+      font-weight: 300;
+      color: #999;
+      cursor: pointer;
+      text-align: left;
+      line-height: 1.95;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 160px;
+      transition: color 0.12s;
+    }
+    .filter-btn:hover          { color: #333; }
+    .filter-btn.active         { color: #333; }
+    .filter-btn .brkt          { color: #bbb; transition: color 0.12s; flex-shrink: 0; }
+    .filter-btn.active  .brkt,
+    .filter-btn:hover   .brkt  { color: #333; }
+
+    body.dark-mode .filter-btn            { color: #555; }
+    body.dark-mode .filter-btn:hover,
+    body.dark-mode .filter-btn.active     { color: #fff; }
+    body.dark-mode .filter-btn .brkt      { color: #333; }
+    body.dark-mode .filter-btn.active .brkt { color: #fff; }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      column-gap: 1.125em;
+      row-gap: 2.25em;
+      padding: 1.5em 2.5em 5em;
+      align-items: start;
+    }
+
+    .work-item {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .work-thumb {
+      width: 100%;
+      overflow: hidden;
+      background-color: #d9d9d9;
+      margin-bottom: 0.5em;
+      display: block;
+    }
+    body.dark-mode .work-thumb { background-color: #1a1a1a; }
+
+    .work-thumb img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .work-item:hover .work-thumb img { transform: scale(1.035); }
+
+    .work-title {
+      font-family: 'ABCDiatypeMono', monospace;
+      font-size: 0.5625em;
+      font-weight: 300;
+      line-height: 1.5;
+      color: #333;
+      margin-bottom: 0.25em;
+      letter-spacing: 0.02em;
+    }
+    body.dark-mode .work-title { color: #e0e0e0; }
+
+    .work-year { color: #999; }
+
+    .work-tags {
+      font-family: 'ABCDiatypeMono', monospace;
+      font-size: 0.5em;
+      font-weight: 300;
+      line-height: 1.75;
+      color: #999;
+    }
+
+    .work-scroll {
+      display: flex;
+      flex-direction: column;
+      padding: 0 2.5em 4em;
+    }
+    .work-scroll .work-item {
+      display: grid;
+      grid-template-columns: 35% 1fr;
+      column-gap: 2.5em;
+      align-items: start;
+      padding: 1.5em 0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    body.dark-mode .work-scroll .work-item { border-color: #222; }
+    .work-scroll .work-thumb   { margin-bottom: 0; }
+    .work-scroll .work-title   { font-size: 0.75em; margin-bottom: 0.75em; margin-top: 0.5em; }
+    .work-scroll .work-tags    { font-size: 0.6875em; }
+
+    @media (max-width: 1300px) { .work-grid { grid-template-columns: repeat(6, 1fr); } }
+    @media (max-width: 1000px) { .work-grid { grid-template-columns: repeat(5, 1fr); } }
+    @media (max-width: 768px) {
+      .filter-bar { grid-template-columns: 1fr 1fr; row-gap: 1em; padding: 0 1.25em 1.5em; }
+      .filter-group:last-child { grid-column: 1/-1; flex-direction: row; gap: 2em; }
+      .filter-btn { width: auto; }
+      .works-title { padding: 1em 1.25em 0.75em; }
+      .work-grid { grid-template-columns: repeat(3, 1fr); column-gap: 0.75em; row-gap: 1.75em; padding: 1em 1.25em 3em; }
+      .work-scroll .work-item { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .work-grid { grid-template-columns: repeat(2, 1fr); }
+    }
   </style>
 </head>
 <body>
+
   <header>
     <div class="header-inner">
-
       <div class="header-left">
         <div class="logo-row">
           <a href="index.html" class="logo-link">
             <span class="logo-text">marta</span>
           </a>
-          <!-- <div class="theme-toggle">
-            <button class="tomato-toggle" aria-label="Toggle dark mode">
-              <img src="tomate_light.svg" class="toggle-tomato toggle-tomato--light" alt="">
-              <img src="tomate_dark.svg" class="toggle-tomato toggle-tomato--dark" alt="">
-            </button>
-          </div> -->
         </div>
         <nav class="desktop-nav">
           <a href="index.html" class="active">work,</a>
@@ -208,30 +180,19 @@
           <a href="inspo.html"> inspo</a>
         </nav>
       </div>
-
       <div class="header-right">
-        <!-- <div class="search-container">
-          <svg class="search-icon-svg" viewBox="0 0 22 22" fill="none"
-               xmlns="http://www.w3.org/2000/svg" aria-label="Search">
-            <circle cx="9.5" cy="9.5" r="7" stroke="currentColor" stroke-width="1.6"/>
-            <line x1="14.8" y1="14.8" x2="20.5" y2="20.5"
-                  stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-          </svg>
-        </div> -->
         <button class="tomato-toggle" aria-label="Toggle dark mode">
           <img src="tomate_light.svg" class="toggle-tomato toggle-tomato--light" alt="">
           <img src="tomate_dark.svg" class="toggle-tomato toggle-tomato--dark" alt="">
         </button>
       </div>
-
     </div>
   </header>
 
   <div class="search-overlay">
     <div class="search-close">×</div>
     <div class="search-box">
-      <input type="text" class="search-input"
-        placeholder="Search projects, skills, or anything..." autocomplete="off">
+      <input type="text" class="search-input" placeholder="Search projects, skills, or anything..." autocomplete="off">
     </div>
     <div class="search-suggestions">
       <h4>Popular Searches</h4>
@@ -247,35 +208,123 @@
     <div class="search-results"></div>
   </div>
 
-  <div class="inspo-container">
-    <div class="inspo-item" id="project-1">
-      <a href="project.html" class="inspo-link">
-        <img src="images/SpreadEducationSpreadLove.gif" alt="Inspiration 1" loading="lazy">
-      </a>
+  <p class="works-title">Selected works</p>
+
+  <div class="filter-bar">
+    <div class="filter-group">
+      <button class="filter-btn active" data-filter="all" data-group="type">ALL <span class="brkt">[ ]</span></button>
+      <button class="filter-btn" data-filter="branding" data-group="type">BRANDING <span class="brkt">[ ]</span></button>
+      <button class="filter-btn" data-filter="editorial" data-group="type">EDITORIAL <span class="brkt">[ ]</span></button>
+      <button class="filter-btn" data-filter="illustration" data-group="type">ILLUSTRATION <span class="brkt">[ ]</span></button>
+      <button class="filter-btn" data-filter="interaction" data-group="type">INTERACTION <span class="brkt">[ ]</span></button>
     </div>
-    <div class="inspo-item" id="project-2">
-      <a href="work-scatter.html" class="inspo-link">
-        <img src="images/inspo/inspo-2.jpg" alt="Inspiration 2" loading="lazy">
-      </a>
+    <div class="filter-group">
+      <button class="filter-btn active" data-filter="all" data-group="year">ALL <span class="brkt">[ ]</span></button>
+      <button class="filter-btn" data-filter="2024" data-group="year">2024 <span class="brkt">[ ]</span></button>
+      <button class="filter-btn" data-filter="2023" data-group="year">2023 <span class="brkt">[ ]</span></button>
+      <button class="filter-btn" data-filter="2022" data-group="year">2022 <span class="brkt">[ ]</span></button>
     </div>
-    <div class="inspo-item" id="project-3">
-      <a href="indexalternativo.html" class="inspo-link">
-        <img src="images/inspo/inspo-3.jpg" alt="Inspiration 3" loading="lazy">
-      </a>
+    <div class="filter-group">
+      <button class="filter-btn view-btn active" data-view="grid">GRID <span class="brkt">[→]</span></button>
+      <button class="filter-btn view-btn" data-view="scroll">SCROLL <span class="brkt">[ ]</span></button>
     </div>
   </div>
+
+  <main class="work-grid" id="work-grid">
+
+    <a href="A-Arte-da-Mesa.html" class="work-item" data-type="editorial" data-year="2023">
+      <div class="work-thumb">
+        <img src="images/01 Homepage/livrofrente_mesa.webp" alt="A Arte da Mesa" loading="lazy">
+      </div>
+      <div class="work-info">
+        <p class="work-title">A ARTE DA MESA <span class="work-year">[2023]</span></p>
+        <p class="work-tags">BRANDING<br>BOOK DESIGN<br>PRINT</p>
+      </div>
+    </a>
+
+    <a href="project.html" class="work-item" data-type="branding" data-year="2023">
+      <div class="work-thumb">
+        <img src="images/SpreadEducationSpreadLove.gif" alt="Spread Education Spread Love" loading="lazy">
+      </div>
+      <div class="work-info">
+        <p class="work-title">SPREAD EDUCATION, SPREAD LOVE <span class="work-year">[2023]</span></p>
+        <p class="work-tags">ART DIRECTION<br>BRAND IDENTITY<br>SOCIAL IMPACT</p>
+      </div>
+    </a>
+
+    <a href="Mariana&Felipe.html" class="work-item" data-type="illustration" data-year="2024">
+      <div class="work-thumb">
+        <img src="images/02 Mariana e Ipy/BenditoMockup-WWW-Wine_Bottle-04 copiar.jpg" alt="Mariana & Felipe" loading="lazy">
+      </div>
+      <div class="work-info">
+        <p class="work-title">MARIANA & FELIPE <span class="work-year">[2024]</span></p>
+        <p class="work-tags">WEDDING DESIGN<br>ILLUSTRATION<br>WATERCOLOR</p>
+      </div>
+    </a>
+
+    <a href="Underground.html" class="work-item" data-type="editorial" data-year="2022">
+      <div class="work-thumb">
+        <img src="images/05 Underground/Mockup_capa.jpg" alt="Underground Magazine" loading="lazy">
+      </div>
+      <div class="work-info">
+        <p class="work-title">UNDERGROUND <span class="work-year">[2022]</span></p>
+        <p class="work-tags">EDITORIAL DESIGN<br>TYPOGRAPHY<br>MAGAZINE</p>
+      </div>
+    </a>
+
+    <a href="falp.html" class="work-item" data-type="branding" data-year="2023">
+      <div class="work-thumb">
+        <img src="images/06 FALP/Business Card_Mockup.webp" alt="FALP" loading="lazy">
+      </div>
+      <div class="work-info">
+        <p class="work-title">FALP <span class="work-year">[2023]</span></p>
+        <p class="work-tags">BRAND IDENTITY<br>LOGO DESIGN<br>VISUAL SYSTEM</p>
+      </div>
+    </a>
+
+    <a href="modus.html" class="work-item" data-type="branding" data-year="2024">
+      <div class="work-thumb">
+        <img src="images/08 MODUS/Banner-gif-1_site.gif" alt="MODUS" loading="lazy">
+      </div>
+      <div class="work-info">
+        <p class="work-title">MODUS <span class="work-year">[2024]</span></p>
+        <p class="work-tags">EVENT DESIGN<br>BRANDING<br>CONCEPT</p>
+      </div>
+    </a>
+
+    <a href="paez.html" class="work-item" data-type="illustration" data-year="2024">
+      <div class="work-thumb">
+        <img src="images/09 PAEZ/padrão tomate.svg" alt="PAEZ" loading="lazy">
+      </div>
+      <div class="work-info">
+        <p class="work-title">PAEZ <span class="work-year">[2024]</span></p>
+        <p class="work-tags">PRODUCT DESIGN<br>PATTERN DESIGN<br>SURFACE</p>
+      </div>
+    </a>
+
+    <a href="fyted.html" class="work-item" data-type="interaction" data-year="2024">
+      <div class="work-thumb" style="background:#111;">
+        <img src="images/10 fyted/poster-fyted.jpg" alt="fyted" loading="lazy">
+      </div>
+      <div class="work-info">
+        <p class="work-title">FYTED <span class="work-year">[2024]</span></p>
+        <p class="work-tags">INTERACTION DESIGN<br>CRITICAL DESIGN<br>UX / INTERFACE</p>
+      </div>
+    </a>
+
+  </main>
 
   <footer>
     <div class="interactive-footer">
       <div class="footer-left">
         <p>© 2025 marta bello pais de almeida</p>
       </div>
-      <a href="/cdn-cgi/l/email-protection#87eae6f5f3eee9efe6e5f7e6c7e0eae6eeeba9e4e8ea" class="footer-center">
+      <a href="mailto:martinhabpa@gmail.com" class="footer-center">
         <div class="get-in-text-top">get in</div>
         <div class="footer-line"></div>
         <div class="get-in-text-bottom">touch</div>
       </a>
-      <a href="/cdn-cgi/l/email-protection#35585447415c5b5d54574554755258545c591b565a58" class="footer-center-mobile">
+      <a href="mailto:martinhabpa@gmail.com" class="footer-center-mobile">
         <span class="get-in-text-top-mobile">get in</span>
         <div class="footer-line-mobile"></div>
         <span class="get-in-text-bottom-mobile">touch</span>
@@ -289,9 +338,51 @@
     </div>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script src="script.js"></script>
   <script src="search.js"></script>
   <script src="custom-cursor.js"></script>
+  <script>
+    const toggleSwitch = document.querySelector('.tomato-toggle');
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    if (savedTheme === 'dark') document.body.classList.add('dark-mode');
+    if (toggleSwitch) {
+      toggleSwitch.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+      });
+    }
+
+    let activeType = 'all', activeYear = 'all';
+    const workItems = document.querySelectorAll('.work-item');
+    const workGrid  = document.getElementById('work-grid');
+
+    document.querySelectorAll('.filter-btn:not(.view-btn)').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const group = btn.dataset.group, filter = btn.dataset.filter;
+        document.querySelectorAll(`[data-group="${group}"]`).forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        if (group === 'type') activeType = filter;
+        if (group === 'year') activeYear = filter;
+        workItems.forEach(item => {
+          const ok = (activeType === 'all' || item.dataset.type === activeType)
+                  && (activeYear  === 'all' || item.dataset.year  === activeYear);
+          item.style.display = ok ? '' : 'none';
+        });
+      });
+    });
+
+    document.querySelectorAll('.view-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.view-btn').forEach(b => {
+          b.classList.remove('active');
+          b.querySelector('.brkt').textContent = '[ ]';
+        });
+        btn.classList.add('active');
+        btn.querySelector('.brkt').textContent = '[→]';
+        workGrid.className = btn.dataset.view === 'scroll' ? 'work-scroll' : 'work-grid';
+        workGrid.id = 'work-grid';
+      });
+    });
+  </script>
 </body>
 </html>

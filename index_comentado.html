@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>marta bello pais de almeida</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="exposure-fonts-light.css">
+  <link rel="stylesheet" href="search.css">
+  <link rel="stylesheet" href="custom-cursor.css">
+  <link rel="icon" type="image/x-icon" href="favicon.png">
+
+  <style>
+    @font-face {
+      font-family: 'PPNeueMontreal';
+      src: url('fonts/PPNeueMontreal-Medium.otf') format('opentype');
+      font-weight: 500;
+      font-style: normal;
+      font-display: block;
+    }
+    @font-face {
+      font-family: 'PPNeueMontreal';
+      src: url('fonts/PPNeueMontreal-Bold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: block;
+    }
+    @font-face {
+      font-family: 'PPNeueMontreal';
+      src: url('fonts/PPNeueMontreal-Italic.otf') format('opentype');
+      font-weight: 400;
+      font-style: italic;
+      font-display: block;
+    }
+
+    header {
+      padding: 1.75em 2.5em;
+      position: sticky;
+      top: 0;
+      background-color: transparent;
+      z-index: 100;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 0.0625em;
+    }
+
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 0.625em;
+    }
+
+    .logo-link {
+      text-decoration: none;
+      line-height: 1.2;
+    }
+
+    .logo-text,
+    .desktop-nav a {
+      font-family: 'PPNeueMontreal', sans-serif;
+      font-weight: 500;
+      font-size: 1.3em;
+      line-height: 20px;
+      color: #111;
+      letter-spacing: -0.01em;
+    }
+
+    /* reset index.css desktop-nav font-size so it doesn't compound */
+    .desktop-nav {
+      display: flex;
+     align-items: center;
+     gap: 0;
+    font-size: 1rem;   /* ← 1rem = 16px root, not affected by index.css cascade */
+  }
+
+    .logo-text {
+      font-style: normal;
+      text-decoration: none;
+    }
+
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .desktop-nav a {
+      text-decoration: none;
+    }
+
+    .desktop-nav a.active {
+      font-style: italic;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 1em;
+      padding-top: 0.125em;
+    }
+
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+    }
+
+    .search-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .search-icon-svg {
+      display: block;
+      width: 1.125em;
+      height: 1.125em;
+      color: #111;
+      transition: opacity 0.15s ease;
+    }
+
+    .search-container:hover .search-icon-svg {
+      opacity: 0.5;
+    }
+
+    .tomato-toggle {
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: none;
+      display: flex;
+      align-items: center;
+      line-height: 1;
+    }
+    
+    .toggle-tomato {
+        width: 3.5em;
+        height: 3.5em;
+        display: block;
+        transition: transform 0.3s ease;
+      }
+
+      .toggle-tomato--dark {
+        display: none;
+      }
+
+      body.dark-mode .toggle-tomato--light {
+        display: none;
+      }
+
+      body.dark-mode .toggle-tomato--dark {
+        display: block;
+      }
+
+      .tomato-toggle:hover .toggle-tomato {
+        transform: scale(1.15);
+      }
+      
+    body.dark-mode .logo-text,
+    body.dark-mode .desktop-nav a {
+      color: #ffffff;
+    }
+    body.dark-mode .search-icon-svg {
+      color: #ffffff;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 1.25em 1.5em;
+      }
+      .logo-text,
+      .desktop-nav a {
+        font-size: 1.5em;
+      }
+      .search-icon-svg {
+        width: 1.125em;
+        height: 1.125em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+
+      <div class="header-left">
+        <div class="logo-row">
+          <a href="index.html" class="logo-link">
+            <span class="logo-text">marta</span>
+          </a>
+          <!-- <div class="theme-toggle">
+            <button class="tomato-toggle" aria-label="Toggle dark mode">
+              <img src="tomate_light.svg" class="toggle-tomato toggle-tomato--light" alt="">
+              <img src="tomate_dark.svg" class="toggle-tomato toggle-tomato--dark" alt="">
+            </button>
+          </div> -->
+        </div>
+        <nav class="desktop-nav">
+          <a href="index.html" class="active">work,</a>
+          <a href="about-me.html"> about,</a>
+          <a href="inspo.html"> inspo</a>
+        </nav>
+      </div>
+
+      <div class="header-right">
+        <!-- <div class="search-container">
+          <svg class="search-icon-svg" viewBox="0 0 22 22" fill="none"
+               xmlns="http://www.w3.org/2000/svg" aria-label="Search">
+            <circle cx="9.5" cy="9.5" r="7" stroke="currentColor" stroke-width="1.6"/>
+            <line x1="14.8" y1="14.8" x2="20.5" y2="20.5"
+                  stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </div> -->
+        <button class="tomato-toggle" aria-label="Toggle dark mode">
+          <img src="tomate_light.svg" class="toggle-tomato toggle-tomato--light" alt="">
+          <img src="tomate_dark.svg" class="toggle-tomato toggle-tomato--dark" alt="">
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <div class="search-overlay">
+    <div class="search-close">×</div>
+    <div class="search-box">
+      <input type="text" class="search-input"
+        placeholder="Search projects, skills, or anything..." autocomplete="off">
+    </div>
+    <div class="search-suggestions">
+      <h4>Popular Searches</h4>
+      <div class="suggestion-tags">
+        <span class="suggestion-tag">Branding</span>
+        <span class="suggestion-tag">Wedding Design</span>
+        <span class="suggestion-tag">Editorial</span>
+        <span class="suggestion-tag">Art Direction</span>
+        <span class="suggestion-tag">Print Design</span>
+        <span class="suggestion-tag">Illustration</span>
+      </div>
+    </div>
+    <div class="search-results"></div>
+  </div>
+
+  <div class="inspo-container">
+    <div class="inspo-item" id="project-1">
+      <a href="project.html" class="inspo-link">
+        <img src="images/SpreadEducationSpreadLove.gif" alt="Inspiration 1" loading="lazy">
+      </a>
+    </div>
+    <div class="inspo-item" id="project-2">
+      <a href="work-scatter.html" class="inspo-link">
+        <img src="images/inspo/inspo-2.jpg" alt="Inspiration 2" loading="lazy">
+      </a>
+    </div>
+    <div class="inspo-item" id="project-3">
+      <a href="indexalternativo.html" class="inspo-link">
+        <img src="images/inspo/inspo-3.jpg" alt="Inspiration 3" loading="lazy">
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="interactive-footer">
+      <div class="footer-left">
+        <p>© 2025 marta bello pais de almeida</p>
+      </div>
+      <a href="/cdn-cgi/l/email-protection#87eae6f5f3eee9efe6e5f7e6c7e0eae6eeeba9e4e8ea" class="footer-center">
+        <div class="get-in-text-top">get in</div>
+        <div class="footer-line"></div>
+        <div class="get-in-text-bottom">touch</div>
+      </a>
+      <a href="/cdn-cgi/l/email-protection#35585447415c5b5d54574554755258545c591b565a58" class="footer-center-mobile">
+        <span class="get-in-text-top-mobile">get in</span>
+        <div class="footer-line-mobile"></div>
+        <span class="get-in-text-bottom-mobile">touch</span>
+      </a>
+      <div class="footer-right">
+        <a href="https://www.icloud.com/iclouddrive/008XTyvyPmEH6UFI731TEegVw#CV" target="_blank">resume</a>
+        <a href="https://open.spotify.com/show/02nK1cE2YFhTjj5IT9ZvgI?si=99a32a151c61488c" target="_blank">podcast</a>
+        <a href="https://www.instagram.com/martabpaisdealmeida/" target="_blank">instagram</a>
+        <a href="https://www.linkedin.com/in/marta-bello-pais-de-almeida/" target="_blank">linkedin</a>
+      </div>
+    </div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script src="script.js"></script>
+  <script src="search.js"></script>
+  <script src="custom-cursor.js"></script>
+</body>
+</html>
