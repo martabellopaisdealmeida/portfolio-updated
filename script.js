@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Dark Mode Toggle Functionality
-  const toggleSwitch = document.querySelector(".star-toggle")
+  const toggleSwitch = document.querySelector(".tomato-toggle")
   const body = document.body
   
 

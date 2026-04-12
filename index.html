@@ -130,7 +130,7 @@
       opacity: 0.5;
     }
 
-    .star-toggle {
+    .tomato-toggle {
       background: none;
       border: none;
       padding: 0;
@@ -139,22 +139,30 @@
       align-items: center;
       line-height: 1;
     }
-    .star-icon {
-      width: 1em;
-      height: 1em;
-      fill: #D4AF37;
-      stroke: #D4AF37;
-      stroke-width: 1;
-      transition: fill 0.3s ease, stroke 0.3s ease, transform 0.3s ease;
-    }
-    .star-toggle:hover .star-icon {
-      transform: scale(1.15);
-    }
-    body.dark-mode .star-icon {
-      fill: #C0C0C0;
-      stroke: #C0C0C0;
-    }
+    
+    .toggle-tomato {
+        width: 1.5em;
+        height: 1.5em;
+        display: block;
+        transition: transform 0.3s ease;
+      }
 
+      .toggle-tomato--dark {
+        display: none;
+      }
+
+      body.dark-mode .toggle-tomato--light {
+        display: none;
+      }
+
+      body.dark-mode .toggle-tomato--dark {
+        display: block;
+      }
+
+      .tomato-toggle:hover .toggle-tomato {
+        transform: scale(1.15);
+      }
+      
     body.dark-mode .logo-text,
     body.dark-mode .desktop-nav a {
       color: #ffffff;
@@ -188,10 +196,9 @@
             <span class="logo-text">marta</span>
           </a>
           <div class="theme-toggle">
-            <button class="star-toggle" aria-label="Toggle dark mode">
-              <svg class="star-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
-              </svg>
+            <button class="tomato-toggle" aria-label="Toggle dark mode">
+              <img src="tomate_light.svg" class="toggle-tomato toggle-tomato--light" alt="">
+              <img src="tomate_dark.svg" class="toggle-tomato toggle-tomato--dark" alt="">
             </button>
           </div>
         </div>
