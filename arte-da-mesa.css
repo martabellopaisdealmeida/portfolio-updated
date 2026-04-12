@@ -75,6 +75,14 @@
     font-weight: 100 900;
     font-style: normal italic;
   }
+
+  @font-face {
+    font-family: 'DakotaRough';
+    src: url('fonts/Dakota_Rough.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+  }
   
   /* ==================== GLOBAL ==================== */
   
@@ -160,7 +168,7 @@
   }
   
   .project-title {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'DakotaRough', serif;
     font-size: 3.5em;
     font-weight: 700;
     line-height: 1.1;
