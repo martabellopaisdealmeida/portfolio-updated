@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // CONFIGURAÇÃO - Atualiza com os teus projetos
   // ============================================
   const projects = [
-    { name: 'A Arte da Mesa', url: 'A-Arte-da-Mesa.html' },
+    { name: 'A Arte da Mesa', url: ' artedamesa.html' },
     { name: 'Spread Education, Spread Love', url: 'project.html' },
     { name: 'Mariana & Felipe', url: 'Mariana&Felipe.html' },
     { name: 'Underground', url: 'Underground.html' },
