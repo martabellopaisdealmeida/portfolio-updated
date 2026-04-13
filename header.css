@@ -152,4 +152,9 @@ body.dark-mode .desktop-nav a {
   .desktop-nav a {
     font-size: 1.5em;
   }
+
+  .tomato-toggle {
+    width: 2.7em;
+    height: 2.7em;
+  }
 }
