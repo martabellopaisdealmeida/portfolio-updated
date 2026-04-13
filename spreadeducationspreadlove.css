@@ -175,7 +175,7 @@ body.dark-mode .meta-value {
   font-size: 3.5em;
   font-weight: 700;
   line-height: 1.1;
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
   letter-spacing: -0.02em;
   width: 100%;
 }
@@ -398,7 +398,7 @@ footer {
 
   .project-title {
     font-size: 2.5em;
-    margin-bottom: 2.5em;
+    margin-bottom: 2em;
   }
 
   .project-content-grid {
@@ -443,7 +443,7 @@ footer {
 
   .project-title {
     font-size: 2em;
-    margin-bottom: 1.875em;
+    margin-bottom: 1em;
   }
 
   .project-content-grid {
