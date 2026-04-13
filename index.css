@@ -433,8 +433,7 @@ footer {
   transition: opacity 0.2s ease;
   pointer-events: none;
   line-height: 1.2;
-  font-family: 'ExposureItalic-50', sans-serif;
-  font-style: italic;
+  font-family: 'PPNeueMontreal', sans-serif;
   padding: 0.3125em 0; /* 5px */
 }
 
