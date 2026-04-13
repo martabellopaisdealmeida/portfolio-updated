@@ -12,12 +12,6 @@
   font-display: block;
 }
 @font-face {
-  font-family: 'PPMori';
-  src: url('fonts/PPMori-Regular.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
   font-family: 'ABCDiatypeMono';
   src: url('fonts/ABCDiatypeSemi-MonoVariable-Trial.ttf') format('truetype');
   font-weight: 100 900;
@@ -167,8 +161,7 @@ footer {
   transition: opacity 0.2s ease;
   pointer-events: none;
   line-height: 1.2;
-  font-family: 'ExposureItalic-50', sans-serif;
-  font-style: italic;
+  font-family: 'PPNeueMontreal', sans-serif;
   padding: 0.3125em 0;
 }
 
