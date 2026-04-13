@@ -354,17 +354,11 @@ header {
 /* Footer Styles */
 footer {
   position: relative;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: transparent;
-  min-height: 15.625em; /* 250px */
-  padding: 0 5.625em; /* 90px */
+  height: 200px;
   z-index: 1000;
   display: flex;
   align-items: flex-end;
-  padding-bottom: 1.875em; /* 30px */
-  overflow: visible;
+  padding: 0 2.5em 30px;
 }
 
 .interactive-footer {
@@ -372,9 +366,7 @@ footer {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 100%;
   position: relative;
-  overflow: visible;
 }
 
 .footer-left p {
