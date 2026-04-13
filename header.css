@@ -104,8 +104,8 @@ header {
 }
 
 .toggle-tomato {
-  width: 3.5em;
-  height: 3.5em;
+  width: 2.2em;
+  height: 2.2em;
   display: block;
   /* no transition — spin animation handles all transform */
 }
