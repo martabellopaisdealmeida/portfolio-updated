@@ -107,7 +107,7 @@ header {
   width: 3.5em;
   height: 3.5em;
   display: block;
-  transition: transform 0.3s ease;
+  /* no transition — spin animation handles all transform */
 }
 
 .toggle-tomato--dark {
