@@ -252,18 +252,7 @@
     object-fit: contain;
     display: block;
   }
-  .grid-item-spreads {
-    width: 100%;
-    overflow: hidden;
-  }
-
-  .grid-item-spreads img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
+  
   /* Full-width variants */
   .grid-item.full-width {
     width: 100%;
