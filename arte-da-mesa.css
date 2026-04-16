@@ -253,7 +253,7 @@
     display: block;
   }
   
-  .grid-item-spreads {
+  .grid-item-spreads img {
     width: 100%;
     height: 100%;
     object-fit: cover;
