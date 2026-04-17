@@ -427,7 +427,12 @@ footer {
   }
 
   .photo-grid {
-    gap: 0.75em;
+    gap: 0.375em;
+  }
+
+  .grid-row.two-col {
+    gap: 0.375em;
+    height: auto;
   }
 
   .grid-item img {
@@ -443,13 +448,9 @@ footer {
 
   .grid-item.full-width.short {
     height: auto;
-    aspect-ratio: 16/7;
+    aspect-ratio: 21/4;
   }
 
-  .grid-row.two-col {
-    height: auto;
-    gap: 0.75em;
-  }
 
   .grid-row.two-col .grid-item {
     height: auto;
