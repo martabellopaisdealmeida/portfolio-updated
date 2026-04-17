@@ -430,29 +430,31 @@ footer {
     gap: 0.75em;
   }
 
-  .grid-row.two-col {
-    grid-template-columns: 1fr 1fr;
-    gap: 0.75em;
-    height: auto;
+  .grid-item img {
+    height: 100%;
+    object-fit: cover;
   }
 
   .grid-item.full-width,
-  .grid-item.full-width.short,
   .grid-item.full-width.tall {
     height: auto;
-    aspect-ratio: unset;
+    aspect-ratio: 4/3;
   }
 
-  .grid-item img {
+  .grid-item.full-width.short {
     height: auto;
-    object-fit: unset;
+    aspect-ratio: 16/7;
+  }
+
+  .grid-row.two-col {
+    height: auto;
+    gap: 0.75em;
   }
 
   .grid-row.two-col .grid-item {
     height: auto;
-    aspect-ratio: unset;
+    aspect-ratio: 1/1;
   }
-  
 
   footer {
     padding: 0 1.5em 20px;
