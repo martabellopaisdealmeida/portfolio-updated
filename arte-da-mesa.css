@@ -265,6 +265,7 @@ body.dark-mode .meta-value {
 
 .grid-item.full-width.tall {
   height: 680px;
+  margin-bottom: 60px;
 }
 
 /* Two-column row */
