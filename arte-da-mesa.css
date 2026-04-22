@@ -430,33 +430,28 @@ footer {
     gap: 0.375em;
   }
 
-  .grid-row.two-col {
-    gap: 0.375em;
+  .grid-item.full-width,
+  .grid-item.full-width.short,
+  .grid-item.full-width.tall {
     height: auto;
+    aspect-ratio: unset;
   }
 
   .grid-item img {
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .grid-item.full-width,
-  .grid-item.full-width.tall {
     height: auto;
-    aspect-ratio: 4/3;
+    object-fit: unset;
   }
 
-  .grid-item.full-width.short {
+  .grid-row.two-col {
     height: auto;
-    aspect-ratio: 21/4;
+    gap: 0.375em;
   }
-
 
   .grid-row.two-col .grid-item {
     height: auto;
-    aspect-ratio: 1/1;
+    aspect-ratio: unset;
   }
-
+  
   footer {
     padding: 0 1.5em 20px;
     height: 150px;
