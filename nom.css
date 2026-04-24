@@ -234,6 +234,10 @@
     height: 100%;
   }
   
+  .grid-item.full-width.tall.cover img {
+    object-fit: cover;
+  }
+  
   /* ==================== FOOTER ==================== */
   
   footer {
