@@ -265,7 +265,6 @@ body.dark-mode .meta-value {
 
 .grid-item.full-width.tall {
   height: 680px;
-  margin-bottom: 60px;
 }
 
 /* Two-column row */
@@ -427,31 +426,40 @@ footer {
   }
 
   .photo-grid {
-    gap: 0.375em;
+    gap: 0.75em;
   }
 
-  .grid-item.full-width,
-  .grid-item.full-width.short,
+  .grid-row.two-col {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75em;
+    height: auto;
+  }
+
+  .grid-row.two-col .grid-item {
+    height: auto;
+    aspect-ratio: 3/4;
+  }
+
+  .grid-item.full-width {
+    height: auto;
+    aspect-ratio: 4/3;
+  }
+
+  .grid-item.full-width.short {
+    height: auto;
+    aspect-ratio: 16/7;
+  }
+
   .grid-item.full-width.tall {
     height: auto;
     aspect-ratio: unset;
   }
 
-  .grid-item img {
+  .grid-item.full-width.tall img {
     height: auto;
     object-fit: unset;
   }
 
-  .grid-row.two-col {
-    height: auto;
-    gap: 0.375em;
-  }
-
-  .grid-row.two-col .grid-item {
-    height: auto;
-    aspect-ratio: unset;
-  }
-  
   footer {
     padding: 0 1.5em 20px;
     height: 150px;
