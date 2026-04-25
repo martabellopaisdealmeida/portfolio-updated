@@ -160,7 +160,7 @@ body.dark-mode .nom-title-mobile {
 }
 
 .project-description {
-  font-family: 'PPNeueMontreal', sans-serif;
+  font-family: 'MarundTrialCurved', sans-serif;
   font-size: 0.875em;
   line-height: 1.65;
   color: #333;
@@ -168,7 +168,7 @@ body.dark-mode .nom-title-mobile {
 
 .project-description p {
   margin-bottom: 1.25em;
-  font-family: 'PPNeueMontreal', sans-serif;
+  font-family: 'MarundTrialCurved', sans-serif;
 }
 
 .project-description strong { font-weight: 600; }
