@@ -3,52 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New Project - marta bello pais de almeida</title>
-  <!-- Preload default font -->
+  <title>Cart Notes — marta bello pais de almeida</title>
   <link rel="stylesheet" href="cart-notes.css">
   <link rel="stylesheet" href="search.css">
   <link rel="stylesheet" href="custom-cursor.css">
   <link rel="icon" type="image/x-icon" href="favicon.png">
   <link rel="stylesheet" href="project-navigation.css">
+  <link rel="stylesheet" href="header.css">
 </head>
 <body>
+
   <header>
-    <!-- First row: marta left, search right -->
-    <div class="header-top">
-      <div class="logo">
-        <a href="index.html" class="logo-link">
-          <span class="logo-text">marta</span>
-        </a>
-        
-        <!-- Theme Toggle ao lado do logo -->
-        <div class="theme-toggle">
-          <div class="toggle-switch">
-            <div class="toggle-slider"></div>
-          </div>
+    <div class="header-inner">
+      <div class="header-left">
+        <div class="logo-row">
+          <a href="index.html" class="logo-link">
+            <span class="logo-text">marta</span>
+          </a>
         </div>
+        <nav class="desktop-nav">
+          <a href="work.html" class="active">work,</a>
+          <a href="about-me.html"> about,</a>
+          <a href="inspo.html"> inspo</a>
+        </nav>
       </div>
-
-      <div class="header-top-right">
-        <div class="search-container">
-          <div class="search-text">search</div>
-        </div>
+      <div class="header-right">
+        <button class="tomato-toggle" aria-label="Toggle dark mode">
+          <img src="tomate_light.svg" class="toggle-tomato toggle-tomato--light" alt="">
+          <img src="tomate_dark.svg" class="toggle-tomato toggle-tomato--dark" alt="">
+        </button>
       </div>
-    </div>
-
-    <!-- Second row: navigation left -->
-    <div class="header-bottom">
-      <nav class="desktop-nav">
-        <a href="index.html" class="active">work,</a>
-        <a href="about-me.html">about,</a>
-        <a href="inspo.html">inspo</a>
-      </nav>
     </div>
   </header>
 
   <!-- Search Overlay -->
   <div class="search-overlay">
     <div class="search-close">×</div>
-
     <div class="search-box">
       <input
         type="text"
@@ -57,7 +47,6 @@
         autocomplete="off"
       >
     </div>
-
     <div class="search-suggestions">
       <h4>Popular Searches</h4>
       <div class="suggestion-tags">
@@ -69,92 +58,93 @@
         <span class="suggestion-tag">Illustration</span>
       </div>
     </div>
-
     <div class="search-results"></div>
   </div>
 
-  <!-- Hero Image - Full Width -->
-  <div class="project-hero" id="project-hero">
-    <img src="images/02-CARTNOTES/MG9A9361-2.jpg" alt="Project Hero" id="hero-media">
+  <!-- Hero: capa + contracapa -->
+  <div class="project-hero">
+    <div class="hero-two-col">
+      <div class="hero-panel">
+        <img src="images/11 Cart Notes/capa.jpg" alt="Cart Notes — capa" loading="lazy">
+      </div>
+      <div class="hero-panel">
+        <img src="images/11 Cart Notes/contracapa.jpg" alt="Cart Notes — contracapa" loading="lazy">
+      </div>
+    </div>
   </div>
-
 
   <!-- Project Content -->
   <div class="project-container">
-    <!-- Project Header -->
     <div class="project-header">
-      <!-- Title - Full Width -->
-      <h1 class="project-title" id="project-title">CART NOTES</h1>
-      
-      <!-- Content Grid: Description + Meta -->
+
+      <h1 class="project-title">CART NOTES</h1>
+
       <div class="project-content-grid">
-        <div class="project-description" id="project-description">
-          <p><strong>CART NOTES</strong> is an experimental editorial project inspired by my everyday trips to the supermarket in Barcelona during my Erasmus experience. What began as the simple challenge of creating an “ideal” grocery list gradually became a way to question how we make choices when living away from home.</p>
-          
-          <p>Through food, routines, and small impulsive decisions made between supermarket aisles, the project reflects on limitations, autonomy, and the notion of free will associated with eating while living abroad. In a context shaped by budgets, unfamiliar products, shared kitchens, and constant adaptation, everyday decisions reveal themselves as both practical and emotional.</p>
-          
-          <p>By observing and documenting these ordinary moments, CART NOTES transforms the supermarket into a space of reflection, turning the act of shopping into a narrative about independence, identity, and life in Erasmus.</p>
+        <div class="project-description">
+          <p>Lorem ipsum dolor sit amet consectetur. Matteo nunc tortor vitae aliisqu nulla viverra adipiscing condimentum risus. Aliquam nisl at sit. Convallis eros vel odio ultrices ut. Dui lacus quam et leo sed diam eget pharetra quisque. Lectus pretium sed consectetur massa risus et sed. Leo pharetra neque congue in odio. Duis at mi facilisimduis blandit ex. Arcu mi augue gravida amet vit semestris. Faucibus morten tempus placerat. Tristique nam habitasse tu placerat formeum pharetra scelerisque. Adipiscing feugiat quis et feugiat quam ultrices facilitate. Lectus quis commodo maximus morbi auisque quam lorem rhoncus. Ut pretium urna volutpat elementum plact.</p>
+          <p>Lorem ipsum dolor sit amet consectetur. Matteo nunc tortor vitae aliisqu nulla viverra adipiscing condimentum risus. Aliquam nisl at sit. Convallis eros vel odio ultrices ut. Dui lacus quam et leo sed diam eget pharetra quisque. Lectus pretium sed consectetur massa risus et sed. Leo pharetra neque congue in odio. Duis at mi facilisimduis blandit ex. Arcu mi augue gravida amet vit semestris. Faucibus morten tempus placerat. Tristique nam habitasse tu placerat formeum pharetra scelerisque. Adipiscing feugiat quis et feugiat quam ultrices facilitate. Lectus quis commodo maximus morbi auisque quam lorem rhoncus. Ut pretium urna volutpat elementum plact.</p>
         </div>
 
         <div class="project-meta">
           <div class="meta-item">
-            <span class="meta-label">Client</span>
-            <span class="meta-value">Academic project at BAU, College of Arts & Design</span>
+            <span class="meta-label">Cliente</span>
+            <span class="meta-value">Unknown</span>
           </div>
-          
+
           <div class="meta-item">
-            <span class="meta-label">Year</span>
-            <span class="meta-value">2025</span>
+            <span class="meta-label">Cliente</span>
+            <span class="meta-value">Unknown</span>
           </div>
-          
+
           <div class="meta-item">
-            <span class="meta-label">Product</span>
-            <span class="meta-value">Experimental magazine<br>Editorial publication</span>
+            <span class="meta-label">Cliente</span>
+            <span class="meta-value">Unknown</span>
           </div>
-          
+
           <div class="meta-item">
-            <span class="meta-label">Services</span>
-            <span class="meta-value">Editorial design<br>Concept development<br>Visual storytelling<br>Art direction<br>Content curation<br>Print design<br>Research & observation</span>
+            <span class="meta-label">Cliente</span>
+            <span class="meta-value">Unknown</span>
           </div>
         </div>
-        
       </div>
-      <!-- FIM do project-content-grid -->
-    </div>
-    <!-- FIM do project-header -->
 
-    <!-- Image grid section -->
+    </div><!-- /project-header -->
+
+    <!-- Photo grid -->
     <div class="photo-grid">
-       
-      <!-- Two column images -->
-    <div class="grid-row">
-        <div class="grid-item">
-          <img src="images/02-CARTNOTES/GIF SACO 12.41.23.gif" alt="Project Image 2" loading="lazy" />
-        </div>
-        <div class="grid-item">
-          <img src="images/02-CARTNOTES/GIF - PÁGINAS 12.41.23.gif" alt="Project Image 3" loading="lazy" />
-        </div>
-    </div>
 
-      <!-- large image -->
-      <div class="grid-item large">
-        <img src="images/project-image-1.jpg" alt="Project Image 1" loading="lazy" />
+      <!-- Two gifs side by side -->
+      <div class="grid-row two-col">
+        <div class="grid-item">
+          <img src="images/11 Cart Notes/gif1.gif" alt="Cart Notes gif 1" loading="lazy">
+        </div>
+        <div class="grid-item">
+          <img src="images/11 Cart Notes/gif2.gif" alt="Cart Notes gif 2" loading="lazy">
+        </div>
       </div>
 
-      <div class="grid-row">
-        <div class="grid-item">
-          <img src="images/02-CARTNOTES/MH0A7597-2.jpg" alt="Project Image 2" loading="lazy" />
-        </div>
-        <div class="grid-item">
-          <img src="images/project-image-3.jpg" alt="Project Image 3" loading="lazy" />
-        </div>
-    </div>
-      <!-- Full width image -->
-      <div class="grid-item large">
-        <img src="images/project-image-4.jpg" alt="Project Image 4" loading="lazy" />
+      <!-- Spreads todas — full width tall -->
+      <div class="grid-item full-width tall">
+        <img src="images/11 Cart Notes/spreads.jpg" alt="Spreads todas" loading="lazy">
       </div>
-    </div>
-  </div>
+
+      <!-- Dois detalhes side by side -->
+      <div class="grid-row two-col">
+        <div class="grid-item">
+          <img src="images/11 Cart Notes/detalhe1.jpg" alt="Detalhe 1" loading="lazy">
+        </div>
+        <div class="grid-item">
+          <img src="images/11 Cart Notes/detalhe2.jpg" alt="Detalhe 2" loading="lazy">
+        </div>
+      </div>
+
+      <!-- Processo — full width tall -->
+      <div class="grid-item full-width tall">
+        <img src="images/11 Cart Notes/processo.jpg" alt="Processo" loading="lazy">
+      </div>
+
+    </div><!-- /photo-grid -->
+  </div><!-- /project-container -->
 
   <!-- Footer -->
   <footer>
@@ -162,21 +152,16 @@
       <div class="footer-left">
         <p>© 2025 marta bello pais de almeida</p>
       </div>
-
-      <!-- Center hover effect -->
       <a href="mailto:martinhabpa@gmail.com" class="footer-center">
         <div class="get-in-text-top">get in</div>
         <div class="footer-line"></div>
         <div class="get-in-text-bottom">touch</div>
       </a>
-
-      <!-- Mobile static version -->
       <a href="mailto:martinhabpa@gmail.com" class="footer-center-mobile">
         <span class="get-in-text-top-mobile">get in</span>
         <div class="footer-line-mobile"></div>
         <span class="get-in-text-bottom-mobile">touch</span>
       </a>
-
       <div class="footer-right">
         <a href="https://www.icloud.com/iclouddrive/008XTyvyPmEH6UFI731TEegVw#CV" target="_blank">resume</a>
         <a href="https://open.spotify.com/show/02nK1cE2YFhTjj5IT9ZvgI?si=99a32a151c61488c" target="_blank">podcast</a>

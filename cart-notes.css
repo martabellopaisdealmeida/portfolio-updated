@@ -1,62 +1,4 @@
-/* New Project Page Styles - Dual Vertical Hero */
-
 /* ==================== FONT FACES ==================== */
-/* Exposure Italic Font Variations - LIGHT VERSION */
-@font-face {
-  font-family: 'ExposureItalic-100';
-  src: url('fonts/ExposureItalicTrial[-100].otf') format('opentype');
-  font-style: italic;
-  font-display: block;
-}
-
-@font-face {
-  font-family: 'ExposureItalic-70';
-  src: url('fonts/ExposureItalicTrial[-70].otf') format('opentype');
-  font-style: italic;
-  font-display: block;
-}
-
-@font-face {
-  font-family: 'ExposureItalic-50';
-  src: url('fonts/ExposureItalicTrial[-50].otf') format('opentype');
-  font-style: italic;
-  font-display: block;
-}
-
-@font-face {
-  font-family: 'ExposureItalic-30';
-  src: url('fonts/ExposureItalicTrial[-30].otf') format('opentype');
-  font-style: italic;
-  font-display: block;
-}
-
-@font-face {
-  font-family: 'ExposureItalic0';
-  src: url('fonts/ExposureItalicTrial[0].otf') format('opentype');
-  font-style: italic;
-  font-display: block;
-}
-
-@font-face {
-  font-family: 'ExposureItalic30';
-  src: url('fonts/ExposureItalicTrial[30].otf') format('opentype');
-  font-style: italic;
-  font-display: block;
-}
-
-@font-face {
-  font-family: 'ExposureItalic70';
-  src: url('fonts/ExposureItalicTrial[70].otf') format('opentype');
-  font-style: italic;
-  font-display: block;
-}
-
-@font-face {
-  font-family: 'ExposureItalic100';
-  src: url('fonts/ExposureItalicTrial[100].otf') format('opentype');
-  font-style: italic;
-  font-display: block;
-}
 
 @font-face {
   font-family: 'PPMori';
@@ -64,7 +6,6 @@
   font-weight: normal;
   font-style: normal;
 }
-
 @font-face {
   font-family: 'PPMori';
   src: url('fonts/PPMori-SemiBold.otf') format('opentype');
@@ -73,8 +14,8 @@
 }
 
 @font-face {
-  font-family: 'MarundTrialCorner';
-  src: url('fonts/26A1MarundTrial-3002Corner.otf') format('opentype');
+  font-family: 'MarundTrialCurved';
+  src: url('fonts/26A1MarundTrial-3022Curved.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
@@ -86,14 +27,8 @@
   font-style: normal italic;
 }
 
-@font-face {
-  font-family: 'MarundTrialCurved';
-  src: url('fonts/26A1MarundTrial-3022Curved.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-}
+/* ==================== GLOBAL ==================== */
 
-/* ==================== GLOBAL STYLES ==================== */
 * {
   margin: 0;
   padding: 0;
@@ -108,182 +43,45 @@
 body {
   background-color: #ffffff;
   color: #333;
-  position: relative;
   overflow-x: hidden;
   font-size: 16px;
 }
 
-/* ==================== HEADER STYLES ==================== */
-header {
-  padding: 1.875em 2.5em;
-  position: sticky;
-  top: 0;
-  background-color: transparent;
-  z-index: 100;
-}
+/* ==================== DARK MODE ==================== */
 
-.header-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.logo-link {
-  text-decoration: none;
-}
-
-.logo-text {
-  font-family: 'ExposureItalic-70', 'PPMori', sans-serif;
-  font-size: 1.375em;
-  color: #333;
-  text-decoration: none;
-  font-style: italic;
-}
-
-.exposure-100 { font-family: 'ExposureItalic-100', sans-serif !important; }
-.exposure-70 { font-family: 'ExposureItalic-70', sans-serif !important; }
-.exposure-50 { font-family: 'ExposureItalic-50', sans-serif !important; }
-.exposure-30 { font-family: 'ExposureItalic-30', sans-serif !important; }
-.exposure0 { font-family: 'ExposureItalic0', sans-serif !important; }
-.exposure30 { font-family: 'ExposureItalic30', sans-serif !important; }
-.exposure70 { font-family: 'ExposureItalic70', sans-serif !important; }
-.exposure100 { font-family: 'ExposureItalic100', sans-serif !important; }
-
-.header-top-right {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.header-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.desktop-nav {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  font-family: 'ABCDiatypeMono', monospace;
-  font-size: 1.125em;
-  font-weight: 300;
-}
-
-.desktop-nav a {
-  text-decoration: none;
-  color: #333;
-  font-weight: 300;
-  transition: color 0.2s ease;
-  margin-right: 0.375em;
-  font-family: 'ABCDiatypeMono', monospace;
-}
-
-.desktop-nav a.active {
-  color: #333;
-  font-weight: 300;
-  font-style: italic;
-}
-
-.search-container {
-  cursor: pointer;
-}
-
-.search-text {
-  font-family: 'ExposureItalic-70', 'PPMori', sans-serif;
-  font-size: 1.375em;
-  font-style: italic;
-  color: #333;
-  transition: color 0.2s ease;
-}
-
-/* ===== DARK MODE TOGGLE ===== */
-.theme-toggle {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.toggle-switch {
-  position: relative;
-  width: 2em;
-  height: 1.1875em;
-  background-color: #E9E9EA;
-  border-radius: 0.59375em;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  border: none;
-}
-
-.toggle-slider {
-  position: absolute;
-  top: 0.1em;
-  left: 0.1em;
-  width: 0.9875em;
-  height: 0.9875em;
-  background-color: #ffffff;
-  border-radius: 0.49375em;
-  transition: transform 0.3s ease;
-  box-shadow: 0 0.15em 0.35em rgba(0, 0, 0, 0.12);
-}
-
-body.dark-mode .toggle-slider {
-  transform: translateX(0.8125em);
-}
-
-body.dark-mode .toggle-switch {
-  background-color: #BBBBBB;
-}
-
-/* Dark Mode Styles */
 body.dark-mode {
-  background-color: black;
-  color: #ffffff;
+  background-color: #000;
+  color: #fff;
 }
 
-body.dark-mode .logo-text,
-body.dark-mode .desktop-nav a,
-body.dark-mode .search-text,
 body.dark-mode .footer-left p,
 body.dark-mode .footer-right a {
-  color: #ffffff;
+  color: #fff;
 }
 
 body.dark-mode .footer-line,
 body.dark-mode .footer-line-mobile {
-  background-color: #ffffff;
+  background-color: #fff;
 }
 
 body.dark-mode .get-in-text-top,
 body.dark-mode .get-in-text-bottom,
 body.dark-mode .get-in-text-top-mobile,
 body.dark-mode .get-in-text-bottom-mobile {
-  color: #ffffff;
+  color: #fff;
 }
 
+body.dark-mode .project-title,
 body.dark-mode .project-description,
-body.dark-mode .project-description p {
-  color: #ffffff;
-}
-
+body.dark-mode .project-description p,
 body.dark-mode .meta-value {
-  color: #ffffff;
+  color: #fff;
 }
 
-body.dark-mode .project-title {
-  color: #ffffff;
-}
+/* ==================== HERO ==================== */
 
-/* ==================== HERO IMAGE ==================== */
 .project-hero {
   width: 100%;
-  height: 100vh;
   overflow: hidden;
   position: relative;
   max-width: 100em;
@@ -291,8 +89,20 @@ body.dark-mode .project-title {
   padding: 0 5.625em;
 }
 
-.project-hero img,
-.project-hero video {
+/* Two-panel hero: capa + contracapa */
+.hero-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25em;
+  height: 100vh;
+}
+
+.hero-panel {
+  overflow: hidden;
+  background-color: #d9d9d9;
+}
+
+.hero-panel img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -300,6 +110,7 @@ body.dark-mode .project-title {
 }
 
 /* ==================== PROJECT CONTENT ==================== */
+
 .project-container {
   max-width: 100em;
   margin: 0 auto;
@@ -307,7 +118,7 @@ body.dark-mode .project-title {
 }
 
 .project-header {
-  margin-bottom: 3.75em;
+  margin-bottom: 1.25em;
 }
 
 .project-title {
@@ -315,10 +126,10 @@ body.dark-mode .project-title {
   font-size: 3.5em;
   font-weight: 300;
   line-height: 1.1;
-  margin-bottom: 1em;
-  text-transform: uppercase;
+  margin-bottom: 0.5em;
   letter-spacing: -0.02em;
   width: 100%;
+  color: #111;
 }
 
 .project-content-grid {
@@ -332,7 +143,6 @@ body.dark-mode .project-title {
   font-size: 0.875em;
   line-height: 1.65;
   color: #333;
-  max-width: 100%;
 }
 
 .project-description p {
@@ -340,9 +150,10 @@ body.dark-mode .project-title {
   font-family: 'MarundTrialCurved', sans-serif;
 }
 
-.project-description strong {
-  font-weight: 600;
-}
+.project-description strong { font-weight: 600; }
+.project-description em     { font-style: italic; }
+
+/* ==================== META ==================== */
 
 .project-meta {
   display: grid;
@@ -374,51 +185,63 @@ body.dark-mode .project-title {
   color: #333;
 }
 
-/* ========== PHOTO GRID ========== */
+/* ==================== PHOTO GRID ==================== */
+
 .photo-grid {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  margin-bottom: 60px;
+  gap: 1.25em;
+  margin-bottom: 1.25em;
 }
 
 .grid-item {
   width: 100%;
   overflow: hidden;
+  background-color: #d9d9d9;
 }
 
 .grid-item img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  display: block;
 }
 
-.grid-item.large {
-  height: 700px;
+/* Full-width variants */
+.grid-item.full-width {
+  width: 100%;
+  height: 680px;
 }
 
-.grid-row {
-  display: flex;
-  gap: 20px;
-  height: 700px;
+.grid-item.full-width.short {
+  height: 320px;
 }
 
-.grid-row .grid-item {
-  flex: 1;
+.grid-item.full-width.tall {
+  height: 680px;
+}
+
+/* Two-column row */
+.grid-row.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25em;
+  height: 560px;
+}
+
+.grid-row.two-col .grid-item {
   height: 100%;
 }
 
-/* ==================== FOOTER STYLES ==================== */
+/* ==================== FOOTER ==================== */
+
 footer {
   position: relative;
-  bottom: 0;
-  left: 0;
-  right: 0;
   height: 200px;
   z-index: 1000;
   display: flex;
   align-items: flex-end;
-  padding-bottom: 30px;
+  padding: 0 2.5em 30px;
 }
 
 .interactive-footer {
@@ -426,7 +249,6 @@ footer {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 100%;
   position: relative;
 }
 
@@ -467,7 +289,6 @@ footer {
   gap: 15px;
   text-decoration: none;
   color: inherit;
-  font-family: 'ExposureItalic70', sans-serif;
 }
 
 .footer-line {
@@ -486,13 +307,12 @@ footer {
   transition: opacity 0.2s ease;
   pointer-events: none;
   line-height: 1;
-  font-family: 'ExposureItalic-70', sans-serif;
+  font-family: 'PPNeueMontreal', sans-serif;
 }
 
 .footer-center:hover .get-in-text-top,
 .footer-center:hover .get-in-text-bottom {
   opacity: 1;
-  font-family: 'ExposureItalic-70', sans-serif;
 }
 
 .footer-center:hover .footer-line {
@@ -525,58 +345,31 @@ footer {
   font-family: 'PPNeueMontreal', sans-serif;
 }
 
-/* ==================== MOBILE RESPONSIVE ==================== */
+/* ==================== MOBILE ==================== */
+
 @media (max-width: 768px) {
-  header {
-    padding: 1.25em 1.875em;
-  }
-
-  .header-top {
-    margin-bottom: 0.375em;
-    justify-content: center;
-  }
-
-  .header-top-right {
-    display: none;
-  }
-
-  .header-bottom {
-    display: flex;
-    justify-content: center;
-  }
-
-  .desktop-nav {
-    display: flex;
-    font-size: 1em;
-  }
-
-  .search-text {
-    font-size: 1.5em;
-  }
-
-  /* Project Content Mobile */
   .project-hero {
-    height: 50vh;
     padding: 0 1.25em;
-    margin-bottom: 0;
+  }
+
+  .hero-two-col {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75em;
+    height: 50vh;
   }
 
   .project-container {
-    padding: 2.5em 1.875em 0;
-  }
-
-  .project-header {
-    margin-bottom: 3.75em;
+    padding: 2em 1.5em 0;
   }
 
   .project-title {
     font-size: 2.5em;
-    margin-bottom: 2.5em;
+    margin-bottom: 1em;
   }
 
   .project-content-grid {
     grid-template-columns: 1fr;
-    gap: 3.125em;
+    gap: 2em;
   }
 
   .project-description {
@@ -587,10 +380,44 @@ footer {
     gap: 1.25em;
   }
 
+  .photo-grid {
+    gap: 0.75em;
+  }
+
+  .grid-row.two-col {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75em;
+    height: auto;
+  }
+
+  .grid-row.two-col .grid-item {
+    height: auto;
+    aspect-ratio: 3/4;
+  }
+
+  .grid-item.full-width {
+    height: auto;
+    aspect-ratio: 4/3;
+  }
+
+  .grid-item.full-width.short {
+    height: auto;
+    aspect-ratio: 16/7;
+  }
+
+  .grid-item.full-width.tall {
+    height: auto;
+    aspect-ratio: unset;
+  }
+
+  .grid-item.full-width.tall img {
+    height: auto;
+    object-fit: unset;
+  }
+
   footer {
-    padding: 0 30px;
+    padding: 0 1.5em 20px;
     height: 150px;
-    padding-bottom: 20px;
   }
 
   .footer-center {
@@ -600,66 +427,55 @@ footer {
   .footer-center-mobile {
     display: flex !important;
   }
-
-  .toggle-switch {
-    width: 1.75em;
-    height: 1em;
-    border-radius: 0.5em;
-  }
-  
-  .toggle-slider {
-    width: 0.8em;
-    height: 0.8em;
-    border-radius: 0.4em;
-  }
-  
-  body.dark-mode .toggle-slider {
-    transform: translateX(0.7em);
-  }
 }
 
 @media (max-width: 480px) {
-  header {
-    padding: 1.25em 1.25em;
-  }
-
-  .logo-text {
-    font-size: 1.25em;
-  }
-
-  .search-text {
-    font-size: 1.25em;
-  }
-
-  .desktop-nav {
-    font-size: 1em;
-  }
-
   .project-hero {
-    padding: 0 1.25em;
+    padding: 0 1em;
+  }
+
+  .hero-two-col {
+    gap: 0.5em;
+    height: 45vh;
   }
 
   .project-container {
-    padding: 2.5em 1.25em 0;
+    padding: 1.75em 1.25em 0;
   }
 
   .project-title {
     font-size: 2em;
-    margin-bottom: 1.875em;
+    margin-bottom: 0.75em;
   }
 
   .project-content-grid {
-    gap: 2.5em;
+    gap: 2em;
   }
 
   .project-description {
     font-size: 0.875em;
   }
 
+  .meta-label {
+    font-size: 0.5625em;
+  }
+
+  .meta-value {
+    font-size: 0.6875em;
+  }
+
+  .photo-grid {
+    gap: 0.625em;
+  }
+
+  .grid-row.two-col {
+    gap: 0.625em;
+  }
+
   footer {
     height: auto;
     min-height: 250px;
-    padding: 60px 20px 20px 20px;
+    padding: 60px 20px 20px;
     display: block;
   }
 
@@ -669,9 +485,12 @@ footer {
     align-items: center;
     text-align: center;
     gap: 0;
-    height: 100%;
     justify-content: center;
     padding-top: 20px;
+  }
+
+  .footer-center {
+    display: none;
   }
 
   .footer-center-mobile {
@@ -682,7 +501,6 @@ footer {
 
   .footer-left {
     order: 3;
-    margin-top: 0;
   }
 
   .footer-right {
