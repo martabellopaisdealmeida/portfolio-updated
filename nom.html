@@ -16,13 +16,17 @@
 </head>
 <body>
 
-  <!-- SVG filter: goo merge for particle title -->
-  <svg style="display:none;" xmlns="http://www.w3.org/2000/svg">
+  <!-- SVG filter: identical to opção5.html liquid-grain -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
     <defs>
-      <filter id="nom-goo" x="-5%" y="-30%" width="110%" height="160%">
-        <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" />
+      <filter id="liquid-grain">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
         <feColorMatrix in="blur" mode="matrix"
-          values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" />
+          values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
+          result="goo" />
+        <feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" result="noise" />
+        <feComposite operator="in" in="noise" in2="goo" result="grainy-goo" />
+        <feBlend in="goo" in2="grainy-goo" mode="multiply" />
       </filter>
     </defs>
   </svg>
@@ -222,94 +226,116 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
   <script>
+    // Segue opção5.html fielmente — mesma física, mesmo textToPoints, só menor
     if (window.innerWidth > 768) {
       document.fonts.ready.then(function () {
+
+        var font = 'Inter';
+        var points = [];
+        var word = 'nom.';
+        var fontSize = 150; // menor que os 280 do opção5
+
         new p5(function (p) {
-          var particles = [];
-          var FONT_SIZE = 56;   /* matches original 3.5em title at 16px base */
-          var canvasW, canvasH = 72;
 
           p.setup = function () {
             var container = document.getElementById('nom-title-container');
-            canvasW = container.offsetWidth || 900;
+            var w = container.offsetWidth || 900;
             p.pixelDensity(1);
-            p.createCanvas(canvasW, canvasH).parent('nom-title-container');
-            sampleText();
-          };
+            var cnv = p.createCanvas(w, 210);
+            cnv.parent('nom-title-container');
 
-          function sampleText() {
-            particles = [];
-            var g = p.createGraphics(canvasW, canvasH);
-            g.pixelDensity(1);
-            g.textFont('Inter');
-            g.textSize(FONT_SIZE);
-            g.textStyle(p.BOLD);
-            g.fill(0);
-            g.noStroke();
-            g.text('nom.', 2, 60);   /* baseline near bottom of canvas */
-            g.loadPixels();
-            var step = 5;
-            for (var px = 0; px < canvasW; px += step) {
-              for (var py = 0; py < canvasH; py += step) {
-                var idx = (py * canvasW + px) * 4;
-                if (g.pixels[idx + 3] > 128) {
-                  particles.push(new Particle(px, py));
-                }
-              }
+            p.textFont(font);
+            p.textSize(fontSize);
+
+            var textPts = textToPoints(word, 5, 185, fontSize);
+            for (var i = 0; i < textPts.length; i++) {
+              points.push(new Particle(textPts[i].x, textPts[i].y));
             }
-            g.remove();
-          }
+          };
 
           p.draw = function () {
             p.clear();
             p.noStroke();
             p.fill(0);
-            for (var i = 0; i < particles.length; i++) {
-              particles[i].update();
-              particles[i].show();
+            for (var i = 0; i < points.length; i++) {
+              points[i].update();
+              points[i].show();
             }
           };
 
-          p.windowResized = function () {
-            var container = document.getElementById('nom-title-container');
-            canvasW = container.offsetWidth || 900;
-            p.resizeCanvas(canvasW, canvasH);
-            sampleText();
-          };
+          // textToPoints idêntico ao opção5.html
+          function textToPoints(txt, x, y, size) {
+            var pts = [];
+            var pFont = p.createGraphics(p.width, p.height);
+            pFont.pixelDensity(1);
+            pFont.textFont(font);
+            pFont.textSize(size);
+            pFont.fill(0);
+            pFont.noStroke();
+            pFont.text(txt, x, y);
 
+            for (var i = 0; i < p.width; i += 8) {
+              for (var j = 0; j < p.height; j += 8) {
+                if (pFont.get(i, j)[3] > 128) {
+                  pts.push({ x: i, y: j });
+                }
+              }
+            }
+            pFont.remove();
+            return pts;
+          }
+
+          // Particle idêntico ao opção5.html
           function Particle(x, y) {
             this.origX = x;
             this.origY = y;
             this.x = x;
             this.y = y;
-            this.vx = 0;
-            this.vy = 0;
-            this.r = p.random(2, 5);   /* smaller dots to match text scale */
+            this.velX = 0;
+            this.velY = 0;
+            this.radius = p.random(4, 12);
           }
 
           Particle.prototype.update = function () {
             var d = p.dist(p.mouseX, p.mouseY, this.x, this.y);
-            if (d < 100) {
-              var nv = p.noise(this.x * 0.01, this.y * 0.01, p.frameCount * 0.05);
-              var angle = p.map(nv, 0, 1, 0, p.TWO_PI * 2);
-              var strength = Math.exp(-(d * d) / (2 * 40 * 40)) * 5;
-              this.vx += Math.cos(angle) * strength;
-              this.vy += Math.sin(angle) * strength;
-              var pa = Math.atan2(this.y - p.mouseY, this.x - p.mouseX);
-              this.vx += Math.cos(pa) * strength * 0.4;
-              this.vy += Math.sin(pa) * strength * 0.4;
+
+            if (d < 150) {
+              var noiseForce = p.noise(this.x * 0.01, this.y * 0.01, p.frameCount * 0.05);
+              var angle = p.map(noiseForce, 0, 1, 0, p.TWO_PI * 2);
+              var strength = Math.exp(-Math.pow(d, 2) / (2 * Math.pow(60, 2))) * 8;
+
+              this.velX += Math.cos(angle) * strength;
+              this.velY += Math.sin(angle) * strength;
+
+              var pushAngle = Math.atan2(this.y - p.mouseY, this.x - p.mouseX);
+              this.velX += Math.cos(pushAngle) * (strength * 0.5);
+              this.velY += Math.sin(pushAngle) * (strength * 0.5);
             }
-            this.vx += (this.origX - this.x) * 0.04;
-            this.vy += (this.origY - this.y) * 0.04;
-            this.vx *= 0.90;
-            this.vy *= 0.90;
-            this.x += this.vx;
-            this.y += this.vy;
+
+            this.velX += (this.origX - this.x) * 0.03;
+            this.velY += (this.origY - this.y) * 0.03;
+            this.velX *= 0.92;
+            this.velY *= 0.92;
+
+            this.x += this.velX;
+            this.y += this.velY;
           };
 
           Particle.prototype.show = function () {
-            p.ellipse(this.x, this.y, this.r);
+            p.ellipse(this.x, this.y, this.radius);
           };
+
+          p.windowResized = function () {
+            var container = document.getElementById('nom-title-container');
+            var w = container.offsetWidth || 900;
+            p.resizeCanvas(w, 210);
+            points = [];
+            var textPts = textToPoints(word, 5, 185, fontSize);
+            for (var i = 0; i < textPts.length; i++) {
+              points.push(new Particle(textPts[i].x, textPts[i].y));
+            }
+          };
+
         });
       });
     }
