@@ -197,8 +197,19 @@ body.dark-mode .meta-value {
   width: 100%;
   overflow: hidden;
 }
+.grid-item-cover {
+  width: 100%;
+  overflow: hidden;
+}
 
 .grid-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.grid-item-cover img {
   width: 100%;
   height: 100%;
   object-fit: contain;
