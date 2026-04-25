@@ -78,6 +78,11 @@ body.dark-mode .meta-value {
   color: #fff;
 }
 
+/* Dark mode: invert particles to white */
+body.dark-mode .nom-title-canvas canvas {
+  filter: invert(1);
+}
+
 /* ==================== HERO ==================== */
 
 .project-hero {
@@ -110,7 +115,10 @@ body.dark-mode .meta-value {
   margin-bottom: 1.25em;
 }
 
-.project-title {
+/* ==================== NOM TITLE ==================== */
+
+/* Mobile: regular text title */
+.nom-title-mobile {
   font-family: 'PPMori', sans-serif;
   font-size: 3.5em;
   font-weight: 600;
@@ -119,7 +127,27 @@ body.dark-mode .meta-value {
   letter-spacing: -0.02em;
   width: 100%;
   color: #111;
+  display: none; /* hidden on desktop, shown on mobile via media query */
 }
+
+body.dark-mode .nom-title-mobile {
+  color: #fff;
+}
+
+/* Desktop: p5 particle canvas */
+.nom-title-canvas {
+  width: 100%;
+  height: 245px;
+  margin-bottom: 0.5em;
+  filter: url('#nom-goo');
+  /* Canvas renders transparent bg so the goo effect bleeds correctly */
+}
+
+.nom-title-canvas canvas {
+  display: block;
+}
+
+/* ==================== PROJECT TEXT + META ==================== */
 
 .project-content-grid {
   display: grid;
@@ -210,7 +238,12 @@ body.dark-mode .meta-value {
   height: 680px;
 }
 
-/* Cover override para items específicos */
+/* Default: tall full-width images use contain (no crop) */
+.grid-item.full-width.tall img {
+  object-fit: contain;
+}
+
+/* Cover override for specific items (e.g. gif_revista) */
 .grid-item.full-width.tall.cover img {
   object-fit: cover;
 }
@@ -221,14 +254,6 @@ body.dark-mode .meta-value {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1.25em;
   height: 560px;
-}
-
-/* Three-column row gif */
-.grid-row.three-col-gif {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 1.25em;
-  height: 450px;
 }
 
 .grid-row.three-col .grid-item {
@@ -245,6 +270,69 @@ body.dark-mode .meta-value {
 
 .grid-row.two-col .grid-item {
   height: 100%;
+}
+
+/* ==================== VIDEO FACADE ==================== */
+
+.video-facade {
+  position: relative;
+  cursor: pointer;
+  background: #111;
+}
+
+.video-facade .video-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease, opacity 0.3s ease;
+}
+
+.video-facade:hover .video-thumbnail {
+  transform: scale(1.02);
+  opacity: 0.8;
+}
+
+.video-play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.25s ease, background 0.2s ease;
+  pointer-events: none; /* click handled by parent */
+}
+
+.video-facade:hover .video-play-btn {
+  transform: translate(-50%, -50%) scale(1.12);
+  background: #fff;
+}
+
+.play-icon {
+  font-size: 18px;
+  color: #111;
+  margin-left: 3px; /* optical centering of play triangle */
+  line-height: 1;
+}
+
+.video-label {
+  position: absolute;
+  bottom: 1.25em;
+  left: 1.25em;
+  font-family: 'ABCDiatypeMono', monospace;
+  font-size: 0.5625em;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
 }
 
 /* ==================== FOOTER ==================== */
@@ -359,9 +447,13 @@ footer {
   font-family: 'PPNeueMontreal', sans-serif;
 }
 
-/* ==================== MOBILE ==================== */
+/* ==================== MOBILE — 768px ==================== */
 
 @media (max-width: 768px) {
+  /* Show text title, hide canvas */
+  .nom-title-mobile { display: block; }
+  .nom-title-canvas { display: none !important; }
+
   .project-hero {
     height: 50vh;
     padding: 0 1.25em;
@@ -375,7 +467,7 @@ footer {
     margin-bottom: 1.25em;
   }
 
-  .project-title {
+  .nom-title-mobile {
     font-size: 2.5em;
     margin-bottom: 1em;
   }
@@ -397,15 +489,28 @@ footer {
     gap: 0.75em;
   }
 
+  /* Three-col: 2 columns on tablet, contain so nothing gets cropped */
   .grid-row.three-col {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 0.75em;
     height: auto;
   }
 
   .grid-row.three-col .grid-item {
     height: auto;
-    aspect-ratio: 3/4;
+    aspect-ratio: 1 / 1;
+  }
+
+  /* Third item spans full width when there are 3 in a 2-col grid */
+  .grid-row.three-col .grid-item:last-child {
+    grid-column: span 2;
+    aspect-ratio: 2 / 1;
+  }
+
+  /* All media in three-col: contain (these are logos / GIFs — don't crop) */
+  .grid-row.three-col .grid-item img,
+  .grid-row.three-col .grid-item video {
+    object-fit: contain;
   }
 
   .grid-row.two-col {
@@ -416,22 +521,32 @@ footer {
 
   .grid-row.two-col .grid-item {
     height: auto;
-    aspect-ratio: 3/4;
+    aspect-ratio: 3 / 4;
   }
 
+  /* Full-width: landscape ratio for spreads / gifs */
   .grid-item.full-width {
     height: auto;
-    aspect-ratio: 4/3;
-  }
-
-  .grid-item.full-width.short {
-    height: auto;
-    aspect-ratio: 16/7;
+    aspect-ratio: 4 / 3;
   }
 
   .grid-item.full-width.tall {
     height: auto;
-    aspect-ratio: 3/4;
+    aspect-ratio: 16 / 9;
+  }
+
+  /* Revista gif: portrait, use cover to fill */
+  .grid-item.full-width.tall.cover {
+    aspect-ratio: 3 / 4;
+  }
+
+  .grid-item.full-width.tall.cover img {
+    object-fit: cover;
+  }
+
+  /* Video facade: always 16/9 */
+  .grid-item.youtube-item {
+    aspect-ratio: 16 / 9 !important;
   }
 
   footer {
@@ -448,16 +563,14 @@ footer {
   }
 }
 
-@media (max-width: 480px) {
-  .project-hero {
-    height: 50vh;
-  }
+/* ==================== MOBILE — 480px ==================== */
 
+@media (max-width: 480px) {
   .project-container {
     padding: 1.75em 1.25em 0;
   }
 
-  .project-title {
+  .nom-title-mobile {
     font-size: 2em;
     margin-bottom: 0.75em;
   }
@@ -482,7 +595,20 @@ footer {
     gap: 0.625em;
   }
 
-  .grid-row.three-col,
+  /* Three-col collapses to single column on small phones */
+  .grid-row.three-col {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-row.three-col .grid-item {
+    aspect-ratio: 1 / 1;
+  }
+
+  .grid-row.three-col .grid-item:last-child {
+    grid-column: span 1;
+    aspect-ratio: 1 / 1;
+  }
+
   .grid-row.two-col {
     gap: 0.625em;
   }

@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>nom — marta bello pais de almeida</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="nom.css">
   <link rel="stylesheet" href="search.css">
   <link rel="stylesheet" href="custom-cursor.css">
@@ -12,6 +15,21 @@
   <link rel="stylesheet" href="header.css">
 </head>
 <body>
+
+  <!-- SVG filter for liquid goo effect on particle title -->
+  <svg style="display:none;" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="nom-goo" x="-15%" y="-15%" width="130%" height="130%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
+        <feColorMatrix in="blur" mode="matrix"
+          values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -9"
+          result="goo" />
+        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" result="noise" />
+        <feComposite operator="in" in="noise" in2="goo" result="grainy-goo" />
+        <feBlend in="goo" in2="grainy-goo" mode="multiply" />
+      </filter>
+    </defs>
+  </svg>
 
   <header>
     <div class="header-inner">
@@ -63,14 +81,18 @@
 
   <!-- Hero -->
   <div class="project-hero">
-    <video src="images/04-nom/retícula-moving.mp4" autoplay muted loop playsinline id="hero-media"></video>
+    <video src="images/04-nom/retícula-moving.mp4" autoplay muted loop playsinline id="hero-media"></video>
   </div>
 
   <!-- Project Content -->
   <div class="project-container">
     <div class="project-header">
 
-      <h1 class="project-title">nom.</h1>
+      <!-- Mobile fallback title (text) -->
+      <h1 class="project-title nom-title-mobile">nom.</h1>
+
+      <!-- Desktop: interactive particle title -->
+      <div id="nom-title-container" class="nom-title-canvas" aria-hidden="true"></div>
 
       <div class="project-content-grid">
         <div class="project-description">
@@ -93,12 +115,12 @@
 
           <div class="meta-item">
             <span class="meta-label">Product</span>
-            <span class="meta-value">Unknown</span>
+            <span class="meta-value">Brand Identity<br>Identity System<br>Brand Book</span>
           </div>
 
           <div class="meta-item">
             <span class="meta-label">Services</span>
-            <span class="meta-value">Unknown</span>
+            <span class="meta-value">Branding<br>Typography<br>Motion Design<br>Editorial Design<br>Concept</span>
           </div>
         </div>
       </div>
@@ -108,7 +130,7 @@
     <!-- Photo grid -->
     <div class="photo-grid">
 
-      <!-- Three equal images -->
+      <!-- Three GIF logos -->
       <div class="grid-row three-col">
         <div class="grid-item">
           <img src="images/04-nom/gif_nom1.gif" alt="nom 01" loading="lazy">
@@ -121,41 +143,41 @@
         </div>
       </div>
 
-      <!-- Mapa mental — full width tall -->
+      <!-- Spreads — full width tall -->
       <div class="grid-item full-width tall">
-        <img src="images/04-nom/Spreads.png" alt="Mapa mental" loading="lazy">
+        <img src="images/04-nom/Spreads.png" alt="Spreads" loading="lazy">
       </div>
 
       <div class="grid-row three-col">
         <div class="grid-item">
-          <img src="images/04-nom/Poster.jpeg" alt="nom 01" loading="lazy">
+          <img src="images/04-nom/Poster.jpeg" alt="Poster" loading="lazy">
         </div>
         <div class="grid-item">
-          <img src="images/04-nom/mapa-mental-frame.jpeg" alt="nom 02" loading="lazy">
+          <img src="images/04-nom/mapa-mental-frame.jpeg" alt="Mapa mental" loading="lazy">
         </div>
         <div class="grid-item">
-          <video src="images/04-nom/Flipbook.mp4" autoplay muted loop playsinline id="hero-media"></video>
+          <video src="images/04-nom/Flipbook.mp4" autoplay muted loop playsinline></video>
         </div>
       </div>
 
-      <!-- Revista e loop gif — full width tall -->
+      <!-- Revista gif — full width -->
       <div class="grid-item full-width tall cover">
-        <img src="images/04-nom/gif_revista.gif" alt="Revista e loop gif" loading="lazy">
+        <img src="images/04-nom/gif_revista.gif" alt="Revista gif" loading="lazy">
       </div>
 
-     <!-- Video yt — full width tall -->
-     <div class="grid-item full-width tall">
-      <iframe 
-        src="https://www.youtube.com/embed/BIC-qAActFg" 
-        title="nom — video" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen
-        style="width:100%;height:100%;display:block;">
-      </iframe>
-    </div>
-
-  
+      <!-- Video — click-to-play facade -->
+      <div class="grid-item full-width tall video-facade youtube-item" id="nom-video" role="button" tabindex="0" aria-label="Play nom video">
+        <img
+          src="https://img.youtube.com/vi/BIC-qAActFg/maxresdefault.jpg"
+          alt="nom — ver vídeo"
+          class="video-thumbnail"
+          onerror="this.src='https://img.youtube.com/vi/BIC-qAActFg/hqdefault.jpg'"
+        >
+        <div class="video-play-btn" aria-hidden="true">
+          <span class="play-icon">▶</span>
+        </div>
+        <span class="video-label">VIDEO</span>
+      </div>
 
     </div><!-- /photo-grid -->
   </div><!-- /project-container -->
@@ -189,5 +211,120 @@
   <script src="search.js"></script>
   <script src="custom-cursor.js"></script>
   <script src="project-navigation.js"></script>
+
+  <!-- Video facade handler -->
+  <script>
+    (function () {
+      var facade = document.getElementById('nom-video');
+      if (!facade) return;
+      function activateVideo() {
+        facade.innerHTML =
+          '<iframe src="https://www.youtube.com/embed/BIC-qAActFg?autoplay=1&rel=0&modestbranding=1" ' +
+          'frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen ' +
+          'style="width:100%;height:100%;display:block;border:none;"></iframe>';
+      }
+      facade.addEventListener('click', activateVideo);
+      facade.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') activateVideo();
+      });
+    })();
+  </script>
+
+  <!-- p5.js particle title (desktop only) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+  <script>
+    if (window.innerWidth > 768) {
+      document.fonts.ready.then(function () {
+        new p5(function (p) {
+          var particles = [];
+          var FONT_SIZE = 200;
+          var canvasW, canvasH = 245;
+
+          p.setup = function () {
+            var container = document.getElementById('nom-title-container');
+            canvasW = container.offsetWidth || 900;
+            p.pixelDensity(1);
+            p.createCanvas(canvasW, canvasH).parent('nom-title-container');
+            sampleText();
+          };
+
+          function sampleText() {
+            particles = [];
+            var g = p.createGraphics(canvasW, canvasH);
+            g.pixelDensity(1);
+            g.textFont('Inter');
+            g.textSize(FONT_SIZE);
+            g.textStyle(p.BOLD);
+            g.fill(0);
+            g.noStroke();
+            g.text('nom.', 18, 210);
+            g.loadPixels();
+            var step = Math.max(6, Math.floor(canvasW / 160));
+            for (var px = 0; px < canvasW; px += step) {
+              for (var py = 0; py < canvasH; py += step) {
+                var idx = (py * canvasW + px) * 4;
+                if (g.pixels[idx + 3] > 128) {
+                  particles.push(new Particle(px, py));
+                }
+              }
+            }
+            g.remove();
+          }
+
+          p.draw = function () {
+            p.clear();
+            p.noStroke();
+            p.fill(0);
+            for (var i = 0; i < particles.length; i++) {
+              particles[i].update();
+              particles[i].show();
+            }
+          };
+
+          p.windowResized = function () {
+            var container = document.getElementById('nom-title-container');
+            canvasW = container.offsetWidth || 900;
+            p.resizeCanvas(canvasW, canvasH);
+            sampleText();
+          };
+
+          function Particle(x, y) {
+            this.origX = x;
+            this.origY = y;
+            this.x = x;
+            this.y = y;
+            this.vx = 0;
+            this.vy = 0;
+            this.r = p.random(4, 11);
+          }
+
+          Particle.prototype.update = function () {
+            var d = p.dist(p.mouseX, p.mouseY, this.x, this.y);
+            if (d < 140) {
+              var nv = p.noise(this.x * 0.01, this.y * 0.01, p.frameCount * 0.05);
+              var angle = p.map(nv, 0, 1, 0, p.TWO_PI * 2);
+              var strength = Math.exp(-(d * d) / (2 * 55 * 55)) * 7;
+              this.vx += Math.cos(angle) * strength;
+              this.vy += Math.sin(angle) * strength;
+              var pa = Math.atan2(this.y - p.mouseY, this.x - p.mouseX);
+              this.vx += Math.cos(pa) * strength * 0.4;
+              this.vy += Math.sin(pa) * strength * 0.4;
+            }
+            this.vx += (this.origX - this.x) * 0.03;
+            this.vy += (this.origY - this.y) * 0.03;
+            this.vx *= 0.92;
+            this.vy *= 0.92;
+            this.x += this.vx;
+            this.y += this.vy;
+          };
+
+          Particle.prototype.show = function () {
+            p.ellipse(this.x, this.y, this.r);
+          };
+        });
+      });
+    }
+  </script>
+
 </body>
 </html>
