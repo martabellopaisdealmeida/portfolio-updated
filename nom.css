@@ -188,27 +188,13 @@ body.dark-mode .meta-value {
   overflow: hidden;
 }
 
-.grid-item-three {
-  width: 100%;
-  overflow: hidden;
-}
-
 .grid-item img,
 .grid-item video {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
-
-.grid-item-three img,
-.grid-item-three video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
 
 /* Full-width variants */
 .grid-item.full-width {
