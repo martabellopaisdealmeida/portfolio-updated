@@ -81,7 +81,7 @@
 
   <!-- Hero -->
   <div class="project-hero">
-    <video src="images/04-nom/reticula-moving.mp4" autoplay muted loop playsinline id="hero-media"></video>
+    <video src="images/04-nom/retícula-moving.mp4" autoplay muted loop playsinline id="hero-media"></video>
   </div>
 
   <!-- Project Content -->
@@ -233,7 +233,7 @@
         var font = 'Inter';
         var points = [];
         var word = 'nom.';
-        var fontSize = 150; // menor que os 280 do opção5
+        var fontSize = 95; // menor que os 280 do opção5
 
         new p5(function (p) {
 
@@ -241,13 +241,13 @@
             var container = document.getElementById('nom-title-container');
             var w = container.offsetWidth || 900;
             p.pixelDensity(1);
-            var cnv = p.createCanvas(w, 210);
+            var cnv = p.createCanvas(w, 130);
             cnv.parent('nom-title-container');
 
             p.textFont(font);
             p.textSize(fontSize);
 
-            var textPts = textToPoints(word, 5, 185, fontSize);
+            var textPts = textToPoints(word, 5, 110, fontSize);
             for (var i = 0; i < textPts.length; i++) {
               points.push(new Particle(textPts[i].x, textPts[i].y));
             }
@@ -328,9 +328,9 @@
           p.windowResized = function () {
             var container = document.getElementById('nom-title-container');
             var w = container.offsetWidth || 900;
-            p.resizeCanvas(w, 210);
+            p.resizeCanvas(w, 130);
             points = [];
-            var textPts = textToPoints(word, 5, 185, fontSize);
+            var textPts = textToPoints(word, 5, 110, fontSize);
             for (var i = 0; i < textPts.length; i++) {
               points.push(new Particle(textPts[i].x, textPts[i].y));
             }

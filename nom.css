@@ -132,14 +132,9 @@ body.dark-mode .nom-title-mobile {
 /* Desktop: p5 particle canvas */
 .nom-title-canvas {
   width: 100%;
-  height: 210px;
+  height: 130px;
   margin-bottom: 0.5em;
-  background: #fff;
   filter: url('#liquid-grain');
-}
-
-body.dark-mode .nom-title-canvas {
-  background: #000;
 }
 
 .nom-title-canvas canvas {
