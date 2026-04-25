@@ -78,11 +78,6 @@ body.dark-mode .meta-value {
   color: #fff;
 }
 
-/* Dark mode: invert particles to white */
-body.dark-mode .nom-title-canvas canvas {
-  filter: invert(1);
-}
-
 /* ==================== HERO ==================== */
 
 .project-hero {
@@ -137,18 +132,13 @@ body.dark-mode .nom-title-mobile {
 /* Desktop: p5 particle canvas */
 .nom-title-canvas {
   width: 100%;
-  height: 245px;
+  height: 72px;
   margin-bottom: 0.5em;
-  background: #fff; /* needed: SVG filter uses element background as source */
-  filter: url('#nom-goo');
-}
-
-body.dark-mode .nom-title-canvas {
-  background: #000;
 }
 
 .nom-title-canvas canvas {
   display: block;
+  filter: url('#nom-goo');
 }
 
 /* ==================== PROJECT TEXT + META ==================== */
@@ -442,169 +432,86 @@ footer {
 
 /* ==================== MOBILE — 768px ==================== */
 
+/* ==================== MOBILE — 768px ==================== */
+
 @media (max-width: 768px) {
-  /* Show text title, hide canvas */
-  .nom-title-mobile { display: block !important; }
+
+  /* ---- Title ---- */
+  .nom-title-mobile { display: block !important; font-size: 2.5em; margin-bottom: 1em; }
   .nom-title-canvas { display: none !important; }
 
-  .project-hero {
-    height: 50vh;
-    padding: 0 1.25em;
-  }
+  /* ---- Layout ---- */
+  .project-hero { height: 50vh; padding: 0 1.25em; }
 
-  .project-container {
-    padding: 2em 1.5em 0;
-  }
+  .project-container { padding: 2em 1.5em 0; }
 
-  .project-header {
-    margin-bottom: 1.25em;
-  }
+  .project-header { margin-bottom: 1.25em; }
 
-  .nom-title-mobile {
-    font-size: 2.5em;
-    margin-bottom: 1em;
-  }
+  .project-content-grid { grid-template-columns: 1fr; gap: 2em; }
 
-  .project-content-grid {
-    grid-template-columns: 1fr;
-    gap: 2em;
-  }
+  .project-description { font-size: 0.9375em; }
 
-  .project-description {
-    font-size: 0.9375em;
-  }
+  .project-meta { gap: 1.25em; }
 
-  .project-meta {
-    gap: 1.25em;
-  }
+  /* ---- Photo grid: flatten everything ---- */
 
-  .photo-grid {
-    gap: 0.75em;
-  }
-
-  /* Three-col: 2 columns on tablet, contain so nothing gets cropped */
+  /* All grid rows become vertical stacks */
+  .grid-row,
+  .grid-row.two-col,
   .grid-row.three-col {
-    grid-template-columns: 1fr 1fr;
-    gap: 0.75em;
-    height: auto;
-  }
-
-  .grid-row.three-col .grid-item {
-    height: auto;
-    aspect-ratio: 1 / 1;
-  }
-
-  /* Third item spans full width when there are 3 in a 2-col grid */
-  .grid-row.three-col .grid-item:last-child {
-    grid-column: span 2;
-    aspect-ratio: 2 / 1;
-  }
-
-  /* All media in three-col: contain (these are logos / GIFs — don't crop) */
-  .grid-row.three-col .grid-item img,
-  .grid-row.three-col .grid-item video {
-    object-fit: contain;
-  }
-
-  .grid-row.two-col {
-    grid-template-columns: 1fr 1fr;
-    gap: 0.75em;
-    height: auto;
-  }
-
-  .grid-row.two-col .grid-item {
-    height: auto;
-    aspect-ratio: 3 / 4;
-  }
-
-  /* Full-width: landscape ratio for spreads / gifs */
-  .grid-item.full-width {
-    height: auto;
-    aspect-ratio: 4 / 3;
-  }
-
-  .grid-item.full-width.tall {
-    height: auto;
-    aspect-ratio: 16 / 9;
-  }
-
-  /* Revista gif: portrait, use cover to fill */
-  .grid-item.full-width.tall.cover {
-    aspect-ratio: 3 / 4;
-  }
-
-  .grid-item.full-width.tall.cover img {
-    object-fit: cover;
-  }
-
-  /* Video facade: always 16/9 */
-  .grid-item.youtube-item {
-    aspect-ratio: 16 / 9 !important;
-  }
-
-  footer {
-    padding: 0 1.5em 20px;
-    height: 150px;
-  }
-
-  .footer-center {
-    display: none !important;
-  }
-
-  .footer-center-mobile {
     display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    gap: 0.625em;
   }
+
+  /* All grid items: full width, let content decide height */
+  .grid-item,
+  .grid-row .grid-item {
+    width: 100% !important;
+    height: auto !important;
+    flex: unset !important;
+    aspect-ratio: unset !important;
+  }
+
+  /* All media: natural proportions, no cropping */
+  .grid-item img,
+  .grid-item video {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: unset !important;
+    display: block;
+  }
+
+  /* Full-width containers: auto height too */
+  .grid-item.full-width,
+  .grid-item.full-width.tall,
+  .grid-item.full-width.short {
+    height: auto !important;
+  }
+
+  /* YouTube: fixed 16:9 so it's not a collapsed div */
+  .youtube-item {
+    aspect-ratio: 16 / 9 !important;
+    height: auto !important;
+    min-height: 180px;
+  }
+
+  /* ---- Footer ---- */
+  footer { padding: 0 1.5em 20px; height: 150px; }
+  .footer-center        { display: none !important; }
+  .footer-center-mobile { display: flex !important; }
 }
 
 /* ==================== MOBILE — 480px ==================== */
 
 @media (max-width: 480px) {
-  .project-container {
-    padding: 1.75em 1.25em 0;
-  }
-
-  .nom-title-mobile {
-    font-size: 2em;
-    margin-bottom: 0.75em;
-  }
-
-  .project-content-grid {
-    gap: 2em;
-  }
-
-  .project-description {
-    font-size: 0.875em;
-  }
-
-  .meta-label {
-    font-size: 0.5625em;
-  }
-
-  .meta-value {
-    font-size: 0.6875em;
-  }
-
-  .photo-grid {
-    gap: 0.625em;
-  }
-
-  /* Three-col collapses to single column on small phones */
-  .grid-row.three-col {
-    grid-template-columns: 1fr;
-  }
-
-  .grid-row.three-col .grid-item {
-    aspect-ratio: 1 / 1;
-  }
-
-  .grid-row.three-col .grid-item:last-child {
-    grid-column: span 1;
-    aspect-ratio: 1 / 1;
-  }
-
-  .grid-row.two-col {
-    gap: 0.625em;
-  }
+  .project-container  { padding: 1.75em 1.25em 0; }
+  .nom-title-mobile   { font-size: 2em; margin-bottom: 0.75em; }
+  .project-description { font-size: 0.875em; }
+  .meta-label         { font-size: 0.5625em; }
+  .meta-value         { font-size: 0.6875em; }
+  .photo-grid         { gap: 0.5em; }
 
   footer {
     height: auto;
@@ -623,29 +530,10 @@ footer {
     padding-top: 20px;
   }
 
-  .footer-center {
-    display: none;
-  }
-
-  .footer-center-mobile {
-    display: flex;
-    order: 1;
-    margin-bottom: 40px;
-  }
-
-  .footer-left {
-    order: 3;
-  }
-
-  .footer-right {
-    order: 4;
-    margin-top: 15px;
-    justify-content: center;
-    gap: 30px;
-  }
-
+  .footer-center        { display: none; }
+  .footer-center-mobile { display: flex; order: 1; margin-bottom: 40px; }
+  .footer-left          { order: 3; }
+  .footer-right         { order: 4; margin-top: 15px; justify-content: center; gap: 30px; }
   .footer-left p,
-  .footer-right a {
-    font-size: 12px;
-  }
+  .footer-right a       { font-size: 12px; }
 }
