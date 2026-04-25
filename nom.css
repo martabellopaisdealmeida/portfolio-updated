@@ -223,6 +223,14 @@ body.dark-mode .meta-value {
   height: 560px;
 }
 
+/* Three-column row gif */
+.grid-row.three-col-gif {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.25em;
+  height: 450px;
+}
+
 .grid-row.three-col .grid-item {
   height: 100%;
 }
