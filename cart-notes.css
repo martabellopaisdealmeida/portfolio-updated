@@ -1,9 +1,8 @@
 /* ==================== FONT FACES ==================== */
 
 @font-face {
-  font-family: 'ExposureItalic-50';
-  src: url('fonts/ExposureItalicTrial[-50].otf') format('opentype');
-  font-style: italic;
+  font-family: 'ExposureTrial-60';
+  src: url('fonts/ExposureTrial[-60].otf') format('opentype');
   font-display: block;
 }
 
@@ -115,9 +114,8 @@ body.dark-mode .meta-value {
 }
 
 .project-title {
-  font-family: 'ExposureItalic-50', sans-serif;
+  font-family: 'ExposureTrial-60', sans-serif;
   font-size: 3.5em;
-  font-style: italic;
   font-display: block;
   line-height: 1.1;
   margin-bottom: 0.5em;
