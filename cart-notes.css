@@ -106,7 +106,7 @@ body.dark-mode .meta-value {
 .project-container {
   max-width: 100em;
   margin: 0 auto;
-  padding: 3.75em 5.625em 0;
+  padding: 1em 5.625em 0;
 }
 
 .project-header {
@@ -119,7 +119,7 @@ body.dark-mode .meta-value {
   display: inline-block;
   transform: scaleY(2.07);
   transform-origin: top left;
-  margin-bottom: 2em;
+  margin-bottom: 1.5em;
   color: #111;
 }
 
