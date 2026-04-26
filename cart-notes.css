@@ -116,11 +116,10 @@ body.dark-mode .meta-value {
 .project-title {
   font-family: 'ExposureTrial-60', sans-serif;
   font-size: 3.5em;
-  font-display: block;
-  line-height: 1.1;
-  margin-bottom: 0.5em;
-  letter-spacing: -0.02em;
-  width: 100%;
+  display: inline-block;
+  transform: scaleY(2.07);
+  transform-origin: top left;
+  margin-bottom: 2em;
   color: #111;
 }
 
