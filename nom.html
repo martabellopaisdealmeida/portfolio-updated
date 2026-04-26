@@ -175,12 +175,15 @@
         <img src="images/04-nom/gif_revista.gif" alt="Revista gif" loading="lazy">
       </div>
 
-      <!-- Video — click-to-play facade -->
-      <div class="grid-item full-width tall video-facade youtube-item" id="nom-video" role="button" tabindex="0" aria-label="Play nom video">
-        <div class="video-play-btn" aria-hidden="true">
-          <span class="play-icon">▶</span>
-        </div>
-        <span class="video-label">nom. — ver vídeo</span>
+      <!-- YouTube embed -->
+      <div class="grid-item full-width tall youtube-item">
+        <iframe
+          src="https://www.youtube.com/embed/BIC-qAActFg?rel=0&modestbranding=1"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="width:100%;height:100%;display:block;border:none;">
+        </iframe>
       </div>
 
     </div><!-- /photo-grid -->
@@ -215,24 +218,6 @@
   <script src="search.js"></script>
   <script src="custom-cursor.js"></script>
   <script src="project-navigation.js"></script>
-
-  <!-- Video facade handler -->
-  <script>
-    (function () {
-      var facade = document.getElementById('nom-video');
-      if (!facade) return;
-      function activateVideo() {
-        facade.innerHTML =
-          '<iframe src="https://www.youtube.com/embed/BIC-qAActFg?autoplay=1&rel=0&modestbranding=1" ' +
-          'frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen ' +
-          'style="width:100%;height:100%;display:block;border:none;"></iframe>';
-      }
-      facade.addEventListener('click', activateVideo);
-      facade.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') activateVideo();
-      });
-    })();
-  </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
   <script>
