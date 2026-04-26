@@ -16,7 +16,7 @@
 </head>
 <body>
 
-  <!-- SVG filter: identical to opção5.html liquid-grain -->
+  <!-- SVG filters -->
   <svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
     <defs>
       <filter id="liquid-grain">
@@ -25,6 +25,16 @@
           values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
           result="goo" />
         <feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" result="noise" />
+        <feComposite operator="in" in="noise" in2="goo" result="grainy-goo" />
+        <feBlend in="goo" in2="grainy-goo" mode="multiply" />
+      </filter>
+      <!-- Filtro mais suave para o título pequeno: blur menor, partículas sobrevivem -->
+      <filter id="liquid-grain-nom">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur" />
+        <feColorMatrix in="blur" mode="matrix"
+          values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -9"
+          result="goo" />
+        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" result="noise" />
         <feComposite operator="in" in="noise" in2="goo" result="grainy-goo" />
         <feBlend in="goo" in2="grainy-goo" mode="multiply" />
       </filter>
@@ -226,14 +236,15 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
   <script>
-    // Segue opção5.html fielmente — mesma física, mesmo textToPoints, só menor
     if (window.innerWidth > 768) {
       document.fonts.ready.then(function () {
 
         var font = 'Inter';
         var points = [];
         var word = 'nom.';
-        var fontSize = 95; // menor que os 280 do opção5
+        var CANVAS_H = 160;
+        var fontSize = 115; // maior → letras mais definidas
+        var GRID_STEP = 5;  // mais denso → mais partículas → mais legível
 
         new p5(function (p) {
 
@@ -241,17 +252,19 @@
             var container = document.getElementById('nom-title-container');
             var w = container.offsetWidth || 900;
             p.pixelDensity(1);
-            var cnv = p.createCanvas(w, 130);
+            var cnv = p.createCanvas(w, CANVAS_H);
             cnv.parent('nom-title-container');
+            buildPoints();
+          };
 
-            p.textFont(font);
-            p.textSize(fontSize);
-
-            var textPts = textToPoints(word, 5, 110, fontSize);
+          function buildPoints() {
+            points = [];
+            var yPos = Math.round(CANVAS_H * 0.82);
+            var textPts = textToPoints(word, 5, yPos, fontSize);
             for (var i = 0; i < textPts.length; i++) {
               points.push(new Particle(textPts[i].x, textPts[i].y));
             }
-          };
+          }
 
           p.draw = function () {
             p.clear();
@@ -263,7 +276,6 @@
             }
           };
 
-          // textToPoints idêntico ao opção5.html
           function textToPoints(txt, x, y, size) {
             var pts = [];
             var pFont = p.createGraphics(p.width, p.height);
@@ -274,8 +286,8 @@
             pFont.noStroke();
             pFont.text(txt, x, y);
 
-            for (var i = 0; i < p.width; i += 8) {
-              for (var j = 0; j < p.height; j += 8) {
+            for (var i = 0; i < p.width; i += GRID_STEP) {
+              for (var j = 0; j < p.height; j += GRID_STEP) {
                 if (pFont.get(i, j)[3] > 128) {
                   pts.push({ x: i, y: j });
                 }
@@ -285,7 +297,6 @@
             return pts;
           }
 
-          // Particle idêntico ao opção5.html
           function Particle(x, y) {
             this.origX = x;
             this.origY = y;
@@ -293,7 +304,8 @@
             this.y = y;
             this.velX = 0;
             this.velY = 0;
-            this.radius = p.random(4, 12);
+            // Raio proporcional ao tamanho real (115/280 ≈ 0.41 × 4–12 = 1.8–5)
+            this.radius = p.random(2, 5);
           }
 
           Particle.prototype.update = function () {
@@ -328,12 +340,8 @@
           p.windowResized = function () {
             var container = document.getElementById('nom-title-container');
             var w = container.offsetWidth || 900;
-            p.resizeCanvas(w, 130);
-            points = [];
-            var textPts = textToPoints(word, 5, 110, fontSize);
-            for (var i = 0; i < textPts.length; i++) {
-              points.push(new Particle(textPts[i].x, textPts[i].y));
-            }
+            p.resizeCanvas(w, CANVAS_H);
+            buildPoints();
           };
 
         });
