@@ -431,7 +431,7 @@ footer {
   }
 
   .grid-row.four-col {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       height: auto;
       gap: 0.75em;
     }
