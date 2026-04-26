@@ -1,18 +1,6 @@
 /* ==================== FONT FACES ==================== */
 
 @font-face {
-  font-family: 'PPMori';
-  src: url('fonts/PPMori-Regular.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'PPMori';
-  src: url('fonts/PPMori-SemiBold.otf') format('opentype');
-  font-weight: 600;
-  font-style: normal;
-}
-@font-face {
   font-family: 'ExposureItalic-50';
   src: url('fonts/ExposureItalicTrial[-50].otf') format('opentype');
   font-style: italic;
