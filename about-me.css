@@ -1,440 +1,450 @@
 /* ==================== FONT FACES ==================== */
 
 @font-face {
-    font-family: 'PPMori';
-    src: url('fonts/PPMori-Regular.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'PPMori';
-    src: url('fonts/PPMori-SemiBold.otf') format('opentype');
-    font-weight: 600;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'MarundTrialCurved';
-    src: url('fonts/26A1MarundTrial-3022Curved.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'ABCDiatypeMono';
-    src: url('fonts/ABCDiatypeSemi-MonoVariable-Trial.ttf') format('truetype');
-    font-weight: 100 900;
-    font-style: normal italic;
-  }
-  
-  /* ==================== GLOBAL ==================== */
-  
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'PPMori', sans-serif;
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-  }
-  
-  body {
-    background-color: #ffffff;
-    color: #333;
-    overflow-x: hidden;
-    font-size: 16px;
-  }
-  
-  /* ==================== DARK MODE ==================== */
-  
-  body.dark-mode {
-    background-color: #000;
-    color: #fff;
-  }
-  
-  body.dark-mode .footer-left p,
-  body.dark-mode .footer-right a {
-    color: #fff;
-  }
-  
-  body.dark-mode .footer-line,
-  body.dark-mode .footer-line-mobile {
-    background-color: #fff;
-  }
-  
-  body.dark-mode .get-in-text-top,
-  body.dark-mode .get-in-text-bottom,
-  body.dark-mode .get-in-text-top-mobile,
-  body.dark-mode .get-in-text-bottom-mobile {
-    color: #fff;
-  }
-  
-  body.dark-mode .hero-section h1 {
-    color: #fff;
-  }
-  
-  body.dark-mode .bio-content p {
-    color: #ccc;
-  }
-  
-  body.dark-mode .press-section h2 {
-    color: #fff;
-  }
-  
-  body.dark-mode .press-source,
-  body.dark-mode .press-title,
-  body.dark-mode .press-year {
-    color: #ccc;
-  }
-  
-  body.dark-mode .press-item {
-    border-bottom-color: #222;
-  }
-  
-  /* ==================== HERO SECTION ==================== */
-  
+  font-family: 'PPMori';
+  src: url('fonts/PPMori-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'PPMori';
+  src: url('fonts/PPMori-SemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MarundTrialCurved';
+  src: url('fonts/26A1MarundTrial-3022Curved.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ABCDiatypeMono';
+  src: url('fonts/ABCDiatypeSemi-MonoVariable-Trial.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal italic;
+}
+
+/* ==================== GLOBAL ==================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'PPMori', sans-serif;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+body {
+  background-color: #ffffff;
+  color: #333;
+  overflow-x: hidden;
+  font-size: 16px;
+}
+
+/* ==================== DARK MODE ==================== */
+
+body.dark-mode {
+  background-color: #000;
+  color: #fff;
+}
+
+body.dark-mode .footer-left p,
+body.dark-mode .footer-right a {
+  color: #fff;
+}
+
+body.dark-mode .footer-line,
+body.dark-mode .footer-line-mobile {
+  background-color: #fff;
+}
+
+body.dark-mode .get-in-text-top,
+body.dark-mode .get-in-text-bottom,
+body.dark-mode .get-in-text-top-mobile,
+body.dark-mode .get-in-text-bottom-mobile {
+  color: #fff;
+}
+
+body.dark-mode .hero-section h1 {
+  color: #fff;
+}
+
+body.dark-mode .bio-content p {
+  color: #ccc;
+}
+
+body.dark-mode .press-section h2 {
+  color: #fff;
+}
+
+body.dark-mode .press-source,
+body.dark-mode .press-year {
+  color: #666;
+}
+
+body.dark-mode .press-title {
+  color: #ccc;
+}
+
+body.dark-mode .press-item {
+  border-bottom-color: #222;
+  color: #ccc;
+}
+
+/* ==================== HERO SECTION ==================== */
+
+.hero-section {
+  padding: 5em 5.625em 4em;
+}
+
+.hero-section h1 {
+  font-family: 'PPMori', sans-serif;
+  font-size: 2.25em;
+  font-weight: normal;
+  line-height: 1.25;
+  color: #111;
+  max-width: 100%;
+}
+
+/* ==================== BIO SECTION ==================== */
+
+.main-bio-section {
+  padding: 0 5.625em 7.5em;
+}
+
+.bio-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.75em;
+  align-items: flex-start;
+}
+
+.bio-image {
+  width: 100%;
+  overflow: hidden;
+  background-color: #e0e0e0;
+  height: 600px;
+}
+
+.bio-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.bio-content p {
+  font-family: 'MarundTrialCurved', sans-serif;
+  font-size: 0.9375em;
+  line-height: 1.65;
+  color: #333;
+  margin-bottom: 1.5em;
+}
+
+.bio-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* ==================== PRESS SECTION ==================== */
+
+.press-section {
+  padding: 0 5.625em 7.5em;
+}
+
+.press-section h2 {
+  font-family: 'ABCDiatypeMono', monospace;
+  font-size: 0.625em;
+  font-weight: 300;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 2em;
+}
+
+.press-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.press-item {
+  display: grid;
+  grid-template-columns: 1fr 60px;
+  gap: 2.5em;
+  align-items: center;
+  padding: 0.875em 0;
+  border-bottom: 1px solid #e0e0e0;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease;
+}
+
+.press-item:first-child {
+  border-top: 1px solid #e0e0e0;
+}
+
+.press-item:hover {
+  transform: translateX(0.5em);
+}
+
+.press-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+}
+
+.press-source {
+  font-family: 'ABCDiatypeMono', monospace;
+  font-size: 0.625em;
+  font-weight: 300;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.press-title {
+  font-family: 'MarundTrialCurved', sans-serif;
+  font-size: 0.875em;
+  color: #333;
+  line-height: 1.4;
+}
+
+.press-year {
+  font-family: 'ABCDiatypeMono', monospace;
+  font-size: 0.625em;
+  font-weight: 300;
+  color: #999;
+  text-align: right;
+  letter-spacing: 0.03em;
+}
+
+/* ==================== FOOTER ==================== */
+
+footer {
+  position: relative;
+  height: 200px;
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 2.5em 1.875em;
+}
+
+.interactive-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+.footer-left p {
+  color: #333;
+  font-size: 0.875em;
+  font-weight: normal;
+  margin: 0;
+  font-family: 'ABCDiatypeMono', monospace;
+}
+
+.footer-right {
+  display: flex;
+  gap: 1.5em;
+}
+
+.footer-right a {
+  color: #333;
+  text-decoration: none;
+  font-size: 0.875em;
+  font-weight: normal;
+  transition: opacity 0.2s ease;
+  font-family: 'ABCDiatypeMono', monospace;
+}
+
+.footer-right a:hover {
+  opacity: 0.7;
+}
+
+.footer-center {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9375em;
+  text-decoration: none;
+  color: inherit;
+  padding: 1.25em 0;
+}
+
+.footer-line {
+  width: 31.25em;
+  height: 0.3125em;
+  background-color: #333;
+  transition: all 0.2s ease;
+}
+
+.get-in-text-top,
+.get-in-text-bottom {
+  font-size: 4em;
+  font-weight: normal;
+  color: #333;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+  line-height: 1.2;
+  font-family: 'PPNeueMontreal', sans-serif;
+  padding: 0.3125em 0;
+}
+
+.footer-center:hover .get-in-text-top,
+.footer-center:hover .get-in-text-bottom {
+  opacity: 1;
+}
+
+.footer-center:hover .footer-line {
+  width: 32.5em;
+}
+
+.footer-center-mobile {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9375em;
+  width: 100%;
+  margin-bottom: 1.875em;
+  text-decoration: none;
+  color: #333;
+}
+
+.footer-line-mobile {
+  width: 15.625em;
+  height: 0.1875em;
+  background-color: #333;
+}
+
+.get-in-text-top-mobile,
+.get-in-text-bottom-mobile {
+  font-size: 2.5em;
+  font-weight: normal;
+  color: #333;
+  line-height: 1.2;
+  font-family: 'PPNeueMontreal', sans-serif;
+  padding: 0.3125em 0;
+}
+
+/* ==================== MOBILE ==================== */
+
+@media (max-width: 768px) {
   .hero-section {
-    padding: 5em 5.625em 4em;
+    padding: 3em 1.5em 2.5em;
   }
-  
+
   .hero-section h1 {
-    font-family: 'PPMori', sans-serif;
-    font-size: 2.25em;
-    font-weight: normal;
-    line-height: 1.25;
-    color: #111;
-    max-width: 100%;
+    font-size: 1.5em;
   }
-  
-  /* ==================== BIO SECTION ==================== */
-  
+
   .main-bio-section {
-    padding: 0 5.625em 7.5em;
+    padding: 0 1.5em 4em;
   }
-  
+
   .bio-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3.75em;
-    align-items: flex-start;
+    grid-template-columns: 1fr;
+    gap: 2em;
   }
-  
+
   .bio-image {
-    width: 100%;
-    aspect-ratio: 3 / 4;
-    overflow: hidden;
-    background-color: #e0e0e0;
-   height: 600px;
+    aspect-ratio: 4 / 3;
   }
-  
-  .bio-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+
+  .press-section {
+    padding: 0 1.5em 4em;
+  }
+
+  .press-item {
+    grid-template-columns: 1fr;
+    gap: 0.25em;
+    padding: 1em 0;
+  }
+
+  .press-year {
+    text-align: left;
+  }
+
+  footer {
+    padding: 0 1.5em 1.25em;
+    height: 150px;
+  }
+
+  .footer-center {
+    display: none !important;
+  }
+
+  .footer-center-mobile {
+    display: flex !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding: 2em 1.25em 2em;
+  }
+
+  .hero-section h1 {
+    font-size: 1.25em;
+  }
+
+  .main-bio-section,
+  .press-section {
+    padding-left: 1.25em;
+    padding-right: 1.25em;
+  }
+
+  footer {
+    height: auto;
+    min-height: 15.625em;
+    padding: 3.75em 1.25em 1.25em;
     display: block;
   }
-  
-  .bio-content p {
-    font-family: 'MarundTrialCurved', sans-serif;
-    font-size: 0.9375em;
-    line-height: 1.65;
-    color: #333;
-    margin-bottom: 1.5em;
-  }
-  
-  .bio-content p:last-child {
-    margin-bottom: 0;
-  }
-  
-  /* ==================== PRESS SECTION ==================== */
-  
-  .press-section {
-    padding: 0 5.625em 7.5em;
-  }
-  
-  .press-section h2 {
-    font-family: 'ABCDiatypeMono', monospace;
-    font-size: 0.625em;
-    font-weight: 300;
-    color: #999;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 2em;
-  }
-  
-  .press-list {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .press-item {
-    display: grid;
-    grid-template-columns: 220px 1fr 60px;
-    gap: 2.5em;
-    align-items: baseline;
-    padding: 0.875em 0;
-    border-bottom: 1px solid #e0e0e0;
-    transition: transform 0.2s ease;
-    cursor: default;
-  }
-  
-  .press-item:first-child {
-    border-top: 1px solid #e0e0e0;
-  }
-  
-  .press-item:hover {
-    transform: translateX(0.5em);
-  }
-  
-  .press-source {
-    font-family: 'ABCDiatypeMono', monospace;
-    font-size: 0.625em;
-    font-weight: 300;
-    color: #333;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-  }
-  
-  .press-title {
-    font-family: 'MarundTrialCurved', sans-serif;
-    font-size: 0.875em;
-    color: #333;
-    line-height: 1.4;
-  }
-  
-  .press-year {
-    font-family: 'ABCDiatypeMono', monospace;
-    font-size: 0.625em;
-    font-weight: 300;
-    color: #999;
-    text-align: right;
-    letter-spacing: 0.03em;
-  }
-  
-  /* ==================== FOOTER ==================== */
-  
-  footer {
-    position: relative;
-    height: 200px;
-    z-index: 1000;
-    display: flex;
-    align-items: flex-end;
-    padding: 0 2.5em 1.875em;
-  }
-  
+
   .interactive-footer {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    width: 100%;
-    position: relative;
+    text-align: center;
+    gap: 0;
+    justify-content: center;
+    padding-top: 1.25em;
   }
-  
-  .footer-left p {
-    color: #333;
-    font-size: 0.875em;
-    font-weight: normal;
-    margin: 0;
-    font-family: 'ABCDiatypeMono', monospace;
-  }
-  
-  .footer-right {
-    display: flex;
-    gap: 1.5em;
-  }
-  
-  .footer-right a {
-    color: #333;
-    text-decoration: none;
-    font-size: 0.875em;
-    font-weight: normal;
-    transition: opacity 0.2s ease;
-    font-family: 'ABCDiatypeMono', monospace;
-  }
-  
-  .footer-right a:hover {
-    opacity: 0.7;
-  }
-  
+
   .footer-center {
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.9375em;
-    text-decoration: none;
-    color: inherit;
-    padding: 1.25em 0;
-  }
-  
-  .footer-line {
-    width: 31.25em;
-    height: 0.3125em;
-    background-color: #333;
-    transition: all 0.2s ease;
-  }
-  
-  .get-in-text-top,
-  .get-in-text-bottom {
-    font-size: 4em;
-    font-weight: normal;
-    color: #333;
-    opacity: 0;
-    transition: opacity 0.2s ease;
-    pointer-events: none;
-    line-height: 1.2;
-    font-family: 'PPNeueMontreal', sans-serif;
-    padding: 0.3125em 0;
-  }
-  
-  .footer-center:hover .get-in-text-top,
-  .footer-center:hover .get-in-text-bottom {
-    opacity: 1;
-  }
-  
-  .footer-center:hover .footer-line {
-    width: 32.5em;
-  }
-  
-  .footer-center-mobile {
     display: none;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.9375em;
-    width: 100%;
-    margin-bottom: 1.875em;
-    text-decoration: none;
-    color: #333;
   }
-  
-  .footer-line-mobile {
-    width: 15.625em;
-    height: 0.1875em;
-    background-color: #333;
+
+  .footer-center-mobile {
+    display: flex;
+    order: 1;
+    margin-bottom: 2.5em;
   }
-  
-  .get-in-text-top-mobile,
-  .get-in-text-bottom-mobile {
-    font-size: 2.5em;
-    font-weight: normal;
-    color: #333;
-    line-height: 1.2;
-    font-family: 'PPNeueMontreal', sans-serif;
-    padding: 0.3125em 0;
+
+  .footer-left {
+    order: 3;
   }
-  
-  /* ==================== MOBILE ==================== */
-  
-  @media (max-width: 768px) {
-    .hero-section {
-      padding: 3em 1.5em 2.5em;
-    }
-  
-    .hero-section h1 {
-      font-size: 1.5em;
-    }
-  
-    .main-bio-section {
-      padding: 0 1.5em 4em;
-    }
-  
-    .bio-layout {
-      grid-template-columns: 1fr;
-      gap: 2em;
-    }
-  
-    .bio-image {
-      aspect-ratio: 4 / 3;
-    }
-  
-    .press-section {
-      padding: 0 1.5em 4em;
-    }
-  
-    .press-item {
-      grid-template-columns: 1fr;
-      gap: 0.25em;
-      padding: 1em 0;
-    }
-  
-    .press-year {
-      text-align: left;
-    }
-  
-    footer {
-      padding: 0 1.5em 1.25em;
-      height: 150px;
-    }
-  
-    .footer-center {
-      display: none !important;
-    }
-  
-    .footer-center-mobile {
-      display: flex !important;
-    }
+
+  .footer-right {
+    order: 4;
+    margin-top: 0.9375em;
+    justify-content: center;
+    gap: 1.875em;
   }
-  
-  @media (max-width: 480px) {
-    .hero-section {
-      padding: 2em 1.25em 2em;
-    }
-  
-    .hero-section h1 {
-      font-size: 1.25em;
-    }
-  
-    .main-bio-section,
-    .press-section {
-      padding-left: 1.25em;
-      padding-right: 1.25em;
-    }
-  
-    footer {
-      height: auto;
-      min-height: 15.625em;
-      padding: 3.75em 1.25em 1.25em;
-      display: block;
-    }
-  
-    .interactive-footer {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 0;
-      justify-content: center;
-      padding-top: 1.25em;
-    }
-  
-    .footer-center {
-      display: none;
-    }
-  
-    .footer-center-mobile {
-      display: flex;
-      order: 1;
-      margin-bottom: 2.5em;
-    }
-  
-    .footer-left {
-      order: 3;
-    }
-  
-    .footer-right {
-      order: 4;
-      margin-top: 0.9375em;
-      justify-content: center;
-      gap: 1.875em;
-    }
-  
-    .footer-left p,
-    .footer-right a {
-      font-size: 0.75em;
-    }
-  } 
+
+  .footer-left p,
+  .footer-right a {
+    font-size: 0.75em;
+  }
+}
