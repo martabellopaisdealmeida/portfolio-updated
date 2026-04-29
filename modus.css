@@ -131,7 +131,6 @@
   
   .project-hero {
     width: 100%;
-    /* height: 100vh; */
     overflow: hidden;
     position: relative;
     max-width: 100em;
@@ -142,12 +141,17 @@
   .project-hero img,
   .project-hero video {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
     display: block;
   }
   
   /* ==================== PROJECT CONTENT ==================== */
+
+  /* Spacing scale used throughout:
+     — 1.25em  (20px) : gap between image grid items
+     — 3.75em  (60px) : section spacing (padding-top, section margins)
+     — 5.625em (90px) : horizontal page padding
+  */
   
   .project-container {
     max-width: 100em;
@@ -156,10 +160,10 @@
   }
   
   .project-header {
-    margin-bottom: 1.25em;
+    margin-bottom: 3.75em; /* matches container padding-top */
   }
   
-  /* MODUS title — bold black sans, no colour accent */
+  /* MODUS title */
   .project-title {
     font-family: 'ABCDiatypeMono', monospace;
     font-size: 5em;
@@ -229,7 +233,7 @@
     display: flex;
     flex-direction: column;
     gap: 1.25em;
-    margin-bottom: 1.25em;
+    margin-bottom: 3.75em; /* matches section spacing */
   }
   
   .grid-item {
@@ -244,7 +248,6 @@
     display: block;
   }
   
-  /* Full-width tall */
   .grid-item.full-width {
     width: 100%;
   }
@@ -253,18 +256,18 @@
     height: 800px;
   }
   
-  /* Two-column rows */
   .grid-row.two-col {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.25em;
-    /* height: 560px; */
   }
+
   .grid-row.three-col {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 1.25em;
   }
+
   .grid-row.two-col .grid-item {
     height: 100%;
   }
@@ -392,6 +395,10 @@
     .project-container {
       padding: 2em 1.5em 0;
     }
+
+    .project-header {
+      margin-bottom: 2em;
+    }
   
     .project-title {
       font-size: 3.5em;
@@ -413,6 +420,7 @@
   
     .photo-grid {
       gap: 0.75em;
+      margin-bottom: 2em;
     }
   
     .grid-item.full-width.tall {
@@ -453,6 +461,10 @@
     .project-container {
       padding: 1.75em 1.25em 0;
     }
+
+    .project-header {
+      margin-bottom: 1.75em;
+    }
   
     .project-title {
       font-size: 2.5em;
@@ -473,6 +485,7 @@
   
     .photo-grid {
       gap: 0.625em;
+      margin-bottom: 1.75em;
     }
   
     .grid-row.two-col {
