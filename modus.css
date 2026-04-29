@@ -420,7 +420,7 @@
   
   @media (max-width: 480px) {
     .project-hero {
-      height: 50vh;
+      height: 25vh;
     }
   
     .project-container {
