@@ -260,7 +260,11 @@
     gap: 1.25em;
     /* height: 560px; */
   }
-  
+  .grid-row.three-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.25em;
+  }
   .grid-row.two-col .grid-item {
     height: 100%;
   }
