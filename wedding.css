@@ -1,4 +1,5 @@
 /* ==================== FONT FACES ==================== */
+
 @font-face {
   font-family: 'ExposureItalic-100';
   src: url('fonts/ExposureItalicTrial[-100].otf') format('opentype');
@@ -73,6 +74,7 @@
 }
 
 /* ==================== GLOBAL ==================== */
+
 * {
   margin: 0;
   padding: 0;
@@ -92,6 +94,7 @@ body {
 }
 
 /* ==================== DARK MODE ==================== */
+
 body.dark-mode {
   background-color: #000;
   color: #fff;
@@ -120,7 +123,13 @@ body.dark-mode .meta-value {
   color: #fff;
 }
 
+/* Inverte a SVG em dark mode — remove se o teu SVG já tiver cores próprias */
+body.dark-mode .project-title img {
+  filter: invert(1);
+}
+
 /* ==================== HERO ==================== */
+
 .project-hero {
   width: 100%;
   height: 100vh;
@@ -140,6 +149,7 @@ body.dark-mode .meta-value {
 }
 
 /* ==================== PROJECT CONTENT ==================== */
+
 .project-container {
   max-width: 100em;
   margin: 0 auto;
@@ -150,46 +160,26 @@ body.dark-mode .meta-value {
   margin-bottom: 1.25em;
 }
 
-/* Title — SVG logo container */
+/* ---- Título: SVG logo ---- */
 .project-title {
   width: 100%;
-  margin-bottom: 0.75em;
+  margin-bottom: 1.5em;
+  /* Compensa o espaço interno da SVG à esquerda (ajusta se necessário) */
+  margin-left: -0.15em;
 }
 
 .project-title img {
   display: block;
   width: auto;
-  max-width: 100%;
+  max-width: 60%; /* evita que ocupe a página toda; ajusta ao teu gosto */
   height: auto;
-  /* SVG inherits page background — invert in dark mode */
 }
 
-body.dark-mode .project-title img {
-  filter: invert(1);
-}
-
+/* ---- Grelha descrição + meta ---- */
 .project-content-grid {
   display: grid;
   grid-template-columns: 1.8fr 1fr;
   gap: 7.5em;
-  row-gap: 2em; /* espaço entre título e colunas abaixo */
-}
-
-.project-title {
-  grid-column: 1 / -1; /* ocupa as duas colunas */
-  width: 100%;
-  margin-bottom: 0;
-}
-
-.project-title img {
-  display: block;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-}
-
-body.dark-mode .project-title img {
-  filter: invert(1);
 }
 
 .project-description {
@@ -208,6 +198,7 @@ body.dark-mode .project-title img {
 .project-description em     { font-style: italic; }
 
 /* ==================== META ==================== */
+
 .project-meta {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -239,6 +230,7 @@ body.dark-mode .project-title img {
 }
 
 /* ==================== PHOTO GRID ==================== */
+
 .photo-grid {
   display: flex;
   flex-direction: column;
@@ -258,13 +250,11 @@ body.dark-mode .project-title img {
   display: block;
 }
 
-/* Full-width item */
 .grid-item.full-width {
   width: 100%;
   height: 680px;
 }
 
-/* Three-column row */
 .grid-row.three-col {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -276,7 +266,6 @@ body.dark-mode .project-title img {
   height: 100%;
 }
 
-/* Two-column row */
 .grid-row.two-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -289,6 +278,7 @@ body.dark-mode .project-title img {
 }
 
 /* ==================== FOOTER ==================== */
+
 footer {
   position: relative;
   height: 200px;
@@ -400,6 +390,7 @@ footer {
 }
 
 /* ==================== MOBILE ==================== */
+
 @media (max-width: 768px) {
   .project-hero {
     height: 50vh;
@@ -412,6 +403,15 @@ footer {
 
   .project-header {
     margin-bottom: 1.25em;
+  }
+
+  .project-title {
+    margin-bottom: 1.25em;
+    margin-left: 0;
+  }
+
+  .project-title img {
+    max-width: 80%;
   }
 
   .project-content-grid {
@@ -479,6 +479,10 @@ footer {
 
   .project-container {
     padding: 1.75em 1.25em 0;
+  }
+
+  .project-title img {
+    max-width: 100%;
   }
 
   .project-content-grid {
