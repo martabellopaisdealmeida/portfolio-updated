@@ -153,7 +153,7 @@ body.dark-mode .project-title img {
 .project-container {
   max-width: 100em;
   margin: 0 auto;
-  padding: 3.75em 5.625em 0;
+  padding: 2.75em 5.625em 0;
 }
 
 .project-header {
@@ -171,7 +171,7 @@ body.dark-mode .project-title img {
 .project-title img {
   display: block;
   width: auto;
-  max-width: 60%; /* evita que ocupe a página toda; ajusta ao teu gosto */
+  max-width: 25%; /* evita que ocupe a página toda; ajusta ao teu gosto */
   height: auto;
 }
 
