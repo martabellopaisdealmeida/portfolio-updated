@@ -123,7 +123,6 @@ body.dark-mode .meta-value {
   color: #fff;
 }
 
-/* Inverte a SVG em dark mode — remove se o teu SVG já tiver cores próprias */
 body.dark-mode .project-title img {
   filter: invert(1);
 }
@@ -164,14 +163,13 @@ body.dark-mode .project-title img {
 .project-title {
   width: 100%;
   margin-bottom: 1.5em;
-  /* Compensa o espaço interno da SVG à esquerda (ajusta se necessário) */
   margin-left: -0.15em;
 }
 
 .project-title img {
   display: block;
   width: auto;
-  max-width: 25%; /* evita que ocupe a página toda; ajusta ao teu gosto */
+  max-width: 25%;
   height: auto;
 }
 
@@ -250,17 +248,28 @@ body.dark-mode .project-title img {
   display: block;
 }
 
+/* Full-width — uma imagem */
+.grid-item.full-width {
+  width: 100%;
+  height: 680px;
+}
+
+/* Full-width — duas imagens lado a lado, irregulares */
 .grid-item.full-width.two-img {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.25em;
+  height: 680px;
 }
 
 .grid-item.full-width.two-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
+
+/* Three-column row */
 .grid-row.three-col {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -272,6 +281,7 @@ body.dark-mode .project-title img {
   height: 100%;
 }
 
+/* Two-column row */
 .grid-row.two-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -442,6 +452,17 @@ footer {
     aspect-ratio: 4/3;
   }
 
+  .grid-item.full-width.two-img {
+    height: auto;
+    aspect-ratio: unset;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .grid-item.full-width.two-img img {
+    aspect-ratio: 4/3;
+    height: auto;
+  }
+
   .grid-row.three-col {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 0.5em;
@@ -509,6 +530,15 @@ footer {
 
   .photo-grid {
     gap: 0.625em;
+  }
+
+  .grid-item.full-width.two-img {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .grid-item.full-width.two-img img {
+    aspect-ratio: 4/3;
   }
 
   .grid-row.three-col {
