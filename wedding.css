@@ -172,6 +172,24 @@ body.dark-mode .project-title img {
   display: grid;
   grid-template-columns: 1.8fr 1fr;
   gap: 7.5em;
+  row-gap: 2em; /* espaço entre título e colunas abaixo */
+}
+
+.project-title {
+  grid-column: 1 / -1; /* ocupa as duas colunas */
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.project-title img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+}
+
+body.dark-mode .project-title img {
+  filter: invert(1);
 }
 
 .project-description {
