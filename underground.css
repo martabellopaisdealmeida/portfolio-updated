@@ -210,10 +210,6 @@
     height: 680px;
   }
 
-  .grid-item.full-width video{
-    width: 100%;
-    height: 680px;
-  }
   
   /* Two-column row */
   .grid-row.two-col {
