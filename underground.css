@@ -211,6 +211,14 @@
   .grid-item.full-width-medium {
     height: 560px;
   }
+
+  .grid-row.two-col .grid-item:first-child img {
+    object-position: center top;
+  }
+  
+  .grid-row.two-col .grid-item:last-child img {
+    object-position: center center;
+  }
   
   /* Two-column row */
   .grid-row.two-col {
