@@ -218,7 +218,7 @@
   }
   
   .grid-row.two-col .grid-item:last-child img {
-    object-position: center center;
+    object-position: -9px 0px;
   }
   
   /* Two-column row */
