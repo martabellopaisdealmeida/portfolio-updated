@@ -128,7 +128,7 @@
     margin-bottom: 0.5em;
   }
 
-  
+
   .project-content-grid {
     display: grid;
     grid-template-columns: 1.8fr 1fr;
@@ -232,7 +232,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.25em;
-    height: 560px;
+    /* height: 560px; */
   }
   
   .grid-row.two-col .grid-item {
