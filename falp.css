@@ -209,6 +209,11 @@
     display: block;
     object-fit: cover;
   }
+
+  .grid-item.full-width.natural {
+    height: auto;
+    transform: none;
+  }
   
   /* Fixed height variants */
   .grid-item.full-width {
@@ -227,6 +232,8 @@
     height: auto;
     object-fit: unset;
   }
+
+  
   
   /* Two columns */
   .grid-row.two-col {
