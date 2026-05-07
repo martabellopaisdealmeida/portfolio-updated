@@ -103,7 +103,7 @@
   .project-container {
     max-width: 100em;
     margin: 0 auto;
-    padding: 3.75em 5.625em 0;
+    padding: 2.75em 5.625em 0;
   }
   
   .project-header {
@@ -125,7 +125,7 @@
     display: block;
     height: 3.5em;
     width: auto;
-    margin-bottom: 0.5em;
+    margin-bottom: 2em;
   }
 
 
