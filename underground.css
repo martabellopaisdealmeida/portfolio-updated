@@ -220,6 +220,15 @@
   .grid-row.two-col .grid-item:last-child img {
     object-position: -9px 0px;
   }
+
+  .grid-row.two-col--gif .grid-item:first-child img {
+    object-position: -79px -40px;
+    transform: scale(1.5);
+}
+
+.grid-row.two-col--gif .grid-item:last-child img {
+    object-position: -9px 0px;
+}
   
   /* Two-column row */
   .grid-row.two-col {
