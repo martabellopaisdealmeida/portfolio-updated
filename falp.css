@@ -410,13 +410,12 @@
     }
   
     .grid-row.three-col {
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       height: auto;
     }
   
     .grid-row.three-col .grid-item {
       height: auto;
-      aspect-ratio: 4/3;
     }
   
     .grid-item.full-width {
