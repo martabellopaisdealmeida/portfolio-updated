@@ -214,6 +214,7 @@
   .grid-item.full-width {
     width: 100%;
     height: 680px;
+    transform: scale(0.9);
   }
   
   /* Natural height — vídeo ou imagem sem corte */
