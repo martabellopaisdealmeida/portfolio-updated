@@ -225,7 +225,8 @@ body.dark-mode .project-title {
 }
 
 .grid-item.full-width-gif {
-  height: 560px;
+  transform: scale(0.9);
+  height: 941px;
 }
 
 /* Pormenores row — custom positioning */
