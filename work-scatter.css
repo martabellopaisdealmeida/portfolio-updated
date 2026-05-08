@@ -65,7 +65,9 @@ body {
   opacity: 0;
   display: block;
   /* slow fade-out with delay = ghost/trail — mais tempo visível */
-  transition: opacity 1.6s ease 1.4s;
+  transition: opacity 2.5s ease 2.8s;
+
+  
 }
 
 .rect-item:hover img,
