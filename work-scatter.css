@@ -226,7 +226,32 @@ footer {
   .footer-center { display: none; }
   .footer-center-mobile { display: flex; }
 }
+.mobile-hint {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  pointer-events: none;
+  text-align: center;
+  font-family: 'ABCDiatypeMono', monospace;
+  font-size: 0.875em;
+  color: #333;
+  letter-spacing: 0.05em;
+}
 
+.cursor-blink {
+  animation: blink 0.8s step-end infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+@media (max-width: 768px) {
+  .mobile-hint { display: block; }
+}
 /* ==================== PAGE FALL TRANSITION ==================== */
 @keyframes pageFall {
   0%   { transform: translateY(0)      scale(1)    rotate(0deg);   opacity: 1; }

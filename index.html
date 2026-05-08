@@ -58,7 +58,11 @@
   </div>
 
   <!-- ==================== SCATTER STAGE ==================== -->
-  <main class="scatter-stage" id="scatter-stage"></main>
+  <main class="scatter-stage" id="scatter-stage">
+    <div class="mobile-hint" id="mobile-hint">
+      <span class="typewriter-text"></span><span class="cursor-blink">|</span>
+    </div>
+  </main>
 
   <!-- ==================== FOOTER ==================== -->
   <footer>
@@ -281,6 +285,26 @@
       });
     }, ROTATION_INTERVAL);
   }
+// Typewriter hint (mobile only)
+if (window.innerWidth <= 768) {
+  const hint = document.getElementById('mobile-hint');
+  const textEl = hint.querySelector('.typewriter-text');
+  const message = 'touch anywhere';
+  let i = 0;
+
+  const type = setInterval(() => {
+    textEl.textContent += message[i++];
+    if (i >= message.length) {
+      clearInterval(type);
+      // Fade out after 2.5s
+      setTimeout(() => {
+        hint.style.transition = 'opacity 0.8s ease';
+        hint.style.opacity = '0';
+        setTimeout(() => hint.remove(), 800);
+      }, 2500);
+    }
+  }, 80);
+}
 
   async function loadImagesFromGitHub() {
     const apiUrl = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FOLDER}?ref=${GITHUB_BRANCH}`;
