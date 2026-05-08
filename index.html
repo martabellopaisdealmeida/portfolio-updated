@@ -94,24 +94,9 @@
   <script src="script.js"></script>
 
   <script>
-  const CLOUDINARY_CLOUD = 'SEU_CLOUD_NAME';
+    const CLOUDINARY_CLOUD = 'dqfvvnjlj';
 
-async function loadImagesFromCloudinary() {
-  const url = `https://res.cloudinary.com/${CLOUDINARY_CLOUD}/image/list/moodboard.json`;
-  try {
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`Cloudinary: ${res.status}`);
-    const data = await res.json();
-    MOODBOARD_IMAGES = data.resources.map(r =>
-      `https://res.cloudinary.com/${CLOUDINARY_CLOUD}/image/upload/f_auto,q_auto,w_1200/${r.public_id}.${r.format}`
-    );
-    if (!MOODBOARD_IMAGES.length) return;
-    buildScatter();
-    startRotation();
-  } catch (err) {
-    console.error('Erro Cloudinary:', err);
-  }
-}
+
 
   const IMAGE_EXTS = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg', 'mp4', 'webm', 'mov'];
   const VIDEO_EXTS = ['mp4', 'webm', 'mov'];
@@ -247,25 +232,27 @@ async function loadImagesFromCloudinary() {
   }
 
   function buildScatter() {
-    stage.innerHTML = '';
-    rectElements = [];
-    const W = stage.offsetWidth;
-    const H = window.innerHeight * 0.92;
-    stage.style.height = H + 'px';
-    currentImages = assignImages();
-    RECTS.forEach(function(r, i) {
-      const el = document.createElement('div');
-      el.className = 'rect-item';
-      el.style.left   = (r.x / 100 * W) + 'px';
-      el.style.top    = (r.y / 100 * H) + 'px';
-      el.style.width  = (r.w / 100 * W * SIZE_SCALE) + 'px';
-      el.style.height = (r.h / 100 * H * SIZE_SCALE) + 'px';
-      const media = createMediaElement(currentImages[i], el);
-      el.appendChild(media);
-      stage.appendChild(el);
-      rectElements.push(el);
-    });
-  }
+  const hint = document.getElementById('mobile-hint');
+  stage.innerHTML = '';
+  if (hint) stage.appendChild(hint);
+  rectElements = [];
+  const W = stage.offsetWidth;
+  const H = window.innerHeight * 0.92;
+  stage.style.height = H + 'px';
+  currentImages = assignImages();
+  RECTS.forEach(function(r, i) {
+    const el = document.createElement('div');
+    el.className = 'rect-item';
+    el.style.left   = (r.x / 100 * W) + 'px';
+    el.style.top    = (r.y / 100 * H) + 'px';
+    el.style.width  = (r.w / 100 * W * SIZE_SCALE) + 'px';
+    el.style.height = (r.h / 100 * H * SIZE_SCALE) + 'px';
+    const media = createMediaElement(currentImages[i], el);
+    el.appendChild(media);
+    stage.appendChild(el);
+    rectElements.push(el);
+  });
+}
 
   function swapImage(rectIndex, newSrc) {
     const el = rectElements[rectIndex];
@@ -320,32 +307,25 @@ if (window.innerWidth <= 768) {
   }, 80);
 }
 
-  async function loadImagesFromGitHub() {
-    const apiUrl = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FOLDER}?ref=${GITHUB_BRANCH}`;
-    try {
-      const res = await fetch(apiUrl, {
-        headers: { 'Accept': 'application/vnd.github.v3+json' }
-      });
-      if (!res.ok) throw new Error(`GitHub API: ${res.status}`);
-      const files = await res.json();
-      MOODBOARD_IMAGES = files
-        .filter(f => {
-          const ext = f.name.split('.').pop().toLowerCase();
-          return f.type === 'file' && IMAGE_EXTS.includes(ext);
-        })
-        .map(f => `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${GITHUB_BRANCH}/${f.path}`);
-      if (MOODBOARD_IMAGES.length === 0) {
-        console.warn('Nenhuma imagem encontrada na pasta:', GITHUB_FOLDER);
-        return;
-      }
-      buildScatter();
-      startRotation();
-    } catch (err) {
-      console.error('Erro ao carregar imagens do GitHub:', err);
-    }
+async function loadImagesFromCloudinary() {
+  const url = `https://res.cloudinary.com/${CLOUDINARY_CLOUD}/image/list/moodboard.json`;
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`Cloudinary: ${res.status}`);
+    const data = await res.json();
+    MOODBOARD_IMAGES = data.resources.map(r =>
+      `https://res.cloudinary.com/${CLOUDINARY_CLOUD}/image/upload/f_auto,q_auto,w_1200/${r.public_id}.${r.format}`
+    );
+    if (!MOODBOARD_IMAGES.length) return;
+    buildScatter();
+    startRotation();
+  } catch (err) {
+    console.error('Erro Cloudinary:', err);
   }
+}
 
-  loadImagesFromGitHub();
+loadImagesFromCloudinary();
+
 
   let resizeTimer;
   window.addEventListener('resize', () => {
