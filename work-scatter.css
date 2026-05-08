@@ -54,8 +54,9 @@ body {
 
 .rect-item:hover { z-index: 10; }
 
-/* Image: invisible by default, fade in fast, fade out slow (trail effect) */
-.rect-item img {
+/* Image/video: invisible by default, fade in fast, fade out slow (trail effect) */
+.rect-item img,
+.rect-item video {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -63,22 +64,25 @@ body {
   object-fit: cover;
   opacity: 0;
   display: block;
-  /* slow fade-out with delay = ghost/trail */
-  transition: opacity 0.9s ease 0.35s;
+  /* slow fade-out with delay = ghost/trail — mais tempo visível */
+  transition: opacity 1.6s ease 1.4s;
 }
 
-.rect-item:hover img {
+.rect-item:hover img,
+.rect-item:hover video {
   opacity: 1;
   transition: opacity 0.2s ease;
 }
 
 /* Rotation crossfade: when a new image swaps in via JS */
-.rect-item img.fading-out {
+.rect-item img.fading-out,
+.rect-item video.fading-out {
   opacity: 0;
   transition: opacity 0.6s ease;
 }
 
-.rect-item img.fading-in {
+.rect-item img.fading-in,
+.rect-item video.fading-in {
   opacity: 0;
   transition: none;
 }
@@ -224,7 +228,7 @@ footer {
 /* ==================== PAGE FALL TRANSITION ==================== */
 @keyframes pageFall {
   0%   { transform: translateY(0)      scale(1)    rotate(0deg);   opacity: 1; }
-  8%   { transform: translateY(-40px)  scale(1.03) rotate(-0.4deg); opacity: 1; } /* salta para cima */
+  8%   { transform: translateY(-40px)  scale(1.03) rotate(-0.4deg); opacity: 1; }
   100% { transform: translateY(130vh)  scale(0.92) rotate(1.8deg);  opacity: 0; }
 }
 

@@ -66,12 +66,12 @@
       <div class="footer-left">
         <p>© 2025 marta bello pais de almeida</p>
       </div>
-      <a href="/cdn-cgi/l/email-protection#214c405355484f494043514061464c40484d0f424e4c" class="footer-center">
+      <a href="mailto:martinhabpa@gmail.com" class="footer-center">
         <div class="get-in-text-top">get in</div>
         <div class="footer-line"></div>
         <div class="get-in-text-bottom">touch</div>
       </a>
-      <a href="/cdn-cgi/l/email-protection#701d110204191e181112001130171d11191c5e131f1d" class="footer-center-mobile">
+      <a href="mailto:martinhabpa@gmail.com" class="footer-center-mobile">
         <span class="get-in-text-top-mobile">get in</span>
         <div class="footer-line-mobile"></div>
         <span class="get-in-text-bottom-mobile">touch</span>
@@ -85,7 +85,7 @@
     </div>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="search.js"></script>
+  <script src="search.js"></script>
   <script src="custom-cursor.js"></script>
   <script src="script.js"></script>
 
@@ -95,7 +95,9 @@
   const GITHUB_BRANCH = 'main';
   const GITHUB_FOLDER = 'moodboard';
 
-  const IMAGE_EXTS = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg'];
+  const IMAGE_EXTS = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg', 'mp4', 'webm', 'mov'];
+  const VIDEO_EXTS = ['mp4', 'webm', 'mov'];
+  const SIZE_SCALE = 1.28; // factor de escala dos rects
 
   const ROTATION_INTERVAL  = 2800;
   const RECTS_PER_ROTATION = 2;
@@ -205,6 +207,27 @@
     return RECTS.map((_, i) => shuffled[i % shuffled.length]);
   }
 
+  function createMediaElement(src, el) {
+    const ext = src.split('.').pop().toLowerCase();
+    let media;
+    if (VIDEO_EXTS.includes(ext)) {
+      media = document.createElement('video');
+      media.src = src;
+      media.muted = true;
+      media.loop = true;
+      media.playsInline = true;
+      media.setAttribute('playsinline', '');
+      el.addEventListener('mouseenter', () => media.play().catch(() => {}));
+      el.addEventListener('mouseleave', () => { media.pause(); media.currentTime = 0; });
+    } else {
+      media = document.createElement('img');
+      media.src = src;
+      media.alt = '';
+      media.loading = 'lazy';
+    }
+    return media;
+  }
+
   function buildScatter() {
     stage.innerHTML = '';
     rectElements = [];
@@ -217,13 +240,10 @@
       el.className = 'rect-item';
       el.style.left   = (r.x / 100 * W) + 'px';
       el.style.top    = (r.y / 100 * H) + 'px';
-      el.style.width  = (r.w / 100 * W) + 'px';
-      el.style.height = (r.h / 100 * H) + 'px';
-      const img = document.createElement('img');
-      img.src = currentImages[i];
-      img.alt = '';
-      img.loading = 'lazy';
-      el.appendChild(img);
+      el.style.width  = (r.w / 100 * W * SIZE_SCALE) + 'px';
+      el.style.height = (r.h / 100 * H * SIZE_SCALE) + 'px';
+      const media = createMediaElement(currentImages[i], el);
+      el.appendChild(media);
       stage.appendChild(el);
       rectElements.push(el);
     });
@@ -232,19 +252,19 @@
   function swapImage(rectIndex, newSrc) {
     const el = rectElements[rectIndex];
     if (!el) return;
-    const img = el.querySelector('img');
-    if (!img) return;
+    const media = el.querySelector('img, video');
+    if (!media) return;
     if (el.matches(':hover')) {
-      const clone = img.cloneNode();
+      const clone = media.cloneNode();
       clone.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1;transition:opacity 0.6s ease;';
       el.appendChild(clone);
-      img.src = newSrc;
+      media.src = newSrc;
       requestAnimationFrame(() => requestAnimationFrame(() => {
         clone.style.opacity = '0';
         setTimeout(() => clone.parentNode && clone.parentNode.removeChild(clone), 700);
       }));
     } else {
-      img.src = newSrc;
+      media.src = newSrc;
     }
     currentImages[rectIndex] = newSrc;
   }
@@ -294,16 +314,6 @@
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => { if (MOODBOARD_IMAGES.length) buildScatter(); }, 200);
   });
-
-  // Dark mode
-  const toggleSwitch = document.querySelector('.star-toggle');
-  if ((localStorage.getItem('theme') || 'light') === 'dark') document.body.classList.add('dark-mode');
-  if (toggleSwitch) {
-    toggleSwitch.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-      localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
-    });
-  }
 
   stage.addEventListener("click", function(e) {
     if (e.target.closest("a, button, .star-toggle, .search-container, .search-overlay")) return;
