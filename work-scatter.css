@@ -92,6 +92,14 @@ body {
 /* Decorative rects (no image) — invisible, no pointer */
 .rect-item.deco { cursor: default; pointer-events: none; }
 
+.rect-item:hover img,
+.rect-item:hover video,
+.rect-item.touched img,
+.rect-item.touched video {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
 /* ==================== FOOTER ==================== */
 footer {
   position: relative;
