@@ -70,6 +70,7 @@ body {
   
 }
 
+
 .rect-item:hover img,
 .rect-item:hover video {
   opacity: 1;
@@ -87,6 +88,17 @@ body {
 .rect-item video.fading-in {
   opacity: 0;
   transition: none;
+}
+
+.rect-item.touched img,
+.rect-item.touched video {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.rect-item:not(.touched):not(:hover) img,
+.rect-item:not(.touched):not(:hover) video {
+  transition: opacity 2.5s ease 2.8s;
 }
 
 /* Decorative rects (no image) — invisible, no pointer */
