@@ -94,10 +94,24 @@
   <script src="script.js"></script>
 
   <script>
-  const GITHUB_USER   = 'martabellopaisdealmeida';
-  const GITHUB_REPO   = 'portfolio-updated';
-  const GITHUB_BRANCH = 'main';
-  const GITHUB_FOLDER = 'moodboard';
+  const CLOUDINARY_CLOUD = 'SEU_CLOUD_NAME';
+
+async function loadImagesFromCloudinary() {
+  const url = `https://res.cloudinary.com/${CLOUDINARY_CLOUD}/image/list/moodboard.json`;
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`Cloudinary: ${res.status}`);
+    const data = await res.json();
+    MOODBOARD_IMAGES = data.resources.map(r =>
+      `https://res.cloudinary.com/${CLOUDINARY_CLOUD}/image/upload/f_auto,q_auto,w_1200/${r.public_id}.${r.format}`
+    );
+    if (!MOODBOARD_IMAGES.length) return;
+    buildScatter();
+    startRotation();
+  } catch (err) {
+    console.error('Erro Cloudinary:', err);
+  }
+}
 
   const IMAGE_EXTS = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg', 'mp4', 'webm', 'mov'];
   const VIDEO_EXTS = ['mp4', 'webm', 'mov'];
