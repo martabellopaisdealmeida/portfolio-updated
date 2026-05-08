@@ -339,15 +339,15 @@ loadImagesFromCloudinary();
     setTimeout(() => { window.location.href = "indexalternativo.html"; }, 450);
   });
 
-  // Touch reveal (mobile)
-stage.addEventListener('touchmove', function(e) {
+  stage.addEventListener('touchmove', function(e) {
+  e.preventDefault(); // impede o scroll
   const touch = e.touches[0];
   const el = document.elementFromPoint(touch.clientX, touch.clientY);
   const rect = el && el.closest('.rect-item');
   if (rect && !rect.classList.contains('touched')) {
     rect.classList.add('touched');
   }
-}, { passive: true });
+}, { passive: false }); // muda para false
 
 stage.addEventListener('touchend', function() {
   document.querySelectorAll('.rect-item.touched').forEach(el => {
