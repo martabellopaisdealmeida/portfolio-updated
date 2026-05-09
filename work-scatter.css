@@ -114,6 +114,12 @@ body {
   transition: opacity 0.2s ease;
 }
 
+.rect-item.fading img,
+.rect-item.fading video {
+  opacity: 0;
+  transition: opacity 2.5s ease 2.8s;
+}
+
 /* ==================== FOOTER ==================== */
 footer {
   position: relative;

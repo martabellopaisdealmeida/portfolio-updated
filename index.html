@@ -359,14 +359,17 @@ stage.addEventListener('touchend', function() {
 stage.addEventListener('mousemove', function(e) {
   const el = document.elementFromPoint(e.clientX, e.clientY);
   const rect = el && el.closest('.rect-item');
-  if (rect && !rect.classList.contains('hovered')) {
+  if (rect && !rect.classList.contains('hovered') && !rect.classList.contains('fading')) {
     rect.classList.add('hovered');
     rect.addEventListener('mouseleave', function onLeave() {
       rect.classList.remove('hovered');
+      rect.classList.add('fading');
+      setTimeout(() => rect.classList.remove('fading'), 5500);
       rect.removeEventListener('mouseleave', onLeave);
     });
   }
 });
+
   </script>
 
 </body>
