@@ -407,7 +407,7 @@ stage.addEventListener('touchmove', function(e) {
 
 stage.addEventListener('touchend', function() {
   document.querySelectorAll('.rect-item.touched').forEach(el => {
-    setTimeout(() => el.classList.remove('touched'), 12000);
+    setTimeout(() => el.classList.remove('touched'), 16000);
   });
   isDrawing = false;
 });
@@ -436,7 +436,7 @@ stage.addEventListener('touchend', function() {
         rect.addEventListener('mouseleave', function onLeave() {
           rect.classList.remove('hovered');
           rect.classList.add('fading');
-          setTimeout(() => rect.classList.remove('fading'), 5500);
+          setTimeout(() => rect.classList.remove('fading'), 16000);
           rect.removeEventListener('mouseleave', onLeave);
         });
       }
