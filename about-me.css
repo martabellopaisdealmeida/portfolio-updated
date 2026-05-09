@@ -42,7 +42,7 @@
 
 body {
   background-color: #ffffff;
-  color: #333;
+  color: #111;
   overflow-x: hidden;
   font-size: 16px;
 }
@@ -52,6 +52,34 @@ body {
 body.dark-mode {
   background-color: #000;
   color: #fff;
+}
+
+body.dark-mode .hero-section h1 {
+  color: #fff;
+}
+
+body.dark-mode .section-divider {
+  border-color: #222;
+}
+
+body.dark-mode .info-col-title {
+  color: #fff;
+}
+
+body.dark-mode .entry-label {
+  color: #e0e0e0;
+}
+
+body.dark-mode .entry-desc {
+  color: #999;
+}
+
+body.dark-mode .entry-year {
+  color: #555;
+}
+
+body.dark-mode .entry-link {
+  color: #ccc;
 }
 
 body.dark-mode .footer-left p,
@@ -71,109 +99,106 @@ body.dark-mode .get-in-text-bottom-mobile {
   color: #fff;
 }
 
-body.dark-mode .hero-section h1 {
-  color: #fff;
-}
-
-body.dark-mode .bio-content p {
-  color: #ccc;
-}
-
-/* ==================== HERO SECTION ==================== */
+/* ==================== HERO ==================== */
 
 .hero-section {
-  padding: 5em 5.625em 4em;
+  padding: 2.5em 2.5em 3em;
 }
 
 .hero-section h1 {
   font-family: 'PPMori', sans-serif;
-  font-size: 2.25em;
+  font-size: clamp(2em, 4.5vw, 4em);
   font-weight: normal;
-  line-height: 1.25;
+  line-height: 1.18;
   color: #111;
   max-width: 100%;
 }
 
-/* ==================== BIO SECTION ==================== */
-
-.main-bio-section {
-  padding: 0 5.625em 7.5em;
+.hero-section h1 em {
+  font-style: italic;
 }
 
-.bio-layout {
+/* ==================== DIVIDER ==================== */
+
+.section-divider {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 0 2.5em 3.5em;
+}
+
+/* ==================== INFO GRID ==================== */
+
+.info-section {
+  padding: 0 2.5em 6em;
+}
+
+.info-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3.75em;
-  align-items: flex-start;
+  grid-template-columns: 220px 1fr 1fr 1fr 1fr;
+  gap: 2.5em;
+  align-items: start;
 }
 
-.bio-image {
-  width: 100%;
-height: 600px;
+/* Photo */
+.info-photo {
+  width: 220px;
+  aspect-ratio: 3 / 4;
   overflow: hidden;
   background-color: #e0e0e0;
+  flex-shrink: 0;
 }
 
-.bio-image img {
+.info-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  filter: grayscale(20%);
 }
 
-.bio-content p {
-  font-family: 'MarundTrialCurved', sans-serif;
-  font-size: 0.9375em;
-  line-height: 1.65;
-  color: #333;
-  margin-bottom: 1.5em;
+/* Columns */
+.info-col {
+  display: flex;
+  flex-direction: column;
 }
 
-.bio-content p:last-child {
-  margin-bottom: 0;
-}
-
-/* ==================== PRESS SECTION ==================== */
-
-.press-section {
-  padding: 0 5.625em 7.5em;
-}
-
-.press-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 3.75em;
-  align-items: start;
-}
-
-.press-col-title {
+.info-col-title {
   font-family: 'ABCDiatypeMono', monospace;
-  font-size: 0.875em;
-  font-weight: 700;
+  font-size: 0.5625em;
+  font-weight: 400;
   color: #111;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   margin-bottom: 1.25em;
-  letter-spacing: -0.01em;
 }
 
-.press-entry {
+.info-col-title--spaced {
+  margin-top: 2.5em;
+}
+
+/* Entries */
+.info-entry {
   display: flex;
   flex-direction: column;
   gap: 0.2em;
+  margin-bottom: 1.75em;
   text-decoration: none;
   color: inherit;
-  margin-bottom: 1.5em;
-  transition: opacity 0.15s ease;
 }
 
-.press-entry:last-child {
+.info-entry:last-child {
   margin-bottom: 0;
 }
 
-.press-entry:hover {
-  opacity: 0.6;
+.info-entry--link {
+  transition: opacity 0.15s ease;
 }
 
-.press-entry-label {
+.info-entry--link:hover {
+  opacity: 0.55;
+}
+
+.entry-label {
   font-family: 'ABCDiatypeMono', monospace;
   font-size: 0.75em;
   font-weight: 400;
@@ -181,36 +206,41 @@ height: 600px;
   line-height: 1.4;
 }
 
-.press-entry-desc {
+.entry-desc {
   font-family: 'ABCDiatypeMono', monospace;
   font-size: 0.75em;
   font-weight: 300;
-  color: #333;
+  font-style: italic;
+  color: #444;
   line-height: 1.5;
 }
 
-.press-entry-year {
+.entry-desc--italic {
+  font-style: italic;
+}
+
+.entry-year {
   font-family: 'ABCDiatypeMono', monospace;
   font-size: 0.6875em;
   font-weight: 300;
   color: #999;
+  font-style: normal;
   line-height: 1.4;
 }
 
-body.dark-mode .press-col-title {
-  color: #fff;
+.entry-link {
+  font-family: 'ABCDiatypeMono', monospace;
+  font-size: 0.75em;
+  font-weight: 300;
+  color: #333;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  line-height: 1.8;
+  transition: opacity 0.15s ease;
 }
 
-body.dark-mode .press-entry-label {
-  color: #e0e0e0;
-}
-
-body.dark-mode .press-entry-desc {
-  color: #aaa;
-}
-
-body.dark-mode .press-entry-year {
-  color: #666;
+.entry-link:hover {
+  opacity: 0.55;
 }
 
 /* ==================== FOOTER ==================== */
@@ -330,35 +360,52 @@ footer {
 
 /* ==================== MOBILE ==================== */
 
-@media (max-width: 768px) {
-  .hero-section {
-    padding: 3em 1.5em 2.5em;
+@media (max-width: 1100px) {
+  .info-grid {
+    grid-template-columns: 180px 1fr 1fr 1fr 1fr;
+    gap: 1.75em;
   }
 
-  .hero-section h1 {
-    font-size: 1.5em;
+  .info-photo {
+    width: 180px;
   }
+}
 
-  .main-bio-section {
-    padding: 0 1.5em 4em;
-  }
-
-  .bio-layout {
-    grid-template-columns: 1fr;
+@media (max-width: 900px) {
+  .info-grid {
+    grid-template-columns: 1fr 1fr;
     gap: 2em;
   }
 
-  .bio-image {
+  .info-photo {
+    width: 100%;
     aspect-ratio: 4 / 3;
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 2em 1.5em 2.5em;
   }
 
-  .press-section {
+  .section-divider {
+    margin: 0 1.5em 2.5em;
+  }
+
+  .info-section {
     padding: 0 1.5em 4em;
   }
 
-  .press-grid {
-    grid-template-columns: 1fr;
-    gap: 2.5em;
+  .info-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2em;
+  }
+
+  .info-photo {
+    grid-column: 1 / -1;
+    width: 100%;
+    aspect-ratio: 4 / 3;
   }
 
   footer {
@@ -377,17 +424,26 @@ footer {
 
 @media (max-width: 480px) {
   .hero-section {
-    padding: 2em 1.25em 2em;
+    padding: 1.5em 1.25em 2em;
   }
 
-  .hero-section h1 {
-    font-size: 1.25em;
+  .section-divider {
+    margin: 0 1.25em 2em;
   }
 
-  .main-bio-section,
-  .press-section {
-    padding-left: 1.25em;
-    padding-right: 1.25em;
+  .info-section {
+    padding: 0 1.25em 3em;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5em;
+  }
+
+  .info-photo {
+    grid-column: 1;
+    aspect-ratio: 3 / 4;
+    max-width: 260px;
   }
 
   footer {
