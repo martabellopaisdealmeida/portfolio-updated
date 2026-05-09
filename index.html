@@ -704,7 +704,7 @@ stage.addEventListener('touchmove', function(e) {
 
 stage.addEventListener('touchend', function() {
   document.querySelectorAll('.rect-item.touched').forEach(el => {
-    setTimeout(() => el.classList.remove('touched'), 8000);
+    setTimeout(() => el.classList.remove('touched'), 12000);
   });
   isDrawing = false;
 });
