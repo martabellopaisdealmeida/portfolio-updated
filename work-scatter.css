@@ -231,7 +231,7 @@ footer {
   .header-top-right { display: none; }
   .header-bottom { justify-content: center; }
   .desktop-nav { font-size: 1em; }
-  .scatter-stage { min-height: 80vh; }
+  .scatter-stage { min-height: 60vh; }
   footer {
     padding: 0 1.875em;
     min-height: 9.375em;
