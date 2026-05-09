@@ -76,7 +76,7 @@ body {
 .rect-item.touched img,
 .rect-item.touched video {
   opacity: 1;
-  transition: opacity 3.5s ease 4s;
+  transition: opacity 0.2s ease;
 }
 
 /* Rotation crossfade: when a new image swaps in via JS */
