@@ -635,24 +635,31 @@ stage.addEventListener('mousemove', function(e) {
     }
   
     async function loadImagesFromCloudinary() {
-      const url = `https://res.cloudinary.com/${CLOUDINARY_CLOUD}/image/list/moodboard.json`;
-      try {
-        const res = await fetch(url);
-        if (!res.ok) throw new Error(`Cloudinary: ${res.status}`);
-        const data = await res.json();
-        MOODBOARD_IMAGES = data.resources.map(r =>
-          `https://res.cloudinary.com/${CLOUDINARY_CLOUD}/image/upload/f_auto,q_auto,w_1200/${r.public_id}.${r.format}`
-        );
-        if (!MOODBOARD_IMAGES.length) return;
-        buildScatter();
-        startRotation();
-      } catch (err) {
-        console.error('Erro Cloudinary:', err);
-      }
-    }
-  
-    loadImagesFromCloudinary();
-  
+  const base = `https://res.cloudinary.com/${CLOUDINARY_CLOUD}`;
+  try {
+    const [imgRes, vidRes] = await Promise.all([
+      fetch(`${base}/image/list/moodboard.json`),
+      fetch(`${base}/video/list/moodboard.json`)
+    ]);
+
+    const imgData = imgRes.ok ? await imgRes.json() : { resources: [] };
+    const vidData = vidRes.ok ? await vidRes.json() : { resources: [] };
+
+    const images = imgData.resources.map(r =>
+      `${base}/image/upload/f_auto,q_auto,w_1200/${r.public_id}.${r.format}`
+    );
+    const videos = vidData.resources.map(r =>
+      `${base}/video/upload/q_auto/${r.public_id}.${r.format}`
+    );
+
+    MOODBOARD_IMAGES = [...images, ...videos];
+    if (!MOODBOARD_IMAGES.length) return;
+    buildScatter();
+    startRotation();
+  } catch (err) {
+    console.error('Erro Cloudinary:', err);
+  }
+}
     let resizeTimer;
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
