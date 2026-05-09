@@ -105,6 +105,8 @@
     let rectElements = [];
     let currentImages = [];
     let MOODBOARD_IMAGES = [];
+
+  
   
     const RECTS = [
       { x: 5.0, y: 4.0, w: 5.5, h: 9.0 },
@@ -359,6 +361,9 @@
     console.error('Erro Cloudinary:', err);
   }
 }
+
+loadImagesFromCloudinary();
+
     let resizeTimer;
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
