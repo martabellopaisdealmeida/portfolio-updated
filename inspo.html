@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>inspo — marta bello pais de almeida</title>
+  <link rel="preload" href="fonts/ExposureItalicTrial[-50].otf" as="font" type="font/otf" crossorigin>
+  <link rel="stylesheet" href="inspo.css">
+  <link rel="stylesheet" href="search.css">
+  <link rel="stylesheet" href="custom-cursor.css">
+  <link rel="icon" type="image/x-icon" href="favicon.png">
+  <link rel="stylesheet" href="header.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="header-left">
+        <div class="logo-row">
+          <a href="index.html" class="logo-link">
+            <span class="logo-text">marta</span>
+          </a>
+        </div>
+        <nav class="desktop-nav">
+          <a href="work.html">work,</a>
+          <a href="about-me.html"> about,</a>
+          <a href="inspo.html" class="active"> inspo</a>
+        </nav>
+      </div>
+      <div class="header-right">
+        <button class="tomato-toggle" aria-label="Toggle dark mode">
+          <img src="tomate_light.svg" class="toggle-tomato toggle-tomato--light" alt="">
+          <img src="tomate_dark.svg" class="toggle-tomato toggle-tomato--dark" alt="">
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Search Overlay -->
+  <div class="search-overlay">
+    <div class="search-close">×</div>
+    <div class="search-box">
+      <input type="text" class="search-input" placeholder="Search projects, skills, or anything..." autocomplete="off">
+    </div>
+    <div class="search-suggestions">
+      <h4>Popular Searches</h4>
+      <div class="suggestion-tags">
+        <span class="suggestion-tag">Branding</span>
+        <span class="suggestion-tag">Wedding Design</span>
+        <span class="suggestion-tag">Editorial</span>
+        <span class="suggestion-tag">Art Direction</span>
+        <span class="suggestion-tag">Print Design</span>
+        <span class="suggestion-tag">Illustration</span>
+      </div>
+    </div>
+    <div class="search-results"></div>
+  </div>
+
+  <!-- Moodboard Grid -->
+  <main class="moodboard" id="moodboard">
+    <!-- Images loaded via GitHub API -->
+  </main>
+
+  <div class="moodboard-loading" id="moodboard-loading">
+    <span>loading</span>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="interactive-footer">
+      <div class="footer-left">
+        <p>© 2025 marta bello pais de almeida</p>
+      </div>
+      <a href="mailto:martinhabpa@gmail.com" class="footer-center">
+        <div class="get-in-text-top">get in</div>
+        <div class="footer-line"></div>
+        <div class="get-in-text-bottom">touch</div>
+      </a>
+      <a href="mailto:martinhabpa@gmail.com" class="footer-center-mobile">
+        <span class="get-in-text-top-mobile">get in</span>
+        <div class="footer-line-mobile"></div>
+        <span class="get-in-text-bottom-mobile">touch</span>
+      </a>
+      <div class="footer-right">
+        <a href="https://www.icloud.com/iclouddrive/008XTyvyPmEH6UFI731TEegVw#CV" target="_blank">resume</a>
+        <a href="https://open.spotify.com/show/02nK1cE2YFhTjj5IT9ZvgI?si=99a32a151c61488c" target="_blank">podcast</a>
+        <a href="https://www.instagram.com/martabpaisdealmeida/" target="_blank">instagram</a>
+        <a href="https://www.linkedin.com/in/marta-bello-pais-de-almeida/" target="_blank">linkedin</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="search.js"></script>
+  <script src="custom-cursor.js"></script>
+
+  <script>
+    // Load moodboard images from GitHub Contents API
+    const GITHUB_USER = 'martabellopaisdealmeida';
+    const GITHUB_REPO = 'portfolio-updated';
+    const MOODBOARD_PATH = 'moodboard';
+
+    const moodboard = document.getElementById('moodboard');
+    const loading = document.getElementById('moodboard-loading');
+
+    async function loadMoodboard() {
+      try {
+        const res = await fetch(
+          `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${MOODBOARD_PATH}`
+        );
+        if (!res.ok) throw new Error('API error');
+        const files = await res.json();
+
+        const images = files.filter(f =>
+          /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(f.name)
+        );
+
+        loading.style.display = 'none';
+
+        images.forEach(file => {
+          const item = document.createElement('div');
+          item.className = 'moodboard-item';
+
+          const caption = formatCaption(file.name);
+
+          item.innerHTML = `
+            <img
+              src="${file.download_url}"
+              alt="${caption.code}"
+              loading="lazy"
+            >
+            <div class="moodboard-caption">
+              <span class="caption-code">${caption.code}</span>
+              <span class="caption-src">SRC</span>
+            </div>
+          `;
+
+          moodboard.appendChild(item);
+        });
+
+      } catch (err) {
+        loading.textContent = 'erro ao carregar imagens.';
+        console.error('Moodboard load error:', err);
+      }
+    }
+
+    // Format filename into a display code
+    // e.g. "001_dijkstra.jpg" → { code: "001 · dijkstra" }
+    function formatCaption(filename) {
+      const base = filename.replace(/\.[^.]+$/, ''); // remove extension
+      const clean = base.replace(/[-_]/g, ' ').toLowerCase();
+      return { code: clean };
+    }
+
+    loadMoodboard();
+  </script>
+
+</body>
+</html>
