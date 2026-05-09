@@ -666,11 +666,11 @@ stage.addEventListener('mousemove', function(e) {
       resizeTimer = setTimeout(() => { if (MOODBOARD_IMAGES.length) buildScatter(); }, 200);
     });
   
-    stage.addEventListener('click', function(e) {
-      if (e.target.closest('a, button, .star-toggle, .search-container, .search-overlay')) return;
-      document.body.classList.add('page-falling');
-      setTimeout(() => { window.location.href = 'indexalternativo.html'; }, 450);
-    });
+    // stage.addEventListener('click', function(e) {
+    //   if (e.target.closest('a, button, .star-toggle, .search-container, .search-overlay')) return;
+    //   document.body.classList.add('page-falling');
+    //   setTimeout(() => { window.location.href = 'indexalternativo.html'; }, 450);
+    // });
   
     let touchStartX = 0;
 let touchStartY = 0;
