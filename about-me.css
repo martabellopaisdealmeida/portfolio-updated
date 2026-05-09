@@ -134,9 +134,10 @@ body.dark-mode .get-in-text-bottom-mobile {
 
 .info-grid {
   display: grid;
-  grid-template-columns: 340px repeat(4, minmax(0, 140px));
+  grid-template-columns: 340px repeat(4, minmax(0, 256px));
   gap: 2.5em;
   align-items: start;
+justify-content: space-between;
 }
 
 /* Photo */
