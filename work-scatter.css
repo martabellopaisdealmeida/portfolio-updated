@@ -34,7 +34,6 @@ body {
   font-size: 16px;
 }
 
-
 /* ==================== SCATTER STAGE ==================== */
 .scatter-stage {
   position: relative;
@@ -54,7 +53,7 @@ body {
 
 .rect-item:hover { z-index: 10; }
 
-/* Image/video: invisible by default, fade in fast, fade out slow (trail effect) */
+/* Invisível por defeito, fade-out lento */
 .rect-item img,
 .rect-item video {
   position: absolute;
@@ -64,11 +63,10 @@ body {
   object-fit: contain;
   opacity: 0;
   display: block;
-  /* slow fade-out with delay = ghost/trail — mais tempo visível */
-  transition: opacity 3.5s ease 4s;
-
-  
+  transition: opacity 4s ease 6s;
 }
+
+/* Aparecem rapidamente ao hover/touch */
 .rect-item:hover img,
 .rect-item:hover video,
 .rect-item.hovered img,
@@ -79,45 +77,35 @@ body {
   transition: opacity 0.2s ease;
 }
 
-/* Rotation crossfade: when a new image swaps in via JS */
-.rect-item img.fading-out,
-.rect-item video.fading-out {
-  opacity: 0;
-  transition: opacity 0.6s ease;
-}
-
-.rect-item img.fading-in,
-.rect-item video.fading-in {
-  opacity: 0;
-  transition: none;
-}
-
-.rect-item.touched img,
-.rect-item.touched video {
-  opacity: 1;
-  transition: opacity 0.2s ease;
-}
-
-.rect-item:not(.touched):not(:hover) img,
-.rect-item:not(.touched):not(:hover) video {
-  transition: opacity 2.5s ease 2.8s;
-}
-
-/* Decorative rects (no image) — invisible, no pointer */
-.rect-item.deco { cursor: default; pointer-events: none; }
-
-.rect-item:hover img,
-.rect-item:hover video,
-.rect-item.touched img,
-.rect-item.touched video {
-  opacity: 1;
-  transition: opacity 0.2s ease;
-}
-
+/* Estado de desaparecimento */
 .rect-item.fading img,
 .rect-item.fading video {
   opacity: 0;
-  transition: opacity 3.5s ease 4s;
+  transition: opacity 4s ease 6s;
+}
+
+/* ==================== MOBILE HINT ==================== */
+.mobile-hint {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  pointer-events: none;
+  text-align: center;
+  font-family: 'ABCDiatypeMono', monospace;
+  font-size: 0.875em;
+  color: #333;
+  letter-spacing: 0.05em;
+}
+
+.cursor-blink {
+  animation: blink 0.8s step-end infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
 }
 
 /* ==================== FOOTER ==================== */
@@ -232,12 +220,8 @@ footer {
 
 /* ==================== MOBILE ==================== */
 @media (max-width: 768px) {
-  header { padding: 1.25em 1.875em; }
-  .header-top { justify-content: center; }
-  .header-top-right { display: none; }
-  .header-bottom { justify-content: center; }
-  .desktop-nav { font-size: 1em; }
   .scatter-stage { min-height: 60vh; }
+  .mobile-hint { display: block; }
   footer {
     padding: 0 1.875em;
     min-height: 9.375em;
@@ -245,41 +229,13 @@ footer {
   }
   .footer-center { display: none !important; }
   .footer-center-mobile { display: flex !important; }
-  .toggle-switch { width: 1.75em; height: 1em; }
-  .toggle-slider { width: 0.8em; height: 0.8em; }
-  body.dark-mode .toggle-slider { transform: translateX(0.7em); }
 }
 
 @media (max-width: 480px) {
   .footer-center { display: none; }
   .footer-center-mobile { display: flex; }
 }
-.mobile-hint {
-  display: none;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 20;
-  pointer-events: none;
-  text-align: center;
-  font-family: 'ABCDiatypeMono', monospace;
-  font-size: 0.875em;
-  color: #333;
-  letter-spacing: 0.05em;
-}
 
-.cursor-blink {
-  animation: blink 0.8s step-end infinite;
-}
-
-@keyframes blink {
-  50% { opacity: 0; }
-}
-
-@media (max-width: 768px) {
-  .mobile-hint { display: block; }
-}
 /* ==================== PAGE FALL TRANSITION ==================== */
 @keyframes pageFall {
   0%   { transform: translateY(0)      scale(1)    rotate(0deg);   opacity: 1; }
