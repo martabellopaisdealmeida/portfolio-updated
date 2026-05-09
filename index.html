@@ -665,21 +665,43 @@ stage.addEventListener('mousemove', function(e) {
       setTimeout(() => { window.location.href = 'indexalternativo.html'; }, 450);
     });
   
-    stage.addEventListener('touchmove', function(e) {
-      e.preventDefault();
-      const touch = e.touches[0];
-      const el = document.elementFromPoint(touch.clientX, touch.clientY);
-      const rect = el && el.closest('.rect-item');
-      if (rect && !rect.classList.contains('touched')) {
-        rect.classList.add('touched');
-      }
-    }, { passive: false });
-  
-    stage.addEventListener('touchend', function() {
-      document.querySelectorAll('.rect-item.touched').forEach(el => {
-        setTimeout(() => el.classList.remove('touched'), 6000);
-      });
-    });
+    let touchStartX = 0;
+let touchStartY = 0;
+let isDrawing = false;
+
+stage.addEventListener('touchstart', function(e) {
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+  isDrawing = false;
+}, { passive: true });
+
+stage.addEventListener('touchmove', function(e) {
+  const touch = e.touches[0];
+  const dx = Math.abs(touch.clientX - touchStartX);
+  const dy = Math.abs(touch.clientY - touchStartY);
+
+  // Se move mais horizontalmente ou em diagonal → é desenho
+  if (!isDrawing && (dx > dy * 1.2 || dx > 10)) {
+    isDrawing = true;
+  }
+
+  if (isDrawing) {
+    e.preventDefault();
+    const el = document.elementFromPoint(touch.clientX, touch.clientY);
+    const rect = el && el.closest('.rect-item');
+    if (rect && !rect.classList.contains('touched')) {
+      rect.classList.add('touched');
+    }
+  }
+}, { passive: false });
+
+stage.addEventListener('touchend', function() {
+  document.querySelectorAll('.rect-item.touched').forEach(el => {
+    setTimeout(() => el.classList.remove('touched'), 8000);
+  });
+  isDrawing = false;
+});
+
   
     stage.addEventListener('mousemove', function(e) {
       let el = document.elementFromPoint(e.clientX, e.clientY);
