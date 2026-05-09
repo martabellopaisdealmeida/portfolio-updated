@@ -69,10 +69,12 @@ body {
 
   
 }
-
-
 .rect-item:hover img,
-.rect-item:hover video {
+.rect-item:hover video,
+.rect-item.hovered img,
+.rect-item.hovered video,
+.rect-item.touched img,
+.rect-item.touched video {
   opacity: 1;
   transition: opacity 0.2s ease;
 }

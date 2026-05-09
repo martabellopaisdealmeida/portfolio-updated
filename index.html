@@ -354,6 +354,19 @@ stage.addEventListener('touchend', function() {
     setTimeout(() => el.classList.remove('touched'), 6000);
   });
 });
+
+// Mouse reveal via mousemove (para rato rápido)
+stage.addEventListener('mousemove', function(e) {
+  const el = document.elementFromPoint(e.clientX, e.clientY);
+  const rect = el && el.closest('.rect-item');
+  if (rect && !rect.classList.contains('hovered')) {
+    rect.classList.add('hovered');
+    rect.addEventListener('mouseleave', function onLeave() {
+      rect.classList.remove('hovered');
+      rect.removeEventListener('mouseleave', onLeave);
+    });
+  }
+});
   </script>
 
 </body>
