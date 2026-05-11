@@ -228,6 +228,16 @@
     height: 100%;
   }
   
+  /* Screenshots: 3 itens em 2 colunas, altura automática */
+  .grid-row.two-col.screenshots {
+    height: auto;
+  }
+  
+  .grid-row.two-col.screenshots .grid-item {
+    height: auto;
+    aspect-ratio: 4/3;
+  }
+  
   /* ==================== FOOTER ==================== */
   
   footer {
