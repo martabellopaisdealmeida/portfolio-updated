@@ -1,19 +1,4 @@
-/* ==================== GLOBAL ==================== */
 
-@font-face {
-    font-family: 'PPMori';
-    src: url('fonts/PPMori-Regular.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'ABCDiatypeMono';
-    src: url('fonts/ABCDiatypeSemi-MonoVariable-Trial.ttf') format('truetype');
-    font-weight: 100 900;
-    font-style: normal italic;
-  }
-  
   * {
     margin: 0;
     padding: 0;
