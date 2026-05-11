@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>fyted — marta bello pais de almeida</title>
+  <link rel="preload" href="fonts/ExposureItalicTrial[-50].otf" as="font" type="font/otf" crossorigin>
+  <link rel="stylesheet" href="fyted.css">
+  <link rel="stylesheet" href="search.css">
+  <link rel="stylesheet" href="custom-cursor.css">
+  <link rel="icon" type="image/x-icon" href="favicon.png">
+  <link rel="stylesheet" href="project-navigation.css">
+  <link rel="stylesheet" href="header.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="header-left">
+        <div class="logo-row">
+          <a href="index.html" class="logo-link">
+            <span class="logo-text">marta</span>
+          </a>
+        </div>
+        <nav class="desktop-nav">
+          <a href="work.html" class="active">work,</a>
+          <a href="about-me.html"> about,</a>
+          <a href="inspo.html"> inspo</a>
+        </nav>
+      </div>
+      <div class="header-right">
+        <button class="tomato-toggle" aria-label="Toggle dark mode">
+          <img src="tomate_light.svg" class="toggle-tomato toggle-tomato--light" alt="">
+          <img src="tomate_dark.svg" class="toggle-tomato toggle-tomato--dark" alt="">
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Search Overlay -->
+  <div class="search-overlay">
+    <div class="search-close">×</div>
+    <div class="search-box">
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Search projects, skills, or anything..."
+        autocomplete="off"
+      >
+    </div>
+    <div class="search-suggestions">
+      <h4>Popular Searches</h4>
+      <div class="suggestion-tags">
+        <span class="suggestion-tag">Branding</span>
+        <span class="suggestion-tag">Wedding Design</span>
+        <span class="suggestion-tag">Editorial</span>
+        <span class="suggestion-tag">Art Direction</span>
+        <span class="suggestion-tag">Print Design</span>
+        <span class="suggestion-tag">Illustration</span>
+      </div>
+    </div>
+    <div class="search-results"></div>
+  </div>
+
+  <!-- Hero -->
+  <div class="project-hero">
+    <video autoplay muted loop playsinline id="hero-media">
+      <source src="images/10 fyted/TDMovieOut.0.webm" type="video/webm">
+      <img src="images/10 fyted/poster-fyted.jpg" alt="fyted">
+    </video>
+  </div>
+
+  <!-- Project Content -->
+  <div class="project-container">
+    <div class="project-header">
+
+      <h1 class="project-title">FYTED</h1>
+
+      <div class="project-content-grid">
+        <div class="project-description">
+          <p>This project was developed as part of the Interaction Design course within the Communication Design degree at the Faculty of Fine Arts of Lisbon. It started with a simple yet pressing question: what happens when decisions that shape our future are made by systems that neither know us nor care to?</p>
+
+          <p><strong>fyted</strong> is a speculative interactive experience that simulates a job interview conducted by an AI interviewer — efficient, polite, and profoundly biased. Throughout the interview, candidates are assessed using concealed, discriminatory logic. Only at the end are they confronted with the truth: the system penalized them for things like hesitations, informal speech, nonlinear career paths, or emotional expression.</p>
+
+          <p>Inspired by real-world practices in automated hiring platforms, fyted does not attempt to fix bias — it chooses to expose it. Using design as a critical and emotional tool, the project dramatizes what is usually hidden behind black-box algorithms and polished interfaces.</p>
+
+          <p>fyted is not a solution. It's a confrontation. A digital experience meant to provoke reflection on how fairness, neutrality, and humanity are increasingly compromised in the name of efficiency.</p>
+        </div>
+
+        <div class="project-meta">
+          <div class="meta-item">
+            <span class="meta-label">Client</span>
+            <span class="meta-value">Faculdade de Belas-Artes<br>de Lisboa</span>
+          </div>
+
+          <div class="meta-item">
+            <span class="meta-label">Year</span>
+            <span class="meta-value">2024</span>
+          </div>
+
+          <div class="meta-item">
+            <span class="meta-label">Team</span>
+            <span class="meta-value">Afonso Quintela<br>Mariana Gouveia<br>Vasco Carrilho</span>
+          </div>
+
+          <div class="meta-item">
+            <span class="meta-label">Scope</span>
+            <span class="meta-value">Speculative Interaction Design<br>UX Narrative<br>User Research<br>Front-End Development<br>Creative Coding<br>Critical Interface Design</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /project-header -->
+
+    <!-- Photo grid -->
+    <div class="photo-grid">
+
+      <!-- Full-width: video YouTube -->
+      <div class="grid-item full-width">
+        <iframe
+          class="yt-embed"
+          src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+          title="fyted — video"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <!-- Two-col: TouchDesigner renders -->
+      <div class="grid-row two-col">
+        <div class="grid-item">
+          <img src="images/10 fyted/TD-person.jpg" alt="TouchDesigner — pessoa" loading="lazy">
+        </div>
+        <div class="grid-item">
+          <img src="images/10 fyted/TD-particles.jpg" alt="TouchDesigner — partículas" loading="lazy">
+        </div>
+      </div>
+
+      <!-- Full-width screenshots -->
+      <div class="grid-item full-width">
+        <img src="images/10 fyted/screenshot-1.jpg" alt="Screenshot pesquisa" loading="lazy">
+      </div>
+
+      <div class="grid-item full-width">
+        <img src="images/10 fyted/screenshot-2.jpg" alt="Screenshot pesquisa" loading="lazy">
+      </div>
+
+      <div class="grid-item full-width">
+        <img src="images/10 fyted/screenshot-3.jpg" alt="Screenshot pesquisa" loading="lazy">
+      </div>
+
+    </div><!-- /photo-grid -->
+  </div><!-- /project-container -->
+
+  <!-- Footer -->
+  <footer>
+    <div class="interactive-footer">
+      <div class="footer-left">
+        <p>© 2025 marta bello pais de almeida</p>
+      </div>
+      <a href="mailto:martinhabpa@gmail.com" class="footer-center">
+        <div class="get-in-text-top">get in</div>
+        <div class="footer-line"></div>
+        <div class="get-in-text-bottom">touch</div>
+      </a>
+      <a href="mailto:martinhabpa@gmail.com" class="footer-center-mobile">
+        <span class="get-in-text-top-mobile">get in</span>
+        <div class="footer-line-mobile"></div>
+        <span class="get-in-text-bottom-mobile">touch</span>
+      </a>
+      <div class="footer-right">
+        <a href="https://www.icloud.com/iclouddrive/008XTyvyPmEH6UFI731TEegVw#CV" target="_blank">resume</a>
+        <a href="https://open.spotify.com/show/02nK1cE2YFhTjj5IT9ZvgI?si=99a32a151c61488c" target="_blank">podcast</a>
+        <a href="https://www.instagram.com/martabpaisdealmeida/" target="_blank">instagram</a>
+        <a href="https://www.linkedin.com/in/marta-bello-pais-de-almeida/" target="_blank">linkedin</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="search.js"></script>
+  <script src="custom-cursor.js"></script>
+  <script src="project-navigation.js"></script>
+</body>
+</html>
