@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="search.css">
   <link rel="stylesheet" href="custom-cursor.css">
   <link rel="icon" type="image/x-icon" href="favicon.png">
+  <link rel="stylesheet" href="project-navigation.css">
   <link rel="stylesheet" href="header.css">
 </head>
 <body>
@@ -64,8 +65,8 @@
   <!-- Hero -->
   <div class="project-hero">
     <video autoplay muted loop playsinline id="hero-media">
-      <source src="images/10-fyted/banner.mp4" type="video/webm">
-      <img src="images/10 fyted/poster-fyted.jpg" alt="fyted">
+      <source src="images/10-fyted/banner.mp4" type="video/mp4">
+      <img src="images/10-fyted/poster-fyted.jpg" alt="fyted">
     </video>
   </div>
 
@@ -114,7 +115,7 @@
     <!-- Photo grid -->
     <div class="photo-grid">
 
-      <!-- Full-width: video YouTube -->
+      <!-- YouTube embed — full width -->
       <div class="grid-item full-width">
         <iframe
           class="yt-embed"
@@ -126,37 +127,33 @@
         </iframe>
       </div>
 
-      <!-- Two-col: TouchDesigner renders -->
+      <!-- Dois vídeos TouchDesigner lado a lado -->
       <div class="grid-row two-col">
         <div class="grid-item">
-          <img src="images/10-fyted/touch-designer.mp4" alt="TouchDesigner — pessoa" loading="lazy">
+          <video autoplay muted loop playsinline>
+            <source src="images/10-fyted/touch-designer.mp4" type="video/mp4">
+          </video>
         </div>
         <div class="grid-item">
-          <img src="images/10-fyted/testes.mp4" alt="TouchDesigner — partículas" loading="lazy">
+          <video autoplay muted loop playsinline>
+            <source src="images/10-fyted/testes.mp4" type="video/mp4">
+          </video>
         </div>
       </div>
 
-         <!-- Two-col: TouchDesigner renders -->
-         <div class="grid-row two-col">
-            <div class="grid-item">
-              <img src="images/10-fyted/theoretical-feasibility.png" alt="TouchDesigner — pessoa" loading="lazy">
-            </div>
-            <div class="grid-item">
-              <img src="images/10-fyted/interaction-flow.png" alt="TouchDesigner — partículas" loading="lazy">
-            </div>
-          </div>
-
-      <!-- Full-width screenshots -->
-      <div class="grid-item full-width">
-        <img src="images/10-fyted/user-goal.png" alt="Screenshot pesquisa" loading="lazy">
+      <!-- Duas imagens de pesquisa lado a lado -->
+      <div class="grid-row two-col">
+        <div class="grid-item">
+          <img src="images/10-fyted/theoretical-feasibility.png" alt="Theoretical feasibility" loading="lazy">
+        </div>
+        <div class="grid-item">
+          <img src="images/10-fyted/interaction-flow.png" alt="Interaction flow" loading="lazy">
+        </div>
       </div>
 
+      <!-- User goal — full width -->
       <div class="grid-item full-width">
-        <img src="images/10-fyted/theoretical-feasibility.png" alt="Screenshot pesquisa" loading="lazy">
-      </div>
-
-      <div class="grid-item full-width">
-        <img src="images/10-fyted/interaction-flow.png" alt="Screenshot pesquisa" loading="lazy">
+        <img src="images/10-fyted/user-goal.png" alt="User goal" loading="lazy">
       </div>
 
     </div><!-- /photo-grid -->
