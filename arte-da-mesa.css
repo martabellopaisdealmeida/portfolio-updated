@@ -1,6 +1,17 @@
 /* arte-da-mesa.css
    @font-face removidos — carregados via fonts.css
+   Excepção: DakotaRough só é usada nesta página
    ================================================ */
+
+/* ==================== FONT FACE ==================== */
+
+@font-face {
+  font-family: 'DakotaRough';
+  src: url('fonts/Dakota Rough.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
 
 /* ==================== GLOBAL ==================== */
 
@@ -87,10 +98,9 @@ body.dark-mode .meta-value {
 .project-title {
   font-family: 'DakotaRough', sans-serif;
   font-size: 3.5em;
-  font-weight: normal;      /* Dakota Rough não tem bold */
+  font-weight: normal;
   line-height: 1.1;
   margin-bottom: 0.5em;
-  letter-spacing: normal;   /* remover o -0.02em, fica melhor com display fonts */
   text-transform: uppercase;
   color: #333;
 }
@@ -165,31 +175,53 @@ body.dark-mode .meta-value {
 .grid-item img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
   display: block;
 }
 
-.grid-item.full-width {
+/* --- Gif spreads — cover --- */
+.grid-item.gif-spreads {
   height: 785px;
 }
+.grid-item.gif-spreads img {
+  object-fit: cover;
+}
 
-.grid-item.full-width.short {
+/* --- Copos — contain --- */
+.grid-item.copos {
   height: 320px;
 }
-
-.grid-item.full-width.tall {
-  height: 800px;
+.grid-item.copos img {
+  object-fit: contain;
 }
 
-.grid-row.two-col {
+/* --- Two col: Menu + Copos armário — cover --- */
+.grid-row.two-col-svgs {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.25em;
   height: 630px;
 }
-
-.grid-row.two-col .grid-item {
+.grid-row.two-col-svgs .grid-item {
   height: 100%;
+}
+.grid-row.two-col-svgs .grid-item img {
+  object-fit: cover;
+}
+
+/* --- Mockup mobile — contain --- */
+.grid-item.mockup-mobile {
+  height: 800px;
+}
+.grid-item.mockup-mobile img {
+  object-fit: contain;
+}
+
+/* --- Mockup site — contain --- */
+.grid-item.mockup-site {
+  height: 800px;
+}
+.grid-item.mockup-site img {
+  object-fit: contain;
 }
 
 /* ==================== FOOTER ==================== */
@@ -304,9 +336,10 @@ footer {
   font-family: 'PPNeueMontreal', sans-serif;
 }
 
-/* ==================== MOBILE ==================== */
+/* ==================== MOBILE 768px ==================== */
 
 @media (max-width: 768px) {
+
   .project-hero {
     height: 50vh;
     padding: 0 1.25em;
@@ -343,30 +376,31 @@ footer {
     margin-bottom: 2em;
   }
 
-  .grid-item.full-width {
+  .grid-item.gif-spreads {
     height: auto;
-    aspect-ratio: 4/3;
+    aspect-ratio: 4 / 3;
   }
 
-  .grid-item.full-width.short {
+  .grid-item.copos {
     height: auto;
-    aspect-ratio: 16/7;
+    aspect-ratio: 16 / 7;
   }
 
-  .grid-item.full-width.tall {
-    height: auto;
-    aspect-ratio: 3/4;
-  }
-
-  .grid-row.two-col {
+  .grid-row.two-col-svgs {
     grid-template-columns: 1fr 1fr;
     gap: 0.75em;
     height: auto;
   }
 
-  .grid-row.two-col .grid-item {
+  .grid-row.two-col-svgs .grid-item {
     height: auto;
-    aspect-ratio: 3/4;
+    aspect-ratio: 3 / 4;
+  }
+
+  .grid-item.mockup-mobile,
+  .grid-item.mockup-site {
+    height: auto;
+    aspect-ratio: 4 / 3;
   }
 
   footer {
@@ -383,7 +417,10 @@ footer {
   }
 }
 
+/* ==================== MOBILE 480px ==================== */
+
 @media (max-width: 480px) {
+
   .project-hero {
     height: 50vh;
   }
@@ -417,8 +454,13 @@ footer {
     gap: 0.625em;
   }
 
-  .grid-row.two-col {
-    gap: 0.625em;
+  .grid-row.two-col-svgs {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .grid-row.two-col-svgs .grid-item {
+    aspect-ratio: 4 / 3;
   }
 
   footer {
