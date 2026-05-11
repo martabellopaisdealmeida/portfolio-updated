@@ -1,63 +1,6 @@
-/* Exposure Italic Font Variations - LIGHT VERSION
-   Only 7 weights instead of 21 for faster loading
-   From -100 to +100 in steps of ~33
-*/
 
-@font-face {
-  font-family: 'ExposureItalic-100';
-  src: url('fonts/ExposureItalicTrial[-100].otf') format('opentype');
-  font-style: italic;
-  font-display: block;
-}
 
-@font-face {
-  font-family: 'ExposureItalic-70';
-  src: url('fonts/ExposureItalicTrial[-70].otf') format('opentype');
-  font-style: italic;
-  font-display: block;
-}
 
-@font-face {
-  font-family: 'ExposureItalic-50';
-  src: url('fonts/ExposureItalicTrial[-50].otf') format('opentype');
-  font-style: italic;
-  font-display: block;
-}
-
-@font-face {
-  font-family: 'ExposureItalic-30';
-  src: url('fonts/ExposureItalicTrial[-30].otf') format('opentype');
-  font-style: italic;
-  font-display: block;
-}
-
-@font-face {
-  font-family: 'ExposureItalic0';
-  src: url('fonts/ExposureItalicTrial[0].otf') format('opentype');
-  font-style: italic;
-  font-display: block;
-}
-
-@font-face {
-  font-family: 'ExposureItalic30';
-  src: url('fonts/ExposureItalicTrial[30].otf') format('opentype');
-  font-style: italic;
-  font-display: block;
-}
-
-@font-face {
-  font-family: 'ExposureItalic70';
-  src: url('fonts/ExposureItalicTrial[70].otf') format('opentype');
-  font-style: italic;
-  font-display: block;
-}
-
-@font-face {
-  font-family: 'ExposureItalic100';
-  src: url('fonts/ExposureItalicTrial[100].otf') format('opentype');
-  font-style: italic;
-  font-display: block;
-}
 .logo {
   display: flex;
   align-items: center;
@@ -84,19 +27,6 @@
 .exposure100 { font-family: 'ExposureItalic100', sans-serif !important; }
 
 
-@font-face {
-  font-family: 'PPMori';
-  src: url('fonts/PPMori-Regular.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'PPMori';
-  src: url('fonts/PPMori-SemiBold.otf') format('opentype');
-  font-weight: 600;
-  font-style: normal;
-}
 
 @font-face {
   font-family: 'MarundTrialCorner';
