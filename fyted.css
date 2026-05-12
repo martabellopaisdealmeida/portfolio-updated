@@ -82,9 +82,10 @@
   }
   
   .project-title-svg {
-    max-width: 300px;      /* escala com o font-size do h1 */
+    max-width: 2em;      /* escala com o font-size do h1 */
     width: auto;
     display: block;
+    margin-bottom: 20px;
   }
   
   body.dark-mode .project-title-svg {
