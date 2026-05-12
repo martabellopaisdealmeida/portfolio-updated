@@ -81,16 +81,14 @@
     margin-bottom: 1.25em;
   }
   
-  .project-title {
-    font-family: 'ABCDiatypeMono', monospace;
-    font-size: 3.5em;
-    font-weight: 300;
-    line-height: 1.1;
-    margin-bottom: 0.5em;
-    letter-spacing: -0.02em;
-    text-transform: uppercase;
-    width: 100%;
-    color: #333;
+  .project-title-svg {
+    height: 1em;       /* escala com o font-size do h1 */
+    width: auto;
+    display: block;
+  }
+  
+  body.dark-mode .project-title-svg {
+    filter: brightness(0) invert(1);
   }
   
   .project-content-grid {
