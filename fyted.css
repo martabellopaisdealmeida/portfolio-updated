@@ -129,6 +129,18 @@ body.dark-mode .meta-value {
   color: #333;
 }
 
+.project-title-svg {
+  max-width: 200px;
+  width: auto;
+  height: auto;
+  display: block;
+  margin-bottom: 8px;
+}
+
+body.dark-mode .project-title-svg {
+  filter: brightness(0) invert(1);
+}
+
 .project-content-grid {
   display: grid;
   grid-template-columns: 1.8fr 1fr;
