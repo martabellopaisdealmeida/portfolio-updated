@@ -82,7 +82,7 @@
   }
   
   .project-title-svg {
-    height: 1em;       /* escala com o font-size do h1 */
+    max-width: 300px;      /* escala com o font-size do h1 */
     width: auto;
     display: block;
   }
