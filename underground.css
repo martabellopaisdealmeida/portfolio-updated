@@ -1,3 +1,38 @@
+/* ==================== FONT FACES ==================== */
+
+@font-face {
+  font-family: 'ExposureItalic-70';
+  src: url('fonts/ExposureItalicTrial[-70].otf') format('opentype');
+  font-style: italic;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'PPMori';
+  src: url('fonts/PPMori-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'PPMori';
+  src: url('fonts/PPMori-SemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MarundTrialCurved';
+  src: url('fonts/26A1MarundTrial-3022Curved.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ABCDiatypeMono';
+  src: url('fonts/ABCDiatypeSemi-MonoVariable-Trial.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal italic;
+}
 
 /* ==================== GLOBAL ==================== */
 
@@ -362,6 +397,17 @@ footer {
   }
 
   .grid-item.full-width {
+    height: auto;
+    aspect-ratio: 4/3;
+  }
+
+  .grid-item.full-width-gif {
+    height: auto;
+    aspect-ratio: 16/9;
+    transform: none;
+  }
+
+  .grid-item.full-width-medium {
     height: auto;
     aspect-ratio: 4/3;
   }
