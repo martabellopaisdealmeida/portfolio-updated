@@ -89,7 +89,7 @@ body.dark-mode .meta-value {
 
 .project-hero {
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   overflow: hidden;
   position: relative;
   max-width: 100em;
@@ -130,7 +130,7 @@ body.dark-mode .meta-value {
 }
 
 .project-title-svg {
-  max-width: 200px;
+  max-width: 2em;
   width: auto;
   height: auto;
   display: block;
