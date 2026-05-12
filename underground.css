@@ -396,6 +396,10 @@ footer {
     aspect-ratio: 3/4;
   }
 
+  .grid-row.two-col .grid-item:last-child img {
+    object-position: right center;
+  }
+
   .grid-item.full-width {
     height: auto;
     aspect-ratio: 4/3;
