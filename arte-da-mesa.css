@@ -1,17 +1,6 @@
 /* arte-da-mesa.css
    @font-face removidos — carregados via fonts.css
    Excepção: DakotaRough só é usada nesta página
-   ================================================ */
-
-/* ==================== FONT FACE ==================== */
-
-@font-face {
-  font-family: 'DakotaRough';
-  src: url('fonts/Dakota Rough.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: block;
-}
 
 /* ==================== GLOBAL ==================== */
 
@@ -376,16 +365,23 @@ footer {
     margin-bottom: 2em;
   }
 
-  .grid-item.gif-spreads {
+  /* imagens: altura natural, sem corte */
+  .grid-item.gif-spreads,
+  .grid-item.copos,
+  .grid-item.mockup-mobile,
+  .grid-item.mockup-site {
     height: auto;
-    aspect-ratio: 4 / 3;
   }
 
-  .grid-item.copos {
+  .grid-item.gif-spreads img,
+  .grid-item.copos img,
+  .grid-item.mockup-mobile img,
+  .grid-item.mockup-site img {
     height: auto;
-    aspect-ratio: 16 / 7;
+    object-fit: unset;
   }
 
+  /* two col: mantém 2 colunas, altura natural */
   .grid-row.two-col-svgs {
     grid-template-columns: 1fr 1fr;
     gap: 0.75em;
@@ -394,18 +390,21 @@ footer {
 
   .grid-row.two-col-svgs .grid-item {
     height: auto;
-    aspect-ratio: 3 / 4;
   }
 
-  .grid-item.mockup-mobile,
-  .grid-item.mockup-site {
+  .grid-row.two-col-svgs .grid-item img {
     height: auto;
-    aspect-ratio: 4 / 3;
+    object-fit: unset;
   }
 
   footer {
     padding: 0 1.5em 20px;
     height: 150px;
+  }
+
+  .footer-line,
+  .footer-center:hover .footer-line {
+    width: 60vw;
   }
 
   .footer-center {
@@ -454,13 +453,10 @@ footer {
     gap: 0.625em;
   }
 
+  /* two col passa a coluna única */
   .grid-row.two-col-svgs {
     grid-template-columns: 1fr;
     height: auto;
-  }
-
-  .grid-row.two-col-svgs .grid-item {
-    aspect-ratio: 4 / 3;
   }
 
   footer {
@@ -468,6 +464,10 @@ footer {
     min-height: 250px;
     padding: 60px 20px 20px;
     display: block;
+  }
+
+  .footer-line-mobile {
+    width: 60vw;
   }
 
   .interactive-footer {
