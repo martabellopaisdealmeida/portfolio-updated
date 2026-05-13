@@ -44,13 +44,37 @@ body.dark-mode .get-in-text-bottom-mobile {
   color: #fff;
 }
 
+/* ==================== LIGHTBOX ==================== */
+
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  display: block;
+}
+
 /* ==================== INTRO BLOCK ==================== */
 
 .inspo-intro {
-  display: inline-block;
+  display: block;
   border: 1px solid #ccc;
   padding: 0.75em 1em;
-  margin: 0 2.5em 2.5em;
+  margin: 0 auto 2.5em;
   font-family: 'ABCDiatypeMono', monospace;
   font-size: 0.7em;
   font-weight: 300;
@@ -98,6 +122,7 @@ body.dark-mode .inspo-intro p {
   display: flex;
   align-items: flex-end;
   overflow: hidden;
+  cursor: zoom-in;
 }
 
 .moodboard-img-wrap img {
