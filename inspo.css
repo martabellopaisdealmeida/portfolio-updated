@@ -121,12 +121,12 @@ body.dark-mode .get-in-text-bottom-mobile {
 .inspo-intro-label {
   display: block;
   margin-bottom: 0.5em;
-  color: #888;
+  color: black;
   font-weight: normal;
 }
 
 .inspo-intro p {
-  color: #555;
+  color: black;
 }
 
 body.dark-mode .inspo-intro {
