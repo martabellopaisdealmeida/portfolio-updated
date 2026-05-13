@@ -189,23 +189,23 @@
     object-fit: cover;
   }
   
-  /* --- Poster — full width tall --- */
-  .grid-item.poster {
-    height: 900px;
-  }
-  
-  .grid-item.poster img {
-    object-fit: cover;
-  }
-  
-  /* --- Cianotipias --- */
-  .grid-item.cianotipias {
-    height: 700px;
-  }
-  
-  .grid-item.cianotipias img {
-    object-fit: cover;
-  }
+.grid-row.two-col-poster,
+.grid-row.two-col-cianotipias {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25em;
+  height: 700px;
+}
+
+.grid-row.two-col-poster .grid-item,
+.grid-row.two-col-cianotipias .grid-item {
+  height: 100%;
+}
+
+.grid-row.two-col-poster .grid-item img,
+.grid-row.two-col-cianotipias .grid-item img {
+  object-fit: cover;
+}
   
   /* --- Detalhes --- */
   .grid-item.detalhes {
@@ -375,8 +375,6 @@
     }
   
     .grid-item.revista-gif img,
-    .grid-item.poster img,
-    .grid-item.cianotipias img,
     .grid-item.detalhes img {
       height: auto;
       object-fit: unset;
@@ -388,6 +386,23 @@
       height: auto;
     }
   
+    .grid-row.two-col-poster,
+    .grid-row.two-col-cianotipias {
+      gap: 0.5em;
+      height: auto;
+    }
+    
+    .grid-row.two-col-poster .grid-item,
+    .grid-row.two-col-cianotipias .grid-item {
+      height: auto;
+    }
+    
+    .grid-row.two-col-poster .grid-item img,
+    .grid-row.two-col-cianotipias .grid-item img {
+      height: auto;
+      object-fit: unset;
+    }
+
     .grid-row.two-col-fotografias .grid-item {
       height: auto;
     }
@@ -456,6 +471,12 @@
       height: auto;
     }
   
+    .grid-row.two-col-poster,
+    .grid-row.two-col-cianotipias {
+      grid-template-columns: 1fr;
+      height: auto;
+    }
+
     footer {
       height: auto;
       min-height: 250px;
