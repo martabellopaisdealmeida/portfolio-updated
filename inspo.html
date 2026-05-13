@@ -100,13 +100,16 @@
           const item = document.createElement('div');
           item.className = 'moodboard-item';
 
-          const caption = formatCaption(file.name);
+          const { code, name } = formatCaption(file.name);
           const url = file.download_url;
 
           item.innerHTML = `
-            <img src="${url}" alt="${caption}" loading="lazy">
+            <div class="moodboard-img-wrap">
+              <img src="${url}" alt="${name}" loading="lazy">
+            </div>
             <div class="moodboard-caption">
-              <span class="caption-code">${caption}</span>
+              <span class="caption-code">${code}</span>
+              <span class="caption-name">${name}</span>
               <span class="caption-src">SRC</span>
             </div>
           `;
@@ -120,11 +123,17 @@
       }
     }
 
+    /* Convenção: CODIGO_Nome-Apelido.jpg
+       Ex: 2-34_F-Kuenstler.jpg → code:"2-34", name:"F. Kuenstler" */
     function formatCaption(filename) {
-      return filename
-        .replace(/\.[^.]+$/, '')   /* remove extensão */
-        .replace(/[-_]/g, ' ')
-        .toLowerCase();
+      const base = filename.replace(/\.[^.]+$/, '');
+      const sep = base.indexOf('_');
+      if (sep === -1) {
+        return { code: base.replace(/-/g, ' ').toLowerCase(), name: '' };
+      }
+      const code = base.slice(0, sep);
+      const name = base.slice(sep + 1).replace(/-/g, ' ');
+      return { code, name };
     }
 
     loadMoodboard();
