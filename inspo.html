@@ -34,6 +34,10 @@
     </div>
   </header>
 
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <img class="lightbox-img" id="lightbox-img" src="" alt="">
+  </div>
 
   <!-- Bloco de texto -->
   <div class="inspo-intro">
@@ -110,7 +114,7 @@
           const url = file.download_url;
 
           item.innerHTML = `
-            <div class="moodboard-img-wrap">
+            <div class="moodboard-img-wrap" onclick="openLightbox('${url}')">
               <img src="${url}" alt="${name}" loading="lazy">
             </div>
             <div class="moodboard-caption">
@@ -142,6 +146,28 @@
     }
 
     loadMoodboard();
+  </script>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    function openLightbox(src) {
+      lightboxImg.src = src;
+      lightbox.classList.add('active');
+    }
+
+    lightbox.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+      lightboxImg.src = '';
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        lightbox.classList.remove('active');
+        lightboxImg.src = '';
+      }
+    });
   </script>
 
 </body>
