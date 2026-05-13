@@ -251,7 +251,7 @@ footer {
 .footer-left p {
   color: #333;
   font-size: 14px;
-  font-weight: 300;
+  font-weight: normal;
   margin: 0;
   font-family: 'ABCDiatypeMono', monospace;
 }
@@ -265,7 +265,7 @@ footer {
   color: #333;
   text-decoration: none;
   font-size: 14px;
-  font-weight: 300;
+  font-weight: normal;
   transition: opacity 0.2s ease;
   font-family: 'ABCDiatypeMono', monospace;
 }
