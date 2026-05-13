@@ -110,7 +110,7 @@ body.dark-mode .meta-value {
 .project-container {
   max-width: 100em;
   margin: 0 auto;
-  padding: 2.5em 5.625em 0;
+  padding: 2em 5.625em 0;
 }
 
 .project-header {
@@ -130,7 +130,7 @@ body.dark-mode .meta-value {
 }
 
 .project-title-svg {
-  max-width: 2em;
+  max-width: 2.5em;
   width: auto;
   height: auto;
   display: block;
