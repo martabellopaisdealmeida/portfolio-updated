@@ -38,6 +38,7 @@
   <div class="lightbox" id="lightbox">
     <button class="lightbox-prev" id="lightbox-prev">&#8592;</button>
     <img class="lightbox-img" id="lightbox-img" src="" alt="">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
     <button class="lightbox-next" id="lightbox-next">&#8594;</button>
   </div>
 
@@ -108,6 +109,12 @@
 
         loading.style.display = 'none';
 
+        /* shuffle */
+        for (let i = images.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [images[i], images[j]] = [images[j], images[i]];
+        }
+
         images.forEach(file => {
           const item = document.createElement('div');
           item.className = 'moodboard-item';
@@ -151,24 +158,32 @@
   </script>
 
   <script>
-    const lightbox    = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const prevBtn     = document.getElementById('lightbox-prev');
-    const nextBtn     = document.getElementById('lightbox-next');
+    const lightbox        = document.getElementById('lightbox');
+    const lightboxImg     = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const prevBtn         = document.getElementById('lightbox-prev');
+    const nextBtn         = document.getElementById('lightbox-next');
 
-    let imageUrls  = [];
+    let imageData  = []; /* [{ src, code, name }] */
     let currentIdx = 0;
 
     function openLightbox(src) {
-      imageUrls  = Array.from(document.querySelectorAll('.moodboard-img-wrap img')).map(i => i.src);
-      currentIdx = imageUrls.indexOf(src);
-      lightboxImg.src = src;
+      const items = Array.from(document.querySelectorAll('.moodboard-item'));
+      imageData = items.map(item => ({
+        src:  item.querySelector('img').src,
+        code: item.querySelector('.caption-code')?.textContent || '',
+        name: item.querySelector('.caption-name')?.textContent || ''
+      }));
+      currentIdx = imageData.findIndex(d => d.src === src);
+      showImage(currentIdx);
       lightbox.classList.add('active');
     }
 
     function showImage(idx) {
-      currentIdx = (idx + imageUrls.length) % imageUrls.length;
-      lightboxImg.src = imageUrls[currentIdx];
+      currentIdx = (idx + imageData.length) % imageData.length;
+      const d = imageData[currentIdx];
+      lightboxImg.src = d.src;
+      lightboxCaption.textContent = [d.code, d.name].filter(Boolean).join(' — ');
     }
 
     prevBtn.addEventListener('click', e => { e.stopPropagation(); showImage(currentIdx - 1); });
@@ -177,13 +192,14 @@
     lightbox.addEventListener('click', () => {
       lightbox.classList.remove('active');
       lightboxImg.src = '';
+      lightboxCaption.textContent = '';
     });
 
     document.addEventListener('keydown', e => {
       if (!lightbox.classList.contains('active')) return;
-      if (e.key === 'Escape')      { lightbox.classList.remove('active'); lightboxImg.src = ''; }
-      if (e.key === 'ArrowLeft')   showImage(currentIdx - 1);
-      if (e.key === 'ArrowRight')  showImage(currentIdx + 1);
+      if (e.key === 'Escape')     { lightbox.classList.remove('active'); lightboxImg.src = ''; lightboxCaption.textContent = ''; }
+      if (e.key === 'ArrowLeft')  showImage(currentIdx - 1);
+      if (e.key === 'ArrowRight') showImage(currentIdx + 1);
     });
   </script>
 

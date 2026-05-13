@@ -63,9 +63,22 @@ body.dark-mode .get-in-text-bottom-mobile {
 
 .lightbox-img {
   max-width: 80vw;
-  max-height: 90vh;
+  max-height: 82vh;
   object-fit: contain;
   display: block;
+}
+
+.lightbox-caption {
+  position: fixed;
+  bottom: 2em;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'ABCDiatypeMono', monospace;
+  font-size: 0.7em;
+  font-weight: 300;
+  color: #aaa;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
 }
 
 .lightbox-prev,
