@@ -161,7 +161,7 @@ body.dark-mode .meta-value {
   display: flex;
   flex-direction: column;
   gap: 1.25em;
-  margin-bottom: 1.25em;
+  margin-bottom: 5.25em;
 }
 
 .grid-item {
