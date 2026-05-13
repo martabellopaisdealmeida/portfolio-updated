@@ -74,56 +74,60 @@
   <script src="custom-cursor.js"></script>
 
   <script>
-        const CLOUD_NAME = 'dqfvvnjlj';
-      const TAG = 'inspo';
+    const OWNER = 'martabellopaisdealmeida';
+    const REPO  = 'portfolio-updated';
+    const FOLDER = 'inspo';
 
-      const moodboard = document.getElementById('moodboard');
-      const loading = document.getElementById('moodboard-loading');
+    const moodboard = document.getElementById('moodboard');
+    const loading   = document.getElementById('moodboard-loading');
 
-      async function loadMoodboard() {
-        try {
-          const res = await fetch(
-            `https://res.cloudinary.com/${CLOUD_NAME}/image/list/${TAG}.json`
-          );
-          if (!res.ok) throw new Error('API error');
-          const data = await res.json();
+    async function loadMoodboard() {
+      try {
+        const res = await fetch(
+          `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FOLDER}`,
+          { headers: { 'Accept': 'application/vnd.github.v3+json' } }
+        );
+        if (!res.ok) throw new Error('API error');
+        const files = await res.json();
 
-          loading.style.display = 'none';
+        const images = files.filter(f =>
+          /\.(jpe?g|png|gif|webp|avif)$/i.test(f.name)
+        );
 
-          data.resources.forEach(file => {
-            const item = document.createElement('div');
-            item.className = 'moodboard-item';
+        loading.style.display = 'none';
 
-            const caption = formatCaption(file.public_id);
-            const url = `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/${file.public_id}`;
+        images.forEach(file => {
+          const item = document.createElement('div');
+          item.className = 'moodboard-item';
 
-            item.innerHTML = `
-              <img
-                src="${url}"
-                alt="${caption}"
-                loading="lazy"
-              >
-              <div class="moodboard-caption">
-                <span class="caption-code">${caption}</span>
-                <span class="caption-src">SRC</span>
-              </div>
-            `;
+          const caption = formatCaption(file.name);
+          const url = file.download_url;
 
-            moodboard.appendChild(item);
-          });
+          item.innerHTML = `
+            <img src="${url}" alt="${caption}" loading="lazy">
+            <div class="moodboard-caption">
+              <span class="caption-code">${caption}</span>
+              <span class="caption-src">SRC</span>
+            </div>
+          `;
 
-        } catch (err) {
-          loading.textContent = 'erro ao carregar imagens.';
-          console.error('Moodboard load error:', err);
-        }
+          moodboard.appendChild(item);
+        });
+
+      } catch (err) {
+        loading.textContent = 'erro ao carregar imagens.';
+        console.error('Moodboard load error:', err);
       }
+    }
 
-      function formatCaption(publicId) {
-        const name = publicId.split('/').pop();
-        return name.replace(/[-_]/g, ' ').toLowerCase();
-      }
+    function formatCaption(filename) {
+      return filename
+        .replace(/\.[^.]+$/, '')   /* remove extensão */
+        .replace(/[-_]/g, ' ')
+        .toLowerCase();
+    }
 
-      loadMoodboard();
+    loadMoodboard();
   </script>
 
 </body>
