@@ -62,19 +62,41 @@ body.dark-mode .get-in-text-bottom-mobile {
 }
 
 .lightbox-img {
-  max-width: 90vw;
+  max-width: 80vw;
   max-height: 90vh;
   object-fit: contain;
   display: block;
 }
 
+.lightbox-prev,
+.lightbox-next {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2em;
+  cursor: pointer;
+  padding: 1em;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+  z-index: 10000;
+}
+
+.lightbox-prev { left: 1.5em; }
+.lightbox-next { right: 1.5em; }
+
+.lightbox-prev:hover,
+.lightbox-next:hover { opacity: 1; }
+
 /* ==================== INTRO BLOCK ==================== */
 
 .inspo-intro {
-  display: block;
+  display: inline-block;
   border: 1px solid #ccc;
   padding: 0.75em 1em;
-  margin: 0 auto 2.5em;
+  margin: 0 2.5em 2.5em;
   font-family: 'ABCDiatypeMono', monospace;
   font-size: 0.7em;
   font-weight: 300;

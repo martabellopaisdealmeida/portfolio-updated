@@ -36,7 +36,9 @@
 
   <!-- Lightbox -->
   <div class="lightbox" id="lightbox">
+    <button class="lightbox-prev" id="lightbox-prev">&#8592;</button>
     <img class="lightbox-img" id="lightbox-img" src="" alt="">
+    <button class="lightbox-next" id="lightbox-next">&#8594;</button>
   </div>
 
   <!-- Bloco de texto -->
@@ -149,13 +151,28 @@
   </script>
 
   <script>
-    const lightbox = document.getElementById('lightbox');
+    const lightbox    = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
+    const prevBtn     = document.getElementById('lightbox-prev');
+    const nextBtn     = document.getElementById('lightbox-next');
+
+    let imageUrls  = [];
+    let currentIdx = 0;
 
     function openLightbox(src) {
+      imageUrls  = Array.from(document.querySelectorAll('.moodboard-img-wrap img')).map(i => i.src);
+      currentIdx = imageUrls.indexOf(src);
       lightboxImg.src = src;
       lightbox.classList.add('active');
     }
+
+    function showImage(idx) {
+      currentIdx = (idx + imageUrls.length) % imageUrls.length;
+      lightboxImg.src = imageUrls[currentIdx];
+    }
+
+    prevBtn.addEventListener('click', e => { e.stopPropagation(); showImage(currentIdx - 1); });
+    nextBtn.addEventListener('click', e => { e.stopPropagation(); showImage(currentIdx + 1); });
 
     lightbox.addEventListener('click', () => {
       lightbox.classList.remove('active');
@@ -163,10 +180,10 @@
     });
 
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') {
-        lightbox.classList.remove('active');
-        lightboxImg.src = '';
-      }
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape')      { lightbox.classList.remove('active'); lightboxImg.src = ''; }
+      if (e.key === 'ArrowLeft')   showImage(currentIdx - 1);
+      if (e.key === 'ArrowRight')  showImage(currentIdx + 1);
     });
   </script>
 
