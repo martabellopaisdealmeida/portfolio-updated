@@ -63,7 +63,8 @@
     padding: 0 5.625em;
   }
   
-  .project-hero img {
+  .project-hero img
+  .project-hero video {
     width: 100%;
     height: 100%;
     object-fit: cover;
