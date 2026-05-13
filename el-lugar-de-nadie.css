@@ -158,17 +158,22 @@ body.dark-mode .meta-value {
   overflow: hidden;
 }
 
-.grid-item img {
+.grid-item img,
+.grid-item video {
   width: 100%;
   height: 100%;
   display: block;
 }
 
+/* --- Base grid-row --- */
+.grid-row {
+  display: grid;
+  gap: 1.25em;
+}
+
 /* --- Two col — fotografias --- */
 .grid-row.two-col-fotografias {
-  display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.25em;
   height: 700px;
 }
 
@@ -187,31 +192,38 @@ body.dark-mode .meta-value {
 
 .grid-item.revista-gif img,
 .grid-item.revista-gif video {
-  width: 100%;
-  height: 100%;
   object-fit: cover;
-  display: block;
 }
 
-/* --- Poster — full width tall --- */
-.grid-item.poster {
+/* --- Two col — poster --- */
+.grid-row.two-col-poster {
+  grid-template-columns: 1fr 1fr;
   height: 900px;
 }
 
-.grid-item.poster img {
+.grid-row.two-col-poster .grid-item {
+  height: 100%;
+}
+
+.grid-row.two-col-poster .grid-item img {
   object-fit: cover;
 }
 
-/* --- Cianotipias --- */
-.grid-item.cianotipias {
+/* --- Two col — cianotipias --- */
+.grid-row.two-col-cianotipias {
+  grid-template-columns: 1fr 1fr;
   height: 700px;
 }
 
-.grid-item.cianotipias img {
+.grid-row.two-col-cianotipias .grid-item {
+  height: 100%;
+}
+
+.grid-row.two-col-cianotipias .grid-item img {
   object-fit: cover;
 }
 
-/* --- Detalhes --- */
+/* --- Detalhes — full width --- */
 .grid-item.detalhes {
   height: 700px;
 }
@@ -371,32 +383,36 @@ footer {
     margin-bottom: 1.5em;
   }
 
+  /* Todas as grid-rows mantêm 2 colunas em tablet, mas perdem altura fixa */
+  .grid-row.two-col-fotografias,
+  .grid-row.two-col-poster,
+  .grid-row.two-col-cianotipias {
+    height: auto;
+    gap: 0.5em;
+  }
+
+  .grid-row.two-col-fotografias .grid-item,
+  .grid-row.two-col-poster .grid-item,
+  .grid-row.two-col-cianotipias .grid-item {
+    height: auto;
+  }
+
+  .grid-row.two-col-fotografias .grid-item img,
+  .grid-row.two-col-poster .grid-item img,
+  .grid-row.two-col-cianotipias .grid-item img {
+    height: auto;
+    object-fit: unset;
+  }
+
+  /* Full-width items perdem altura fixa */
   .grid-item.revista-gif,
-  .grid-item.poster,
-  .grid-item.cianotipias,
   .grid-item.detalhes {
     height: auto;
   }
 
   .grid-item.revista-gif img,
-  .grid-item.poster img,
-  .grid-item.cianotipias img,
+  .grid-item.revista-gif video,
   .grid-item.detalhes img {
-    height: auto;
-    object-fit: unset;
-  }
-
-  .grid-row.two-col-fotografias {
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5em;
-    height: auto;
-  }
-
-  .grid-row.two-col-fotografias .grid-item {
-    height: auto;
-  }
-
-  .grid-row.two-col-fotografias .grid-item img {
     height: auto;
     object-fit: unset;
   }
@@ -404,11 +420,6 @@ footer {
   footer {
     padding: 0 1.5em 20px;
     height: 150px;
-  }
-
-  .footer-line,
-  .footer-center:hover .footer-line {
-    width: 60vw;
   }
 
   .footer-center {
@@ -454,10 +465,11 @@ footer {
     margin-bottom: 1.25em;
   }
 
-  /* two col passa a coluna única */
-  .grid-row.two-col-fotografias {
+  /* Todas as two-col passam a coluna única */
+  .grid-row.two-col-fotografias,
+  .grid-row.two-col-poster,
+  .grid-row.two-col-cianotipias {
     grid-template-columns: 1fr;
-    height: auto;
   }
 
   footer {
