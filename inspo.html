@@ -4,11 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>inspo — marta bello pais de almeida</title>
-  <link rel="stylesheet" href="fonts.css">
   <link rel="stylesheet" href="inspo.css">
   <link rel="stylesheet" href="custom-cursor.css">
   <link rel="icon" type="image/x-icon" href="favicon.png">
   <link rel="stylesheet" href="header.css">
+  <link rel="stylesheet" href="fonts.css"> 
+
 </head>
 <body>
 
@@ -35,13 +36,18 @@
     </div>
   </header>
 
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-prev" id="lightbox-prev">&#8592;</button>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+    <button class="lightbox-next" id="lightbox-next">&#8594;</button>
+  </div>
 
-  <!-- View toggle (mobile only) -->
-  <div class="view-toggle">
-    <span class="view-label">view</span>
-    <button class="view-btn active" data-cols="3">3</button>
-    <button class="view-btn" data-cols="2">2</button>
-    <button class="view-btn" data-cols="1">1</button>
+  <!-- Bloco de texto -->
+  <div class="inspo-intro">
+    <span class="inspo-intro-label">archive</span>
+    <p>a moodboard of ongoing inspiration — things I keep collecting without knowing where they belong, but that linger in my head for a while. they can touch a bit of everything: design, art, fashion, whatever.</p>
   </div>
 
   <!-- Moodboard Grid -->
@@ -79,73 +85,122 @@
   </footer>
 
   <script src="script.js"></script>
-  <script src="search.js"></script>
   <script src="custom-cursor.js"></script>
 
   <script>
-        const CLOUD_NAME = 'dqfvvnjlj';
-      const TAG = 'inspo';
+    const OWNER = 'martabellopaisdealmeida';
+    const REPO  = 'portfolio-updated';
+    const FOLDER = 'inspo';
 
-      const moodboard = document.getElementById('moodboard');
-      const loading = document.getElementById('moodboard-loading');
+    const moodboard = document.getElementById('moodboard');
+    const loading   = document.getElementById('moodboard-loading');
 
-      async function loadMoodboard() {
-        try {
-          const res = await fetch(
-            `https://res.cloudinary.com/${CLOUD_NAME}/image/list/${TAG}.json`
-          );
-          if (!res.ok) throw new Error('API error');
-          const data = await res.json();
+    async function loadMoodboard() {
+      try {
+        const res = await fetch(
+          `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FOLDER}`,
+          { headers: { 'Accept': 'application/vnd.github.v3+json' } }
+        );
+        if (!res.ok) throw new Error('API error');
+        const files = await res.json();
 
-          loading.style.display = 'none';
+        const images = files.filter(f =>
+          /\.(jpe?g|png|gif|webp|avif)$/i.test(f.name)
+        );
 
-          data.resources.forEach(file => {
-            const item = document.createElement('div');
-            item.className = 'moodboard-item';
+        loading.style.display = 'none';
 
-            const caption = formatCaption(file.public_id);
-            const url = `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/${file.public_id}`;
-
-            item.innerHTML = `
-              <img
-                src="${url}"
-                alt="${caption}"
-                loading="lazy"
-              >
-              <div class="moodboard-caption">
-                <span class="caption-code">${caption}</span>
-                <span class="caption-src">SRC</span>
-              </div>
-            `;
-
-            moodboard.appendChild(item);
-          });
-
-        } catch (err) {
-          loading.textContent = 'erro ao carregar imagens.';
-          console.error('Moodboard load error:', err);
+        /* shuffle */
+        for (let i = images.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [images[i], images[j]] = [images[j], images[i]];
         }
-      }
 
-      function formatCaption(publicId) {
-        const name = publicId.split('/').pop();
-        return name.replace(/[-_]/g, ' ').toLowerCase();
-      }
+        images.forEach(file => {
+          const item = document.createElement('div');
+          item.className = 'moodboard-item';
 
-      loadMoodboard();
+          const { code, name } = formatCaption(file.name);
+          const url = file.download_url;
+
+          item.innerHTML = `
+            <div class="moodboard-img-wrap" onclick="openLightbox('${url}')">
+              <img src="${url}" alt="${name}" loading="lazy">
+            </div>
+            <div class="moodboard-caption">
+              <span class="caption-code">${code}</span>
+              <span class="caption-name">${name}</span>
+            </div>
+          `;
+
+          moodboard.appendChild(item);
+        });
+
+      } catch (err) {
+        loading.textContent = 'erro ao carregar imagens.';
+        console.error('Moodboard load error:', err);
+      }
+    }
+
+    /* Convenção: CODIGO_Nome-Apelido.jpg
+       Ex: 2-34_F-Kuenstler.jpg → code:"2-34", name:"F. Kuenstler" */
+    function formatCaption(filename) {
+      const base = filename.replace(/\.[^.]+$/, '');
+      const sep = base.indexOf('_');
+      if (sep === -1) {
+        return { code: base.replace(/-/g, ' ').toLowerCase(), name: '' };
+      }
+      const code = base.slice(0, sep);
+      const name = base.slice(sep + 1).replace(/-/g, ' ');
+      return { code, name };
+    }
+
+    loadMoodboard();
   </script>
 
   <script>
-    /* View toggle — mobile only */
-    const viewBtns = document.querySelectorAll('.view-btn');
-    const moodboardEl = document.getElementById('moodboard');
-    viewBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        viewBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const cols = btn.dataset.cols;
-        moodboardEl.dataset.cols = cols;
-      });
+    const lightbox        = document.getElementById('lightbox');
+    const lightboxImg     = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const prevBtn         = document.getElementById('lightbox-prev');
+    const nextBtn         = document.getElementById('lightbox-next');
+
+    let imageData  = []; /* [{ src, code, name }] */
+    let currentIdx = 0;
+
+    function openLightbox(src) {
+      const items = Array.from(document.querySelectorAll('.moodboard-item'));
+      imageData = items.map(item => ({
+        src:  item.querySelector('img').src,
+        code: item.querySelector('.caption-code')?.textContent || '',
+        name: item.querySelector('.caption-name')?.textContent || ''
+      }));
+      currentIdx = imageData.findIndex(d => d.src === src);
+      showImage(currentIdx);
+      lightbox.classList.add('active');
+    }
+
+    function showImage(idx) {
+      currentIdx = (idx + imageData.length) % imageData.length;
+      const d = imageData[currentIdx];
+      lightboxImg.src = d.src;
+      lightboxCaption.textContent = [d.code, d.name].filter(Boolean).join(' — ');
+    }
+
+    prevBtn.addEventListener('click', e => { e.stopPropagation(); showImage(currentIdx - 1); });
+    nextBtn.addEventListener('click', e => { e.stopPropagation(); showImage(currentIdx + 1); });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+      lightboxImg.src = '';
+      lightboxCaption.textContent = '';
+    });
+
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape')     { lightbox.classList.remove('active'); lightboxImg.src = ''; lightboxCaption.textContent = ''; }
+      if (e.key === 'ArrowLeft')  showImage(currentIdx - 1);
+      if (e.key === 'ArrowRight') showImage(currentIdx + 1);
     });
   </script>
 
