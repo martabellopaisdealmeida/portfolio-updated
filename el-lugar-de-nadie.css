@@ -186,7 +186,9 @@
     height: 700px;
   }
   
-  .grid-item.revista-gif img {
+  .grid-item.revista-gif img
+  .grid-item.revista-gif video {
+    width: 100%;
     object-fit: cover;
   }
   
