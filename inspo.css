@@ -44,6 +44,40 @@ body.dark-mode .get-in-text-bottom-mobile {
   color: #fff;
 }
 
+/* ==================== INTRO BLOCK ==================== */
+
+.inspo-intro {
+  display: inline-block;
+  border: 1px solid #ccc;
+  padding: 0.75em 1em;
+  margin: 0 2.5em 2.5em;
+  font-family: 'ABCDiatypeMono', monospace;
+  font-size: 0.7em;
+  font-weight: 300;
+  color: #555;
+  line-height: 1.55;
+  max-width: 320px;
+}
+
+.inspo-intro-label {
+  display: block;
+  margin-bottom: 0.5em;
+  color: #888;
+}
+
+.inspo-intro p {
+  color: #555;
+}
+
+body.dark-mode .inspo-intro {
+  border-color: #333;
+}
+
+body.dark-mode .inspo-intro-label,
+body.dark-mode .inspo-intro p {
+  color: #888;
+}
+
 /* ==================== MOODBOARD GRID ==================== */
 
 .moodboard {
@@ -100,19 +134,9 @@ body.dark-mode .get-in-text-bottom-mobile {
   color: #888;
 }
 
-.caption-src {
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #bbb;
-}
-
 body.dark-mode .caption-code,
 body.dark-mode .caption-name {
   color: #666;
-}
-
-body.dark-mode .caption-src {
-  color: #444;
 }
 
 /* ==================== LOADING STATE ==================== */
