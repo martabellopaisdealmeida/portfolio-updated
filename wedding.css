@@ -160,7 +160,7 @@ body.dark-mode .project-title img {
   display: flex;
   flex-direction: column;
   gap: 1.25em;
-  margin-bottom: 1.25em;
+  margin-bottom: 5.25em;
 }
 
 .grid-item {
