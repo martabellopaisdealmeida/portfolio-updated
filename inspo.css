@@ -122,6 +122,7 @@ body.dark-mode .get-in-text-bottom-mobile {
   display: block;
   margin-bottom: 0.5em;
   color: #888;
+  font-weight: normal;
 }
 
 .inspo-intro p {
