@@ -111,11 +111,11 @@ body.dark-mode .get-in-text-bottom-mobile {
   padding: 0.75em 1em;
   margin: 0 3.5em 2.5em;
   font-family: 'ABCDiatypeMono', monospace;
-  font-size: 0.7em;
+  font-size: 0.9em;
   font-weight: 300;
   color: #555;
   line-height: 1.55;
-  max-width: 395px;
+  max-width: 550px;
 }
 
 .inspo-intro-label {
@@ -387,7 +387,7 @@ footer {
   .inspo-intro {
     margin: 0 1.5em 2.5em;
   }
-  
+
 }
 
 @media (max-width: 480px) {
