@@ -362,10 +362,11 @@ footer {
   }
 
   footer {
-    height: auto;
-    min-height: 15.625em; /* 250px */
-    padding: 3.75em 1.25em 1.25em 1.25em; /* 60px 20px 20px */
-    display: block;
+      height: auto;
+      min-height: 0;                        /* era 250px */
+      padding: 20px 20px 20px 20px;         /* era 60px no topo */
+      display: block;
+  
   }
 
   .interactive-footer {
@@ -386,9 +387,9 @@ footer {
   .footer-center-mobile {
     display: flex;
     order: 1;
-    margin-bottom: 2.5em; /* 40px */
+    margin-bottom: 20px;                  /* era 40px */
   }
-
+  
   .footer-center-mobile .get-in-text-top-mobile,
   .footer-center-mobile .get-in-text-bottom-mobile {
     font-size: 2.5em; /* 40px */
