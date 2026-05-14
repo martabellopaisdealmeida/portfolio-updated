@@ -209,7 +209,8 @@ body.dark-mode .meta-value {
   height: 100%;
 }
 
-.grid-row.two-col-poster .grid-item img {
+.grid-row.two-col-poster .grid-item img,
+.grid-row.two-col-poster .grid-item video {
   object-fit: cover;
 }
 
@@ -223,7 +224,8 @@ body.dark-mode .meta-value {
   height: 100%;
 }
 
-.grid-row.two-col-cianotipias .grid-item img {
+.grid-row.two-col-cianotipias .grid-item img,
+.grid-row.two-col-cianotipias .grid-item video {
   object-fit: cover;
 }
 
@@ -387,7 +389,7 @@ footer {
     margin-bottom: 1.5em;
   }
 
-  /* Todas as grid-rows mantêm 2 colunas em tablet, mas perdem altura fixa */
+  /* Grid rows — perdem altura fixa mas mantêm 2 colunas */
   .grid-row.two-col-fotografias,
   .grid-row.two-col-poster,
   .grid-row.two-col-cianotipias {
@@ -402,13 +404,16 @@ footer {
   }
 
   .grid-row.two-col-fotografias .grid-item img,
+  .grid-row.two-col-fotografias .grid-item video,
   .grid-row.two-col-poster .grid-item img,
-  .grid-row.two-col-cianotipias .grid-item img {
+  .grid-row.two-col-poster .grid-item video,
+  .grid-row.two-col-cianotipias .grid-item img,
+  .grid-row.two-col-cianotipias .grid-item video {
     height: auto;
     object-fit: unset;
   }
 
-  /* Full-width items perdem altura fixa */
+  /* Full-width items — perdem altura fixa */
   .grid-item.revista-gif,
   .grid-item.detalhes {
     height: auto;
