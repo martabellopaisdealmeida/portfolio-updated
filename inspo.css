@@ -383,6 +383,11 @@ footer {
   .footer-center-mobile {
     display: flex !important;
   }
+
+  .inspo-intro {
+    margin: 0 1.5em 2.5em;
+  }
+  
 }
 
 @media (max-width: 480px) {
