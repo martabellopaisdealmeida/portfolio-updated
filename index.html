@@ -245,7 +245,7 @@
       if (hint) stage.appendChild(hint);
       rectElements = [];
       const W = stage.offsetWidth;
-      const H = window.innerHeight * 0.92;
+      const H = window.innerHeight * (window.innerWidth <= 768 ? 0.82 : 0.92);
       stage.style.height = H + 'px';
       currentImages = assignImages();
       RECTS.forEach(function(r, i) {
