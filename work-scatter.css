@@ -206,11 +206,11 @@ footer {
   .scatter-stage { min-height: 60vh; }
   .mobile-hint { display: block; }
   footer {
-    padding: 0.75em 1.875em;   /* era: padding: 0 + padding-bottom separado */
-    min-height: 0;              /* era: 9.375em */
+    padding: 0.75em 1.875em;
+    min-height: 0;
   }
   .footer-center { display: none !important; }
-  .footer-center-mobile { display: flex !important; }
+  .footer-center-mobile { display: none !important; }  /* esconder get in touch */
 
 }
 
