@@ -212,6 +212,12 @@ footer {
   .footer-center { display: none !important; }
   .footer-center-mobile { display: none !important; }  /* esconder get in touch */
 
+  body { overflow: hidden; }
+  .scatter-stage { min-height: 60vh; }
+  .mobile-hint { display: block; }
+  footer { display: none; }
+
+
 }
 
 @media (max-width: 480px) {
