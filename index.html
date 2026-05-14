@@ -248,7 +248,7 @@
       const headerEl = document.querySelector('header');
 const headerH = headerEl ? headerEl.offsetHeight : 0;
 const H = window.innerWidth <= 768
-  ? window.innerHeight - headerH - 40
+  ? window.innerHeight - headerH - 10
   : window.innerHeight * 0.92;
       stage.style.height = H + 'px';
       currentImages = assignImages();

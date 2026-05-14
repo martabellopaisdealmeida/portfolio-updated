@@ -213,7 +213,7 @@ footer {
   .footer-center-mobile { display: none !important; }  /* esconder get in touch */
 
   body { overflow: hidden; }
-  .scatter-stage { min-height: 60vh; }
+  .scatter-stage { min-height: 85vh; }
   .mobile-hint { display: block; }
   footer { display: none; }
 
