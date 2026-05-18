@@ -7,87 +7,87 @@
 
 /* ---- PP Neue Montreal ---- */
 @font-face {
-    font-family: 'PPNeueMontreal';
-    src: url('fonts/PPNeueMontreal-Medium.otf') format('opentype');
-    font-weight: 500;
-    font-style: normal;
-    font-display: block;
-  }
-  
-  @font-face {
-    font-family: 'PPNeueMontreal';
-    src: url('fonts/PPNeueMontreal-Bold.otf') format('opentype');
-    font-weight: 700;
-    font-style: normal;
-    font-display: block;
-  }
-  
-  @font-face {
-    font-family: 'PPNeueMontreal';
-    src: url('fonts/PPNeueMontreal-Italic.otf') format('opentype');
-    font-weight: 400;
-    font-style: italic;
-    font-display: block;
-  }
-  
+  font-family: 'PPNeueMontreal';
+  src: url('fonts/PPNeueMontreal-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
 
-  
-  /* ---- ABC Diatype Mono ---- */
-  @font-face {
-    font-family: 'ABCDiatypeMono';
-    src: url('fonts/ABCDiatypeSemi-MonoVariable-Trial.ttf') format('truetype');
-    font-weight: 100 900;
-    font-style: normal italic;
-    font-display: block;
-  }
-  
-  
-  /* ---- Marund Trial Curved ---- */
-  @font-face {
-    font-family: 'MarundTrialCurved';
-    src: url('fonts/26A1MarundTrial-3022Curved.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: block;
-  }
-  
-  
-  /* ---- Marund Trial Corner ---- */
-  @font-face {
-    font-family: 'MarundTrialCorner';
-    src: url('fonts/26A1MarundTrial-3002Corner.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: block;
-  }
-  
-  
-  /* ---- Exposure Italic Trial (todas as variações) ---- */
- 
-  @font-face {
-    font-family: 'ExposureItalic-50';
-    src: url('fonts/ExposureItalicTrial[-50].otf') format('opentype');
-    font-style: italic;
-    font-display: block;
-  }
+@font-face {
+  font-family: 'PPNeueMontreal';
+  src: url('fonts/PPNeueMontreal-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
-  @font-face {
-    font-family: 'ExposureTrial-60';
-    src: url('fonts/ExposureTrial[-60].otf') format('opentype');
-    font-display: block;
-  }
-  
-  @font-face {
-    font-family: 'ExposureItalic-30';
-    src: url('fonts/ExposureItalicTrial[-30].otf') format('opentype');
-    font-style: italic;
-    font-display: block;
-  }
+@font-face {
+  font-family: 'PPNeueMontreal';
+  src: url('fonts/PPNeueMontreal-Italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
 
-  @font-face {
-    font-family: 'DakotaRough';
-    src: url('fonts/Dakota_Rough.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: block;
-  }
+
+
+/* ---- ABC Diatype Mono ---- */
+@font-face {
+  font-family: 'ABCDiatypeMono';
+  src: url('fonts/ABCDiatypeSemi-MonoVariable-Trial.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal italic;
+  font-display: swap;
+}
+
+
+/* ---- Marund Trial Curved ---- */
+@font-face {
+  font-family: 'MarundTrialCurved';
+  src: url('fonts/26A1MarundTrial-3022Curved.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* ---- Marund Trial Corner ---- */
+@font-face {
+  font-family: 'MarundTrialCorner';
+  src: url('fonts/26A1MarundTrial-3002Corner.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* ---- Exposure Italic Trial (todas as variações) ---- */
+
+@font-face {
+  font-family: 'ExposureItalic-50';
+  src: url('fonts/ExposureItalicTrial[-50].otf') format('opentype');
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ExposureTrial-60';
+  src: url('fonts/ExposureTrial[-60].otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ExposureItalic-30';
+  src: url('fonts/ExposureItalicTrial[-30].otf') format('opentype');
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'DakotaRough';
+  src: url('fonts/Dakota_Rough.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

@@ -173,6 +173,9 @@ document.addEventListener('DOMContentLoaded', function() {
         subtree: true
     });
 
+    // Expor globalmente para que o scatter possa pausar/retomar o observer
+    window._cursorObserver = observer;
+
     // Hide cursor when leaving window
     document.addEventListener('mouseleave', function() {
         cursor.style.opacity = '0';
