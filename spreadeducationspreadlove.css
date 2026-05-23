@@ -345,6 +345,31 @@ footer {
     gap: 1.25em;
   }
 
+  /* Photo grid — remover alturas fixas, empilhar tudo */
+  .grid-item.large {
+    height: auto;
+  }
+
+  .grid-item img {
+    height: auto;
+    object-fit: contain;
+  }
+
+  .grid-row {
+    flex-direction: column;
+    height: auto;
+    gap: 12px;
+  }
+
+  .grid-row .grid-item {
+    height: auto;
+  }
+
+  .photo-grid {
+    gap: 12px;
+    padding: 0 0 40px;
+  }
+
   footer {
     padding: 0 1.5em 20px;
     height: 150px;
