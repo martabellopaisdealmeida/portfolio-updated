@@ -22,8 +22,8 @@
           </a>
         </div>
         <nav class="desktop-nav">
-          <a href="work.html">work, </a>
-          <a href="about-me.html"> about, </a>
+          <a href="about-me.html">about,</a>
+          <a href="work.html"> work,</a>
           <a href="inspo.html"> inspo</a>
         </nav>
       </div>
@@ -204,18 +204,6 @@
       { x: 93.0, y: 52.5, w: 4.5, h: 6.5 },
     ];
   
-    // Cache das posições dos rects — evita getBoundingClientRect() em loop no mousemove
-    let rectCache = [];
-    function updateRectCache() {
-      // Diferido para um frame para garantir que o layout está calculado
-      requestAnimationFrame(function() {
-        rectCache = rectElements.map(r => {
-          const b = r.getBoundingClientRect();
-          return { el: r, cx: b.left + b.width / 2, cy: b.top + b.height / 2 };
-        });
-      });
-    }
-
     function shuffle(arr) {
       const a = [...arr];
       for (let i = a.length - 1; i > 0; i--) {
@@ -276,7 +264,6 @@ const H = window.innerWidth <= 768
         stage.appendChild(el);
         rectElements.push(el);
       });
-      updateRectCache();
     }
   
     function swapImage(rectIndex, newSrc) {
@@ -342,9 +329,8 @@ const H = window.innerWidth <= 768
     const imgData = imgRes.ok ? await imgRes.json() : { resources: [] };
     const vidData = vidRes.ok ? await vidRes.json() : { resources: [] };
 
-    const imgW = window.innerWidth <= 768 ? 400 : 600;
     const images = imgData.resources.map(r =>
-      `${base}/image/upload/f_auto,q_auto,w_${imgW}/${r.public_id}.${r.format}`
+      `${base}/image/upload/f_auto,q_auto,w_1200/${r.public_id}.${r.format}`
     );
     const videos = vidData.resources.map(r =>
       `${base}/video/upload/q_auto/${r.public_id}.${r.format}`
@@ -352,11 +338,7 @@ const H = window.innerWidth <= 768
 
     MOODBOARD_IMAGES = [...images, ...videos];
     if (!MOODBOARD_IMAGES.length) return;
-    if (window._cursorObserver) window._cursorObserver.disconnect();
     buildScatter();
-    if (window._cursorObserver) {
-      window._cursorObserver.observe(document.body, { childList: true, subtree: true });
-    }
     startRotation();
   } catch (err) {
     console.error('Erro Cloudinary:', err);
@@ -380,7 +362,6 @@ loadImagesFromCloudinary();
     let touchStartX = 0;
 let touchStartY = 0;
 let isDrawing = false;
-let touchTicking = false;
 
 stage.addEventListener('touchstart', function(e) {
   touchStartX = e.touches[0].clientX;
@@ -393,24 +374,18 @@ stage.addEventListener('touchmove', function(e) {
   const dx = Math.abs(touch.clientX - touchStartX);
   const dy = Math.abs(touch.clientY - touchStartY);
 
+  // Se move mais horizontalmente ou em diagonal → é desenho
   if (!isDrawing && (dx > dy * 1.2 || dx > 10)) {
     isDrawing = true;
   }
 
   if (isDrawing) {
     e.preventDefault();
-    if (touchTicking) return;
-    touchTicking = true;
-    const tx = touch.clientX;
-    const ty = touch.clientY;
-    requestAnimationFrame(function() {
-      const el = document.elementFromPoint(tx, ty);
-      const rect = el && el.closest('.rect-item');
-      if (rect && !rect.classList.contains('touched')) {
-        rect.classList.add('touched');
-      }
-      touchTicking = false;
-    });
+    const el = document.elementFromPoint(touch.clientX, touch.clientY);
+    const rect = el && el.closest('.rect-item');
+    if (rect && !rect.classList.contains('touched')) {
+      rect.classList.add('touched');
+    }
   }
 }, { passive: false });
 
@@ -419,27 +394,27 @@ stage.addEventListener('touchend', function() {
     setTimeout(() => el.classList.remove('touched'), 16000);
   });
   isDrawing = false;
-  touchTicking = false;
 });
 
   
-    // mousemove: usa o cache em vez de getBoundingClientRect() em loop
-    // SEM throttle — processar todos os eventos garante que nenhum hover é perdido
     stage.addEventListener('mousemove', function(e) {
       let el = document.elementFromPoint(e.clientX, e.clientY);
       let rect = el && el.closest('.rect-item');
-
+  
       if (!rect) {
         let minDist = Infinity;
-        rectCache.forEach(function(c) {
-          const dist = Math.hypot(e.clientX - c.cx, e.clientY - c.cy);
+        rectElements.forEach(function(r) {
+          const box = r.getBoundingClientRect();
+          const cx = box.left + box.width / 2;
+          const cy = box.top + box.height / 2;
+          const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
           if (dist < minDist && dist < 120) {
             minDist = dist;
-            rect = c.el;
+            rect = r;
           }
         });
       }
-
+  
       if (rect && !rect.classList.contains('hovered') && !rect.classList.contains('fading')) {
         rect.classList.add('hovered');
         rect.addEventListener('mouseleave', function onLeave() {
