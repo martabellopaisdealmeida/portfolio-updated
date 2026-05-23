@@ -389,18 +389,22 @@ footer {
     margin-bottom: 1.5em;
   }
 
-  /* Grid rows — perdem altura fixa mas mantêm 2 colunas */
+  /* Grid rows — alturas consistentes em mobile */
   .grid-row.two-col-fotografias,
-  .grid-row.two-col-poster,
   .grid-row.two-col-cianotipias {
-    height: auto;
+    height: 280px;
+    gap: 0.5em;
+  }
+
+  .grid-row.two-col-poster {
+    height: 380px;
     gap: 0.5em;
   }
 
   .grid-row.two-col-fotografias .grid-item,
   .grid-row.two-col-poster .grid-item,
   .grid-row.two-col-cianotipias .grid-item {
-    height: auto;
+    height: 100%;
   }
 
   .grid-row.two-col-fotografias .grid-item img,
@@ -409,21 +413,24 @@ footer {
   .grid-row.two-col-poster .grid-item video,
   .grid-row.two-col-cianotipias .grid-item img,
   .grid-row.two-col-cianotipias .grid-item video {
-    height: auto;
-    object-fit: unset;
+    height: 100%;
+    object-fit: cover;
   }
 
-  /* Full-width items — perdem altura fixa */
-  .grid-item.revista-gif,
+  /* Full-width items */
+  .grid-item.revista-gif {
+    height: 320px;
+  }
+
   .grid-item.detalhes {
-    height: auto;
+    height: 280px;
   }
 
   .grid-item.revista-gif img,
   .grid-item.revista-gif video,
   .grid-item.detalhes img {
-    height: auto;
-    object-fit: unset;
+    height: 100%;
+    object-fit: cover;
   }
 
   footer {
@@ -474,11 +481,42 @@ footer {
     margin-bottom: 1.25em;
   }
 
-  /* Todas as two-col passam a coluna única */
+  /* Todas as two-col passam a coluna única, com alturas uniformes */
   .grid-row.two-col-fotografias,
-  .grid-row.two-col-poster,
   .grid-row.two-col-cianotipias {
     grid-template-columns: 1fr;
+    height: auto;
+    gap: 0.375em;
+  }
+
+  .grid-row.two-col-poster {
+    grid-template-columns: 1fr;
+    height: auto;
+    gap: 0.375em;
+  }
+
+  .grid-row.two-col-fotografias .grid-item,
+  .grid-row.two-col-poster .grid-item,
+  .grid-row.two-col-cianotipias .grid-item {
+    height: 260px;
+  }
+
+  .grid-row.two-col-fotografias .grid-item img,
+  .grid-row.two-col-fotografias .grid-item video,
+  .grid-row.two-col-poster .grid-item img,
+  .grid-row.two-col-poster .grid-item video,
+  .grid-row.two-col-cianotipias .grid-item img,
+  .grid-row.two-col-cianotipias .grid-item video {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .grid-item.revista-gif {
+    height: 280px;
+  }
+
+  .grid-item.detalhes {
+    height: 260px;
   }
 
   footer {
