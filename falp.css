@@ -387,7 +387,6 @@ footer {
 
   .grid-row.two-col .grid-item {
     height: auto;
-    aspect-ratio: 3/4;
   }
 
   .grid-row.three-col {
