@@ -393,7 +393,6 @@ footer {
 
   .grid-row.two-col .grid-item {
     height: auto;
-    aspect-ratio: 3/4;
   }
 
   .grid-row.two-col .grid-item:last-child img {
