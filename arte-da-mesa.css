@@ -378,6 +378,7 @@ footer {
   .grid-item.mockup-mobile,
   .grid-item.mockup-site {
     height: auto;
+    margin-top: 35px;
   }
 
   .grid-item.gif-spreads img,
