@@ -226,15 +226,15 @@
         media.src = src;
         media.muted = true;
         media.loop = true;
+        media.autoplay = true;
         media.playsInline = true;
         media.setAttribute('playsinline', '');
-        el.addEventListener('mouseenter', () => media.play().catch(() => {}));
-        el.addEventListener('mouseleave', () => { media.pause(); media.currentTime = 0; });
+        media.setAttribute('autoplay', '');
       } else {
         media = document.createElement('img');
         media.src = src;
         media.alt = '';
-        media.loading = 'lazy';
+        media.loading = 'eager';
       }
       return media;
     }
