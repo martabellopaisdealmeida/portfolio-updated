@@ -415,7 +415,8 @@ stage.addEventListener('touchend', function() {
         });
       }
   
-      if (rect && !rect.classList.contains('hovered') && !rect.classList.contains('fading')) {
+      if (rect && !rect.classList.contains('hovered')) {
+        rect.classList.remove('fading');
         rect.classList.add('hovered');
         rect.addEventListener('mouseleave', function onLeave() {
           rect.classList.remove('hovered');
