@@ -249,7 +249,7 @@
 const headerH = headerEl ? headerEl.offsetHeight : 0;
 const H = window.innerWidth <= 768
   ? (window.innerHeight - headerH) * 1.35
-  : window.innerHeight * 0.92;
+  : window.innerHeight * 0.75;
       stage.style.height = H + 'px';
       currentImages = assignImages();
       RECTS.forEach(function(r, i) {
@@ -330,7 +330,7 @@ const H = window.innerWidth <= 768
     const vidData = vidRes.ok ? await vidRes.json() : { resources: [] };
 
     const images = imgData.resources.map(r =>
-      `${base}/image/upload/f_auto,q_auto,w_1200/${r.public_id}.${r.format}`
+      `${base}/image/upload/f_auto,q_auto,w_700/${r.public_id}.${r.format}`
     );
     const videos = vidData.resources.map(r =>
       `${base}/video/upload/q_auto/${r.public_id}.${r.format}`
@@ -408,7 +408,7 @@ stage.addEventListener('touchend', function() {
           const cx = box.left + box.width / 2;
           const cy = box.top + box.height / 2;
           const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
-          if (dist < minDist && dist < 120) {
+          if (dist < minDist && dist < 200) {
             minDist = dist;
             rect = r;
           }
