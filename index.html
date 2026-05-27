@@ -264,6 +264,7 @@ const H = window.innerWidth <= 768
         stage.appendChild(el);
         rectElements.push(el);
       });
+      cachedRects = null;
     }
   
     function swapImage(rectIndex, newSrc) {
@@ -333,8 +334,8 @@ const H = window.innerWidth <= 768
       `${base}/image/upload/f_auto,q_auto,w_700/${r.public_id}.${r.format}`
     );
     const videos = vidData.resources.map(r =>
-      `${base}/video/upload/q_auto/${r.public_id}.${r.format}`
-    );
+  `${base}/video/upload/q_auto,f_mp4/${r.public_id}.mp4`
+);
 
     MOODBOARD_IMAGES = [...images, ...videos];
     if (!MOODBOARD_IMAGES.length) return;
@@ -397,35 +398,40 @@ stage.addEventListener('touchend', function() {
 });
 
   
-    stage.addEventListener('mousemove', function(e) {
-      let el = document.elementFromPoint(e.clientX, e.clientY);
-      let rect = el && el.closest('.rect-item');
-  
-      if (!rect) {
-        let minDist = Infinity;
-        rectElements.forEach(function(r) {
-          const box = r.getBoundingClientRect();
-          const cx = box.left + box.width / 2;
-          const cy = box.top + box.height / 2;
-          const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
-          if (dist < minDist && dist < 200) {
-            minDist = dist;
-            rect = r;
-          }
-        });
-      }
-  
-      if (rect && !rect.classList.contains('hovered')) {
-        rect.classList.remove('fading');
-        rect.classList.add('hovered');
-        rect.addEventListener('mouseleave', function onLeave() {
-          rect.classList.remove('hovered');
-          rect.classList.add('fading');
-          setTimeout(() => rect.classList.remove('fading'), 16000);
-          rect.removeEventListener('mouseleave', onLeave);
-        });
+let cachedRects = null;
+
+stage.addEventListener('mousemove', function(e) {
+  if (!cachedRects) {
+    cachedRects = rectElements.map(r => r.getBoundingClientRect());
+  }
+
+  let el = document.elementFromPoint(e.clientX, e.clientY);
+  let rect = el && el.closest('.rect-item');
+
+  if (!rect) {
+    let minDist = Infinity;
+    rectElements.forEach(function(r, i) {
+      const box = cachedRects[i];
+      const cx = box.left + box.width / 2;
+      const cy = box.top + box.height / 2;
+      const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
+      if (dist < minDist && dist < 200) {
+        minDist = dist;
+        rect = r;
       }
     });
+  }
+
+  if (rect && !rect.classList.contains('hovered') && !rect.classList.contains('fading')) {
+    rect.classList.add('hovered');
+    rect.addEventListener('mouseleave', function onLeave() {
+      rect.classList.remove('hovered');
+      rect.classList.add('fading');
+      setTimeout(() => rect.classList.remove('fading'), 16000);
+      rect.removeEventListener('mouseleave', onLeave);
+    });
+  }
+});
   </script>
   
 </body>
