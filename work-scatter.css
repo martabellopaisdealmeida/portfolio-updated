@@ -34,7 +34,7 @@ body {
 
 .rect-item:hover { z-index: 10; }
 
-/* Invisível por defeito */
+/* Invisível por defeito, fade-out lento */
 .rect-item img,
 .rect-item video {
   position: absolute;
@@ -44,7 +44,7 @@ body {
   object-fit: contain;
   opacity: 0;
   display: block;
-  transition: opacity 4s ease 12s;
+  transition: none;
 }
 
 /* Aparecem rapidamente ao hover/touch */
