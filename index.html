@@ -226,15 +226,15 @@
         media.src = src;
         media.muted = true;
         media.loop = true;
+        media.autoplay = true;
         media.playsInline = true;
         media.setAttribute('playsinline', '');
-        el.addEventListener('mouseenter', () => media.play().catch(() => {}));
-        el.addEventListener('mouseleave', () => { media.pause(); media.currentTime = 0; });
+        media.setAttribute('autoplay', '');
       } else {
         media = document.createElement('img');
         media.src = src;
         media.alt = '';
-        media.loading = 'lazy';
+        media.loading = 'eager';
       }
       return media;
     }
@@ -397,36 +397,32 @@ stage.addEventListener('touchend', function() {
 });
 
   
-    let currentHovered = null;
-
     stage.addEventListener('mousemove', function(e) {
-      const el = document.elementFromPoint(e.clientX, e.clientY);
-      const newRect = el && el.closest('.rect-item');
-
-      if (newRect === currentHovered) return;
-
-      if (currentHovered) {
-        const old = currentHovered;
-        old.classList.remove('hovered');
-        old.classList.add('fading');
-        setTimeout(() => old.classList.remove('fading'), 16000);
+      let el = document.elementFromPoint(e.clientX, e.clientY);
+      let rect = el && el.closest('.rect-item');
+  
+      if (!rect) {
+        let minDist = Infinity;
+        rectElements.forEach(function(r) {
+          const box = r.getBoundingClientRect();
+          const cx = box.left + box.width / 2;
+          const cy = box.top + box.height / 2;
+          const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
+          if (dist < minDist && dist < 120) {
+            minDist = dist;
+            rect = r;
+          }
+        });
       }
-
-      if (newRect) {
-        newRect.classList.remove('fading');
-        newRect.classList.add('hovered');
-      }
-
-      currentHovered = newRect;
-    });
-
-    stage.addEventListener('mouseleave', function() {
-      if (currentHovered) {
-        const old = currentHovered;
-        old.classList.remove('hovered');
-        old.classList.add('fading');
-        setTimeout(() => old.classList.remove('fading'), 16000);
-        currentHovered = null;
+  
+      if (rect && !rect.classList.contains('hovered') && !rect.classList.contains('fading')) {
+        rect.classList.add('hovered');
+        rect.addEventListener('mouseleave', function onLeave() {
+          rect.classList.remove('hovered');
+          rect.classList.add('fading');
+          setTimeout(() => rect.classList.remove('fading'), 16000);
+          rect.removeEventListener('mouseleave', onLeave);
+        });
       }
     });
   </script>
