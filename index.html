@@ -202,45 +202,6 @@
       { x: 83.0, y: 52.0, w: 5.5, h: 8.5 },
       { x: 88.0, y: 55.0, w: 6.0, h: 7.0 },
       { x: 93.0, y: 52.5, w: 4.5, h: 6.5 },
-      // banda 7
-  { x: 4.0, y: 63.0, w: 6.5, h: 7.5 },
-  { x: 9.5, y: 61.5, w: 5.0, h: 8.5 },
-  { x: 14.5, y: 64.0, w: 7.0, h: 6.5 },
-  { x: 20.0, y: 62.0, w: 5.5, h: 8.0 },
-  { x: 25.0, y: 65.0, w: 6.0, h: 7.0 },
-  { x: 30.5, y: 61.5, w: 5.0, h: 6.5 },
-  { x: 35.0, y: 64.5, w: 7.5, h: 8.5 },
-  { x: 41.0, y: 62.0, w: 5.5, h: 7.0 },
-  { x: 46.0, y: 65.0, w: 6.0, h: 6.5 },
-  { x: 51.5, y: 61.5, w: 5.0, h: 8.0 },
-  { x: 56.0, y: 64.0, w: 7.0, h: 7.5 },
-  { x: 62.0, y: 62.5, w: 5.5, h: 6.5 },
-  { x: 67.0, y: 65.0, w: 6.0, h: 8.0 },
-  { x: 72.5, y: 61.5, w: 5.0, h: 7.0 },
-  { x: 77.0, y: 64.5, w: 7.5, h: 6.5 },
-  { x: 83.0, y: 62.0, w: 5.5, h: 8.5 },
-  { x: 88.0, y: 65.0, w: 6.0, h: 7.0 },
-  { x: 93.0, y: 62.5, w: 4.5, h: 6.5 },
-
-  // banda 8
-  { x: 3.5, y: 73.0, w: 7.0, h: 8.0 },
-  { x: 9.5, y: 71.5, w: 5.5, h: 7.0 },
-  { x: 14.5, y: 74.0, w: 6.0, h: 9.0 },
-  { x: 20.0, y: 72.0, w: 5.0, h: 7.5 },
-  { x: 24.5, y: 75.0, w: 7.5, h: 6.5 },
-  { x: 30.5, y: 71.5, w: 5.5, h: 8.0 },
-  { x: 35.5, y: 74.5, w: 6.0, h: 7.0 },
-  { x: 41.0, y: 72.0, w: 5.0, h: 6.5 },
-  { x: 45.5, y: 75.0, w: 7.0, h: 8.5 },
-  { x: 51.5, y: 71.5, w: 5.5, h: 7.5 },
-  { x: 56.5, y: 74.0, w: 6.0, h: 6.5 },
-  { x: 62.0, y: 72.5, w: 5.0, h: 8.0 },
-  { x: 66.5, y: 75.0, w: 7.5, h: 7.0 },
-  { x: 72.5, y: 71.5, w: 5.5, h: 6.5 },
-  { x: 77.5, y: 74.5, w: 6.0, h: 8.5 },
-  { x: 83.0, y: 72.0, w: 5.0, h: 7.0 },
-  { x: 87.5, y: 75.0, w: 7.0, h: 6.5 },
-  { x: 93.0, y: 72.5, w: 4.5, h: 8.0 },
     ];
   
     function shuffle(arr) {
@@ -265,15 +226,15 @@
         media.src = src;
         media.muted = true;
         media.loop = true;
-        media.autoplay = true;
         media.playsInline = true;
         media.setAttribute('playsinline', '');
-        media.setAttribute('autoplay', '');
+        el.addEventListener('mouseenter', () => media.play().catch(() => {}));
+        el.addEventListener('mouseleave', () => { media.pause(); media.currentTime = 0; });
       } else {
         media = document.createElement('img');
         media.src = src;
         media.alt = '';
-        media.loading = 'eager';
+        media.loading = 'lazy';
       }
       return media;
     }
@@ -303,7 +264,6 @@ const H = window.innerWidth <= 768
         stage.appendChild(el);
         rectElements.push(el);
       });
-      cachedRects = null;
     }
   
     function swapImage(rectIndex, newSrc) {
@@ -370,11 +330,11 @@ const H = window.innerWidth <= 768
     const vidData = vidRes.ok ? await vidRes.json() : { resources: [] };
 
     const images = imgData.resources.map(r =>
-      `${base}/image/upload/f_auto,q_auto,w_700/${r.public_id}.${r.format}`
+      `${base}/image/upload/f_auto,q_auto,w_1200/${r.public_id}.${r.format}`
     );
     const videos = vidData.resources.map(r =>
-  `${base}/video/upload/q_auto,f_mp4/${r.public_id}.mp4`
-);
+      `${base}/video/upload/q_auto/${r.public_id}.${r.format}`
+    );
 
     MOODBOARD_IMAGES = [...images, ...videos];
     if (!MOODBOARD_IMAGES.length) return;
@@ -437,40 +397,20 @@ stage.addEventListener('touchend', function() {
 });
 
   
-let cachedRects = null;
-
-stage.addEventListener('mousemove', function(e) {
-  if (!cachedRects) {
-    cachedRects = rectElements.map(r => r.getBoundingClientRect());
-  }
-
-  let el = document.elementFromPoint(e.clientX, e.clientY);
-  let rect = el && el.closest('.rect-item');
-
-  if (!rect) {
-    let minDist = Infinity;
-    rectElements.forEach(function(r, i) {
-      const box = cachedRects[i];
-      const cx = box.left + box.width / 2;
-      const cy = box.top + box.height / 2;
-      const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
-      if (dist < minDist && dist < 200) {
-        minDist = dist;
-        rect = r;
+    stage.addEventListener('mousemove', function(e) {
+      const el = document.elementFromPoint(e.clientX, e.clientY);
+      const rect = el && el.closest('.rect-item');
+  
+      if (rect && !rect.classList.contains('hovered') && !rect.classList.contains('fading')) {
+        rect.classList.add('hovered');
+        rect.addEventListener('mouseleave', function onLeave() {
+          rect.classList.remove('hovered');
+          rect.classList.add('fading');
+          setTimeout(() => rect.classList.remove('fading'), 16000);
+          rect.removeEventListener('mouseleave', onLeave);
+        });
       }
     });
-  }
-
-  if (rect && !rect.classList.contains('hovered') && !rect.classList.contains('fading')) {
-    rect.classList.add('hovered');
-    rect.addEventListener('mouseleave', function onLeave() {
-      rect.classList.remove('hovered');
-      rect.classList.add('fading');
-      setTimeout(() => rect.classList.remove('fading'), 16000);
-      rect.removeEventListener('mouseleave', onLeave);
-    });
-  }
-});
   </script>
   
 </body>
