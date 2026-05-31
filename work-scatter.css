@@ -58,11 +58,11 @@ body {
   transition: opacity 0.2s ease;
 }
 
-/* Estado de desaparecimento */
+/* Estado de desaparecimento — gerido via JS */
 .rect-item.fading img,
 .rect-item.fading video {
   opacity: 0;
-  transition: opacity 3s ease 5s;
+  transition: opacity 2s ease;
 }
 
 /* ==================== MOBILE HINT ==================== */
