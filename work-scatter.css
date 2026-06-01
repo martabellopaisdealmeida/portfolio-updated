@@ -34,35 +34,31 @@ body {
 
 .rect-item:hover { z-index: 10; }
 
-/* Invisível por defeito, fade-out lento */
+/* Invisível por defeito — desaparece lentamente após hover (efeito trail) */
 .rect-item img,
 .rect-item video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   opacity: 0;
   display: block;
-  transition: none;
+  transition: opacity 0.9s ease 0.35s;
 }
 
-/* Aparecem rapidamente ao hover/touch */
+/* Aparece imediatamente ao hover */
 .rect-item:hover img,
-.rect-item:hover video,
-.rect-item.hovered img,
-.rect-item.hovered video,
-.rect-item.touched img,
-.rect-item.touched video {
+.rect-item:hover video {
   opacity: 1;
   transition: opacity 0.2s ease;
 }
 
-/* Estado de desaparecimento */
-.rect-item.fading img,
-.rect-item.fading video {
-  opacity: 0;
-  transition: opacity 2s ease 4s;
+/* Touch reveal (mobile) */
+.rect-item.touched img,
+.rect-item.touched video {
+  opacity: 1;
+  transition: opacity 0.2s ease;
 }
 
 /* ==================== MOBILE HINT ==================== */
@@ -208,17 +204,14 @@ footer {
     min-height: 0;
   }
   .footer-center { display: none !important; }
-  .footer-center-mobile { display: none !important; }  /* esconder get in touch */
+  .footer-center-mobile { display: none !important; }
 
   html, body {
     overflow: hidden;
     height: 100%;
   }
   .scatter-stage { min-height: 85vh; }
-  .mobile-hint { display: block; }
   footer { display: none; }
-
-
 }
 
 @media (max-width: 480px) {
