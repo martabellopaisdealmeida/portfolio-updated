@@ -32,7 +32,6 @@ body {
   background: transparent;
 }
 
-.rect-item:hover { z-index: 10; }
 
 /* Invisível por defeito — desaparece lentamente após hover (efeito trail) */
 .rect-item img,
@@ -44,7 +43,7 @@ body {
   object-fit: contain;
   opacity: 0;
   display: block;
-  transition: opacity 1.2s ease 5s;
+  transition: opacity 1.2s ease 2.5s;
 }
 
 /* Aparece imediatamente ao hover */
