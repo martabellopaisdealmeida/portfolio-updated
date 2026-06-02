@@ -43,7 +43,10 @@ body {
   object-fit: contain;
   opacity: 0;
   display: block;
-  transition: opacity 1.2s ease 2.5s;
+  transition: opacity 3s ease 8s;  /* fade-out: 3s após 8s de delay */
+}
+
+  
 }
 
 /* Aparece imediatamente ao hover */
