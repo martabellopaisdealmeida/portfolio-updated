@@ -259,6 +259,10 @@
         el.appendChild(media);
         stage.appendChild(el);
         rectElements.push(el);
+        el.addEventListener('mouseleave', function() {
+          el.classList.add('fading');
+          setTimeout(() => el.classList.remove('fading'), 11000);
+        });
       });
     }
 
@@ -368,7 +372,11 @@
         const rect = el && el.closest('.rect-item');
         if (rect && !rect.classList.contains('touched')) {
           rect.classList.add('touched');
-          setTimeout(() => rect.classList.remove('touched'), 12000);
+          setTimeout(() => {
+            rect.classList.remove('touched');
+            rect.classList.add('fading');
+            setTimeout(() => rect.classList.remove('fading'), 11000);
+          }, 12000);
         }
       }
     }, { passive: false });
