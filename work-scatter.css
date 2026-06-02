@@ -32,8 +32,7 @@ body {
   background: transparent;
 }
 
-
-/* Invisível por defeito — desaparece lentamente após hover (efeito trail) */
+/* Invisível por defeito — sem transição ao carregar */
 .rect-item img,
 .rect-item video {
   position: absolute;
@@ -43,10 +42,9 @@ body {
   object-fit: contain;
   opacity: 0;
   display: block;
-  transition: opacity 3s ease 8s;  /* fade-out: 3s após 8s de delay */
+  transition: none;
 }
 
-  
 /* Aparece imediatamente ao hover */
 .rect-item:hover img,
 .rect-item:hover video {
@@ -57,6 +55,22 @@ body {
 /* Touch reveal (mobile) */
 .rect-item.touched img,
 .rect-item.touched video {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+/* Fade-out lento após sair do hover */
+.rect-item.fading img,
+.rect-item.fading video {
+  opacity: 0;
+  transition: opacity 3s ease 8s;
+}
+
+/* Hover sobrepõe-se ao fading */
+.rect-item.fading:hover img,
+.rect-item.fading:hover video,
+.rect-item.fading.touched img,
+.rect-item.fading.touched video {
   opacity: 1;
   transition: opacity 0.2s ease;
 }
