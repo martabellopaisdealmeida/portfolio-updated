@@ -255,10 +255,9 @@ const H = window.innerWidth <= 768
       RECTS.forEach(function(r, i) {
         const el = document.createElement('div');
         el.className = 'rect-item';
-        el.style.left   = (r.x / 100 * W) + 'px';
-        el.style.top    = (r.y / 100 * H) + 'px';
-        el.style.width  = (r.w / 100 * W) + 'px';
-        el.style.height = (r.h / 100 * H) + 'px';
+        el.style.left  = (r.x / 100 * W) + 'px';
+        el.style.top   = (r.y / 100 * H) + 'px';
+        el.style.width = (r.w / 100 * W) + 'px';
         const media = createMediaElement(currentImages[i], el);
         el.appendChild(media);
         stage.appendChild(el);
