@@ -34,19 +34,16 @@ body {
 
 
 
-/* Invisível por defeito, respeita proporção original */
+/* Invisível por defeito */
 .rect-item img,
 .rect-item video {
   display: block;
   width: 100%;
   height: auto;
   opacity: 0;
-  transition: none;
 }
 
-/* Aparecem a 100% rapidamente ao hover/touch */
-.rect-item:hover img,
-.rect-item:hover video,
+/* Aparecem ao hover/touch — sem transition no base state */
 .rect-item.hovered img,
 .rect-item.hovered video,
 .rect-item.touched img,
@@ -55,7 +52,7 @@ body {
   transition: opacity 0.15s ease;
 }
 
-/* Rasto: fade-out lento após sair do hover */
+/* Rasto: fade-out lento após sair */
 .rect-item.fading img,
 .rect-item.fading video {
   opacity: 0;
