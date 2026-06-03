@@ -275,18 +275,8 @@ const H = window.innerWidth <= 768
       if (!el) return;
       const media = el.querySelector('img, video');
       if (!media) return;
-      if (el.matches(':hover')) {
-        const clone = media.cloneNode();
-        clone.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:1;transition:opacity 0.6s ease;';
-        el.appendChild(clone);
-        media.src = newSrc;
-        requestAnimationFrame(() => requestAnimationFrame(() => {
-          clone.style.opacity = '0';
-          setTimeout(() => clone.parentNode && clone.parentNode.removeChild(clone), 700);
-        }));
-      } else {
-        media.src = newSrc;
-      }
+      // Troca silenciosa sempre — nunca mexer no DOM para não alterar z-index
+      media.src = newSrc;
       currentImages[rectIndex] = newSrc;
     }
   
@@ -296,9 +286,14 @@ const H = window.innerWidth <= 768
         const indices = shuffle([...Array(RECTS.length).keys()]).slice(0, RECTS_PER_ROTATION);
         indices.forEach(idx => {
           const current = currentImages[idx];
-          const pool = MOODBOARD_IMAGES.filter(src => src !== current);
-          if (!pool.length) return;
-          swapImage(idx, pool[Math.floor(Math.random() * pool.length)]);
+          // Não escolher imagens já visíveis noutros rects
+          const visible = new Set(currentImages);
+          const pool = MOODBOARD_IMAGES.filter(src => src !== current && !visible.has(src));
+          // Se não houver opções sem repetição, aceita repetir (menos mal)
+          const fallback = MOODBOARD_IMAGES.filter(src => src !== current);
+          const chosen = pool.length ? pool : fallback;
+          if (!chosen.length) return;
+          swapImage(idx, chosen[Math.floor(Math.random() * chosen.length)]);
         });
       }, ROTATION_INTERVAL);
     }
