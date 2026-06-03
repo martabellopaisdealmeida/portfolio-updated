@@ -453,26 +453,13 @@ stage.addEventListener('touchend', function() {
         });
       }
   
-      if (rect && !rect.classList.contains('hovered')) {
-        if (rect._fadeTimer) { clearTimeout(rect._fadeTimer); rect._fadeTimer = null; }
+      if (rect && !rect.classList.contains('hovered') && !rect.classList.contains('fading')) {
         const media = rect.querySelector('img, video');
-        const wasFading = rect.classList.contains('fading');
-
-        // Só força opacity 1 se estava a fazer fade — senão deixa continuar normalmente
-        if (wasFading && media) {
-          media.style.transition = 'none';
-          media.style.opacity = '1';
-        }
-        rect.classList.remove('fading');
         rect.classList.add('hovered');
 
         rect.addEventListener('mouseleave', function onLeave() {
           rect.classList.remove('hovered');
           rect.removeEventListener('mouseleave', onLeave);
-          if (media) {
-            media.style.transition = '';
-            media.style.opacity = '';
-          }
           rect.classList.add('fading');
           rect._fadeTimer = setTimeout(() => {
             rect.classList.remove('fading');
