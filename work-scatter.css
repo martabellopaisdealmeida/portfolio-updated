@@ -44,10 +44,10 @@ body {
   object-fit: contain;
   opacity: 0;
   display: block;
-  transition: opacity 0.9s ease 0.35s;
+  transition: none;
 }
 
-/* Aparecem rapidamente ao hover/touch */
+/* Aparecem a 100% rapidamente ao hover/touch */
 .rect-item:hover img,
 .rect-item:hover video,
 .rect-item.hovered img,
@@ -55,14 +55,14 @@ body {
 .rect-item.touched img,
 .rect-item.touched video {
   opacity: 1;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.15s ease;
 }
 
-/* Estado de desaparecimento */
+/* Rasto: fade-out lento após sair do hover */
 .rect-item.fading img,
 .rect-item.fading video {
   opacity: 0;
-  transition: opacity 4s ease 12s;
+  transition: opacity 2.5s ease 0.8s;
 }
 
 /* ==================== MOBILE HINT ==================== */
