@@ -32,7 +32,7 @@ body {
   background: transparent;
 }
 
-.rect-item:hover { z-index: 10; }
+
 
 /* Invisível por defeito, respeita proporção original */
 .rect-item img,
