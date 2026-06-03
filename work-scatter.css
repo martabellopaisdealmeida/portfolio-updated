@@ -44,15 +44,15 @@ body {
   transition: none;
 }
 
-/* Aparecem a 100% rapidamente ao hover/touch */
+/* Aparecem a 100% rapidamente ao hover/touch — sempre sobrepõe fading */
 .rect-item:hover img,
 .rect-item:hover video,
 .rect-item.hovered img,
 .rect-item.hovered video,
 .rect-item.touched img,
 .rect-item.touched video {
-  opacity: 1;
-  transition: opacity 0.15s ease;
+  opacity: 1 !important;
+  transition: opacity 0.15s ease !important;
 }
 
 /* Rasto: fade-out lento após sair do hover */
