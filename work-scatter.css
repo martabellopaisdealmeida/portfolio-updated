@@ -59,7 +59,7 @@ body {
 .rect-item.fading img,
 .rect-item.fading video {
   opacity: 0;
-  transition: opacity 3.5s ease 2s;
+  transition: opacity 3.5s ease 4s;
 }
 
 /* ==================== MOBILE HINT ==================== */
