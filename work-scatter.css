@@ -32,7 +32,9 @@ body {
   background: transparent;
 }
 
-/* Invisível por defeito — sem transição ao carregar */
+.rect-item:hover { z-index: 10; }
+
+/* Invisível por defeito, fade-out lento */
 .rect-item img,
 .rect-item video {
   position: absolute;
@@ -42,37 +44,25 @@ body {
   object-fit: contain;
   opacity: 0;
   display: block;
-  transition: none;
+  transition: opacity 0.9s ease 0.35s;
 }
 
-/* Aparece imediatamente ao hover */
+/* Aparecem rapidamente ao hover/touch */
 .rect-item:hover img,
-.rect-item:hover video {
-  opacity: 1;
-  transition: opacity 0.2s ease;
-}
-
-/* Touch reveal (mobile) */
+.rect-item:hover video,
+.rect-item.hovered img,
+.rect-item.hovered video,
 .rect-item.touched img,
 .rect-item.touched video {
   opacity: 1;
   transition: opacity 0.2s ease;
 }
 
-/* Fade-out lento após sair do hover */
+/* Estado de desaparecimento */
 .rect-item.fading img,
 .rect-item.fading video {
   opacity: 0;
-  transition: opacity 3s ease 8s;
-}
-
-/* Hover sobrepõe-se ao fading */
-.rect-item.fading:hover img,
-.rect-item.fading:hover video,
-.rect-item.fading.touched img,
-.rect-item.fading.touched video {
-  opacity: 1;
-  transition: opacity 0.2s ease;
+  transition: opacity 4s ease 12s;
 }
 
 /* ==================== MOBILE HINT ==================== */
@@ -218,14 +208,17 @@ footer {
     min-height: 0;
   }
   .footer-center { display: none !important; }
-  .footer-center-mobile { display: none !important; }
+  .footer-center-mobile { display: none !important; }  /* esconder get in touch */
 
   html, body {
     overflow: hidden;
     height: 100%;
   }
   .scatter-stage { min-height: 85vh; }
+  .mobile-hint { display: block; }
   footer { display: none; }
+
+
 }
 
 @media (max-width: 480px) {
