@@ -362,12 +362,6 @@ const H = window.innerWidth <= 768
       'IMG_5544_pp9lwc.jpg',
       'IMG_5583_dqhv7q.jpg',
       'IMG_9590_b3idgh.jpg',
-      'IMG_9829.jpeg',
-      'IMG_5364.jpeg',
-      'IMG_4298.jpeg',
-      'IMG_4242.jpeg',
-      'IMG_3222.jpeg',
-      'IMG_1083.jpeg',
     ];
 
     function loadImagesFromImageKit() {
@@ -454,18 +448,25 @@ stage.addEventListener('touchend', function() {
       }
   
       if (rect && !rect.classList.contains('hovered')) {
-        // Cancela fade anterior e força reflow para resetar transição
+        // Cancela fade anterior
         if (rect._fadeTimer) { clearTimeout(rect._fadeTimer); rect._fadeTimer = null; }
+        const media = rect.querySelector('img, video');
+        // Força opacity 1 via style inline — sobrepõe qualquer transição em curso
+        if (media) {
+          media.style.transition = 'none';
+          media.style.opacity = '1';
+        }
         rect.classList.remove('fading');
-        rect.classList.remove('hovered');
-        void rect.querySelector('img, video')?.offsetHeight; // força reflow
         rect.classList.add('hovered');
 
         rect.addEventListener('mouseleave', function onLeave() {
           rect.classList.remove('hovered');
           rect.removeEventListener('mouseleave', onLeave);
-
-          // fade-out igual para imagens e vídeos
+          // Limpa style inline para deixar o CSS tomar conta
+          if (media) {
+            media.style.transition = '';
+            media.style.opacity = '';
+          }
           rect.classList.add('fading');
           rect._fadeTimer = setTimeout(() => {
             rect.classList.remove('fading');
