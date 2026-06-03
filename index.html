@@ -73,7 +73,6 @@
   <script src="script.js"></script>
 
   <script>
-    const CLOUDINARY_CLOUD = 'dqfvvnjlj';
     const IMAGE_EXTS = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg', 'mp4', 'webm', 'mov'];
     const VIDEO_EXTS = ['mp4', 'webm', 'mov'];
     const SIZE_SCALE = window.innerWidth <= 768 ? 2.0 : 1.5;
@@ -317,34 +316,67 @@ const H = window.innerWidth <= 768
       }, 80);
     }
   
-    async function loadImagesFromCloudinary() {
-  const base = `https://res.cloudinary.com/${CLOUDINARY_CLOUD}`;
-  try {
-    const [imgRes, vidRes] = await Promise.all([
-      fetch(`${base}/image/list/moodboard.json`),
-      fetch(`${base}/video/list/moodboard.json`)
-    ]);
+    // ============================================================
+    //  IMAGEKIT CONFIG
+    //  Adiciona aqui os nomes dos ficheiros que fizeste upload
+    //  para a pasta moodboard no ImageKit.
+    //  Formato: só o nome do ficheiro com extensão.
+    // ============================================================
+    const IMAGEKIT_ID     = 'martabpa';
+    const IMAGEKIT_FOLDER = 'moodboard';
+    const IMAGEKIT_FILES  = [
+      '15fc6afd8ef5419b9c64488429090456_htyhj8.mp4',
+      'E42DF2C6-85F3-4317-9A78-B28EB1D2356D_ibzqko.mp4',
+      'IMG_0118_ze9oz3.mp4',
+      'IMG_0127_gkejwf.mp4',
+      'IMG_2704_eako2t.mp4',
+      'IMG_5441_js6pzg.mp4',
+      'IMG_5449_xhpjwl.mp4',
+      'IMG_9365_dlkayq.mp4',
+      'IMG_0048_zmwkf3.jpg',
+      'IMG_0415_gw8ayk.jpg',
+      'IMG_0463_qvec5q.jpg',
+      'IMG_0578_onahwe.jpg',
+      'IMG_0865_zardng.jpg',
+      'IMG_0868_omfoyz.jpg',
+      'IMG_0870_wdpoiv.jpg',
+      'IMG_0891_c7dvv9.jpg',
+      'IMG_0893_kxtflj.jpg',
+      'IMG_0948_hk5gm7.jpg',
+      'IMG_1597_ojipba.jpg',
+      'IMG_1890_yovcny.jpg',
+      'IMG_2115_nszas4.jpg',
+      'IMG_2428_xpq98z.jpg',
+      'IMG_2462_xlwdbk.jpg',
+      'IMG_2924_f9pl87.jpg',
+      'IMG_3476_te5rsn.jpg',
+      'IMG_3720_a0srup.jpg',
+      'IMG_3913_z8sotd.jpg',
+      'IMG_3945_pvr4q3.jpg',
+      'IMG_4476_ky8lsm.jpg',
+      'IMG_4865_zrplyw.jpg',
+      'IMG_5241_xr4l3q.jpg',
+      'IMG_5391_suiotp.jpg',
+      'IMG_5509_nnjmbl.jpg',
+      'IMG_5544_pp9lwc.jpg',
+      'IMG_5583_dqhv7q.jpg',
+      'IMG_9590_b3idgh.jpg',
+    ];
 
-    const imgData = imgRes.ok ? await imgRes.json() : { resources: [] };
-    const vidData = vidRes.ok ? await vidRes.json() : { resources: [] };
+    function loadImagesFromImageKit() {
+      const base = `https://ik.imagekit.io/${IMAGEKIT_ID}/${IMAGEKIT_FOLDER}`;
+      MOODBOARD_IMAGES = IMAGEKIT_FILES.map(filename => {
+        const isVideo = /\.(mp4|mov|webm)$/i.test(filename);
+        return isVideo
+          ? `${base}/${filename}`
+          : `${base}/${filename}?tr=w-600,f-auto,q-80`;
+      });
+      if (!MOODBOARD_IMAGES.length) return;
+      buildScatter();
+      startRotation();
+    }
 
-    const images = imgData.resources.map(r =>
-      `${base}/image/upload/f_auto,q_auto,w_1200/${r.public_id}.${r.format}`
-    );
-    const videos = vidData.resources.map(r =>
-      `${base}/video/upload/q_auto/${r.public_id}.${r.format}`
-    );
-
-    MOODBOARD_IMAGES = [...images, ...videos];
-    if (!MOODBOARD_IMAGES.length) return;
-    buildScatter();
-    startRotation();
-  } catch (err) {
-    console.error('Erro Cloudinary:', err);
-  }
-}
-
-loadImagesFromCloudinary();
+    loadImagesFromImageKit();
 
     let resizeTimer;
     window.addEventListener('resize', () => {
