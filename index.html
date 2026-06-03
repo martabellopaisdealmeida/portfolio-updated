@@ -360,12 +360,6 @@ const H = window.innerWidth <= 768
       'IMG_5544_pp9lwc.jpg',
       'IMG_5583_dqhv7q.jpg',
       'IMG_9590_b3idgh.jpg',
-      'IMG_9829.jpeg',
-      'IMG_5364.jpeg',
-      'IMG_4298.jpeg',
-      'IMG_4242.jpeg',
-      'IMG_3222.jpeg',
-      'IMG_1083.jpeg',
     ];
 
     function loadImagesFromImageKit() {
@@ -444,7 +438,7 @@ stage.addEventListener('touchend', function() {
           const cx = box.left + box.width / 2;
           const cy = box.top + box.height / 2;
           const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
-          if (dist < minDist && dist < 120) {
+          if (dist < minDist && dist < 60) {
             minDist = dist;
             rect = r;
           }
