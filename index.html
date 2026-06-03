@@ -454,11 +454,12 @@ stage.addEventListener('touchend', function() {
       }
   
       if (rect && !rect.classList.contains('hovered')) {
-        // Cancela fade anterior
         if (rect._fadeTimer) { clearTimeout(rect._fadeTimer); rect._fadeTimer = null; }
         const media = rect.querySelector('img, video');
-        // Força opacity 1 via style inline — sobrepõe qualquer transição em curso
-        if (media) {
+        const wasFading = rect.classList.contains('fading');
+
+        // Só força opacity 1 se estava a fazer fade — senão deixa continuar normalmente
+        if (wasFading && media) {
           media.style.transition = 'none';
           media.style.opacity = '1';
         }
@@ -468,7 +469,6 @@ stage.addEventListener('touchend', function() {
         rect.addEventListener('mouseleave', function onLeave() {
           rect.classList.remove('hovered');
           rect.removeEventListener('mouseleave', onLeave);
-          // Limpa style inline para deixar o CSS tomar conta
           if (media) {
             media.style.transition = '';
             media.style.opacity = '';
