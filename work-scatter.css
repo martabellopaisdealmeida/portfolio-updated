@@ -44,7 +44,9 @@ body {
   transition: none;
 }
 
-/* Aparecem a 100% rapidamente ao hover/touch — controlado só pelo JS */
+/* Aparecem a 100% rapidamente ao hover/touch */
+.rect-item:hover img,
+.rect-item:hover video,
 .rect-item.hovered img,
 .rect-item.hovered video,
 .rect-item.touched img,
