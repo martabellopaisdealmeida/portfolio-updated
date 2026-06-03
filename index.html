@@ -262,7 +262,7 @@ const H = window.innerWidth <= 768
         el.className = 'rect-item';
         el.style.left  = (r.x / 100 * W) + 'px';
         el.style.top   = (r.y / 100 * H) + 'px';
-        el.style.width = (r.w / 100 * W * 0.7) + 'px';
+        el.style.width = (r.w / 100 * W * 0.6) + 'px';
         const media = createMediaElement(currentImages[i], el);
         el.appendChild(media);
         stage.appendChild(el);
@@ -454,9 +454,11 @@ stage.addEventListener('touchend', function() {
       }
   
       if (rect && !rect.classList.contains('hovered')) {
-        // Cancela qualquer fade/timer anterior neste rect
+        // Cancela fade anterior e força reflow para resetar transição
         if (rect._fadeTimer) { clearTimeout(rect._fadeTimer); rect._fadeTimer = null; }
         rect.classList.remove('fading');
+        rect.classList.remove('hovered');
+        void rect.querySelector('img, video')?.offsetHeight; // força reflow
         rect.classList.add('hovered');
 
         rect.addEventListener('mouseleave', function onLeave() {
