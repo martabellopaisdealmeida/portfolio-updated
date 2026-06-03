@@ -369,7 +369,7 @@ const H = window.innerWidth <= 768
         const isVideo = /\.(mp4|mov|webm)$/i.test(filename);
         return isVideo
           ? `${base}/${filename}`
-          : `${base}/${filename}?tr=w-600,f-auto,q-80`;
+          : `${base}/${filename}?tr=w-400,f-auto,q-80`;
       });
       if (!MOODBOARD_IMAGES.length) return;
       buildScatter();
@@ -451,9 +451,22 @@ stage.addEventListener('touchend', function() {
         rect.classList.add('hovered');
         rect.addEventListener('mouseleave', function onLeave() {
           rect.classList.remove('hovered');
-          rect.classList.add('fading');
-          setTimeout(() => rect.classList.remove('fading'), 16000);
           rect.removeEventListener('mouseleave', onLeave);
+
+          const video = rect.querySelector('video');
+          if (video && !video.ended && video.duration > 0) {
+            // vídeo: espera que acabe antes de desaparecer
+            function onEnded() {
+              rect.classList.add('fading');
+              setTimeout(() => rect.classList.remove('fading'), 6000);
+              video.removeEventListener('ended', onEnded);
+            }
+            video.addEventListener('ended', onEnded);
+          } else {
+            // imagem: fade-out normal
+            rect.classList.add('fading');
+            setTimeout(() => rect.classList.remove('fading'), 6000);
+          }
         });
       }
     });
