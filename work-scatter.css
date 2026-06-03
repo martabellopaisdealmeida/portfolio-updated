@@ -89,13 +89,16 @@ body {
 /* ==================== FOOTER ==================== */
 footer {
   position: relative;
-  min-height: 15.625em;
-  padding: 1.75em 2.5em;
+  min-height: 0;
+  padding: 1.5em 2.5em;
   z-index: 1000;
   display: flex;
-  align-items: flex-end;
-  padding-bottom: 1.875em;
+  align-items: center;
   overflow: visible;
+}
+
+.footer-center {
+  display: none !important;
 }
 
 .interactive-footer {
