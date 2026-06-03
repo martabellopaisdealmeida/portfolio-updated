@@ -213,8 +213,14 @@
     }
   
     function assignImages() {
-      const shuffled = shuffle(MOODBOARD_IMAGES);
-      return RECTS.map((_, i) => shuffled[i % shuffled.length]);
+      // Distribui imagens sem repetir até todas terem sido usadas
+      const result = [];
+      let pool = [];
+      for (let i = 0; i < RECTS.length; i++) {
+        if (pool.length === 0) pool = shuffle(MOODBOARD_IMAGES);
+        result.push(pool.pop());
+      }
+      return result;
     }
   
     function createMediaElement(src, el) {
@@ -256,7 +262,7 @@ const H = window.innerWidth <= 768
         el.className = 'rect-item';
         el.style.left  = (r.x / 100 * W) + 'px';
         el.style.top   = (r.y / 100 * H) + 'px';
-        el.style.width = (r.w / 100 * W * 0.8) + 'px';
+        el.style.width = (r.w / 100 * W) + 'px';
         const media = createMediaElement(currentImages[i], el);
         el.appendChild(media);
         stage.appendChild(el);
@@ -361,13 +367,6 @@ const H = window.innerWidth <= 768
       'IMG_5544_pp9lwc.jpg',
       'IMG_5583_dqhv7q.jpg',
       'IMG_9590_b3idgh.jpg',
-      'IMG_9829.jpeg',
-      'IMG_5364.jpeg',
-      'IMG_4298.jpeg',
-      'IMG_4242.jpeg',
-      'IMG_3222.jpeg',
-      'IMG_1083.jpeg'
-
     ];
 
     function loadImagesFromImageKit() {
@@ -454,8 +453,16 @@ stage.addEventListener('touchend', function() {
       }
   
       if (rect && !rect.classList.contains('hovered')) {
+        // Cancela qualquer fade/timer anterior neste rect
+        if (rect._fadeTimer) { clearTimeout(rect._fadeTimer); rect._fadeTimer = null; }
+        if (rect._videoEndedFn) {
+          const v = rect.querySelector('video');
+          if (v) v.removeEventListener('ended', rect._videoEndedFn);
+          rect._videoEndedFn = null;
+        }
         rect.classList.remove('fading');
         rect.classList.add('hovered');
+
         rect.addEventListener('mouseleave', function onLeave() {
           rect.classList.remove('hovered');
           rect.removeEventListener('mouseleave', onLeave);
@@ -463,16 +470,23 @@ stage.addEventListener('touchend', function() {
           const video = rect.querySelector('video');
           if (video && !video.ended && video.duration > 0) {
             // vídeo: espera que acabe antes de desaparecer
-            function onEnded() {
+            rect._videoEndedFn = function() {
               rect.classList.add('fading');
-              setTimeout(() => rect.classList.remove('fading'), 6000);
-              video.removeEventListener('ended', onEnded);
-            }
-            video.addEventListener('ended', onEnded);
+              rect._fadeTimer = setTimeout(() => {
+                rect.classList.remove('fading');
+                rect._fadeTimer = null;
+              }, 6000);
+              video.removeEventListener('ended', rect._videoEndedFn);
+              rect._videoEndedFn = null;
+            };
+            video.addEventListener('ended', rect._videoEndedFn);
           } else {
             // imagem: fade-out normal
             rect.classList.add('fading');
-            setTimeout(() => rect.classList.remove('fading'), 6000);
+            rect._fadeTimer = setTimeout(() => {
+              rect.classList.remove('fading');
+              rect._fadeTimer = null;
+            }, 6000);
           }
         });
       }
