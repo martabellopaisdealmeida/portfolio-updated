@@ -199,6 +199,12 @@ footer {
   padding: 0.3125em 0;
 }
 
+/* Sem scroll em nenhum ecrã */
+html, body {
+  overflow: hidden;
+  height: 100%;
+}
+
 /* ==================== MOBILE ==================== */
 @media (max-width: 768px) {
   .scatter-stage { min-height: 60vh; }
