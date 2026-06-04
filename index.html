@@ -50,12 +50,12 @@
       <div class="footer-left">
         <p>© 2025 marta bello pais de almeida</p>
       </div>
-      <a href="mailto:martinhabpa@gmail.com" class="footer-center" style="display:none!important">
+      <a href="mailto:martinhabpa@gmail.com" class="footer-center">
         <div class="get-in-text-top">get in</div>
         <div class="footer-line"></div>
         <div class="get-in-text-bottom">touch</div>
       </a>
-      <a href="mailto:martinhabpa@gmail.com" class="footer-center-mobile" style="display:none!important">
+      <a href="mailto:martinhabpa@gmail.com" class="footer-center-mobile">
         <span class="get-in-text-top-mobile">get in</span>
         <div class="footer-line-mobile"></div>
         <span class="get-in-text-bottom-mobile">touch</span>
@@ -73,6 +73,7 @@
   <script src="script.js"></script>
 
   <script>
+    const IMAGEKIT_URL = 'https://ik.imagekit.io/martabpa/moodboard';
     const IMAGE_EXTS = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg', 'mp4', 'webm', 'mov'];
     const VIDEO_EXTS = ['mp4', 'webm', 'mov'];
     const SIZE_SCALE = window.innerWidth <= 768 ? 2.0 : 1.5;
@@ -106,7 +107,7 @@
       { x: 83.0, y: 3.5, w: 7.0, h: 6.5 },
       { x: 88.5, y: 6.0, w: 5.0, h: 9.0 },
       { x: 93.0, y: 2.5, w: 4.5, h: 7.0 },
-
+  
       { x: 4.0, y: 14.0, w: 6.5, h: 8.5 },
       { x: 9.5, y: 11.5, w: 5.0, h: 7.0 },
       { x: 14.5, y: 14.5, w: 7.5, h: 6.0 },
@@ -125,7 +126,7 @@
       { x: 82.5, y: 12.0, w: 5.5, h: 8.0 },
       { x: 87.5, y: 15.0, w: 6.0, h: 7.0 },
       { x: 92.5, y: 12.5, w: 5.0, h: 6.5 },
-
+  
       { x: 3.5, y: 23.0, w: 7.0, h: 8.0 },
       { x: 9.0, y: 21.5, w: 5.5, h: 6.5 },
       { x: 14.0, y: 24.0, w: 6.0, h: 9.0 },
@@ -144,7 +145,7 @@
       { x: 83.0, y: 21.5, w: 5.0, h: 7.0 },
       { x: 87.5, y: 24.0, w: 7.0, h: 6.5 },
       { x: 93.0, y: 22.5, w: 4.5, h: 8.0 },
-
+  
       { x: 4.0, y: 33.0, w: 6.5, h: 7.5 },
       { x: 9.5, y: 31.5, w: 5.0, h: 9.0 },
       { x: 14.5, y: 34.0, w: 7.0, h: 6.5 },
@@ -163,7 +164,7 @@
       { x: 83.0, y: 32.0, w: 5.5, h: 8.5 },
       { x: 88.0, y: 35.0, w: 6.0, h: 7.0 },
       { x: 93.0, y: 32.5, w: 4.5, h: 6.5 },
-
+  
       { x: 3.5, y: 43.0, w: 7.0, h: 8.0 },
       { x: 9.5, y: 41.5, w: 5.5, h: 7.0 },
       { x: 14.5, y: 44.0, w: 6.0, h: 9.0 },
@@ -182,7 +183,7 @@
       { x: 83.0, y: 42.0, w: 5.0, h: 7.0 },
       { x: 87.5, y: 45.0, w: 7.0, h: 6.5 },
       { x: 93.0, y: 42.5, w: 4.5, h: 8.0 },
-
+  
       { x: 4.0, y: 53.0, w: 6.5, h: 7.5 },
       { x: 9.5, y: 51.5, w: 5.0, h: 8.5 },
       { x: 14.5, y: 54.0, w: 7.0, h: 6.5 },
@@ -213,14 +214,8 @@
     }
   
     function assignImages() {
-      // Distribui imagens sem repetir até todas terem sido usadas
-      const result = [];
-      let pool = [];
-      for (let i = 0; i < RECTS.length; i++) {
-        if (pool.length === 0) pool = shuffle(MOODBOARD_IMAGES);
-        result.push(pool.pop());
-      }
-      return result;
+      const shuffled = shuffle(MOODBOARD_IMAGES);
+      return RECTS.map((_, i) => shuffled[i % shuffled.length]);
     }
   
     function createMediaElement(src, el) {
@@ -260,9 +255,10 @@ const H = window.innerWidth <= 768
       RECTS.forEach(function(r, i) {
         const el = document.createElement('div');
         el.className = 'rect-item';
-        el.style.left  = (r.x / 100 * W) + 'px';
-        el.style.top   = (r.y / 100 * H) + 'px';
-        el.style.width = (r.w / 100 * W * 0.6) + 'px';
+        el.style.left   = (r.x / 100 * W) + 'px';
+        el.style.top    = (r.y / 100 * H) + 'px';
+        el.style.width  = (r.w / 100 * W * SIZE_SCALE) + 'px';
+        el.style.height = (r.h / 100 * H * SIZE_SCALE) + 'px';
         const media = createMediaElement(currentImages[i], el);
         el.appendChild(media);
         stage.appendChild(el);
@@ -275,8 +271,18 @@ const H = window.innerWidth <= 768
       if (!el) return;
       const media = el.querySelector('img, video');
       if (!media) return;
-      // Troca silenciosa sempre — nunca mexer no DOM para não alterar z-index
-      media.src = newSrc;
+      if (el.matches(':hover')) {
+        const clone = media.cloneNode();
+        clone.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:1;transition:opacity 0.6s ease;';
+        el.appendChild(clone);
+        media.src = newSrc;
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          clone.style.opacity = '0';
+          setTimeout(() => clone.parentNode && clone.parentNode.removeChild(clone), 700);
+        }));
+      } else {
+        media.src = newSrc;
+      }
       currentImages[rectIndex] = newSrc;
     }
   
@@ -286,14 +292,9 @@ const H = window.innerWidth <= 768
         const indices = shuffle([...Array(RECTS.length).keys()]).slice(0, RECTS_PER_ROTATION);
         indices.forEach(idx => {
           const current = currentImages[idx];
-          // Não escolher imagens já visíveis noutros rects
-          const visible = new Set(currentImages);
-          const pool = MOODBOARD_IMAGES.filter(src => src !== current && !visible.has(src));
-          // Se não houver opções sem repetição, aceita repetir (menos mal)
-          const fallback = MOODBOARD_IMAGES.filter(src => src !== current);
-          const chosen = pool.length ? pool : fallback;
-          if (!chosen.length) return;
-          swapImage(idx, chosen[Math.floor(Math.random() * chosen.length)]);
+          const pool = MOODBOARD_IMAGES.filter(src => src !== current);
+          if (!pool.length) return;
+          swapImage(idx, pool[Math.floor(Math.random() * pool.length)]);
         });
       }, ROTATION_INTERVAL);
     }
@@ -317,67 +318,66 @@ const H = window.innerWidth <= 768
       }, 80);
     }
   
-    // ============================================================
-    //  IMAGEKIT CONFIG
-    //  Adiciona aqui os nomes dos ficheiros que fizeste upload
-    //  para a pasta moodboard no ImageKit.
-    //  Formato: só o nome do ficheiro com extensão.
-    // ============================================================
-    const IMAGEKIT_ID     = 'martabpa';
-    const IMAGEKIT_FOLDER = 'moodboard';
-    const IMAGEKIT_FILES  = [
-      '15fc6afd8ef5419b9c64488429090456_htyhj8.mp4',
-      'E42DF2C6-85F3-4317-9A78-B28EB1D2356D_ibzqko.mp4',
-      'IMG_0118_ze9oz3.mp4',
-      'IMG_0127_gkejwf.mp4',
-      'IMG_2704_eako2t.mp4',
-      'IMG_5441_js6pzg.mp4',
-      'IMG_5449_xhpjwl.mp4',
-      'IMG_9365_dlkayq.mp4',
-      'IMG_0048_zmwkf3.jpg',
-      'IMG_0415_gw8ayk.jpg',
-      'IMG_0463_qvec5q.jpg',
-      'IMG_0578_onahwe.jpg',
-      'IMG_0865_zardng.jpg',
-      'IMG_0868_omfoyz.jpg',
-      'IMG_0870_wdpoiv.jpg',
-      'IMG_0891_c7dvv9.jpg',
-      'IMG_0893_kxtflj.jpg',
-      'IMG_0948_hk5gm7.jpg',
-      'IMG_1597_ojipba.jpg',
-      'IMG_1890_yovcny.jpg',
-      'IMG_2115_nszas4.jpg',
-      'IMG_2428_xpq98z.jpg',
-      'IMG_2462_xlwdbk.jpg',
-      'IMG_2924_f9pl87.jpg',
-      'IMG_3476_te5rsn.jpg',
-      'IMG_3720_a0srup.jpg',
-      'IMG_3913_z8sotd.jpg',
-      'IMG_3945_pvr4q3.jpg',
-      'IMG_4476_ky8lsm.jpg',
-      'IMG_4865_zrplyw.jpg',
-      'IMG_5241_xr4l3q.jpg',
-      'IMG_5391_suiotp.jpg',
-      'IMG_5509_nnjmbl.jpg',
-      'IMG_5544_pp9lwc.jpg',
-      'IMG_5583_dqhv7q.jpg',
-      'IMG_9590_b3idgh.jpg',
-    ];
+    function loadImagesFromCloudinary() {
+  const files = [
+    '15fc6afd8ef5419b9c64488429090456_htyhj8.mp4',
+    'E42DF2C6-85F3-4317-9A78-B28EB1D2356D_ibzqko.mp4',
+    'IMG_0118_ze9oz3.mp4',
+    'IMG_0127_gkejwf.mp4',
+    'IMG_2704_eako2t.mp4',
+    'IMG_5441_js6pzg.mp4',
+    'IMG_5449_xhpjwl.mp4',
+    'IMG_9365_dlkayq.mp4',
+    'IMG_0048_zmwkf3.jpg',
+    'IMG_0415_gw8ayk.jpg',
+    'IMG_0463_qvec5q.jpg',
+    'IMG_0578_onahwe.jpg',
+    'IMG_0865_zardng.jpg',
+    'IMG_0868_omfoyz.jpg',
+    'IMG_0870_wdpoiv.jpg',
+    'IMG_0891_c7dvv9.jpg',
+    'IMG_0893_kxtflj.jpg',
+    'IMG_0948_hk5gm7.jpg',
+    'IMG_1083.jpeg',
+    'IMG_1597_ojipba.jpg',
+    'IMG_1890_yovcny.jpg',
+    'IMG_2115_nszas4.jpg',
+    'IMG_2428_xpq98z.jpg',
+    'IMG_2462_xlwdbk.jpg',
+    'IMG_2924_f9pl87.jpg',
+    'IMG_3222.jpeg',
+    'IMG_3476_te5rsn.jpg',
+    'IMG_3720_a0srup.jpg',
+    'IMG_3913_z8sotd.jpg',
+    'IMG_3945_pvr4q3.jpg',
+    'IMG_4242.jpeg',
+    'IMG_4298.jpeg',
+    'IMG_4476_ky8lsm.jpg',
+    'IMG_4865_zrplyw.jpg',
+    'IMG_5241_xr4l3q.jpg',
+    'IMG_5364.jpeg',
+    'IMG_5391_suiotp.jpg',
+    'IMG_5509_nnjmbl.jpg',
+    'IMG_5544_pp9lwc.jpg',
+    'IMG_5583_dqhv7q.jpg',
+    'IMG_9590_b3idgh.jpg',
+    'IMG_9829.jpeg',
+  ];
 
-    function loadImagesFromImageKit() {
-      const base = `https://ik.imagekit.io/${IMAGEKIT_ID}/${IMAGEKIT_FOLDER}`;
-      MOODBOARD_IMAGES = IMAGEKIT_FILES.map(filename => {
-        const isVideo = /\.(mp4|mov|webm)$/i.test(filename);
-        return isVideo
-          ? `${base}/${filename}`
-          : `${base}/${filename}?tr=w-400,f-auto,q-80`;
-      });
-      if (!MOODBOARD_IMAGES.length) return;
-      buildScatter();
-      startRotation();
+  MOODBOARD_IMAGES = files.map(f => {
+    const ext = f.split('.').pop().toLowerCase();
+    if (VIDEO_EXTS.includes(ext)) {
+      return `${IMAGEKIT_URL}/${f}`;
+    } else {
+      return `${IMAGEKIT_URL}/${f}?tr=w-1200,f-auto,q-auto`;
     }
+  });
 
-    loadImagesFromImageKit();
+  buildScatter();
+  startRotation();
+}
+
+loadImagesFromCloudinary();
 
     let resizeTimer;
     window.addEventListener('resize', () => {
@@ -448,17 +448,12 @@ stage.addEventListener('touchend', function() {
       }
   
       if (rect && !rect.classList.contains('hovered') && !rect.classList.contains('fading')) {
-        const media = rect.querySelector('img, video');
         rect.classList.add('hovered');
-
         rect.addEventListener('mouseleave', function onLeave() {
           rect.classList.remove('hovered');
-          rect.removeEventListener('mouseleave', onLeave);
           rect.classList.add('fading');
-          rect._fadeTimer = setTimeout(() => {
-            rect.classList.remove('fading');
-            rect._fadeTimer = null;
-          }, 9000);
+          setTimeout(() => rect.classList.remove('fading'), 16000);
+          rect.removeEventListener('mouseleave', onLeave);
         });
       }
     });
