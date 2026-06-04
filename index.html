@@ -240,6 +240,10 @@
     }
 
     function buildScatter() {
+      // Pausar o observer do cursor enquanto constrói
+      if (window._cursorObserver) window._cursorObserver.disconnect();
+
+
       const hint = document.getElementById('mobile-hint');
       stage.innerHTML = '';
       if (hint) stage.appendChild(hint);
@@ -282,6 +286,10 @@
           }, 7500);
         });
       });
+
+      if (window._cursorObserver) {
+        window._cursorObserver.observe(document.body, { childList: true, subtree: true });
+      }
     }
 
     function swapImage(rectIndex, newSrc) {
