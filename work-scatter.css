@@ -21,7 +21,6 @@ body {
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
-  isolation: isolate;
 }
 
 /* ==================== RECTANGLE ITEMS ==================== */
@@ -35,17 +34,18 @@ body {
 
 
 
-/* Invisível por defeito */
+/* Invisível por defeito, respeita proporção original */
 .rect-item img,
 .rect-item video {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   opacity: 0;
-  pointer-events: none;
+  transition: none;
 }
 
-/* Aparecem ao hover/touch — sem transition no base state */
+/* Aparecem a 100% rapidamente ao hover/touch — controlado só pelo JS */
 .rect-item.hovered img,
 .rect-item.hovered video,
 .rect-item.touched img,
@@ -54,7 +54,7 @@ body {
   transition: opacity 0.15s ease;
 }
 
-/* Rasto: fade-out lento após sair */
+/* Rasto: fade-out lento após sair do hover */
 .rect-item.fading img,
 .rect-item.fading video {
   opacity: 0;
