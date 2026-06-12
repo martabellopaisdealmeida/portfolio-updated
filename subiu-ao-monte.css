@@ -85,7 +85,7 @@
   }
   
   .project-title {
-    font-family: 'ABCDiatypeMono', monospace;
+    font-family: 'PPEditorialNew', serif;
     font-size: 3.5em;
     font-weight: 300;
     line-height: 1.1;
@@ -192,10 +192,13 @@
   }
   
   /* --- Full width: detalhes --- */
-  .grid-item.detalhes-full {
-    height: 420px;
-  }
-  
+.grid-item.detalhes-full1 {
+  height: 420px;
+}
+
+.grid-item.detalhes-full2 {
+  height: 420px;
+}
   /* ==================== FOOTER ==================== */
   
   footer {
@@ -368,7 +371,11 @@
       height: 150px;
     }
   
-    .grid-item.detalhes-full {
+    .grid-item.detalhes-full1 {
+      height: 240px;
+    }
+
+    .grid-item.detalhes-full2 {
       height: 240px;
     }
   
@@ -449,7 +456,10 @@
       height: 260px;
     }
   
-    .grid-item.detalhes-full {
+    .grid-item.detalhes-full1 {
+      height: 200px;
+    }
+    .grid-item.detalhes-full2 {
       height: 200px;
     }
   
