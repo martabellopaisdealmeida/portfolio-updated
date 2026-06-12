@@ -224,7 +224,7 @@
       </div>
     </a>
 
-    <a href="cart-notes.html" class="work-item" data-type="branding" data-year="2025">
+    <a href="cart-notes.html" class="work-item" data-type="editorial" data-year="2025">
       <div class="work-thumb">
         <img src="images/02-CARTNOTES/capa_vertical.jpg" alt="Cart Notes" loading="lazy">
       </div>
@@ -244,7 +244,7 @@
       </div>
     </a>
 
-    <a href="nom.html" class="work-item" data-type="branding" data-year="2026">
+    <a href="nom.html" class="work-item" data-type="branding editorial" data-year="2026">
       <div class="work-thumb">
         <img src="images/04-nom/retícula-molho.jpeg" alt="nom" loading="lazy">
       </div>
@@ -376,8 +376,8 @@
         if (group === 'type') activeType = filter;
         if (group === 'year') activeYear = filter;
         workItems.forEach(item => {
-          const ok = (activeType === 'all' || item.dataset.type === activeType)
-                  && (activeYear  === 'all' || item.dataset.year  === activeYear);
+          const ok = (activeType === 'all' || item.dataset.type.split(' ').includes(activeType))
+          && (activeYear  === 'all' || item.dataset.year === activeYear);
           item.style.display = ok ? '' : 'none';
         });
       });
