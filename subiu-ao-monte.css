@@ -172,7 +172,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.25em;
-    height: 620px;
+    height: 900px;
   }
   
   .grid-row.two-col .grid-item {
@@ -184,7 +184,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 1.25em;
-    height: 440px;
+    height: 500px;
   }
   
   .grid-row.three-col .grid-item {
