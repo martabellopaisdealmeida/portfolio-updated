@@ -76,14 +76,32 @@
     const IMAGEKIT_URL = 'https://ik.imagekit.io/martabpa/moodboard';
     const IMAGE_EXTS = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg', 'mp4', 'webm', 'mov'];
     const VIDEO_EXTS = ['mp4', 'webm', 'mov'];
-    const SIZE_SCALE = window.innerWidth <= 768 ? 2.0 : 1.5;
     const ROTATION_INTERVAL = 2800;
     const RECTS_PER_ROTATION = 2;
   
     const stage = document.getElementById('scatter-stage');
+    // 2s hold + 1.5s fade — must match the .fading transition in work-scatter.css
+    const HOVER_FADE_MS = 3500;
     let rectElements = [];
     let currentImages = [];
     let MOODBOARD_IMAGES = [];
+
+    // Desktop hover: image snaps to full opacity, then fades out over time.
+    // Driven directly by pointer enter/leave on each rect (cheap, no per-move layout reads).
+    function attachHover(el) {
+      el.addEventListener('pointerenter', function () {
+        clearTimeout(el._fadeTimer);
+        el.classList.remove('fading');
+        el.classList.add('hovered');
+      });
+      el.addEventListener('pointerleave', function () {
+        el.classList.remove('hovered');
+        el.classList.add('fading');
+        el._fadeTimer = setTimeout(function () {
+          el.classList.remove('fading');
+        }, HOVER_FADE_MS);
+      });
+    }
 
   
   
@@ -244,23 +262,43 @@
       stage.innerHTML = '';
       if (hint) stage.appendChild(hint);
       rectElements = [];
+      // Recompute per build so resizing / moving to another screen re-evaluates.
+      const isDesktop = window.innerWidth > 768;
+      const sizeScale = isDesktop ? 1.1 : 2.0;
       const W = stage.offsetWidth;
       const headerEl = document.querySelector('header');
 const headerH = headerEl ? headerEl.offsetHeight : 0;
-const H = window.innerWidth <= 768
-  ? (window.innerHeight - headerH) * 1.35
-  : window.innerHeight * 0.92;
+const footerEl = document.querySelector('footer');
+const footerH = footerEl ? footerEl.offsetHeight : 0;
+// Both mobile and desktop fill exactly the space left between header and footer,
+// so the whole page fits in one viewport with no scroll.
+const H = window.innerHeight - headerH - footerH;
       stage.style.height = H + 'px';
       currentImages = assignImages();
+      // RECTS only span ~1.5%–55% vertically. Normalize the row positions so the
+      // top row sits at the top edge and the bottom row reaches the bottom edge,
+      // filling the whole board (no empty band above the footer).
+      const yTops = RECTS.map(function (r) { return r.y; });
+      const yMin = Math.min.apply(null, yTops);
+      const yMax = Math.max.apply(null, yTops);
+      const ySpan = (yMax - yMin) || 1;
       RECTS.forEach(function(r, i) {
         const el = document.createElement('div');
         el.className = 'rect-item';
+        // Desktop sizes both dimensions from the width so the item's aspect ratio
+        // stays constant on any screen (otherwise wide screens stretch the boxes
+        // and object-fit:contain leaves big gaps around the images).
+        const drawnW = (r.w / 100 * W * sizeScale);
+        const drawnH = isDesktop
+          ? (r.h / 100 * W * sizeScale)
+          : (r.h / 100 * H * sizeScale);
         el.style.left   = (r.x / 100 * W) + 'px';
-        el.style.top    = (r.y / 100 * H) + 'px';
-        el.style.width  = (r.w / 100 * W * SIZE_SCALE) + 'px';
-        el.style.height = (r.h / 100 * H * SIZE_SCALE) + 'px';
+        el.style.top    = (((r.y - yMin) / ySpan) * (H - drawnH)) + 'px';
+        el.style.width  = drawnW + 'px';
+        el.style.height = drawnH + 'px';
         const media = createMediaElement(currentImages[i], el);
         el.appendChild(media);
+        if (isDesktop) attachHover(el);
         stage.appendChild(el);
         rectElements.push(el);
       });
@@ -416,47 +454,25 @@ stage.addEventListener('touchmove', function(e) {
     const el = document.elementFromPoint(touch.clientX, touch.clientY);
     const rect = el && el.closest('.rect-item');
     if (rect && !rect.classList.contains('touched')) {
+      // Start the fade timer the moment the image appears (not on touch release).
+      clearTimeout(rect._fadeTimer);
+      rect.classList.remove('fading');
       rect.classList.add('touched');
+      rect._fadeTimer = setTimeout(function () {
+        rect.classList.remove('touched');
+        rect.classList.add('fading');       // smooth fade-out instead of an instant pop
+        rect._fadeTimer = setTimeout(function () {
+          rect.classList.remove('fading');
+        }, 3000);
+      }, 5000);
     }
   }
 }, { passive: false });
 
 stage.addEventListener('touchend', function() {
-  document.querySelectorAll('.rect-item.touched').forEach(el => {
-    setTimeout(() => el.classList.remove('touched'), 16000);
-  });
   isDrawing = false;
 });
 
-  
-    stage.addEventListener('mousemove', function(e) {
-      let el = document.elementFromPoint(e.clientX, e.clientY);
-      let rect = el && el.closest('.rect-item');
-  
-      if (!rect) {
-        let minDist = Infinity;
-        rectElements.forEach(function(r) {
-          const box = r.getBoundingClientRect();
-          const cx = box.left + box.width / 2;
-          const cy = box.top + box.height / 2;
-          const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
-          if (dist < minDist && dist < 120) {
-            minDist = dist;
-            rect = r;
-          }
-        });
-      }
-  
-      if (rect && !rect.classList.contains('hovered') && !rect.classList.contains('fading')) {
-        rect.classList.add('hovered');
-        rect.addEventListener('mouseleave', function onLeave() {
-          rect.classList.remove('hovered');
-          rect.classList.add('fading');
-          setTimeout(() => rect.classList.remove('fading'), 16000);
-          rect.removeEventListener('mouseleave', onLeave);
-        });
-      }
-    });
   </script>
   
 </body>
