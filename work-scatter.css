@@ -32,7 +32,7 @@ body {
   background: transparent;
 }
  
-.rect-item:hover { z-index: 10; }
+/* Depth is fixed by DOM/build order so hovering never re-stacks items. */
  
 /* Invisível por defeito, fade-out lento */
 .rect-item img,
@@ -47,11 +47,7 @@ body {
   transition: none;
 }
  
-/* Aparecem rapidamente ao hover/touch */
-.rect-item:hover img,
-.rect-item:hover video,
-.rect-item.hovered img,
-.rect-item.hovered video,
+/* Touch (mobile): quick fade-in */
 .rect-item.touched img,
 .rect-item.touched video {
   opacity: 1;
@@ -62,7 +58,7 @@ body {
 .rect-item.fading img,
 .rect-item.fading video {
   opacity: 0;
-  transition: opacity 4s ease 12s;
+  transition: opacity 1.5s ease 2s;
 }
  
 /* ==================== MOBILE HINT ==================== */
@@ -191,7 +187,7 @@ footer {
  
 .get-in-text-top-mobile,
 .get-in-text-bottom-mobile {
-  font-size: 2.5em;
+  font-size: 1.25em;
   font-weight: normal;
   color: #333;
   line-height: 1.2;
@@ -199,31 +195,80 @@ footer {
   padding: 0.3125em 0;
 }
  
-/* ==================== MOBILE ==================== */
-@media (max-width: 768px) {
-  .scatter-stage { min-height: 60vh; }
-  .mobile-hint { display: block; }
-  footer {
-    padding: 0.75em 1.875em;
+/* ==================== DESKTOP ==================== */
+@media (min-width: 769px) {
+  /* Single-viewport layout: no page scroll on desktop */
+  html, body {
+    height: 100%;
+    overflow: hidden;
+  }
+  /* Override the base 100vh so the JS-set height (viewport - header - footer) wins */
+  .scatter-stage {
     min-height: 0;
   }
-  .footer-center { display: none !important; }
-  .footer-center-mobile { display: none !important; }  /* esconder get in touch */
- 
-  html, body {
-    overflow: hidden;
-    height: 100%;
+  /* Hide the centered "get in touch" link on desktop (kept in the HTML) */
+  .footer-center {
+    display: none;
   }
-  .scatter-stage { min-height: 85vh; }
-  .mobile-hint { display: block; }
-  footer { display: none; }
- 
- 
+  /* With the centered link hidden, collapse the footer to its content height so
+     there's no tall empty band between the bottom images and the footer text. */
+  footer {
+    min-height: 0;
+    align-items: center;
+    padding-top: 1.25em;
+    padding-bottom: 1.25em;
+  }
+  /* Hover snaps to full opacity instantly, no matter how fast the cursor moves */
+  .rect-item:hover img,
+  .rect-item:hover video,
+  .rect-item.hovered img,
+  .rect-item.hovered video {
+    opacity: 1;
+    transition: none;
+  }
 }
- 
-@media (max-width: 480px) {
-  .footer-center { display: none; }
-  .footer-center-mobile { display: flex; }
+
+/* ==================== MOBILE ==================== */
+@media (max-width: 768px) {
+  /* No page scroll: the board is sized by JS to fit between header and footer */
+  html, body {
+    height: 100%;
+    overflow: hidden;
+  }
+  .scatter-stage {
+    min-height: 0; /* let the JS fit-height win over the base 100vh */
+  }
+  .mobile-hint { display: block; }
+
+  /* Continuous fade-out on mobile (no desktop hold/delay) */
+  .rect-item.fading img,
+  .rect-item.fading video {
+    transition: opacity 3s ease;
+  }
+
+  /* Footer stacked vertically: "get in / touch", then copyright, then links */
+  footer {
+    display: block;
+    position: relative;
+    min-height: 0;
+    padding: 1.5em 1.5em 1.875em;
+    overflow: visible;
+  }
+  .interactive-footer {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25em;
+  }
+  .footer-center { display: none; }            /* desktop "get in touch" hidden */
+  .footer-center-mobile { display: none; }     /* "get in touch" removed on mobile */
+  .footer-left { order: 2; }
+  .footer-left p { text-align: center; }
+  .footer-right {
+    order: 3;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.25em;
+  }
 }
  
 /* ==================== PAGE FALL TRANSITION ==================== */
