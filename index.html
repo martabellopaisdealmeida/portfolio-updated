@@ -73,7 +73,7 @@
   <script src="script.js"></script>
 
   <script>
-    const IMAGEKIT_URL = 'https://ik.imagekit.io/martabpa/moodboard';
+    const JSDELIVR_URL = 'https://cdn.jsdelivr.net/gh/martabellopaisdealmeida/portfolio-updated@main/moodboard';
     const IMAGE_EXTS = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg', 'mp4', 'webm', 'mov'];
     const VIDEO_EXTS = ['mp4', 'webm', 'mov'];
     const ROTATION_INTERVAL = 2800;
@@ -366,50 +366,43 @@ const H = window.innerHeight - headerH - footerH;
     'IMG_5441_js6pzg.mp4',
     'IMG_5449_xhpjwl.mp4',
     'IMG_9365_dlkayq.mp4',
-    'IMG_0048_zmwkf3.jpg',
-    'IMG_0415_gw8ayk.jpg',
-    'IMG_0463_qvec5q.jpg',
-    'IMG_0578_onahwe.jpg',
-    'IMG_0865_zardng.jpg',
-    'IMG_0868_omfoyz.jpg',
-    'IMG_0870_wdpoiv.jpg',
-    'IMG_0891_c7dvv9.jpg',
-    'IMG_0893_kxtflj.jpg',
-    'IMG_0948_hk5gm7.jpg',
-    'IMG_1083.jpeg',
-    'IMG_1597_ojipba.jpg',
-    'IMG_1890_yovcny.jpg',
-    'IMG_2115_nszas4.jpg',
-    'IMG_2428_xpq98z.jpg',
-    'IMG_2462_xlwdbk.jpg',
-    'IMG_2924_f9pl87.jpg',
-    'IMG_3222.jpeg',
-    'IMG_3476_te5rsn.jpg',
-    'IMG_3720_a0srup.jpg',
-    'IMG_3913_z8sotd.jpg',
-    'IMG_3945_pvr4q3.jpg',
-    'IMG_4242.jpeg',
-    'IMG_4298.jpeg',
-    'IMG_4476_ky8lsm.jpg',
-    'IMG_4865_zrplyw.jpg',
-    'IMG_5241_xr4l3q.jpg',
-    'IMG_5364.jpeg',
-    'IMG_5391_suiotp.jpg',
-    'IMG_5509_nnjmbl.jpg',
-    'IMG_5544_pp9lwc.jpg',
-    'IMG_5583_dqhv7q.jpg',
-    'IMG_9590_b3idgh.jpg',
-    'IMG_9829.jpeg',
+    '001.jpg',
+    '002.jpg',
+    '003.jpg',
+    '004.jpg',
+    '005.jpg',
+    '006.jpg',
+    '007.jpg',
+    '008.jpg',
+    '009.jpg',
+    '010.jpg',
+    '011.jpg',
+    '012.jpg',
+    '013.jpg',
+    '014.jpg',
+    '015.jpg',
+    '016.jpg',
+    '017.jpg',
+    '018.jpg',
+    '019.jpg',
+    '020.jpg',
+    '021.jpg',
+    '022.jpg',
+    '023.jpg',
+    '024.jpg',
+    '025.jpg',
+    '026.jpg',
+    '027.jpg',
+    '028.jpg',
+    '029.jpg',
+    '030.jpg',
+    '031.jpg',
+    '032.jpg',
+    '033.jpg',
+    '034.webp',
   ];
 
-  MOODBOARD_IMAGES = files.map(f => {
-    const ext = f.split('.').pop().toLowerCase();
-    if (VIDEO_EXTS.includes(ext)) {
-      return `${IMAGEKIT_URL}/${f}`;
-    } else {
-      return `${IMAGEKIT_URL}/${f}?tr=w-800,f-auto,q-auto`;
-    }
-  });
+  MOODBOARD_IMAGES = files.map(f => `${JSDELIVR_URL}/${f}`);
 
   buildScatter();
   startRotation();
