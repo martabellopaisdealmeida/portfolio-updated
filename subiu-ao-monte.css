@@ -184,7 +184,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 1.25em;
-    height: 500px;
+    height: 600px;
   }
   
   .grid-row.three-col .grid-item {
