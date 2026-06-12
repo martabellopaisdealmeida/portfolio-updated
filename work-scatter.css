@@ -249,7 +249,10 @@ footer {
   /* Footer stacked vertically: "get in / touch", then copyright, then links */
   footer {
     display: block;
-    position: relative;
+    position: absolute; 
+    bottom: 0; 
+    left: 0; 
+    right: 0;
     min-height: 0;
     padding: 1.5em 1.5em 1.875em;
     overflow: visible;

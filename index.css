@@ -318,7 +318,7 @@ footer {
   }
 
   .footer-center-mobile {
-    display: flex !important;
+    display: none !important;
   }
 }
 
@@ -385,7 +385,7 @@ footer {
   }
 
   .footer-center-mobile {
-    display: flex;
+    display: none;
     order: 1;
     margin-bottom: 20px;                  /* era 40px */
   }
