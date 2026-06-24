@@ -470,7 +470,8 @@
     const rev = document.getElementById("goStripe");
     if(rev) rev.onclick = () => {
       if(!validate()) return;
-      window.open(pagamento.revolutLink, "_blank", "noopener");
+      const w = window.open(pagamento.revolutLink, "_blank");
+      if(!w) window.location.href = pagamento.revolutLink;
     };
   }
 
