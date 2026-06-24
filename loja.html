@@ -222,7 +222,7 @@
       <div class="methods">
         <button class="method" data-m="mbway"><span class="dot"></span>Preferential — MB Way</button>
         <button class="method" data-m="iban"><span class="dot"></span>Preferential — Bank transfer</button>
-        <button class="method" data-m="stripe"><span class="dot"></span>Apple Pay / Stripe</button>
+        <button class="method" data-m="stripe"><span class="dot"></span>Card / Apple Pay (Revolut)</button>
       </div>
       <div class="detail" id="detail"></div>
     </div>
@@ -244,7 +244,7 @@
   const pagamento = {
     mbway: "913 613 925",
     iban:  "PT50 0000 0000 0000 0000 0000 0",
-    stripeLink: "https://buy.stripe.com/PASTE_LINK_HERE",
+    revolutUser: "martabpa",   // revolut.me username — link is built with the cart amount
     emailEncomendas: "martinhabpa@gmail.com"
   };
 
@@ -432,8 +432,8 @@
         '<p class="note">Once you&rsquo;ve transferred, tap confirm &mdash; it opens an email with your details for us.</p>';
     } else if(metodo === "stripe"){
       detail.innerHTML =
-        '<p>Automatic payment, by card or Apple Pay.</p>'+
-        '<button class="pay-btn" id="goStripe">Pay with Apple Pay / Stripe</button>';
+        '<p>Pay by card or Apple Pay via Revolut. No Revolut account needed.</p>'+
+        '<button class="pay-btn" id="goStripe">Pay with Revolut</button>';
     }
     detail.classList.add("show");
     wire();
@@ -452,10 +452,14 @@
       const txt = metodo === "mbway" ? "MB Way" : "Bank transfer";
       window.location.href = emailEncomenda(txt);
     };
-    const stripe = document.getElementById("goStripe");
-    if(stripe) stripe.onclick = () => {
+    const rev = document.getElementById("goStripe");
+    if(rev) rev.onclick = () => {
       if(!validate()) return;
-      window.open(pagamento.stripeLink, "_blank", "noopener");
+      const cents = Math.round(produto.preco * qty * 100);
+      const link = "https://revolut.me/" + pagamento.revolutUser
+        + "?currency=EUR&amount=" + cents
+        + "&note=" + encodeURIComponent(produto.nome);
+      window.open(link, "_blank", "noopener");
     };
   }
 
