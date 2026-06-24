@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eggs.pt</title>
+<style>
+  :root{
+    --ink:#111;
+    --bg:#fff;
+    --accent:#E6A817;
+    --line:#e7e4dd;
+    --muted:#8a8a8a;
+    --black:#111;
+    --maxw:1320px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--bg);color:var(--ink);
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height:1.4;-webkit-font-smoothing:antialiased;
+  }
+  button{font-family:inherit;cursor:pointer}
+  a{color:inherit}
+  nav{display:flex;justify-content:center;gap:40px;padding:30px 24px;font-size:17px}
+  nav a{text-decoration:none}
+  nav a:hover{color:var(--muted)}
+  .product{
+    max-width:var(--maxw);margin:30px auto 90px;padding:0 40px;
+    display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;
+  }
+
+  /* ---------- gallery / slideshow ---------- */
+  .gallery{position:relative;aspect-ratio:1/1;overflow:hidden;background:#e9e6df}
+  .track{display:flex;height:100%;transition:transform .35s ease}
+  .slide{
+    min-width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+    color:var(--muted);font-size:14px;cursor:zoom-in;
+  }
+  .slide img{width:100%;height:100%;object-fit:cover;display:block}
+  .arrow{
+    position:absolute;top:50%;transform:translateY(-50%);
+    width:42px;height:42px;border-radius:50%;border:0;z-index:3;
+    background:rgba(255,255,255,.85);color:#111;font-size:20px;line-height:1;
+    display:flex;align-items:center;justify-content:center;transition:background .15s;
+  }
+  .arrow:hover{background:#fff}
+  .arrow.prev{left:14px}
+  .arrow.next{right:14px}
+  .dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:3}
+  .dot2{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.55);box-shadow:0 0 3px rgba(0,0,0,.25);border:0;padding:0;cursor:pointer}
+  .dot2.on{background:#fff}
+
+  .info{padding-top:10px;display:flex;flex-direction:column}
+  .title{color:var(--accent);font-size:46px;font-weight:500;line-height:1.05;letter-spacing:-.01em}
+  .rule{width:34px;height:2px;background:var(--accent);margin:26px 0}
+  .price{font-size:26px;margin-bottom:34px}
+  .add{background:var(--black);color:#fff;border:0;width:100%;padding:24px;font-size:19px;border-radius:4px;transition:opacity .2s}
+  .add:hover{opacity:.85}
+  .desc{white-space:pre-wrap;font-size:17px;line-height:1.7;margin:54px 0 40px}
+  .inventory{color:var(--accent);text-decoration:none;font-size:16px;align-self:flex-start}
+  .inventory:hover{text-decoration:underline}
+
+  /* ---------- lightbox ---------- */
+  .lightbox{
+    position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:80;
+    display:flex;align-items:center;justify-content:center;padding:30px;
+    opacity:0;pointer-events:none;transition:opacity .25s;
+  }
+  .lightbox.open{opacity:1;pointer-events:auto}
+  .lb-stage{max-width:92vw;max-height:90vh;display:flex;align-items:center;justify-content:center}
+  .lb-stage img{max-width:92vw;max-height:90vh;object-fit:contain;display:block}
+  .lb-stage .ph{width:70vmin;height:70vmin;background:#2a2a2a;display:flex;align-items:center;justify-content:center;color:#888;font-size:15px}
+  .lb-close{position:absolute;top:18px;right:26px;background:none;border:0;color:#fff;font-size:36px;line-height:1}
+  .lb-arrow{
+    position:absolute;top:50%;transform:translateY(-50%);background:none;border:0;
+    color:#fff;font-size:46px;line-height:1;padding:10px 18px;opacity:.8;
+  }
+  .lb-arrow:hover{opacity:1}
+  .lb-arrow.prev{left:10px}
+  .lb-arrow.next{right:10px}
+
+  /* ---------- cart ---------- */
+  .overlay{
+    position:fixed;inset:0;background:rgba(0,0,0,.45);
+    display:flex;align-items:flex-start;justify-content:center;
+    padding:40px 20px;overflow-y:auto;z-index:50;
+    opacity:0;pointer-events:none;transition:opacity .25s;
+  }
+  .overlay.open{opacity:1;pointer-events:auto}
+  .modal{background:#fff;width:100%;max-width:520px;border-radius:8px;padding:34px;margin:auto 0;transform:translateY(8px);transition:transform .25s}
+  .overlay.open .modal{transform:none}
+  .modal-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:24px}
+  .modal-head h2{font-size:24px;font-weight:600}
+  .close{background:none;border:0;font-size:30px;line-height:1;color:var(--muted)}
+  .close:hover{color:var(--ink)}
+  .order{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .order .o-name{font-size:16px;max-width:55%}
+  .qty{display:flex;align-items:center;gap:14px}
+  .qty button{width:30px;height:30px;border:1px solid var(--line);background:#fff;border-radius:4px;font-size:18px;line-height:1}
+  .o-total{font-weight:600;font-size:17px}
+  .fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}
+  .fields label{display:flex;flex-direction:column;font-size:12px;color:var(--muted);gap:5px}
+  .fields .wide{grid-column:1/-1}
+  .fields input{border:1px solid var(--line);border-radius:4px;padding:11px 12px;font-family:inherit;font-size:15px;color:var(--ink)}
+  .fields input:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+  h3.pay-title{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:6px 0 14px}
+  .methods{display:flex;flex-direction:column;gap:10px}
+  .method{border:1px solid var(--line);border-radius:6px;padding:15px 16px;background:#fff;text-align:left;font-size:16px;display:flex;align-items:center;gap:12px;transition:border-color .15s}
+  .method:hover{border-color:#cfccc4}
+  .method.sel{border-color:var(--ink)}
+  .method .dot{width:15px;height:15px;border:1px solid #bbb;border-radius:50%;flex:none}
+  .method.sel .dot{border-color:var(--ink);background:var(--ink);box-shadow:inset 0 0 0 3px #fff}
+  .detail{margin-top:14px;font-size:15px;line-height:1.6;display:none}
+  .detail.show{display:block}
+  .detail .big{font-size:22px;font-weight:600;letter-spacing:.02em;margin-top:4px}
+  .copy{margin-top:10px;border:1px solid var(--line);background:#fff;border-radius:4px;padding:8px 12px;font-size:14px}
+  .copy:hover{border-color:#cfccc4}
+  .pay-btn{width:100%;margin-top:16px;background:var(--black);color:#fff;border:0;padding:18px;font-size:17px;border-radius:4px;transition:opacity .2s}
+  .pay-btn:hover{opacity:.85}
+  .note{font-size:13px;color:var(--muted);margin-top:12px}
+
+  @media(max-width:820px){
+    .product{grid-template-columns:1fr;gap:30px;padding:0 22px;margin-bottom:60px}
+    .title{font-size:34px}
+    .fields{grid-template-columns:1fr}
+    .modal{padding:26px}
+    .arrow{width:36px;height:36px;font-size:18px}
+  }
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+</head>
+<body>
+
+  <nav>
+    <!-- <a href="#">Products</a> -->
+    <a href="mailto:martinhabpa@gmail.com">Contact</a>
+    <!-- <a href="#" id="navCart">Cart</a> -->
+  </nav>
+
+  <section class="product">
+    <div class="gallery" id="gallery">
+      <div class="track" id="track"></div>
+      <button class="arrow prev" id="gPrev" aria-label="Previous">&#8249;</button>
+      <button class="arrow next" id="gNext" aria-label="Next">&#8250;</button>
+      <div class="dots" id="dots"></div>
+    </div>
+
+    <div class="info">
+      <h1 class="title" id="pTitle"></h1>
+      <div class="rule"></div>
+      <div class="price" id="pPrice"></div>
+      <button class="add" id="openCart">Add to cart</button>
+      <pre class="desc" id="pDesc"></pre>
+      <a class="inventory" href="#">Inventory</a>
+    </div>
+  </section>
+
+  <!-- lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+    <button class="lb-arrow prev" id="lbPrev" aria-label="Previous">&#8249;</button>
+    <div class="lb-stage" id="lbStage"></div>
+    <button class="lb-arrow next" id="lbNext" aria-label="Next">&#8250;</button>
+  </div>
+
+  <!-- cart -->
+  <div class="overlay" id="overlay">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Cart">
+      <div class="modal-head">
+        <h2>Cart</h2>
+        <button class="close" id="closeCart" aria-label="Close">&times;</button>
+      </div>
+      <div class="order">
+        <span class="o-name" id="oName"></span>
+        <div class="qty">
+          <button id="qMinus" aria-label="Decrease">&ndash;</button>
+          <span id="qVal">1</span>
+          <button id="qPlus" aria-label="Increase">+</button>
+        </div>
+        <span class="o-total" id="oTotal"></span>
+      </div>
+      <div class="fields">
+        <label class="wide">Name<input id="fNome" type="text" autocomplete="name"></label>
+        <label class="wide">Email<input id="fEmail" type="email" autocomplete="email"></label>
+        <label class="wide">Phone<input id="fTel" type="tel" autocomplete="tel"></label>
+        <label class="wide">Address<input id="fMorada" type="text" autocomplete="street-address"></label>
+        <label>Postal code<input id="fCP" type="text" autocomplete="postal-code"></label>
+        <label>City<input id="fCidade" type="text" autocomplete="address-level2"></label>
+      </div>
+      <h3 class="pay-title">Payment</h3>
+      <div class="methods">
+        <button class="method" data-m="mbway"><span class="dot"></span>MB Way</button>
+        <button class="method" data-m="iban"><span class="dot"></span>Bank transfer</button>
+        <button class="method" data-m="stripe"><span class="dot"></span>Apple Pay / Stripe</button>
+      </div>
+      <div class="detail" id="detail"></div>
+    </div>
+  </div>
+
+<script>
+  /* ===============================================================
+     EDIT HERE: product + payment
+     imagens: list of photo URLs. Leave [] to see placeholder slides.
+     =============================================================== */
+  const produto = {
+    nome:  "How would you like your eggs?",
+    preco: 38.00,
+    imagens: [],
+    descricao:
+"Embroidery Hat\n100% COTTON\nMade in Portugal\n\nONE-SIZE\n27 x 20 x 15 cm"
+  };
+
+  const pagamento = {
+    mbway: "913 613 925",
+    iban:  "PT50 0000 0000 0000 0000 0000 0",
+    stripeLink: "https://buy.stripe.com/PASTE_LINK_HERE",
+    emailEncomendas: "ola@eggs.pt"
+  };
+
+  const euros = n => n.toFixed(2).replace(".", ",") + " €";
+  document.getElementById("pTitle").textContent = produto.nome;
+  document.getElementById("pPrice").textContent = euros(produto.preco);
+  document.getElementById("pDesc").textContent  = produto.descricao;
+  document.getElementById("oName").textContent  = produto.nome;
+
+  /* ---------- gallery ---------- */
+  const imgs = (produto.imagens && produto.imagens.length) ? produto.imagens : ["","",""];
+  const track = document.getElementById("track");
+  const dots  = document.getElementById("dots");
+  let gi = 0;
+
+  imgs.forEach((src,i)=>{
+    const slide = document.createElement("div");
+    slide.className = "slide";
+    if(src){
+      const img = document.createElement("img");
+      img.src = src; img.alt = produto.nome+" "+(i+1);
+      slide.appendChild(img);
+    } else {
+      slide.textContent = "image "+(i+1);
+    }
+    slide.onclick = ()=> openLB(i);
+    track.appendChild(slide);
+
+    const d = document.createElement("button");
+    d.className = "dot2"; d.setAttribute("aria-label","Image "+(i+1));
+    d.onclick = ()=> goTo(i);
+    dots.appendChild(d);
+  });
+
+  const single = imgs.length < 2;
+  if(single){
+    document.getElementById("gPrev").style.display="none";
+    document.getElementById("gNext").style.display="none";
+    dots.style.display="none";
+  }
+
+  function goTo(i){
+    gi = (i + imgs.length) % imgs.length;
+    track.style.transform = "translateX(" + (-gi*100) + "%)";
+    [...dots.children].forEach((d,k)=> d.classList.toggle("on", k===gi));
+  }
+  goTo(0);
+  document.getElementById("gPrev").onclick = ()=> goTo(gi-1);
+  document.getElementById("gNext").onclick = ()=> goTo(gi+1);
+
+  /* ---------- lightbox ---------- */
+  const lightbox = document.getElementById("lightbox");
+  const lbStage  = document.getElementById("lbStage");
+  let lbi = 0;
+
+  function lbRender(){
+    const src = imgs[lbi];
+    lbStage.innerHTML = "";
+    if(src){
+      const img = document.createElement("img");
+      img.src = src; img.alt = produto.nome+" "+(lbi+1);
+      lbStage.appendChild(img);
+    } else {
+      const ph = document.createElement("div");
+      ph.className = "ph"; ph.textContent = "image "+(lbi+1);
+      lbStage.appendChild(ph);
+    }
+  }
+  function openLB(i){ lbi=i; lbRender(); lightbox.classList.add("open"); }
+  function closeLB(){ lightbox.classList.remove("open"); }
+  function lbGo(step){ lbi=(lbi+step+imgs.length)%imgs.length; lbRender(); goTo(lbi); }
+
+  document.getElementById("lbClose").onclick = closeLB;
+  document.getElementById("lbPrev").onclick  = e=>{ e.stopPropagation(); lbGo(-1); };
+  document.getElementById("lbNext").onclick  = e=>{ e.stopPropagation(); lbGo(1); };
+  lightbox.onclick = e=>{ if(e.target===lightbox) closeLB(); };
+  if(single){
+    document.getElementById("lbPrev").style.display="none";
+    document.getElementById("lbNext").style.display="none";
+  }
+
+  /* ---------- cart ---------- */
+  let qty = 1, metodo = null;
+  const overlay = document.getElementById("overlay");
+  const detail  = document.getElementById("detail");
+
+  function refreshTotal(){
+    document.getElementById("qVal").textContent = qty;
+    document.getElementById("oTotal").textContent = euros(produto.preco * qty);
+  }
+  refreshTotal();
+
+  function open(){ overlay.classList.add("open"); }
+  function close(){ overlay.classList.remove("open"); }
+  document.getElementById("openCart").onclick = open;
+  document.getElementById("navCart").onclick = e => { e.preventDefault(); open(); };
+  document.getElementById("closeCart").onclick = close;
+  overlay.onclick = e => { if(e.target === overlay) close(); };
+
+  document.addEventListener("keydown", e => {
+    if(e.key === "Escape"){ if(lightbox.classList.contains("open")) closeLB(); else close(); }
+    if(lightbox.classList.contains("open")){
+      if(e.key === "ArrowRight") lbGo(1);
+      if(e.key === "ArrowLeft")  lbGo(-1);
+    }
+  });
+
+  document.getElementById("qPlus").onclick  = () => { qty++; refreshTotal(); };
+  document.getElementById("qMinus").onclick = () => { if(qty>1){qty--; refreshTotal();} };
+
+  function dadosOk(){
+    const get = id => document.getElementById(id).value.trim();
+    return get("fNome") && get("fEmail") && get("fMorada") && get("fCP") && get("fCidade");
+  }
+
+  function emailEncomenda(metodoTxt){
+    const g = id => document.getElementById(id).value.trim();
+    const corpo =
+"Order — "+produto.nome+"\n\n"+
+"Quantity: "+qty+"\n"+
+"Total: "+euros(produto.preco*qty)+"\n"+
+"Method: "+metodoTxt+"\n\n"+
+"Name: "+g("fNome")+"\n"+
+"Email: "+g("fEmail")+"\n"+
+"Phone: "+g("fTel")+"\n"+
+"Address: "+g("fMorada")+"\n"+
+g("fCP")+" "+g("fCidade");
+    return "mailto:"+pagamento.emailEncomendas
+      +"?subject="+encodeURIComponent("Order — "+produto.nome)
+      +"&body="+encodeURIComponent(corpo);
+  }
+
+  const aviso = '<p class="note">Fill in name, email and address to confirm.</p>';
+
+  function render(){
+    if(metodo === "mbway"){
+      detail.innerHTML =
+        '<p>Pay by MB Way to this number:</p>'+
+        '<p class="big">'+pagamento.mbway+'</p>'+
+        '<button class="pay-btn" id="confirmManual">Confirm order</button>'+
+        '<p class="note">Once you&rsquo;ve paid, tap confirm &mdash; it opens an email with your details for us.</p>';
+    } else if(metodo === "iban"){
+      detail.innerHTML =
+        '<p>Bank transfer to this IBAN:</p>'+
+        '<p class="big">'+pagamento.iban+'</p>'+
+        '<button class="copy" id="copyIban">Copy IBAN</button>'+
+        '<button class="pay-btn" id="confirmManual">Confirm order</button>'+
+        '<p class="note">Once you&rsquo;ve transferred, tap confirm &mdash; it opens an email with your details for us.</p>';
+    } else if(metodo === "stripe"){
+      detail.innerHTML =
+        '<p>Automatic payment, by card or Apple Pay.</p>'+
+        '<button class="pay-btn" id="goStripe">Pay with Apple Pay / Stripe</button>';
+    }
+    detail.classList.add("show");
+    wire();
+  }
+
+  function wire(){
+    const copy = document.getElementById("copyIban");
+    if(copy) copy.onclick = () => {
+      if(navigator.clipboard) navigator.clipboard.writeText(pagamento.iban.replace(/\s/g,""));
+      copy.textContent = "Copied ✓";
+      setTimeout(function(){copy.textContent="Copy IBAN";},1500);
+    };
+    const conf = document.getElementById("confirmManual");
+    if(conf) conf.onclick = () => {
+      if(!dadosOk()){ detail.insertAdjacentHTML("beforeend", aviso); return; }
+      const txt = metodo === "mbway" ? "MB Way" : "Bank transfer";
+      window.location.href = emailEncomenda(txt);
+    };
+    const stripe = document.getElementById("goStripe");
+    if(stripe) stripe.onclick = () => window.open(pagamento.stripeLink, "_blank", "noopener");
+  }
+
+  document.querySelectorAll(".method").forEach(btn => {
+    btn.onclick = () => {
+      document.querySelectorAll(".method").forEach(b=>b.classList.remove("sel"));
+      btn.classList.add("sel");
+      metodo = btn.dataset.m;
+      render();
+    };
+  });
+</script>
+</body>
+</html>
