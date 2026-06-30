@@ -318,6 +318,7 @@
       addBtn.disabled = false;
       addBtn.textContent = "Add to cart";
     }
+    if(typeof refreshTotal === "function") refreshTotal();
   }
   consultarStock();
 
@@ -400,9 +401,13 @@
   const shipFields = document.getElementById("shipFields");
   const delivErr = document.getElementById("delivErr");
 
+  const qPlusBtn = document.getElementById("qPlus");
+
   function refreshTotal(){
+    if(disponivel !== null && qty > disponivel) qty = Math.max(1, disponivel);
     document.getElementById("qVal").textContent = qty;
     document.getElementById("oTotal").textContent = euros(produto.preco * qty);
+    qPlusBtn.disabled = (disponivel !== null && qty >= disponivel);
   }
   refreshTotal();
 
@@ -424,7 +429,7 @@
     }
   });
 
-  document.getElementById("qPlus").onclick  = () => { qty++; refreshTotal(); };
+  document.getElementById("qPlus").onclick  = () => { if(disponivel === null || qty < disponivel){ qty++; refreshTotal(); } };
   document.getElementById("qMinus").onclick = () => { if(qty>1){qty--; refreshTotal();} };
 
   /* ---------- delivery choice ---------- */
