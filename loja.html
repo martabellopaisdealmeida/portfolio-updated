@@ -66,9 +66,12 @@
   .info{padding-top:10px;display:flex;flex-direction:column}
   .title{color:var(--accent);font-size:46px;font-weight:500;line-height:1.05;letter-spacing:-.01em}
   .rule{width:34px;height:2px;background:var(--accent);margin:26px 0}
-  .price{font-size:26px;margin-bottom:34px}
+  .price{font-size:26px;margin-bottom:24px}
+  .stock{font-size:14px;color:var(--err);margin:-10px 0 24px;display:none}
+  .stock.show{display:block}
   .add{background:var(--black);color:#fff;border:0;width:100%;padding:24px;font-size:19px;border-radius:4px;transition:opacity .2s}
   .add:hover{opacity:.85}
+  .add:disabled{background:var(--muted);cursor:not-allowed;opacity:.6}
   .desc{white-space:pre-wrap;font-size:17px;line-height:1.7;margin:54px 0 40px}
   .inventory{color:var(--accent);text-decoration:none;font-size:16px;align-self:flex-start}
   .inventory:hover{text-decoration:underline}
@@ -110,6 +113,7 @@
   .order .o-name{font-size:16px;max-width:55%}
   .qty{display:flex;align-items:center;gap:14px}
   .qty button{width:30px;height:30px;border:1px solid var(--line);background:#fff;border-radius:4px;font-size:18px;line-height:1}
+  .qty button:disabled{opacity:.35;cursor:not-allowed}
   .o-total{font-weight:500;font-size:17px}
 
   .fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}
@@ -173,9 +177,10 @@
       <h1 class="title" id="pTitle"></h1>
       <div class="rule"></div>
       <div class="price" id="pPrice"></div>
+      <div class="stock" id="pStock"></div>
       <button class="add" id="openCart">Add to cart</button>
       <pre class="desc" id="pDesc"></pre>
-      <a class="inventory" href="#">Inventory</a>
+      <!-- <a class="inventory" href="#">Inventory</a> -->
     </div>
   </section>
 
@@ -246,7 +251,11 @@
   const produto = {
     nome:  "4 dEsIgN sTuDeNtS, 10 aUtHoRs aNd a pRoBLeM wItH nAmEs",
     preco: 22.99,
-    imagens: [],
+    imagens: [
+      "images/13-loja/1.jpg",
+      "images/13-loja/2.jpg",
+      "images/13-loja/3.jpg"
+    ],
     descricao:
 "A book born from a final-year graduation project in Communication Design (FBAUL, Lisbon). It examines the identity crisis of the profession — the proliferation of hyphenated titles, AI's reconfiguration of authorship, and the gesture of reclaiming the generic title 'designer' as an ethical position. Excerpts from ten authors are layered with our own glosses and the transcript of a roundtable we had the pleasure of hosting with Joana Tavares, Mário Moura and Silvio Lorusso."
   };
@@ -258,11 +267,58 @@
     emailEncomendas: "martinhabpa@gmail.com"
   };
 
+  /* ---------- stock (contador interno, partilhado, via Google Apps Script) ---------- */
+  // Cola aqui o URL da tua implementação (termina em /exec)
+  const APPSCRIPT_URL = "https://script.google.com/macros/s/AKfycbwSS-LomVGREzaFoS-joxDXI5Blf9j2ELzS9WedW1fVLXxfOtl4Ubqe9bPKlIm-Qr3j5w/exec";
+
+  let disponivel = null; // null = ainda não sabemos / não foi possível verificar
+
+  async function consultarStock(){
+    try{
+      const r = await fetch(APPSCRIPT_URL + "?action=get");
+      const data = await r.json();
+      disponivel = data.disponivel;
+    }catch(e){
+      disponivel = null; // falhou a verificação — não bloqueia à partida
+    }
+    renderStock();
+  }
+
+  // tenta reservar `qty` unidades; devolve true/false
+  async function reservarStock(qty){
+    try{
+      const r = await fetch(APPSCRIPT_URL + "?action=reservar&qty=" + qty);
+      const data = await r.json();
+      disponivel = data.disponivel;
+      renderStock();
+      return !!data.ok;
+    }catch(e){
+      return false; // sem ligação ao contador — não confirma a encomenda
+    }
+  }
+
   const euros = n => n.toFixed(2).replace(".", ",") + " €";
   document.getElementById("pTitle").textContent = produto.nome;
   document.getElementById("pPrice").textContent = euros(produto.preco);
   document.getElementById("pDesc").textContent  = produto.descricao;
   document.getElementById("oName").textContent  = produto.nome;
+
+  const stockEl = document.getElementById("pStock");
+  const addBtn  = document.getElementById("openCart");
+
+  function renderStock(){
+    if(disponivel !== null && disponivel <= 0){
+      stockEl.textContent = "Sold out";
+      stockEl.classList.add("show");
+      addBtn.disabled = true;
+      addBtn.textContent = "Sold out";
+    } else {
+      stockEl.classList.remove("show");
+      addBtn.disabled = false;
+      addBtn.textContent = "Add to cart";
+    }
+  }
+  consultarStock();
 
   /* ---------- gallery ---------- */
   const imgs = (produto.imagens && produto.imagens.length) ? produto.imagens : ["","",""];
@@ -349,7 +405,10 @@
   }
   refreshTotal();
 
-  function open(){ overlay.classList.add("open"); }
+  function open(){
+    if(disponivel !== null && disponivel <= 0) return;
+    overlay.classList.add("open");
+  }
   function close(){ overlay.classList.remove("open"); }
   document.getElementById("openCart").onclick = open;
   document.getElementById("navCart").onclick = e => { e.preventDefault(); open(); };
@@ -431,6 +490,16 @@
       +"&body="+encodeURIComponent(corpo);
   }
 
+  /* tenta reservar a quantidade no contador partilhado antes de confirmar */
+  async function tentarReservar(){
+    const ok = await reservarStock(qty);
+    if(!ok){
+      detail.insertAdjacentHTML("beforeend",
+        '<p class="block-err show" style="margin-top:14px">Sorry, we just ran out of stock for this quantity. Please try a lower quantity or check back later.</p>');
+    }
+    return ok;
+  }
+
   function render(){
     if(metodo === "mbway"){
       detail.innerHTML =
@@ -462,14 +531,20 @@
       setTimeout(function(){copy.textContent="Copy IBAN";},1500);
     };
     const conf = document.getElementById("confirmManual");
-    if(conf) conf.onclick = () => {
+    if(conf) conf.onclick = async () => {
       if(!validate()) return;
+      conf.disabled = true;
+      const ok = await tentarReservar();
+      if(!ok){ conf.disabled = false; return; }
       const txt = metodo === "mbway" ? "MB Way" : "Bank transfer";
       window.location.href = emailEncomenda(txt);
     };
     const rev = document.getElementById("goStripe");
-    if(rev) rev.onclick = () => {
+    if(rev) rev.onclick = async () => {
       if(!validate()) return;
+      rev.disabled = true;
+      const ok = await tentarReservar();
+      if(!ok){ rev.disabled = false; return; }
       const w = window.open(pagamento.revolutLink, "_blank");
       if(!w) window.location.href = pagamento.revolutLink;
     };
