@@ -284,10 +284,11 @@
     renderStock();
   }
 
-  // tenta reservar `qty` unidades; devolve true/false
-  async function reservarStock(qty){
+  // tenta reservar a encomenda (escreve a linha na Sheet); devolve true/false
+  async function reservarStock(detalhes){
     try{
-      const r = await fetch(APPSCRIPT_URL + "?action=reservar&qty=" + qty);
+      const params = new URLSearchParams({ action: "reservar", ...detalhes });
+      const r = await fetch(APPSCRIPT_URL + "?" + params.toString());
       const data = await r.json();
       disponivel = data.disponivel;
       renderStock();
@@ -490,9 +491,18 @@
       +"&body="+encodeURIComponent(corpo);
   }
 
-  /* tenta reservar a quantidade no contador partilhado antes de confirmar */
-  async function tentarReservar(){
-    const ok = await reservarStock(qty);
+  /* tenta reservar no contador partilhado antes de confirmar, já com os dados da encomenda */
+  async function tentarReservar(metodoTxt){
+    const detalhes = {
+      qty: qty,
+      nome: val("fNome"),
+      email: val("fEmail"),
+      tel: val("fTel"),
+      pagamento: metodoTxt,
+      entrega: entregaTxt(),
+      morada: entrega === "post" ? (val("fMorada") + ", " + val("fCP") + " " + val("fCidade")) : ""
+    };
+    const ok = await reservarStock(detalhes);
     if(!ok){
       detail.insertAdjacentHTML("beforeend",
         '<p class="block-err show" style="margin-top:14px">Sorry, we just ran out of stock for this quantity. Please try a lower quantity or check back later.</p>');
@@ -534,16 +544,16 @@
     if(conf) conf.onclick = async () => {
       if(!validate()) return;
       conf.disabled = true;
-      const ok = await tentarReservar();
-      if(!ok){ conf.disabled = false; return; }
       const txt = metodo === "mbway" ? "MB Way" : "Bank transfer";
+      const ok = await tentarReservar(txt);
+      if(!ok){ conf.disabled = false; return; }
       window.location.href = emailEncomenda(txt);
     };
     const rev = document.getElementById("goStripe");
     if(rev) rev.onclick = async () => {
       if(!validate()) return;
       rev.disabled = true;
-      const ok = await tentarReservar();
+      const ok = await tentarReservar("Revolut");
       if(!ok){ rev.disabled = false; return; }
       const w = window.open(pagamento.revolutLink, "_blank");
       if(!w) window.location.href = pagamento.revolutLink;
