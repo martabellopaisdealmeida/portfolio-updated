@@ -467,7 +467,7 @@
     document.querySelectorAll(".field.invalid").forEach(f=>f.classList.remove("invalid"));
     delivErr.classList.remove("show");
 
-    const required = ["fNome","fEmail"];
+    const required = ["fNome","fEmail","fTel"];
     if(entrega === "post") required.push("fMorada","fCP","fCidade");
     required.forEach(id => { if(!val(id)){ markInvalid(id); ok=false; } });
 
