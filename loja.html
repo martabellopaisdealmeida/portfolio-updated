@@ -37,6 +37,21 @@
   nav{display:flex;justify-content:center;gap:40px;padding:30px 24px;font-size:17px}
   nav a{text-decoration:none}
   nav a:hover{color:var(--muted)}
+  .cart-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:16px;
+    height:16px;
+    padding:0 4px;
+    border-radius:50%;
+    background:var(--accent);
+    color:#fff;
+    font-size:11px;
+    font-weight:500;
+    margin-left:4px;
+    vertical-align:super;
+  }
   .product{
     max-width:var(--maxw);margin:30px auto 90px;padding:0 40px;
     display:grid;grid-template-columns:1.25fr 1fr;gap:60px;align-items:stretch;
@@ -163,7 +178,7 @@
   <nav>
     <!-- <a href="#">Products</a> -->
     <a href="mailto:martinhabpa@gmail.com">Contact</a>
-    <a href="#" id="navCart">Cart</a>
+    <a href="#" id="navCart">Cart<sup id="cartBadge" class="cart-badge"></sup></a>
   </nav>
 
   <section class="product">
@@ -409,12 +424,14 @@
   const delivErr = document.getElementById("delivErr");
 
   const qPlusBtn = document.getElementById("qPlus");
+  const cartBadge = document.getElementById("cartBadge");
 
   function refreshTotal(){
     if(disponivel !== null && qty > disponivel) qty = Math.max(1, disponivel);
     document.getElementById("qVal").textContent = qty;
     document.getElementById("oTotal").textContent = euros(produto.preco * qty);
     qPlusBtn.disabled = (disponivel !== null && qty >= disponivel);
+    cartBadge.textContent = qty > 0 ? qty : "";
   }
   refreshTotal();
 
