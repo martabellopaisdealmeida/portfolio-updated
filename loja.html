@@ -204,8 +204,12 @@
     .modal{padding:26px}
     .arrow{font-size:20px;padding:4px}
   }
+  @media(max-width:1024px){
+    .product{grid-template-columns:1fr;align-items:start;gap:26px}
+    .gallery{height:460px}
+  }
   @media(max-width:480px){
-    .product{padding:0 16px;gap:20px;--gal-min:140px}
+    .product{padding:0 16px;gap:20px}
     .gallery{height:380px}
     .title{font-size:26px}
   }
