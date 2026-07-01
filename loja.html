@@ -150,6 +150,8 @@
   .method.sel .dot{border-color:var(--ink);background:var(--ink);box-shadow:inset 0 0 0 3px #fff}
   .block-err{display:none;color:var(--err);font-size:12px;font-weight:500;margin-top:8px}
   .block-err.show{display:block}
+  .ship-rates{display:none;font-size:13px;color:var(--muted);line-height:1.6;margin-top:10px}
+  .ship-rates.show{display:block}
 
   .detail{margin-top:14px;font-size:15px;line-height:1.6;display:none}
   .detail.show{display:block}
@@ -237,9 +239,15 @@
       <h3 class="pay-title">Delivery</h3>
       <div class="methods">
         <button class="method" data-d="hand"><span class="dot"></span>In person (pickup)</button>
-        <button class="method" data-d="post"><span class="dot"></span>CTT Expresso (Locky) / InPost Locker</button>
+        <button class="method" data-d="post"><span class="dot"></span>By post</button>
       </div>
       <p class="block-err" id="delivErr">Choose a delivery option</p>
+      <div class="ship-rates" id="shipRates">
+        <p>Portugal and Spain: from 3.89€</p>
+        <p>Italy: from 6.49€</p>
+        <p>France and The Netherlands: from 5.99€</p>
+        <p>Belgium: from 5.99€</p>
+      </div>
 
       <!-- shipping address (only for "by post") -->
       <div class="fields" id="shipFields" style="display:none">
@@ -457,6 +465,7 @@
   document.getElementById("qMinus").onclick = () => { if(qty>1){qty--; refreshTotal();} };
 
   /* ---------- delivery choice ---------- */
+  const shipRates = document.getElementById("shipRates");
   document.querySelectorAll(".method[data-d]").forEach(btn => {
     btn.onclick = () => {
       document.querySelectorAll(".method[data-d]").forEach(b=>b.classList.remove("sel"));
@@ -464,6 +473,7 @@
       entrega = btn.dataset.d;
       delivErr.classList.remove("show");
       shipFields.style.display = (entrega === "post") ? "grid" : "none";
+      shipRates.classList.toggle("show", entrega === "post");
       if(entrega !== "post"){
         shipFields.querySelectorAll(".field").forEach(f=>f.classList.remove("invalid"));
       }
