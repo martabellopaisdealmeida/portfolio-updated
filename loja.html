@@ -167,6 +167,8 @@
   .fields .wide{grid-column:1/-1}
   .fields input{border:1px solid var(--line);border-radius:4px;padding:11px 12px;font-family:inherit;font-size:15px;color:var(--ink)}
   .fields input:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+  .fields select{border:1px solid var(--line);border-radius:4px;padding:11px 12px;font-family:inherit;font-size:15px;color:var(--ink);background:#fff}
+.fields select:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
   /* per-field error (above the input) */
   .field .err{display:none;color:var(--err);font-size:11px;font-weight:500}
   .field.invalid .err{display:block}
@@ -289,6 +291,19 @@
         <p>Italy – from 6.49€</p>
         <p>France and The Netherlands – from 5.99€</p>
         <p>Belgium – from 5.99€</p>
+      </div>
+
+      <div class="fields" id="pickupFields" style="display:none">
+        <label class="field wide">
+          <span>Pickup location</span>
+          <span class="err">Choose a location</span>
+          <select id="fLocal">
+            <option value="">Choose...</option>
+            <option value="cascais">Cascais</option>
+            <option value="almada">Almada</option>
+            <option value="lisboa">Lisbon (until July 8th)</option>
+          </select>
+        </label>
       </div>
 
       <!-- shipping address (only for "by post") -->
@@ -472,6 +487,7 @@
   const overlay = document.getElementById("overlay");
   const detail  = document.getElementById("detail");
   const shipFields = document.getElementById("shipFields");
+  const pickupFields = document.getElementById("pickupFields");
   const delivErr = document.getElementById("delivErr");
 
   const qPlusBtn = document.getElementById("qPlus");
@@ -516,10 +532,14 @@
       entrega = btn.dataset.d;
       delivErr.classList.remove("show");
       shipFields.style.display = (entrega === "post") ? "grid" : "none";
-      shipRates.classList.toggle("show", entrega === "post");
-      if(entrega !== "post"){
-        shipFields.querySelectorAll(".field").forEach(f=>f.classList.remove("invalid"));
-      }
+pickupFields.style.display = (entrega === "hand") ? "grid" : "none";
+shipRates.classList.toggle("show", entrega === "post");
+if(entrega !== "post"){
+  shipFields.querySelectorAll(".field").forEach(f=>f.classList.remove("invalid"));
+}
+if(entrega !== "hand"){
+  pickupFields.querySelectorAll(".field").forEach(f=>f.classList.remove("invalid"));
+}
     };
   });
 
@@ -539,6 +559,7 @@
 
     const required = ["fNome","fEmail","fTel"];
     if(entrega === "post") required.push("fMorada","fCP","fCidade");
+    if(entrega === "hand") required.push("fLocal");
     required.forEach(id => { if(!val(id)){ markInvalid(id); ok=false; } });
 
     if(!entrega){ delivErr.classList.add("show"); ok=false; }
@@ -546,7 +567,14 @@
   }
 
   function entregaTxt(){
-    return entrega === "post" ? "By post" : "In person (pickup)";
+  if(entrega === "post") return "By post";
+  if(entrega === "hand"){
+    const loc = document.getElementById("fLocal");
+    const locTxt = (loc && loc.selectedIndex > 0) ? loc.options[loc.selectedIndex].text : "";
+    return "In person (pickup) — " + locTxt;
+  }
+  return "";
+
   }
 
   function emailEncomenda(metodoTxt){
