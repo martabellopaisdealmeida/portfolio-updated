@@ -68,7 +68,8 @@
     overflow: hidden;
     margin-bottom: 3.75em;
   }
-  .grid-item.hero-gif img {
+  .grid-item.hero-gif img,
+  .grid-item.hero-gif video {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -177,25 +178,6 @@
   /* --- Full width --- */
   .grid-item.full {
     height: 480px;
-  }
-  
-  /* --- Placeholders (remover ao inserir media) --- */
-  .placeholder {
-    width: 100%;
-    height: 100%;
-    min-height: 200px;
-    background-color: #d9d9d9;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-family: 'PPMori', sans-serif;
-    font-size: 1.25em;
-    color: #333;
-  }
-  body.dark-mode .placeholder {
-    background-color: #2a2a2a;
-    color: #fff;
   }
   
   /* ==================== FOOTER ==================== */
@@ -322,7 +304,8 @@
       height: auto;
       margin-bottom: 1.5em;
     }
-    .grid-item.hero-gif img {
+    .grid-item.hero-gif img,
+    .grid-item.hero-gif video {
       height: auto;
       object-fit: unset;
     }
