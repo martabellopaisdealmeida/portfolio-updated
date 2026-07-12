@@ -199,6 +199,8 @@ height: 480px;
 
 .grid-item.item-campanha {
   height: 580px;
+  object-fit: contain;
+  background-color: black;
 }
 
 .grid-item.item-mupi {
