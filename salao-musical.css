@@ -186,19 +186,19 @@
   height: 350px;
 }
 
-.item-story {
+.grid-item.item-story {
   height: 750px;
 }
 
-.item-detalhe {
+.grid-item.item-detalhe {
 height: 480px;
 }
 
-.item-campanha {
+.grid-item.item-campanha {
   height: 480px;
 }
 
-.item-mupi {
+.grid-item.item-mupi {
   height: 480px;
 }
   
