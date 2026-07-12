@@ -182,7 +182,7 @@
   }
 
   /* --- Personalização por bloco --- */
-.item-animacoes {
+ .grid-item.item-animacoes {
   height: 350px;
 }
 
