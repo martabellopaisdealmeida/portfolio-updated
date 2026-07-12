@@ -85,6 +85,14 @@
     color: #333;
   }
   
+  .project-title-svg {
+    max-width: 2.5em;
+    width: auto;
+    height: auto;
+    display: block;
+    margin-bottom: 8px;
+  }
+  
   .project-content-grid {
     display: grid;
     grid-template-columns: 1.8fr 1fr;
