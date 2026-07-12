@@ -187,7 +187,7 @@
 
   /* --- Personalização por bloco --- */
  .grid-item.item-animacoes {
-  height: 350px;
+  height: auto;
   object-fit: contain;
 }
 
