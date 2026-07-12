@@ -71,7 +71,7 @@
     height: auto;        /* auto, não 100% */
     display: block;
   }
-  
+
   .project-header {
     margin-bottom: 3.75em;
   }
@@ -199,7 +199,7 @@ height: 480px;
 }
 
 .grid-item.item-mupi {
-  height: 480px;
+  height: auto;        /* auto, não 100% */
   object-fit: contain;
 }
   
