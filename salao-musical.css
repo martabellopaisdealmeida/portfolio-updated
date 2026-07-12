@@ -205,6 +205,7 @@ height: 480px;
 
 .grid-item.item-mupi {
   height: 480px;
+  object-fit: contain;
 }
   
   /* ==================== FOOTER ==================== */
