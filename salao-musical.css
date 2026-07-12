@@ -180,6 +180,28 @@
   .grid-item.full {
     height: 750px;
   }
+
+  /* --- Personalização por bloco --- */
+.item-animacoes {
+  /* ex.: height: 600px; */
+}
+
+.item-story {
+  /* ex.: height: 480px; */
+}
+
+.item-detalhe {
+  /* aplica-se ao .grid-row.two-col deste bloco */
+  /* ex.: height: 400px; */
+}
+
+.item-campanha {
+  /* ex.: height: 900px; */
+}
+
+.item-mupi {
+  /* ex.: height: 750px; */
+}
   
   /* ==================== FOOTER ==================== */
   
