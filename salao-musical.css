@@ -184,7 +184,7 @@
 }
 
 .grid-item.item-story {
-  height: 750px;
+  height: auto; 
   object-fit: cover;
 }
 
