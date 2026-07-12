@@ -179,15 +179,18 @@
   /* --- Full width --- */
   .grid-item.full {
     height: 750px;
+
   }
 
   /* --- Personalização por bloco --- */
  .grid-item.item-animacoes {
   height: 350px;
+  object-fit: contain;
 }
 
 .grid-item.item-story {
   height: 750px;
+  object-fit: cover;
 }
 
 .grid-item.item-detalhe {
