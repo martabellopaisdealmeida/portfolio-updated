@@ -168,7 +168,7 @@
     display: block;
   }
   
-  /* --- Duas colunas --- */
+  /* --- TrÊs colunas --- */
 .grid-row.two-col {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
