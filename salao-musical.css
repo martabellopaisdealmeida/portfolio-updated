@@ -171,7 +171,7 @@
   /* --- Duas colunas --- */
 .grid-row.two-col {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 1.25em;
   height: 480px;
 }
