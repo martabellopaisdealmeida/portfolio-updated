@@ -1,0 +1,514 @@
+/* 4students.css
+   @font-face carregados via fonts.css e header.css
+   Header e footer baseados em arte-da-mesa
+   ================================================ */
+
+/* ==================== GLOBAL ==================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'PPMori', sans-serif;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+  
+  body {
+    background-color: #ffffff;
+    color: #333;
+    overflow-x: hidden;
+    font-size: 16px;
+  }
+  
+  /* ==================== DARK MODE ==================== */
+  
+  body.dark-mode {
+    background-color: #000;
+    color: #fff;
+  }
+  
+  body.dark-mode .footer-left p,
+  body.dark-mode .footer-right a {
+    color: #fff;
+  }
+  
+  body.dark-mode .footer-line,
+  body.dark-mode .footer-line-mobile {
+    background-color: #fff;
+  }
+  
+  body.dark-mode .get-in-text-top,
+  body.dark-mode .get-in-text-bottom,
+  body.dark-mode .get-in-text-top-mobile,
+  body.dark-mode .get-in-text-bottom-mobile {
+    color: #fff;
+  }
+  
+  body.dark-mode .project-title,
+  body.dark-mode .project-description,
+  body.dark-mode .project-description p,
+  body.dark-mode .meta-value {
+    color: #fff;
+  }
+  
+  /* ==================== PROJECT CONTENT ==================== */
+  
+  .project-container {
+    max-width: 100em;
+    margin: 0 auto;
+    padding: 2.5em 5.625em 0;
+  }
+  
+  /* --- Capa livro (topo) --- */
+  .grid-item.capa {
+    width: 100%;
+    height: 560px;
+    overflow: hidden;
+    margin-bottom: 3.75em;
+  }
+  .grid-item.capa img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .project-header {
+    margin-bottom: 3.75em;
+  }
+  
+  .project-title {
+    font-family: 'ABCDiatypeMono', monospace;
+    font-size: 3.5em;
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 0.75em;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    color: #333;
+  }
+  
+  .project-content-grid {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr;
+    gap: 7.5em;
+  }
+  
+  .project-description {
+    font-family: 'MarundTrialCurved', sans-serif;
+    font-size: 0.875em;
+    line-height: 1.65;
+    color: #333;
+  }
+  
+  .project-description p {
+    margin-bottom: 1.25em;
+    font-family: 'MarundTrialCurved', sans-serif;
+  }
+  
+  .project-description strong { font-weight: 600; }
+  .project-description em     { font-style: italic; }
+  
+  /* ==================== META ==================== */
+  
+  .project-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5em;
+    align-self: start;
+  }
+  
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+  }
+  
+  .meta-label {
+    font-family: 'ABCDiatypeMono', monospace;
+    font-size: 0.625em;
+    font-weight: 300;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.03125em;
+  }
+  
+  .meta-value {
+    font-family: 'ABCDiatypeMono', monospace;
+    font-size: 0.75em;
+    font-weight: 300;
+    line-height: 1.6;
+    color: #333;
+  }
+  
+  /* ==================== PHOTO GRID ==================== */
+  
+  .photo-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25em;
+    margin-bottom: 3.75em;
+  }
+  
+  .grid-item {
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .grid-item img,
+  .grid-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  /* --- Página grande / interior --- */
+  .grid-item.pagina-interior {
+    height: 720px;
+  }
+  
+  /* --- 3× pormenor --- */
+  .grid-row.three-col-pormenor {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.25em;
+    height: 400px;
+  }
+  .grid-row.three-col-pormenor .grid-item {
+    height: 100%;
+  }
+  
+  /* --- Páginas --- */
+  .grid-item.paginas {
+    height: 620px;
+  }
+  
+  /* --- Gif --- */
+  .grid-item.gif {
+    height: 620px;
+  }
+  
+  /* --- Detalhes --- */
+  .grid-item.detalhes {
+    height: 620px;
+  }
+  
+  /* --- 2× post insta --- */
+  .grid-row.two-col-insta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25em;
+    height: 560px;
+  }
+  .grid-row.two-col-insta .grid-item {
+    height: 100%;
+  }
+  
+  /* ==================== FOOTER ==================== */
+  
+  footer {
+    position: relative;
+    height: 200px;
+    z-index: 1000;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 2.5em 30px;
+  }
+  
+  .interactive-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: relative;
+  }
+  
+  .footer-left p {
+    color: #333;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0;
+    font-family: 'ABCDiatypeMono', monospace;
+  }
+  
+  .footer-right {
+    display: flex;
+    gap: 24px;
+  }
+  
+  .footer-right a {
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: normal;
+    transition: opacity 0.2s ease;
+    font-family: 'ABCDiatypeMono', monospace;
+  }
+  
+  .footer-right a:hover {
+    opacity: 0.7;
+  }
+  
+  .footer-center {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .footer-line {
+    width: 500px;
+    height: 5px;
+    background-color: #333;
+    transition: all 0.2s ease;
+  }
+  
+  .get-in-text-top,
+  .get-in-text-bottom {
+    font-size: 64px;
+    font-weight: normal;
+    color: #333;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    line-height: 1;
+    font-family: 'PPNeueMontreal', sans-serif;
+  }
+  
+  .footer-center:hover .get-in-text-top,
+  .footer-center:hover .get-in-text-bottom {
+    opacity: 1;
+  }
+  
+  .footer-center:hover .footer-line {
+    width: 520px;
+  }
+  
+  .footer-center-mobile {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    margin-bottom: 30px;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .footer-line-mobile {
+    width: 250px;
+    height: 3px;
+    background-color: #333;
+  }
+  
+  .get-in-text-top-mobile,
+  .get-in-text-bottom-mobile {
+    font-size: 40px;
+    font-weight: normal;
+    color: #333;
+    line-height: 1;
+    font-family: 'PPNeueMontreal', sans-serif;
+  }
+  
+  /* ==================== MOBILE 768px ==================== */
+  
+  @media (max-width: 768px) {
+  
+    .project-container {
+      padding: 2em 1.5em 0;
+    }
+  
+    .grid-item.capa {
+      height: auto;
+      margin-bottom: 1.5em;
+    }
+    .grid-item.capa img {
+      height: auto;
+    }
+  
+    .project-header {
+      margin-bottom: 1.5em;
+    }
+  
+    .project-title {
+      font-size: 2.5em;
+      margin-bottom: 0.75em;
+    }
+  
+    .project-content-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5em;
+    }
+  
+    .project-description {
+      font-size: 0.9375em;
+    }
+  
+    .project-meta {
+      gap: 1em;
+    }
+  
+    .photo-grid {
+      gap: 0.5em;
+      margin-bottom: 1.5em;
+    }
+  
+    /* imagens em altura natural */
+    .grid-item.pagina-interior,
+    .grid-item.paginas,
+    .grid-item.gif,
+    .grid-item.detalhes {
+      height: auto;
+    }
+  
+    .grid-item.pagina-interior img,
+    .grid-item.paginas img,
+    .grid-item.gif video,
+    .grid-item.detalhes img {
+      height: auto;
+      object-fit: unset;
+    }
+  
+    /* 3 col pormenor: mantém 3 colunas, altura natural */
+    .grid-row.three-col-pormenor {
+      gap: 0.5em;
+      height: auto;
+    }
+    .grid-row.three-col-pormenor .grid-item {
+      height: auto;
+    }
+    .grid-row.three-col-pormenor .grid-item img {
+      height: auto;
+      object-fit: unset;
+    }
+  
+    /* 2 col insta: mantém 2 colunas, altura natural */
+    .grid-row.two-col-insta {
+      gap: 0.5em;
+      height: auto;
+    }
+    .grid-row.two-col-insta .grid-item {
+      height: auto;
+    }
+    .grid-row.two-col-insta .grid-item img {
+      height: auto;
+      object-fit: unset;
+    }
+  
+    footer {
+      padding: 0 1.5em 20px;
+      height: 150px;
+    }
+  
+    .footer-line,
+    .footer-center:hover .footer-line {
+      width: 60vw;
+    }
+  
+    .footer-center {
+      display: none !important;
+    }
+  
+    .footer-center-mobile {
+      display: flex !important;
+    }
+  }
+  
+  /* ==================== MOBILE 480px ==================== */
+  
+  @media (max-width: 480px) {
+  
+    .project-container {
+      padding: 1.5em 1.25em 0;
+    }
+  
+    .project-title {
+      font-size: 2em;
+      margin-bottom: 0.5em;
+    }
+  
+    .project-content-grid {
+      gap: 1.5em;
+    }
+  
+    .project-description {
+      font-size: 0.875em;
+    }
+  
+    .meta-label {
+      font-size: 0.5625em;
+    }
+  
+    .meta-value {
+      font-size: 0.6875em;
+    }
+  
+    .photo-grid {
+      gap: 0.375em;
+      margin-bottom: 1.25em;
+    }
+  
+    /* pormenor e insta passam a coluna única */
+    .grid-row.three-col-pormenor,
+    .grid-row.two-col-insta {
+      grid-template-columns: 1fr;
+      height: auto;
+    }
+  
+    footer {
+      height: auto;
+      min-height: 250px;
+      padding: 60px 20px 20px;
+      display: block;
+    }
+  
+    .footer-line-mobile {
+      width: 60vw;
+    }
+  
+    .interactive-footer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0;
+      justify-content: center;
+      padding-top: 20px;
+    }
+  
+    .footer-center {
+      display: none;
+    }
+  
+    .footer-center-mobile {
+      display: flex;
+      order: 1;
+      margin-bottom: 40px;
+    }
+  
+    .footer-left {
+      order: 3;
+    }
+  
+    .footer-right {
+      order: 4;
+      margin-top: 15px;
+      justify-content: center;
+      gap: 30px;
+    }
+  
+    .footer-left p,
+    .footer-right a {
+      font-size: 12px;
+    }
+  }
