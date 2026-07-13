@@ -114,11 +114,47 @@
   
   /* ==================== META ==================== */
   
+  .project-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    align-self: start;
+  }
+  
   .project-meta {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.5em;
-    align-self: start;
+  }
+  
+  /* --- Botão "get your copy here" --- */
+  .copy-button {
+    align-self: flex-start;
+    display: inline-block;
+    font-family: 'ABCDiatypeMono', monospace;
+    font-size: 0.75em;
+    font-weight: 300;
+    color: #333;
+    text-decoration: none;
+    padding: 0.85em 1.4em;
+    border: 1px solid #333;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  
+  .copy-button:hover {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  body.dark-mode .copy-button {
+    color: #fff;
+    border-color: #fff;
+  }
+  
+  body.dark-mode .copy-button:hover {
+    background-color: #fff;
+    color: #000;
   }
   
   .meta-item {
