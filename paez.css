@@ -1,0 +1,505 @@
+/* paez.css
+   @font-face carregados via fonts.css e header.css
+   Header e footer baseados em arte-da-mesa
+   ================================================ */
+
+/* ==================== GLOBAL ==================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'PPMori', sans-serif;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+  
+  body {
+    background-color: #ffffff;
+    color: #333;
+    overflow-x: hidden;
+    font-size: 16px;
+  }
+  
+  /* ==================== DARK MODE ==================== */
+  
+  body.dark-mode {
+    background-color: #000;
+    color: #fff;
+  }
+  
+  body.dark-mode .footer-left p,
+  body.dark-mode .footer-right a {
+    color: #fff;
+  }
+  
+  body.dark-mode .footer-line,
+  body.dark-mode .footer-line-mobile {
+    background-color: #fff;
+  }
+  
+  body.dark-mode .get-in-text-top,
+  body.dark-mode .get-in-text-bottom,
+  body.dark-mode .get-in-text-top-mobile,
+  body.dark-mode .get-in-text-bottom-mobile {
+    color: #fff;
+  }
+  
+  body.dark-mode .project-title,
+  body.dark-mode .project-description,
+  body.dark-mode .project-description p,
+  body.dark-mode .meta-value {
+    color: #fff;
+  }
+  
+  /* ==================== PROJECT CONTENT ==================== */
+  
+  .project-container {
+    max-width: 100em;
+    margin: 0 auto;
+    padding: 2.5em 5.625em 0;
+  }
+  
+  /* --- Hero — ftg modelos horizontal --- */
+  .grid-item.hero {
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+    margin-bottom: 3.75em;
+  }
+  .grid-item.hero img {
+    object-fit: cover;
+  }
+  
+  .project-header {
+    margin-bottom: 3.75em;
+  }
+  
+  .project-title {
+    font-family: 'ABCDiatypeMono', monospace;
+    font-size: 3.5em;
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 0.75em;
+    letter-spacing: -0.02em;
+    color: #333;
+  }
+  
+  .project-content-grid {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr;
+    gap: 7.5em;
+  }
+  
+  .project-description {
+    font-family: 'MarundTrialCurved', sans-serif;
+    font-size: 0.875em;
+    line-height: 1.65;
+    color: #333;
+  }
+  
+  .project-description p {
+    margin-bottom: 1.25em;
+    font-family: 'MarundTrialCurved', sans-serif;
+  }
+  
+  .project-description strong { font-weight: 600; }
+  .project-description em     { font-style: italic; }
+  
+  /* ==================== META ==================== */
+  
+  .project-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5em;
+    align-self: start;
+  }
+  
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+  }
+  
+  .meta-label {
+    font-family: 'ABCDiatypeMono', monospace;
+    font-size: 0.625em;
+    font-weight: 300;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.03125em;
+  }
+  
+  .meta-value {
+    font-family: 'ABCDiatypeMono', monospace;
+    font-size: 0.75em;
+    font-weight: 300;
+    line-height: 1.6;
+    color: #333;
+  }
+  
+  /* ==================== PHOTO GRID ==================== */
+  
+  .photo-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25em;
+    margin-bottom: 3.75em;
+  }
+  
+  .grid-item {
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .grid-item img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+  
+  /* --- Página grande / interior --- */
+  .grid-item.interior {
+    height: 650px;
+  }
+  
+  /* --- Três colunas — sapato close --- */
+  .grid-row.three-col-sapatos {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.25em;
+    height: 600px;
+  }
+  .grid-row.three-col-sapatos .grid-item {
+    height: 100%;
+  }
+  
+  /* --- Padrões — largura total --- */
+  .grid-item.padrao {
+    height: 280px;
+  }
+  
+  /* --- Duas colunas — legumes --- */
+  .grid-row.two-col-legumes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25em;
+    height: 780px;
+  }
+  .grid-row.two-col-legumes .grid-item {
+    height: 100%;
+  }
+  
+  /* --- Ftg modelos — largura total --- */
+  .grid-item.ftg-modelos {
+    height: 480px;
+  }
+  
+  /* ==================== FOOTER ==================== */
+  
+  footer {
+    position: relative;
+    height: 200px;
+    z-index: 1000;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 2.5em 30px;
+  }
+  
+  .interactive-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: relative;
+  }
+  
+  .footer-left p {
+    color: #333;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0;
+    font-family: 'ABCDiatypeMono', monospace;
+  }
+  
+  .footer-right {
+    display: flex;
+    gap: 24px;
+  }
+  
+  .footer-right a {
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: normal;
+    transition: opacity 0.2s ease;
+    font-family: 'ABCDiatypeMono', monospace;
+  }
+  
+  .footer-right a:hover {
+    opacity: 0.7;
+  }
+  
+  .footer-center {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .footer-line {
+    width: 500px;
+    height: 5px;
+    background-color: #333;
+    transition: all 0.2s ease;
+  }
+  
+  .get-in-text-top,
+  .get-in-text-bottom {
+    font-size: 64px;
+    font-weight: normal;
+    color: #333;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    line-height: 1;
+    font-family: 'PPNeueMontreal', sans-serif;
+  }
+  
+  .footer-center:hover .get-in-text-top,
+  .footer-center:hover .get-in-text-bottom {
+    opacity: 1;
+  }
+  
+  .footer-center:hover .footer-line {
+    width: 520px;
+  }
+  
+  .footer-center-mobile {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    margin-bottom: 30px;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .footer-line-mobile {
+    width: 250px;
+    height: 3px;
+    background-color: #333;
+  }
+  
+  .get-in-text-top-mobile,
+  .get-in-text-bottom-mobile {
+    font-size: 40px;
+    font-weight: normal;
+    color: #333;
+    line-height: 1;
+    font-family: 'PPNeueMontreal', sans-serif;
+  }
+  
+  /* ==================== MOBILE 768px ==================== */
+  
+  @media (max-width: 768px) {
+  
+    .project-container {
+      padding: 2em 1.5em 0;
+    }
+  
+    .grid-item.hero {
+      height: auto;
+      margin-bottom: 1.5em;
+    }
+  
+    .project-header {
+      margin-bottom: 1.5em;
+    }
+  
+    .project-title {
+      font-size: 2.5em;
+      margin-bottom: 0.75em;
+    }
+  
+    .project-content-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5em;
+    }
+  
+    .project-description {
+      font-size: 0.9375em;
+    }
+  
+    .project-meta {
+      gap: 1em;
+    }
+  
+    .photo-grid {
+      gap: 0.5em;
+      margin-bottom: 1.5em;
+    }
+  
+    /* alturas naturais em mobile */
+    .grid-item.hero,
+    .grid-item.interior,
+    .grid-item.padrao,
+    .grid-item.ftg-modelos {
+      height: auto;
+    }
+  
+    .grid-item.hero img,
+    .grid-item.interior img,
+    .grid-item.padrao img,
+    .grid-item.ftg-modelos img {
+      height: auto;
+      object-fit: unset;
+    }
+  
+    /* três colunas: mantém 3 colunas, altura natural */
+    .grid-row.three-col-sapatos {
+      gap: 0.5em;
+      height: auto;
+    }
+  
+    .grid-row.three-col-sapatos .grid-item {
+      height: auto;
+    }
+  
+    .grid-row.three-col-sapatos .grid-item img {
+      height: auto;
+      object-fit: unset;
+    }
+  
+    /* duas colunas: mantém 2 colunas, altura natural */
+    .grid-row.two-col-legumes {
+      gap: 0.5em;
+      height: auto;
+    }
+  
+    .grid-row.two-col-legumes .grid-item {
+      height: auto;
+    }
+  
+    .grid-row.two-col-legumes .grid-item img {
+      height: auto;
+      object-fit: unset;
+    }
+  
+    footer {
+      padding: 0 1.5em 20px;
+      height: 150px;
+    }
+  
+    .footer-line,
+    .footer-center:hover .footer-line {
+      width: 60vw;
+    }
+  
+    .footer-center {
+      display: none !important;
+    }
+  
+    .footer-center-mobile {
+      display: flex !important;
+    }
+  }
+  
+  /* ==================== MOBILE 480px ==================== */
+  
+  @media (max-width: 480px) {
+  
+    .project-container {
+      padding: 1.5em 1.25em 0;
+    }
+  
+    .project-title {
+      font-size: 2em;
+      margin-bottom: 0.5em;
+    }
+  
+    .project-content-grid {
+      gap: 1.5em;
+    }
+  
+    .project-description {
+      font-size: 0.875em;
+    }
+  
+    .meta-label {
+      font-size: 0.5625em;
+    }
+  
+    .meta-value {
+      font-size: 0.6875em;
+    }
+  
+    .photo-grid {
+      gap: 0.375em;
+      margin-bottom: 1.25em;
+    }
+  
+    /* colunas passam a coluna única */
+    .grid-row.three-col-sapatos,
+    .grid-row.two-col-legumes {
+      grid-template-columns: 1fr;
+      height: auto;
+    }
+  
+    footer {
+      height: auto;
+      min-height: 250px;
+      padding: 60px 20px 20px;
+      display: block;
+    }
+  
+    .footer-line-mobile {
+      width: 60vw;
+    }
+  
+    .interactive-footer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0;
+      justify-content: center;
+      padding-top: 20px;
+    }
+  
+    .footer-center {
+      display: none;
+    }
+  
+    .footer-center-mobile {
+      display: flex;
+      order: 1;
+      margin-bottom: 40px;
+    }
+  
+    .footer-left {
+      order: 3;
+    }
+  
+    .footer-right {
+      order: 4;
+      margin-top: 15px;
+      justify-content: center;
+      gap: 30px;
+    }
+  
+    .footer-left p,
+    .footer-right a {
+      font-size: 12px;
+    }
+  }
