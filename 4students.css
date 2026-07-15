@@ -231,7 +231,7 @@
 
 .grid-item.gif video {
   object-fit: contain;
-  transform: scale(1.15);
+  transform: scale(1.9);
 }
   
   /* --- Detalhes --- */
