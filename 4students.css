@@ -243,7 +243,7 @@
   .grid-row.two-col-insta {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.25em;
+    /* gap: 1.25em; */
     height: 560px;
   }
   .grid-row.two-col-insta .grid-item {
