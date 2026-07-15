@@ -125,31 +125,31 @@
   console.log('%c🚫 Please respect the work and time that went into creating this.', 'color: #999; font-size: 12px;');
   console.log('%c📧 If you want to hire me or collaborate: martinhabpa@gmail.com', 'color: #ED6D2E; font-size: 12px; font-weight: bold;');
 
-  // ============================================
-  // 10. WATERMARK OVERLAY (opcional)
-  // ============================================
-  function addWatermark() {
-    const watermark = document.createElement('div');
-    watermark.style.cssText = `
-      position: fixed;
-      bottom: 10px;
-      right: 10px;
-      font-size: 10px;
-      color: rgba(0,0,0,0.3);
-      pointer-events: none;
-      z-index: 10000;
-      user-select: none;
-    `;
-    watermark.textContent = '© Marta Bello Pais de Almeida 2025';
-    document.body.appendChild(watermark);
-  }
+  // // ============================================
+  // // 10. WATERMARK OVERLAY (opcional)
+  // // ============================================
+  // function addWatermark() {
+  //   const watermark = document.createElement('div');
+  //   watermark.style.cssText = `
+  //     position: fixed;
+  //     bottom: 10px;
+  //     right: 10px;
+  //     font-size: 10px;
+  //     color: rgba(0,0,0,0.3);
+  //     pointer-events: none;
+  //     z-index: 10000;
+  //     user-select: none;
+  //   `;
+  //   watermark.textContent = '© Marta Bello Pais de Almeida 2025';
+  //   document.body.appendChild(watermark);
+  // }
 
-  // Add watermark when page loads
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', addWatermark);
-  } else {
-    addWatermark();
-  }
+  // // Add watermark when page loads
+  // if (document.readyState === 'loading') {
+  //   document.addEventListener('DOMContentLoaded', addWatermark);
+  // } else {
+  //   addWatermark();
+  // }
 
   // ============================================
   // 11. PREVENT IFRAME EMBEDDING
