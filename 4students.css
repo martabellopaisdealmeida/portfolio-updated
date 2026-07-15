@@ -218,16 +218,19 @@
     height: 100%;
   }
   
-    /* --- 3× pormenor --- */
-    .grid-row.four-col-pormenor {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      gap: 1.25em;
-      height: 400px;
-    }
-    .grid-row.four-col-pormenor .grid-item {
-      height: 100%;
-    }
+  .grid-row.four-col-pormenor {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    height: auto;
+  }
+  .grid-row.four-col-pormenor .grid-item {
+    height: auto;
+  }
+  .grid-row.four-col-pormenor .grid-item img {
+    height: auto;
+    object-fit: unset;
+  }
 
   /* --- Páginas --- */
   .grid-item.paginas {
@@ -444,7 +447,11 @@
       height: auto;
       object-fit: unset;
     }
-  
+    .grid-row.four-col-pormenor {
+      gap: 0;
+      height: auto;
+    }
+
     /* 2 col insta: mantém 2 colunas, altura natural */
     .grid-row.two-col-insta {
       gap: 0.5em;
@@ -513,6 +520,7 @@
   
     /* pormenor e insta passam a coluna única */
     .grid-row.three-col-pormenor,
+    .grid-row.four-col-pormenor,
     .grid-row.two-col-insta {
       grid-template-columns: 1fr;
       height: auto;
