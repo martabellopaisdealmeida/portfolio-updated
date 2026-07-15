@@ -250,7 +250,7 @@
   
   /* --- Detalhes --- */
   .grid-item.detalhes {
-    height: 620px;
+    height: auto;
   }
   
   /* --- 2× post insta --- */
