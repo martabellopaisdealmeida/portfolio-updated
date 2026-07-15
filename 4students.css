@@ -224,9 +224,15 @@
   }
   
   /* --- Gif --- */
-  .grid-item.gif {
-    height: 620px;
-  }
+.grid-item.gif {
+  height: 620px;
+  background-color: #000;
+}
+
+.grid-item.gif video {
+  object-fit: contain;
+  transform: scale(1.15);
+}
   
   /* --- Detalhes --- */
   .grid-item.detalhes {
