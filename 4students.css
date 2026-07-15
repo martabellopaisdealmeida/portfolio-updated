@@ -220,7 +220,7 @@
   
   /* --- Páginas --- */
   .grid-item.paginas {
-    height: 620px;
+    height: auto;
   }
   
   /* --- Gif --- */
