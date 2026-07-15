@@ -218,6 +218,17 @@
     height: 100%;
   }
   
+    /* --- 3× pormenor --- */
+    .grid-row.four-col-pormenor {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 1.25em;
+      height: 400px;
+    }
+    .grid-row.four-col-pormenor .grid-item {
+      height: 100%;
+    }
+
   /* --- Páginas --- */
   .grid-item.paginas {
     height: auto;
