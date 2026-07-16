@@ -197,7 +197,7 @@ body.dark-mode .meta-value {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.25em;
-  height: 480px;
+  height: auto;
 }
 .grid-row.two-col-modelos .grid-item {
   height: 100%;
