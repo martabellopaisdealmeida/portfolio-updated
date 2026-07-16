@@ -193,9 +193,14 @@ body.dark-mode .meta-value {
   height: 100%;
 }
 
-/* --- Ftg modelos — largura total --- */
-.grid-item.ftg-modelos {
+.grid-row.two-col-modelos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25em;
   height: 480px;
+}
+.grid-row.two-col-modelos .grid-item {
+  height: 100%;
 }
 
 /* ==================== FOOTER ==================== */
