@@ -355,19 +355,15 @@ footer {
     margin-bottom: 1.5em;
   }
 
-  /* alturas naturais em mobile */
-  .grid-item.hero,
-  .grid-item.interior,
-  .grid-item.padrao,
-  .grid-item.ftg-modelos {
+  .grid-row.two-col-modelos {
+    gap: 0.5em;
     height: auto;
   }
-
-  .grid-item.hero img,
-  .grid-item.interior img,
-  .grid-item.padrao img,
-  .grid-item.ftg-modelos img {
+  .grid-row.two-col-modelos .grid-item,
+  .grid-row.two-col-modelos .grid-item img {
     height: auto;
+  }
+  .grid-row.two-col-modelos .grid-item img {
     object-fit: unset;
   }
 
@@ -456,6 +452,7 @@ footer {
 
   /* colunas passam a coluna única */
   .grid-row.three-col-sapatos,
+  .grid-row.two-col-modelos,
   .grid-row.two-col-legumes {
     grid-template-columns: 1fr;
     height: auto;
