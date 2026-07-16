@@ -193,13 +193,13 @@ body.dark-mode .meta-value {
   height: 100%;
 }
 
-.grid-row.two-col-modelos {
+.grid-row.two-col-legumes {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 1.25em;
   height: auto;
 }
-.grid-row.two-col-modelos .grid-item {
+.grid-row.two-col-legumes .grid-item {
   height: 100%;
 }
 
