@@ -1,3 +1,4 @@
+
 // Inspo Page Script - Following homepage-script.js structure
 
 document.addEventListener("DOMContentLoaded", function () {

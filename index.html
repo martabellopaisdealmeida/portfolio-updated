@@ -79,6 +79,30 @@
     const VIDEO_EXTS = ['mp4', 'webm', 'mov'];
     const ROTATION_INTERVAL = 2800;
     const RECTS_PER_ROTATION = 2;
+
+    // ---- Performance tuning ----
+    // ~20 tiles used to autoplay video at once — the main cause of the freeze.
+    // Cap it to a handful; the board still reads as "some tiles are moving".
+    const MAX_VIDEOS = 6;
+    // Tiles render only a few hundred px wide, but the CDN serves full-resolution
+    // originals. Route images through an on-the-fly resizer so we download/decode
+    // display-sized versions (~10x less memory) with no visible difference.
+    // Falls back to the original file if the proxy is ever unavailable.
+    const USE_IMAGE_PROXY = true;
+    const THUMB_W = 640;
+
+    const isVideo = src => VIDEO_EXTS.includes(src.split('.').pop().toLowerCase());
+    const resizedSrc = src =>
+      USE_IMAGE_PROXY
+        ? 'https://wsrv.nl/?url=' + encodeURIComponent(src) + '&w=' + THUMB_W + '&output=webp&q=80'
+        : src;
+    const displaySrc = src => (isVideo(src) ? src : resizedSrc(src));
+
+    // Every set stays for PAGE_INTERVAL, then the whole hidden pool swaps to the
+    // next set — so as visitors keep scratching they eventually see everything.
+    const PAGE_INTERVAL = 6000;
+    let nextImage = null; // deck: yields image sources, reshuffling each full pass
+    let nextVideo = null; // deck: yields video sources (kept separate for the cap)
   
     const stage = document.getElementById('scatter-stage');
     // 2s hold + 1.5s fade — must match the .fading transition in work-scatter.css
@@ -232,33 +256,58 @@
       return a;
     }
   
-    function assignImages() {
-      const shuffled = shuffle(MOODBOARD_IMAGES);
-      return RECTS.map((_, i) => shuffled[i % shuffled.length]);
+    // A "deck" yields items one at a time, reshuffling after a full pass so every
+    // item is shown once per cycle before any repeats.
+    function makeDeck(items) {
+      let order = shuffle(items), pos = 0;
+      return function () {
+        if (!order.length) return null;
+        if (pos >= order.length) { order = shuffle(items); pos = 0; }
+        return order[pos++];
+      };
+    }
+
+    // Build one full board's worth of sources: a capped, random set of video
+    // tiles, the rest images — all drawn from the decks so successive pages
+    // advance through the whole library.
+    function nextPageSources() {
+      const n = RECTS.length;
+      const videoCount = nextVideo ? Math.min(MAX_VIDEOS, n) : 0;
+      const videoSlots = new Set(shuffle([...Array(n).keys()]).slice(0, videoCount));
+      return RECTS.map((_, i) => (videoSlots.has(i) && nextVideo) ? nextVideo() : nextImage());
     }
   
     function createMediaElement(src, el) {
-      const ext = src.split('.').pop().toLowerCase();
       let media;
-      if (VIDEO_EXTS.includes(ext)) {
+      if (isVideo(src)) {
         media = document.createElement('video');
-        media.src = src;
         media.muted = true;
         media.loop = true;
         media.autoplay = true;
         media.playsInline = true;
         media.setAttribute('playsinline', '');
         media.setAttribute('autoplay', '');
+        media.src = src;
       } else {
         media = document.createElement('img');
-        media.src = src;
         media.alt = '';
         media.loading = 'eager';
+        media.decoding = 'async';
+        media.dataset.full = src;
+        // If the resizer proxy fails, fall back to the original file.
+        media.onerror = function () {
+          if (media.src !== media.dataset.full) { media.onerror = null; media.src = media.dataset.full; }
+        };
+        media.src = displaySrc(src);
       }
+      // When this tile finishes fading back to hidden, apply any queued source.
+      media.addEventListener('transitionend', function (e) {
+        if (e.propertyName === 'opacity') applyPendingIfHidden(el);
+      });
       return media;
     }
   
-    function buildScatter() {
+    function buildScatter(sources) {
       const hint = document.getElementById('mobile-hint');
       stage.innerHTML = '';
       if (hint) stage.appendChild(hint);
@@ -275,7 +324,7 @@ const footerH = footerEl ? footerEl.offsetHeight : 0;
 // so the whole page fits in one viewport with no scroll.
 const H = window.innerHeight - headerH - footerH;
       stage.style.height = H + 'px';
-      currentImages = assignImages();
+      currentImages = sources || nextPageSources();
       // RECTS only span ~1.5%–55% vertically. Normalize the row positions so the
       // top row sits at the top edge and the bottom row reaches the bottom edge,
       // filling the whole board (no empty band above the footer).
@@ -286,6 +335,7 @@ const H = window.innerHeight - headerH - footerH;
       RECTS.forEach(function(r, i) {
         const el = document.createElement('div');
         el.className = 'rect-item';
+        el._idx = i;
         // Desktop sizes both dimensions from the width so the item's aspect ratio
         // stays constant on any screen (otherwise wide screens stretch the boxes
         // and object-fit:contain leaves big gaps around the images).
@@ -305,37 +355,59 @@ const H = window.innerHeight - headerH - footerH;
       });
     }
   
-    function swapImage(rectIndex, newSrc) {
-      const el = rectElements[rectIndex];
-      if (!el) return;
-      const media = el.querySelector('img, video');
-      if (!media) return;
-      if (el.matches(':hover')) {
-        const clone = media.cloneNode();
-        clone.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:1;transition:opacity 0.6s ease;';
-        el.appendChild(clone);
-        media.src = newSrc;
-        requestAnimationFrame(() => requestAnimationFrame(() => {
-          clone.style.opacity = '0';
-          setTimeout(() => clone.parentNode && clone.parentNode.removeChild(clone), 700);
-        }));
+    // A tile is "busy" while it's revealed or still fading — its image is (or is
+    // becoming) visible, so we must not change it underneath the visitor.
+    function isTileBusy(el) {
+      return el.classList.contains('hovered')
+        || el.classList.contains('touched')
+        || el.classList.contains('fading');
+    }
+
+    // Point a tile at a new source, rebuilding the element only if the media type
+    // changed (image ⇄ video). Invisible while hidden, so the change isn't seen.
+    function setTileSource(el, src) {
+      const existing = el.querySelector('img, video');
+      const sameType = existing && ((existing.tagName === 'VIDEO') === isVideo(src));
+      if (sameType) {
+        if (existing.tagName === 'IMG') existing.dataset.full = src;
+        existing.src = displaySrc(src);
       } else {
-        media.src = newSrc;
+        const media = createMediaElement(src, el);
+        if (existing) el.replaceChild(media, existing);
+        else el.appendChild(media);
       }
-      currentImages[rectIndex] = newSrc;
+      currentImages[el._idx] = src;
+    }
+
+    // Called when a tile finishes fading out: if a new source was queued while it
+    // was visible, apply it now that it's hidden again.
+    function applyPendingIfHidden(el) {
+      const src = el._pendingSrc;
+      if (!src) return;
+      if (el.classList.contains('hovered') || el.classList.contains('touched')) return;
+      el._pendingSrc = null;
+      setTileSource(el, src);
+    }
+
+    // Swap the whole hidden pool to the next set. Fully-hidden tiles change now;
+    // tiles still visible (revealed or fading) keep their image and update
+    // silently the moment they finish fading out — so nothing morphs on screen.
+    function flipPage() {
+      const sources = nextPageSources();
+      sources.forEach((src, i) => {
+        const el = rectElements[i];
+        if (!el || !src) return;
+        if (isTileBusy(el)) { el._pendingSrc = src; return; }
+        el._pendingSrc = null;
+        setTileSource(el, src);
+      });
     }
   
-    function startRotation() {
+    function startPaging() {
       setInterval(() => {
         if (MOODBOARD_IMAGES.length < 2) return;
-        const indices = shuffle([...Array(RECTS.length).keys()]).slice(0, RECTS_PER_ROTATION);
-        indices.forEach(idx => {
-          const current = currentImages[idx];
-          const pool = MOODBOARD_IMAGES.filter(src => src !== current);
-          if (!pool.length) return;
-          swapImage(idx, pool[Math.floor(Math.random() * pool.length)]);
-        });
-      }, ROTATION_INTERVAL);
+        flipPage();
+      }, PAGE_INTERVAL);
     }
   
     // Typewriter hint (mobile only)
@@ -405,8 +477,13 @@ const H = window.innerHeight - headerH - footerH;
 
   MOODBOARD_IMAGES = files.map(f => `${JSDELIVR_URL}/${f}`);
 
+  const imgs = MOODBOARD_IMAGES.filter(src => !isVideo(src));
+  const vids = MOODBOARD_IMAGES.filter(isVideo);
+  nextImage = makeDeck(imgs.length ? imgs : MOODBOARD_IMAGES);
+  nextVideo = vids.length ? makeDeck(vids) : null;
+
   buildScatter();
-  startRotation();
+  startPaging();
 }
 
 loadImagesFromCloudinary();
@@ -414,7 +491,9 @@ loadImagesFromCloudinary();
     let resizeTimer;
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => { if (MOODBOARD_IMAGES.length) buildScatter(); }, 200);
+      resizeTimer = setTimeout(() => {
+        if (MOODBOARD_IMAGES.length) buildScatter(currentImages.length ? currentImages : null);
+      }, 200);
     });
   
     // stage.addEventListener('click', function(e) {

@@ -65,7 +65,6 @@
 }
 
   /* ---------- gallery / slideshow ---------- */
-  /* ---------- gallery / slideshow ---------- */
 .gallery{
     position:relative;
     overflow:hidden;
@@ -421,6 +420,7 @@
     slide.className = "slide";
     if(src){
       const img = document.createElement("img");
+      img.decoding = "async";
       img.src = src; img.alt = produto.nome+" "+(i+1);
       slide.appendChild(img);
     } else {
@@ -461,6 +461,7 @@
     lbStage.innerHTML = "";
     if(src){
       const img = document.createElement("img");
+      img.decoding = "async";
       img.src = src; img.alt = produto.nome+" "+(lbi+1);
       lbStage.appendChild(img);
     } else {
