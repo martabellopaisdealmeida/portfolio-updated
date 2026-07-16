@@ -78,7 +78,7 @@ body.dark-mode .get-in-text-bottom-mobile {
 }
 
 .hero-section h1 {
-  font-family: 'PPMori', sans-serif;
+  font-family: 'ABCDiatypeMono', monospace;
   font-size: clamp(1.5em, 3vw, 2.75em);
   font-weight: normal;
   line-height: 1.18;
