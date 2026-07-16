@@ -78,13 +78,13 @@ body.dark-mode .meta-value {
 }
 
 .project-title {
-  font-family: 'ABCDiatypeMono', monospace;
+  font-family: 'PPMori', sans-serif;
   font-size: 3.5em;
   font-weight: 300;
   line-height: 1.1;
   margin-bottom: 0.75em;
   letter-spacing: -0.02em;
-  color: #333;
+  color: #A87872;
 }
 
 .project-content-grid {
