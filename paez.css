@@ -187,7 +187,7 @@ body.dark-mode .meta-value {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.25em;
-  height: 780px;
+  height: auto;
 }
 .grid-row.two-col-legumes .grid-item {
   height: 100%;
