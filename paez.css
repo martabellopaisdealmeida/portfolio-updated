@@ -184,9 +184,6 @@ body.dark-mode .meta-value {
 
 /* --- Duas colunas — legumes --- */
 .grid-row.two-col-legumes {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.25em;
   height: auto;
 }
 .grid-row.two-col-legumes .grid-item {
