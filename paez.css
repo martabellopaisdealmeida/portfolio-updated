@@ -116,6 +116,15 @@ body.dark-mode .meta-value {
   gap: 1.5em;
   align-self: start;
 }
+.meta-logo {
+  height: 2em;      /* ≈24px (o .meta-value está a 0.75em) */
+  width: auto;
+  display: block;
+}
+
+body.dark-mode .meta-logo {
+  filter: invert(1);
+}
 
 .meta-item {
   display: flex;
