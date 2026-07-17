@@ -132,12 +132,12 @@ body.dark-mode .get-in-text-bottom-mobile {
 }
 
 body.dark-mode .inspo-intro {
-  border-color: #000;
+  border-color: white;
 }
 
 body.dark-mode .inspo-intro-label,
 body.dark-mode .inspo-intro p {
-  color: #000;
+  color: white;
 }
 
 /* ==================== MOODBOARD GRID ==================== */
