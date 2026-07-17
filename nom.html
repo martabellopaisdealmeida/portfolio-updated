@@ -178,7 +178,7 @@
         <span class="get-in-text-bottom-mobile">touch</span>
       </a>
       <div class="footer-right">
-        <a href="https://www.icloud.com/iclouddrive/008XTyvyPmEH6UFI731TEegVw#CV" target="_blank">resume</a>
+        <a href="https://www.icloud.com/iclouddrive/008XTyvyPmEH6UFI731TEegVw#CV" target="_blank">CV</a>
         <a href="https://open.spotify.com/show/02nK1cE2YFhTjj5IT9ZvgI?si=99a32a151c61488c" target="_blank">podcast</a>
         <a href="https://www.instagram.com/martabpaisdealmeida/" target="_blank">instagram</a>
         <a href="https://www.linkedin.com/in/marta-bello-pais-de-almeida/" target="_blank">linkedin</a>
@@ -192,14 +192,15 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
   <script>
-    if (window.innerWidth > 768) {
+    {
       document.fonts.ready.then(function () {
 
         var font = 'Inter';
         var points = [];
         var word = 'nom.';
-        var CANVAS_H = 160;
-        var fontSize = 115; // maior → letras mais definidas
+        var mobile = window.matchMedia('(max-width: 768px)').matches;
+        var CANVAS_H = mobile ? 90 : 160;
+        var fontSize = mobile ? 62 : 115; // maior → letras mais definidas
         var GRID_STEP = 5;  // mais denso → mais partículas → mais legível
 
         new p5(function (p) {
@@ -210,8 +211,14 @@
             p.pixelDensity(1);
             var cnv = p.createCanvas(w, CANVAS_H);
             cnv.parent('nom-title-container');
+            cnv.elt.style.touchAction = 'none';
             buildPoints();
           };
+
+          /* On mobile the effect follows your finger — stop the page
+             from scrolling while you drag across the title. */
+          p.touchStarted = function () { return false; };
+          p.touchMoved = function () { return false; };
 
           function buildPoints() {
             points = [];
@@ -296,6 +303,9 @@
           p.windowResized = function () {
             var container = document.getElementById('nom-title-container');
             var w = container.offsetWidth || 900;
+            mobile = window.matchMedia('(max-width: 768px)').matches;
+            CANVAS_H = mobile ? 90 : 160;
+            fontSize = mobile ? 62 : 115;
             p.resizeCanvas(w, CANVAS_H);
             buildPoints();
           };

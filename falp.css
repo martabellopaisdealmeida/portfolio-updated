@@ -99,6 +99,11 @@ body.dark-mode .meta-value {
   margin-bottom: 2em;
 }
 
+/* Mobile header artwork — hidden on desktop */
+.project-title-mobile {
+  display: none;
+}
+
 body.dark-mode .project-title-svg {
   filter: brightness(0) invert(1);
 }
@@ -359,6 +364,18 @@ footer {
 
   .project-title {
     font-size: 2.5em;
+    margin-bottom: 1em;
+  }
+
+  /* Swap the SVG wordmark for the mobile header image */
+  .project-title-svg {
+    display: none;
+  }
+  .project-title-mobile {
+    display: block;
+    width: 100%;
+    max-width: 22em;
+    height: auto;
     margin-bottom: 1em;
   }
 

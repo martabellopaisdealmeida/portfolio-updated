@@ -434,6 +434,14 @@ footer {
     object-fit: unset;
   }
 
+  /* GIF spreads: cancel the desktop 1.9× zoom so it isn't cropped */
+  .grid-item.gif {
+    background-color: transparent;
+  }
+  .grid-item.gif video {
+    transform: none;
+  }
+
   /* 3 col pormenor: mantém 3 colunas, altura natural */
   .grid-row.three-col-pormenor {
     gap: 0.5em;

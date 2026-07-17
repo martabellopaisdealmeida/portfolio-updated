@@ -361,14 +361,20 @@ footer {
     height: 220px;
   }
 
-  /* three col: mantém 3 colunas, altura reduzida */
+  /* three col: mantém 3 colunas, sem corte (altura natural) */
   .grid-row.three-col {
     gap: 0.5em;
     height: auto;
+    align-items: start;
   }
 
   .grid-row.three-col .grid-item {
-    height: 150px;
+    height: auto;
+  }
+
+  .grid-row.three-col .grid-item img {
+    height: auto;
+    object-fit: contain;
   }
 
   .grid-item.detalhes-full1 {
@@ -446,14 +452,19 @@ footer {
     height: 280px;
   }
 
-  /* three col passa a coluna única */
+  /* three col passa a coluna única, sem corte */
   .grid-row.three-col {
     grid-template-columns: 1fr;
     height: auto;
   }
 
   .grid-row.three-col .grid-item {
-    height: 260px;
+    height: auto;
+  }
+
+  .grid-row.three-col .grid-item img {
+    height: auto;
+    object-fit: contain;
   }
 
   .grid-item.detalhes-full1 {

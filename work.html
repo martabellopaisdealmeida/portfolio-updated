@@ -68,7 +68,7 @@
       grid-template-columns: repeat(8, 1fr);
       column-gap: 1.125em;
       row-gap: 2.25em;
-      padding: 1.5em 2.5em 9em;
+      padding: 1.5em 2.5em 5em;
       align-items: start;
     }
 
@@ -100,6 +100,8 @@
     height: auto;
     display: block;
 }
+    /* Mobile-only animated thumbnail (hidden on desktop) */
+    .thumb-mobile { display: none; }
     .work-title {
       font-family: 'ABCDiatypeMono', monospace;
       font-size: 0.5625em;
@@ -124,7 +126,7 @@
     .work-scroll {
       display: flex;
       flex-direction: column;
-      padding: 0 2.5em 8em;
+      padding: 0 2.5em 4em;
     }
     .work-scroll .work-item {
       display: grid;
@@ -144,12 +146,18 @@
     @media (max-width: 768px) {
       .filter-bar { display: none; }
       .works-title { display: none; }
-      .work-grid { grid-template-columns: 1fr; row-gap: 2em; padding: 1.5em 2.5em 10em; }
+      /* Full-bleed grid — thumbs run edge to edge */
+      .work-grid { grid-template-columns: 1fr; row-gap: 2.5em; padding: 1.5em 0 10em; }
       .work-thumb { aspect-ratio: 1 / 1;  }
       .work-thumb img { height: 100%; object-fit: cover; }
-      .work-thumb video { height: 100%; object-fit: cover; } 
-      .work-title { text-align: center; font-size: 0.625em; }
-      .work-tags { text-align: center; }
+      .work-thumb video { height: 100%; object-fit: cover; }
+      /* Swap desktop video for a mobile GIF where provided */
+      .thumb-desktop { display: none; }
+      .thumb-mobile  { display: block; width: 100%; height: 100%; object-fit: cover; }
+      /* Keep captions readable but off the very edge */
+      .work-info { padding: 0 1.5em; }
+      .work-title { text-align: center; font-size: 0.95rem; line-height: 1.4; }
+      .work-tags { text-align: center; font-size: 0.8rem; line-height: 1.55; }
       .work-scroll .work-item { grid-template-columns: 1fr; }
     }
   </style>
@@ -204,17 +212,6 @@
   </div>
 
   <main class="work-grid" id="work-grid">
-
-    <a href="paez.html" class="work-item" data-type="illustration" data-year="2026">
-      <div class="work-thumb">
-        <img src="images/16-paez/13logo.jpg" alt="PAEZ" loading="lazy" decoding="async">
-      </div>
-      <div class="work-info">
-        <p class="work-title">PAEZ <span class="work-year">[2026]</span></p>
-        <p class="work-tags">PRODUCT DESIGN · PATTERN DESIGN · SURFACE</p>
-      </div>
-    </a>
-
     <a href="4students.html" class="work-item" data-type="editorial" data-year="2026">
       <div class="work-thumb">
         <img src="images/15-4design/IMG_6169.jpg" alt="Subiu ao Monte" loading="lazy" decoding="async">
@@ -237,21 +234,13 @@
 
     <a href="salao-musical.html" class="work-item" data-type="branding" data-year="2026">
       <div class="work-thumb">
-        <video src="images/14-salao/hero.mp4" preload="metadata" autoplay muted loop playsinline></video>
+        <video class="thumb-desktop" src="images/14-salao/hero.mp4" preload="metadata" autoplay muted loop playsinline></video>
+        <img class="thumb-mobile" src="images/14-salao/hero-mobile.gif" alt="Salão Musical" loading="lazy" decoding="async"
+             onerror="this.style.display='none';var v=this.parentElement.querySelector('.thumb-desktop');if(v)v.style.display='block';">
       </div>
       <div class="work-info">
         <p class="work-title">SALÃO MUSICAL <span class="work-year">[2026]</span></p>
         <p class="work-tags">BRANDING · GRAPHIC DESIGN</p>
-      </div>
-    </a>
-
-    <a href="nom.html" class="work-item" data-type="branding editorial" data-year="2026">
-      <div class="work-thumb">
-        <img src="images/04-nom/retícula-molho.jpeg" alt="nom" loading="lazy" decoding="async">
-      </div>
-      <div class="work-info">
-        <p class="work-title">NOM <span class="work-year">[2026]</span></p>
-        <p class="work-tags">BRANDING · EDITORIAL DESIGN · GRAPHIC DESIGN</p>
       </div>
     </a>
 
@@ -275,6 +264,26 @@
       </div>
     </a>
 
+    <a href="nom.html" class="work-item" data-type="branding editorial" data-year="2026">
+      <div class="work-thumb">
+        <img src="images/04-nom/retícula-molho.jpeg" alt="nom" loading="lazy" decoding="async">
+      </div>
+      <div class="work-info">
+        <p class="work-title">NOM <span class="work-year">[2026]</span></p>
+        <p class="work-tags">BRANDING · EDITORIAL DESIGN · GRAPHIC DESIGN</p>
+      </div>
+    </a>
+
+    <a href="paez.html" class="work-item" data-type="illustration" data-year="2025">
+      <div class="work-thumb">
+        <img src="images/09-paez/padrao-tomate.svg" alt="PAEZ" loading="lazy" decoding="async">
+      </div>
+      <div class="work-info">
+        <p class="work-title">PAEZ — COMING SOON <span class="work-year">[2025]</span></p>
+        <p class="work-tags">PRODUCT DESIGN · PATTERN DESIGN · SURFACE</p>
+      </div>
+    </a>
+
     <a href="wedding.html" class="work-item" data-type="illustration" data-year="2024">
       <div class="work-thumb">
         <img src="images/06-wedding/BenditoMockup-WWW-Wine_Bottle-04 copiar.webp" alt="Mariana & Felipe" loading="lazy" decoding="async">
@@ -287,7 +296,9 @@
 
     <a href="modus.html" class="work-item" data-type="branding" data-year="2025">
       <div class="work-thumb">
-        <video src="images/05-modus/Gif-m.mp4" preload="metadata" autoplay muted loop playsinline></video>
+        <video class="thumb-desktop" src="images/05-modus/Gif-m.mp4" preload="metadata" autoplay muted loop playsinline></video>
+        <img class="thumb-mobile" src="images/05-modus/mamobilegif.gif" alt="MODUS" loading="lazy" decoding="async"
+             onerror="this.style.display='none';var v=this.parentElement.querySelector('.thumb-desktop');if(v)v.style.display='block';">
       </div>
       <div class="work-info">
         <p class="work-title">MODUS <span class="work-year">[2025]</span></p>
@@ -363,7 +374,7 @@
         <span class="get-in-text-bottom-mobile">touch</span>
       </a>
       <div class="footer-right">
-        <a href="https://www.icloud.com/iclouddrive/008XTyvyPmEH6UFI731TEegVw#CV" target="_blank">resume</a>
+        <a href="https://www.icloud.com/iclouddrive/008XTyvyPmEH6UFI731TEegVw#CV" target="_blank">CV</a>
         <a href="https://open.spotify.com/show/02nK1cE2YFhTjj5IT9ZvgI?si=99a32a151c61488c" target="_blank">podcast</a>
         <a href="https://www.instagram.com/martabpaisdealmeida/" target="_blank">instagram</a>
         <a href="https://www.linkedin.com/in/marta-bello-pais-de-almeida/" target="_blank">linkedin</a>

@@ -410,9 +410,15 @@ footer {
 
 @media (max-width: 768px) {
 
-  /* ---- Title ---- */
-  .nom-title-mobile { display: block !important; font-size: 2.5em; margin-bottom: 1em; }
-  .nom-title-canvas { display: none !important; }
+  /* ---- Title: keep the interactive particle effect, drag with finger ---- */
+  .nom-title-mobile { display: none !important; }
+  .nom-title-canvas {
+    display: block !important;
+    height: 90px;
+    touch-action: none;
+    margin-bottom: 0.5em;
+  }
+  .nom-title-canvas canvas { touch-action: none; }
 
   /* ---- Layout ---- */
   .project-hero { height: 50vh; padding: 0 1.25em; }
