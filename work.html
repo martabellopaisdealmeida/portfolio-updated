@@ -3,7 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>marta bello pais de almeida</title>
+  <title>Work — Marta Bello Pais de Almeida | Selected Projects</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Selected works by Marta Bello Pais de Almeida — branding, editorial, illustration and interaction design projects.">
+  <meta name="author" content="Marta Bello Pais de Almeida">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://martabpaisdealmeida.com/work.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Marta Bello Pais de Almeida">
+  <meta property="og:title" content="Work — Marta Bello Pais de Almeida">
+  <meta property="og:description" content="Selected works by Marta Bello Pais de Almeida — branding, editorial, illustration and interaction design.">
+  <meta property="og:url" content="https://martabpaisdealmeida.com/work.html">
+  <meta property="og:image" content="https://martabpaisdealmeida.com/images/about-me.jpeg">
+  <meta name="twitter:card" content="summary_large_image">
+
   <link rel="stylesheet" href="index.css">
   <link rel="stylesheet" href="custom-cursor.css">
 <link rel="icon" type="image/png" href="favicon.png">
@@ -102,9 +116,11 @@
 }
     .work-thumb { position: relative; }
 
-    /* Gif especifico para mobile (sobrepoe-se ao video). Se o ficheiro
-       nao existir, o onerror remove-o e o video aparece. */
-    .thumb-mobile-gif { display: none; }
+    /* Versao mobile de um thumb. Escondida no desktop.
+       A especificidade extra (.work-thumb .thumb-mobile-gif) e necessaria
+       para vencer as regras .work-thumb img / .work-thumb video acima,
+       senao a versao mobile aparecia tambem no desktop. */
+    .work-thumb .thumb-mobile-gif { display: none; }
     .work-title {
       font-family: 'ABCDiatypeMono', monospace;
       font-size: 0.5625em;
@@ -154,7 +170,9 @@
       .work-thumb { aspect-ratio: 1 / 1;  }
       .work-thumb img { height: 100%; object-fit: cover; }
       .work-thumb video { height: 100%; object-fit: cover; }
-      .thumb-mobile-gif {
+      /* No mobile mostra-se a versao mobile e esconde-se a de desktop. */
+      .work-thumb .thumb-desktop { display: none; }
+      .work-thumb .thumb-mobile-gif {
         display: block;
         position: absolute;
         inset: 0;
@@ -253,8 +271,8 @@
 
     <a href="salao-musical.html" class="work-item" data-type="branding" data-year="2026">
       <div class="work-thumb">
-        <video src="images/14-salao/hero.mp4" preload="metadata" autoplay muted loop playsinline></video>
-        <video class="thumb-mobile-gif" src="images/14-salao/hero-mobile.mp4" preload="metadata" autoplay muted loop playsinline alt="Salão Musical" loading="lazy" decoding="async" onerror="this.remove()"></video>
+        <video class="thumb-desktop" src="images/14-salao/hero.mp4" preload="metadata" autoplay muted loop playsinline></video>
+        <video class="thumb-mobile-gif" src="images/14-salao/hero-mobile.mp4" preload="metadata" autoplay muted loop playsinline alt="Salão Musical" loading="lazy" decoding="async" onerror="this.remove(); var d=this.parentElement.querySelector('.thumb-desktop'); if(d) d.style.display='block';"></video>
       </div>
       <div class="work-info">
         <p class="work-title">SALÃO MUSICAL <span class="work-year">[2026]</span></p>
@@ -304,8 +322,8 @@
 
     <a href="modus.html" class="work-item" data-type="branding" data-year="2025">
       <div class="work-thumb">
-        <video src="images/05-modus/Gif-m.mp4" preload="metadata" autoplay muted loop playsinline></video>
-        <img class="thumb-mobile-gif" src="images/05-modus/mamobilegif.gif" alt="MODUS" loading="lazy" decoding="async" onerror="this.remove()">
+        <video class="thumb-desktop" src="images/05-modus/Gif-m.mp4" preload="metadata" autoplay muted loop playsinline></video>
+        <img class="thumb-mobile-gif" src="images/05-modus/mamobilegif.gif" alt="MODUS" loading="lazy" decoding="async" onerror="this.remove(); var d=this.parentElement.querySelector('.thumb-desktop'); if(d) d.style.display='block';">
       </div>
       <div class="work-info">
         <p class="work-title">MODUS <span class="work-year">[2025]</span></p>
@@ -355,7 +373,8 @@
 
     <a href="falp.html" class="work-item" data-type="branding" data-year="2022">
       <div class="work-thumb">
-        <img src="images/08-falp/business-card1.jpg" alt="FALP" loading="lazy" decoding="async">
+        <img class="thumb-desktop" src="images/08-falp/business-card1.jpg" alt="FALP" loading="lazy" decoding="async">
+        <img class="thumb-mobile-gif" src="images/08-falp/falpmobile.png" alt="FALP" loading="lazy" decoding="async" onerror="this.remove(); var d=this.parentElement.querySelector('.thumb-desktop'); if(d) d.style.display='block';">
       </div>
       <div class="work-info">
         <p class="work-title">FALP <span class="work-year">[2022]</span></p>
