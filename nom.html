@@ -6,7 +6,8 @@
   <title>nom — marta bello pais de almeida</title>
   <link rel="stylesheet" href="nom.css">
   <link rel="stylesheet" href="custom-cursor.css">
-  <link rel="icon" type="image/x-icon" href="favicon.png">
+  <link rel="icon" type="image/svg+xml" href="tomate_light.svg">
+  <link rel="stylesheet" href="gallery.css">
   <link rel="stylesheet" href="header.css">
   <link rel="stylesheet" href="fonts.css">
 </head>
@@ -178,7 +179,7 @@
         <span class="get-in-text-bottom-mobile">touch</span>
       </a>
       <div class="footer-right">
-        <a href="https://www.icloud.com/iclouddrive/008XTyvyPmEH6UFI731TEegVw#CV" target="_blank">CV</a>
+        <a href="https://www.icloud.com/iclouddrive/008XTyvyPmEH6UFI731TEegVw#CV" target="_blank">resume</a>
         <a href="https://open.spotify.com/show/02nK1cE2YFhTjj5IT9ZvgI?si=99a32a151c61488c" target="_blank">podcast</a>
         <a href="https://www.instagram.com/martabpaisdealmeida/" target="_blank">instagram</a>
         <a href="https://www.linkedin.com/in/marta-bello-pais-de-almeida/" target="_blank">linkedin</a>
@@ -198,27 +199,24 @@
         var font = 'Inter';
         var points = [];
         var word = 'nom.';
-        var mobile = window.matchMedia('(max-width: 768px)').matches;
-        var CANVAS_H = mobile ? 90 : 160;
-        var fontSize = mobile ? 62 : 115; // maior → letras mais definidas
-        var GRID_STEP = 5;  // mais denso → mais partículas → mais legível
+        var isMobile = window.innerWidth <= 768;
+        var CANVAS_H = isMobile ? 110 : 160;
+        var fontSize = isMobile ? 74 : 115; // maior → letras mais definidas
+        var GRID_STEP = isMobile ? 4 : 5;   // mais denso → mais partículas → mais legível
 
         new p5(function (p) {
 
           p.setup = function () {
             var container = document.getElementById('nom-title-container');
-            var w = container.offsetWidth || 900;
+            var w = container.offsetWidth || (container.parentElement && container.parentElement.offsetWidth) || 900;
             p.pixelDensity(1);
             var cnv = p.createCanvas(w, CANVAS_H);
             cnv.parent('nom-title-container');
+            // Permite "deslizar" no título em mobile sem fazer scroll da página
             cnv.elt.style.touchAction = 'none';
+            cnv.elt.addEventListener('touchmove', function (e) { e.preventDefault(); }, { passive: false });
             buildPoints();
           };
-
-          /* On mobile the effect follows your finger — stop the page
-             from scrolling while you drag across the title. */
-          p.touchStarted = function () { return false; };
-          p.touchMoved = function () { return false; };
 
           function buildPoints() {
             points = [];
@@ -272,7 +270,17 @@
           }
 
           Particle.prototype.update = function () {
-            var d = p.dist(p.mouseX, p.mouseY, this.x, this.y);
+            // Ponto de interação: toque (mobile) ou rato (desktop)
+            var ix, iy;
+            if (p.touches && p.touches.length > 0) {
+              ix = p.touches[0].x;
+              iy = p.touches[0].y;
+            } else {
+              ix = p.mouseX;
+              iy = p.mouseY;
+            }
+
+            var d = p.dist(ix, iy, this.x, this.y);
 
             if (d < 150) {
               var noiseForce = p.noise(this.x * 0.01, this.y * 0.01, p.frameCount * 0.05);
@@ -282,7 +290,7 @@
               this.velX += Math.cos(angle) * strength;
               this.velY += Math.sin(angle) * strength;
 
-              var pushAngle = Math.atan2(this.y - p.mouseY, this.x - p.mouseX);
+              var pushAngle = Math.atan2(this.y - iy, this.x - ix);
               this.velX += Math.cos(pushAngle) * (strength * 0.5);
               this.velY += Math.sin(pushAngle) * (strength * 0.5);
             }
@@ -303,9 +311,6 @@
           p.windowResized = function () {
             var container = document.getElementById('nom-title-container');
             var w = container.offsetWidth || 900;
-            mobile = window.matchMedia('(max-width: 768px)').matches;
-            CANVAS_H = mobile ? 90 : 160;
-            fontSize = mobile ? 62 : 115;
             p.resizeCanvas(w, CANVAS_H);
             buildPoints();
           };
@@ -315,5 +320,6 @@
     }
   </script>
 
+  <script src="gallery.js"></script>
 </body>
 </html>

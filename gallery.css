@@ -1,0 +1,113 @@
+/* ==================== LIGHTBOX / GALLERY ==================== */
+
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.92);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.lightbox-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-figure {
+  max-width: 92vw;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-figure img {
+  max-width: 92vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  transform: scale(0.96);
+  transition: transform 0.25s ease;
+}
+
+.lightbox-overlay.open .lightbox-figure img {
+  transform: scale(1);
+}
+
+/* Controls */
+.lightbox-btn {
+  position: absolute;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+  z-index: 1;
+  line-height: 1;
+}
+
+.lightbox-btn:hover {
+  opacity: 1;
+}
+
+.lightbox-close {
+  top: 1.25em;
+  right: 1.5em;
+  width: 2.5em;
+  height: 2.5em;
+  font-size: 1.75em;
+  font-family: 'ABCDiatypeMono', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.lightbox-prev,
+.lightbox-next {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3em;
+  height: 3em;
+  font-size: 1.5em;
+}
+
+.lightbox-prev { left: 1em; }
+.lightbox-next { right: 1em; }
+
+.lightbox-counter {
+  position: absolute;
+  bottom: 1.25em;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.65);
+  font-family: 'ABCDiatypeMono', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.75em;
+  letter-spacing: 0.08em;
+}
+
+/* Hint the images are clickable (custom cursor pages hide the native cursor) */
+.photo-grid .grid-item img,
+.grid-item.capa img {
+  cursor: zoom-in;
+}
+
+@media (max-width: 768px) {
+  .lightbox-close { top: 0.75em; right: 0.9em; font-size: 1.5em; }
+  .lightbox-prev { left: 0.25em; }
+  .lightbox-next { right: 0.25em; }
+  .lightbox-prev,
+  .lightbox-next { width: 2.4em; height: 2.4em; font-size: 1.25em; }
+}

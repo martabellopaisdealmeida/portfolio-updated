@@ -434,10 +434,11 @@ footer {
     object-fit: unset;
   }
 
-  /* GIF spreads: cancel the desktop 1.9× zoom so it isn't cropped */
+  /* Anula o zoom (scale 1.9) que cortava o gif em mobile */
   .grid-item.gif {
     background-color: transparent;
   }
+
   .grid-item.gif video {
     transform: none;
   }

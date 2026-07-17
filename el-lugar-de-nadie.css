@@ -389,13 +389,13 @@ footer {
     margin-bottom: 1.5em;
   }
 
-  /* Grid rows — sem corte em mobile (altura natural) */
+  /* Fotografias em mobile: coluna única, altura natural, sem corte */
   .grid-row.two-col-fotografias,
-  .grid-row.two-col-cianotipias,
-  .grid-row.two-col-poster {
+  .grid-row.two-col-poster,
+  .grid-row.two-col-cianotipias {
+    grid-template-columns: 1fr;
     height: auto;
     gap: 0.5em;
-    align-items: start;
   }
 
   .grid-row.two-col-fotografias .grid-item,
@@ -414,7 +414,7 @@ footer {
     object-fit: contain;
   }
 
-  /* Full-width items */
+  /* Full-width items — altura natural */
   .grid-item.revista-gif,
   .grid-item.detalhes {
     height: auto;

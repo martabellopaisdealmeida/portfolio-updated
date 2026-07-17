@@ -329,12 +329,12 @@ footer {
 
   .project-title {
     font-size: 2.5em;
-    margin-bottom: 2em;
+    margin-bottom: 0.5em;
   }
 
   .project-content-grid {
     grid-template-columns: 1fr;
-    gap: 3.125em;
+    gap: 2em;
   }
 
   .project-description {
@@ -399,11 +399,11 @@ footer {
 
   .project-title {
     font-size: 2em;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
   }
 
   .project-content-grid {
-    gap: 2.5em;
+    gap: 2em;
   }
 
   .project-description {

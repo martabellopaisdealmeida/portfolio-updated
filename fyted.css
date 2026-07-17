@@ -121,8 +121,8 @@ body.dark-mode .meta-value {
   font-family: 'ABCDiatypeMono', monospace;
   font-size: 3.5em;
   font-weight: 300;
-  line-height: 1.1;
-  margin-bottom: 0.15em;
+  line-height: 1;
+  margin-bottom: 0;
   letter-spacing: -0.02em;
   text-transform: uppercase;
   width: 100%;
@@ -134,7 +134,7 @@ body.dark-mode .meta-value {
   width: auto;
   height: auto;
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 0.35em;
 }
 
 body.dark-mode .project-title-svg {
@@ -443,7 +443,7 @@ footer {
 
   .project-title {
     font-size: 2em;
-    margin-bottom: 0.75em;
+    margin-bottom: 0.4em;
   }
 
   .project-content-grid {

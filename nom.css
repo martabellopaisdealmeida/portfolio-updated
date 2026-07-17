@@ -410,15 +410,16 @@ footer {
 
 @media (max-width: 768px) {
 
-  /* ---- Title: keep the interactive particle effect, drag with finger ---- */
+  /* ---- Title ---- */
+  /* Mesmo efeito de particulas do desktop, agora tambem em mobile
+     (interativo por toque). O texto simples fica so como fallback. */
   .nom-title-mobile { display: none !important; }
   .nom-title-canvas {
     display: block !important;
-    height: 90px;
-    touch-action: none;
+    height: 110px;
     margin-bottom: 0.5em;
+    filter: url('#liquid-grain-nom');
   }
-  .nom-title-canvas canvas { touch-action: none; }
 
   /* ---- Layout ---- */
   .project-hero { height: 50vh; padding: 0 1.25em; }

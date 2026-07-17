@@ -69,6 +69,11 @@ body.dark-mode .meta-value {
   display: block;
 }
 
+/* Imagem especifica de mobile no header (fallback: logo desktop) */
+.project-hero .hero-mobile {
+  display: none;
+}
+
 /* ==================== PROJECT CONTENT ==================== */
 
 .project-container {
@@ -97,11 +102,6 @@ body.dark-mode .meta-value {
   height: 3.5em;
   width: auto;
   margin-bottom: 2em;
-}
-
-/* Mobile header artwork — hidden on desktop */
-.project-title-mobile {
-  display: none;
 }
 
 body.dark-mode .project-title-svg {
@@ -358,24 +358,22 @@ footer {
     padding: 0 1.25em;
   }
 
+  .project-hero .hero-mobile {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   .project-container {
     padding: 2em 1.5em 0;
   }
 
   .project-title {
     font-size: 2.5em;
-    margin-bottom: 1em;
-  }
-
-  /* Swap the SVG wordmark for the mobile header image */
-  .project-title-svg {
-    display: none;
-  }
-  .project-title-mobile {
-    display: block;
-    width: 100%;
-    max-width: 22em;
-    height: auto;
     margin-bottom: 1em;
   }
 

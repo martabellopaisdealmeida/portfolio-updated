@@ -7,7 +7,8 @@
   <link rel="preload" href="fonts/ExposureItalicTrial[-50].otf" as="font" type="font/otf" crossorigin>
   <link rel="stylesheet" href="falp.css">
   <link rel="stylesheet" href="custom-cursor.css">
-  <link rel="icon" type="image/x-icon" href="favicon.png">
+  <link rel="icon" type="image/svg+xml" href="tomate_light.svg">
+  <link rel="stylesheet" href="gallery.css">
   <link rel="stylesheet" href="header.css">
   <link rel="stylesheet" href="fonts.css">
 </head>
@@ -38,7 +39,8 @@
 
   <!-- Hero -->
   <div class="project-hero">
-    <img src="images/08-falp/logo.png" alt="FALP" class="logo">
+    <img src="images/08-falp/logo.png" alt="FALP" class="logo hero-desktop">
+    <img src="images/08-falp/falpmobile.png" alt="FALP" class="hero-mobile" onerror="this.remove()">
   </div>
 
   <!-- Project Content -->
@@ -46,9 +48,6 @@
     <div class="project-header">
 
         <img src="images/08-falp/FALP_LETRAS.svg" alt="FALP" class="project-title-svg">
-        <img src="images/08-falp/falpmobile.png" alt="FALP" class="project-title-mobile"
-             loading="lazy" decoding="async"
-             onerror="this.style.display='none';var s=this.parentElement.querySelector('.project-title-svg');if(s)s.style.display='block';">
 
       <div class="project-content-grid">
         <div class="project-description">
@@ -151,7 +150,7 @@
         <span class="get-in-text-bottom-mobile">touch</span>
       </a>
       <div class="footer-right">
-        <a href="https://www.icloud.com/iclouddrive/008XTyvyPmEH6UFI731TEegVw#CV" target="_blank">CV</a>
+        <a href="https://www.icloud.com/iclouddrive/008XTyvyPmEH6UFI731TEegVw#CV" target="_blank">resume</a>
         <a href="https://open.spotify.com/show/02nK1cE2YFhTjj5IT9ZvgI?si=99a32a151c61488c" target="_blank">podcast</a>
         <a href="https://www.instagram.com/martabpaisdealmeida/" target="_blank">instagram</a>
         <a href="https://www.linkedin.com/in/marta-bello-pais-de-almeida/" target="_blank">linkedin</a>
@@ -161,5 +160,6 @@
 
   <script src="script.js"></script>
   <script src="custom-cursor.js"></script>
+  <script src="gallery.js"></script>
 </body>
 </html>

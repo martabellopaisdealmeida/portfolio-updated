@@ -158,3 +158,16 @@ body.dark-mode .desktop-nav a {
     height: 3em;
   }
 }
+
+/* ==================== UNIFORM PROJECT HEADER SPACING ====================
+   header.css is loaded last on every project page, so these rules
+   normalise the gap of the project header block across all projects. */
+.project-header {
+  margin-bottom: 2em;
+}
+
+@media (max-width: 768px) {
+  .project-header {
+    margin-bottom: 1.5em;
+  }
+}

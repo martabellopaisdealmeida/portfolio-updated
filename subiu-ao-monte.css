@@ -361,11 +361,10 @@ footer {
     height: 220px;
   }
 
-  /* three col: mantém 3 colunas, sem corte (altura natural) */
+  /* three col: mantém 3 colunas, altura natural (sem corte) */
   .grid-row.three-col {
     gap: 0.5em;
     height: auto;
-    align-items: start;
   }
 
   .grid-row.three-col .grid-item {
@@ -452,7 +451,7 @@ footer {
     height: 280px;
   }
 
-  /* three col passa a coluna única, sem corte */
+  /* three col passa a coluna única, altura natural (sem corte) */
   .grid-row.three-col {
     grid-template-columns: 1fr;
     height: auto;
